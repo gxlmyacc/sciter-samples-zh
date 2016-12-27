@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      toolbar#floating { opacity:0.1; background:#EEE; border:1px solid; flow:horizontal; }
+      toolbar#floating > button { size:18dip; }
+      
+      toolbar#floating:popup { opacity:1; transition: opacity(linear,800ms); }
+
+	  toolbar#floating:popup button {
+	    width: max-intrinsic;
+	  }
+    
+    </style>
+   
+    <toolbar#floating>
+        <button>按钮1</button>
+        <button>按钮2</button>
+    </toolbar>
+  </head>
+<body>
+
+  <htmlarea>
+    鼠标放置在该区域，会弹出<i>浮动</i>工具条
+  </htmlarea>
+  
+</body>
+
+<script type="text/tiscript">
+
+  $(htmlarea).on("mouseidle",function(evt) 
+  {
+    var tb = $(toolbar#floating); 
+    this.popup( tb, evt.xView, evt.yView + 24);
+    return true;
+  });
+  
+</script>
+</html>

@@ -1,0 +1,5 @@
+selector,file,lineNo,usageCounter
+.three , file://F:/%E6%A1%8C%E9%9D%A2/sciter-sdk/sciter4d/samples/cssom/css-stats-to-csv.htm , 9 , 2
+#one , file://F:/%E6%A1%8C%E9%9D%A2/sciter-sdk/sciter4d/samples/cssom/css-stats-to-csv.htm , 7 , 1
+#two , file://F:/%E6%A1%8C%E9%9D%A2/sciter-sdk/sciter4d/samples/cssom/css-stats-to-csv.htm , 8 , 1
+#three , file://F:/%E6%A1%8C%E9%9D%A2/sciter-sdk/sciter4d/samples/cssom/css-stats-to-csv.htm , 10 , 0

@@ -1,0 +1,33 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style>
+    html { background:transparent; }
+    div 
+    {
+      border:1px solid black;
+      width:max-content;
+      background:white;
+    }
+    
+    div > text { color:red; margin-top:*; text-align:center; width:*; }
+    
+    div.filtered {
+      filter: sepia(100%);
+    }
+
+    </style>
+  </head>
+<body>
+
+<div>
+  <picture src="images/cvece.png" />
+  <text>原始</text>
+</div>  
+<div.filtered>
+  <picture src="images/cvece.png" />
+  <text>复古(墨色):sepia(100%)</text>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+function animationDone(evt)
+{
+	if(evt.reason===0)
+		this.@.toggleClass("anim");
+}
+function AnimLoop()
+{
+	this
+		.subscribe(animationDone, Event.BEHAVIOR_EVENT, Event.ANIMATION)
+		.@.toggleClass("anim");
+}
+
+
+var (width, height) = self.box(#dimension);
+var middlex = width/2,
+	middley = height/2;
+var axisx = middlex,
+	axisy = middley;
+var axisx_fog = middlex,
+	axisy_fog = middley;
+var axisx_img = middlex,
+	axisy_img = middley;
+var warpZ = 12,
+	units = 900,
+	stars = [],
+	cycle = 0,
+	Z = 0.03 + (1/25 * 2);
+
+
+// function to reset a star object
+function Rnd()
+{
+	return rand(10000) / 10000.0;
+}
+function resetstar(a)
+{
+	a.x = (Rnd() * width - (width * 0.5)) * warpZ;
+	a.y = (Rnd() * height - (height * 0.5)) * warpZ;
+	a.z = warpZ;
+	a.px = 0;
+	a.py = 0;
+}
+
+// initial star setup
+for(var i=0, n; i<units; i++)
+{
+	n = {};
+	resetstar(n);
+	stars.push(n);
+}
+
+self.onSize = function() {
+    (width, height) = self.box(#dimension);
+	(middlex, middley) = (width/2, height/2);
+};
+
+$(.starfield).paintContent = function(gfx) {
+	gfx.fillRadialGradient(axisx, axisy, 700, color(0,0,0), color(28,23,29));
+	gfx.rectangle(0, 0, width, height);
+
+	var cx = (axisx - width / 2) + (width / 2),
+		cy = (axisy - height / 2) + (height / 2);
+
+	// update all stars
+	var sat = Math.floor(Z * 500);       // Z range 0.01 -> 0.5
+	if(sat > 100)
+		sat = 100;
+
+	for(var i=0; i<units; i++)
+	{
+		var n = stars[i],				// the star
+			xx = n.x / n.z,				// star position
+			yy = n.y / n.z,
+			e = (1.0 / n.z + 1) * 2;	// size i.e. z
+
+		if(n.px !== 0)
+		{
+			// hsl colour from a sine wave
+			var hue = (cycle * i).toInteger() % 360;
+			var clr = Color.hsl(hue, 0.3, 0.8);
+			gfx.strokeColor(clr);
+			gfx.strokeWidth(e);
+
+			var path = new Graphics.Path();
+			path.moveTo(xx + cx, yy + cy);
+			path.lineTo(n.px + cx, n.py + cy);
+			gfx.drawPath(path);
+		}
+
+		// update star position values with new settings
+		n.px = xx;
+		n.py = yy;
+		n.z -= Z;
+
+		// reset when star is out of the view field
+		if(n.z < Z || n.px > width || n.py > height)
+		{
+			// reset star
+			resetstar(n);
+		}
+	}
+
+	// colour cycle sinewave rotation
+	cycle += 0.01;
+};
+
+
+
+// -------------------------------------------------------------------------------------
+const ANIM_SPEED = 35;
+const TURN_DURATION = 3000000.0;
+const TURN_TICK_ANGLE = 360.0 / (TURN_DURATION / ANIM_SPEED);
+const PARALLAX = 40;
+
+var img_rune;
+var rune_halfx;
+var rune_halfy;
+
+self.loadImage("rune.png", function(img) {
+	if(typeof img==#Image)
+	{
+		img_rune = img;
+		rune_halfx = img_rune.width/2,
+		rune_halfy = img_rune.height/2;
+	} else {
+		stdout.println("failed loading image", img);
+	}
+});	
+
+self.timer(1000/40, function() {
+	$(.rune2).refresh();
+	return true;
+});
+
+var angle = 0;
+$(.rune2).paintContent = function(gfx) {
+	gfx.save();
+	gfx.translate(axisx_fog, axisy_fog);
+	gfx.rotate(-angle*3.5);
+	gfx.scale(1, 0.3);
+	gfx.fillRadialGradient(0, 0, 800, color(25,28,57,255), color(25,28,57,1));
+	gfx.ellipse(0, 0, 800, 800);
+	gfx.restore();
+
+	gfx.save();
+	gfx.translate(axisx_img, axisy_img);
+	gfx.rotate(angle);
+	if(img_rune)
+		gfx.drawImage(img_rune, -rune_halfx, -rune_halfy);
+	gfx.restore();
+	
+	angle += TURN_TICK_ANGLE;
+}
+
+// -------------------------------------------------------------------------------------
+self.onMouse = function(evt) {
+	if(evt.type==Event.MOUSE_MOVE)
+	{
+		var distx = evt.x - middlex;
+		var disty = evt.y - middley;
+		axisx = middlex + PARALLAX * (distx/middlex.toFloat());
+		axisy = middley + PARALLAX * (disty/middley.toFloat());
+		axisx_fog = middlex + (PARALLAX*2.0) * (distx/middlex.toFloat());
+		axisy_fog = middley + (PARALLAX*2.0)* (disty/middley.toFloat());
+		axisx_img = middlex + (PARALLAX*3.5) * (distx/middlex.toFloat());
+		axisy_img = middley + (PARALLAX*3.5)* (disty/middley.toFloat());
+	}
+}

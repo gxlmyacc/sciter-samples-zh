@@ -1,0 +1,141 @@
+<html>
+  <head>
+  <style>
+    @import url(std-menu.css); /* 引入菜单条 样式库 */
+    
+    ul#menu-bar 
+    {
+      margin:0;
+      border-bottom:1px solid threedface;
+      border-left:1px solid transparent;
+    }
+    
+    ul#menu-bar:focus 
+    {
+      border-left:1px solid highlight;
+    }
+    
+    //ul#menu-bar menu menu { background:yellow; }
+    
+
+    ul#menu-bar > li 
+    {
+      margin:0 8px;
+      background-color:threedface;
+    }
+    
+    /* table menu */    
+    menu.table 
+    {
+      border-spacing:1px;
+    }
+    menu.table td[role="menu-item"]
+    { 
+      border:1px solid threedface; 
+    }
+    menu.table td[role="menu-item"]:current
+    { 
+      background-color:highlight; color:highlighttext; 
+    }
+    menu.table caption
+    {
+      padding:2px;
+      font-size:8.5pt;
+      background-color: threedlightshadow;
+      color: threedshadow;
+    }
+    
+    //If you need popup menus to outstand from the bar uncomment this.
+    //ul#menu-bar menu { margin-top:10px; hit-margin:10px 0 0 0; }
+    //ul#menu-bar menu menu{ margin:0; hit-margin:0; }
+    
+  </style>
+  
+    <script type="text/tiscript">
+    
+      self.on("click", "menu > li ", function() {
+        stdout.println("菜单项点击在 ", this); 
+      });
+      
+      select {
+        vertical-align:middle;
+      }    
+    </script>  
+  
+  
+  </head>
+
+<body>
+<h3>菜单条：菜单条的最顶层必须匹配ul#menu-bar选择器, 见 std-menu.css</h3>
+<ul id="menu-bar"> <!-- 菜单条的最顶层, 它必须匹配ul#menu-bar选择器, 见 std-menu.css -->
+  <li>简单菜单
+    <menu class="cool">
+      <li title="你好!">第一项(有气泡提示)</li>
+      <li accesskey="^2">第二项<span class="accesskey">Ctrl+<font color="red">2</font></span></li>
+      <li>第三项
+        <menu>
+          <li style="background:linear-gradient(left,yellow,red)">子菜单1</li>
+          <li>子菜单2</li>
+        </menu>
+      </li>
+      <li accesskey="^4">第三项<span class="accesskey">Ctrl+<font color="red">4</font></span></li>
+    </menu>
+  </li>
+    <li>示例 2
+    <menu class="cool">
+      <li >第一项</li>
+      <li >第二项</li>
+      <li >第三项</li>
+    </menu>
+  </li>
+  <li>输入菜单
+    <menu class="cool"  id="test">
+      <li type="radio" name="myradios" id="myradios-1">第一个单选项</li>
+      <li type="radio" name="myradios" id="myradios-2">第二个单选项</li>
+      <li type="radio" name="myradios" id="myradios-3">第三个单选项</li>
+      <hr/>
+      <li type="check" name="mychecks" id="mychecks-1">第一个复选项</li>
+      <li type="check" name="mychecks" id="mychecks-2">第二个复选项</li>
+      <li type="check" name="mychecks" id="mychecks-3">第三个复选项</li>
+      <hr/>
+      <li>音量：<input type="hslider" name="volume" max="10" value="0" buddy="volume-buddy" /> <b id="volume-buddy">x</b> 分贝</li>
+    </menu>
+  </li>
+
+  <li>复杂菜单
+    <menu class="cool">
+      <li> 
+        <input type="radio" name="myradios" id="myradios-1" />单选1
+        <input type="radio" name="myradios" id="myradios-2" />单选2
+        <input type="radio" name="myradios" id="myradios-3" />单选3
+      </li>
+      <hr/>
+      <li type="check" name="mychecks" id="mychecks-1">第一个复选项</li>
+      <li type="check" name="mychecks" id="mychecks-2">第二个复选项</li>
+      <li type="check" name="mychecks" id="mychecks-3">第三个复选项</li>
+      <hr/>
+      <li>状态:<input type="progress" name="p2" maxvalue="100" value="25"/></li>
+      <li>值:<input type="number" name="num" size=4 step=1 minvalue=0 maxvalue=100 value="25"/></li>
+      <li><button name="just-a-button">一个按钮</button></li>
+      <li>下拉选择: <select>
+        <option>第一项</option>
+        <option>第二项</option>
+        <option>第三项</option>
+      </li>
+    </menu>
+  </li>
+</ul>
+
+<!--<menu class="cool" style="display:block;">
+  <li title="Hello world!">First item (with tooltip)</li>
+  <li accesskey="^2">Second item<span class="accesskey">Ctrl+<font color="red">2</font></span></li>
+</menu>-->
+
+
+</body>
+
+
+
+</html>
+	
+	

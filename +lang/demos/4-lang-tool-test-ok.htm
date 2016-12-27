@@ -1,0 +1,34 @@
+﻿<html lang="en"> <!-- lang属性定义默认语言 -->
+  <head>
+    <title>UI翻译 基本示例</title>
+    
+    <!-- 这里4个link定义了4个不同的语言文件 -->
+    <link href="lang/ru.tis" hreflang="ru" rel="translation" >
+    <link href="lang/en.tis" hreflang="en" rel="translation" >
+    <link href="lang/zh.tis" hreflang="zh" rel="translation" >
+    <link href="lang/en.tis" hreflang="ar" rel="translation" >
+    
+    <style>
+      @import url(../lang.css);
+    </style>
+    
+    <script type="text/tiscript">
+      include "../lang.tis";
+      include "../lang-tool.tis"; // 引用以便生成报告
+   
+      $(input[name=nmatches]).onValueChanged = function() { $(var[name=nmatches]).value = this.value; }      
+    </script>
+    
+  </head>
+  <body>
+    <h2>UI翻译 基本示例 使用Lang框架</h2>
+    <p>请按<kbd>CTRL+SHIFT+F11</kbd>键来生成翻译TODO报告。你应该能获取到下面的内容:</p>
+<pre>// 正常，所有项都找到
+// 正常, 没有未使用项</pre>
+    <hr>
+    <span>Matches (未声明为可翻译项)</span>: <input|integer(nmatches) min=0 max=100 step=1 value=0 >
+    <p><var(nmatches) value=0>There are # matches in the box</var>.</p> 
+    <dfn>UNUSED</dfn> ("UNUSED" is included here to flag it as used)
+  </body>
+</html>
+

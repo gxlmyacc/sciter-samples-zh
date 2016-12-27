@@ -1,0 +1,21 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+    
+      VM.unhandledExceptionHandler = function(err) {
+        view.msgbox(#error, err.toString() );
+        return true; // "消费"该异常
+      }
+    
+      $(button).onClick = function() {
+        nonexistent = true; // 将会抛出"undefined"错误
+      }
+    
+    </script>
+  </head>
+<body>
+   <button>生成错误</button> 
+</body>
+</html>

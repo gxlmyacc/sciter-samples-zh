@@ -1,0 +1,161 @@
+<html>
+
+<script type="text/tiscript">
+	function animationDone(evt)
+	{
+		if(evt.reason===0)
+			this.@.toggleClass("anim");
+	}
+
+	function PaintFigure(gfx, figure)
+	{
+		const X_SEGMENT = 400;
+		const Y_HEIGHT = 40.0;
+		
+		if( figure.x <= -figure.img.width)
+		{
+			figure.x = self.box(#width);
+		}
+		figure.x -= figure.speed;
+		
+		var pxseg = 1 - ((figure.x.toInteger() % X_SEGMENT*2).toFloat() / X_SEGMENT);
+		var yh = figure.yh || Y_HEIGHT;
+		var yoff = figure.yoff || 0;
+		var y = yh * Math.sin( pxseg * Math.PI ) + yoff;
+		gfx.drawImage(figure.img, figure.x, 80 + y);
+	}
+
+	function AnimLoop()
+	{
+		this
+			.subscribe(animationDone, Event.BEHAVIOR_EVENT, Event.ANIMATION)
+			.@.toggleClass("anim");
+	}
+	
+	function AnimFigure()
+	{
+		this.figure = {
+			img: self.loadImage(this.@#data-img),
+			speed: this.@#data-speed.toFloat(),
+			x: -99999.0,
+			yh: this.@#data-y-height ? this.@#data-y-height.toFloat() : undefined,
+			yoff: this.@#data-y-offset ? this.@#data-y-offset.toFloat() : undefined,
+		};
+		
+		this.paintBackground = function(gfx)
+		{
+			PaintFigure(gfx, this.figure);
+			return true;
+		};
+	}
+	
+	$(#area-buttons).on("click", "widget", function() {
+		this.state.checked = !this.state.checked;
+		
+		var figures = self.selectAll(this.@#data-fg);
+		for(var el in figures)
+			el.style#visibility = this.state.checked ? "visible" : "none";
+	});
+	
+	$(#area-buttons widget).sendEvent("click");
+</script>
+
+<style>
+	@media on-glass
+	{
+		html { background: none; }
+	}
+	body
+	{
+		margin: 0;
+	}
+	
+	#area-buttons { margin: 10px; flow: horizontal; border-spacing: 5px; }
+	widget
+	{
+		size: 30px;
+		padding: 6px;
+		background: #0064c8;
+		border-radius: 6px;
+		opacity: 0.2;
+		cursor: pointer;
+	}
+	widget:hover
+	{
+		opacity: 0.4;
+	}
+	widget:checked
+	{
+		opacity: 1;
+	}
+	widget div
+	{
+		size: *;
+		background-position: center;
+		background-repeat: stretch keep-ratio;
+	}
+</style>
+
+<style>
+	#area-waves
+	{
+		width: *;
+		height: min-content;
+		flow: stack;
+		padding-top: 2*;
+		border-bottom: solid * #2d405b;
+	}
+	
+	.wave
+	{
+		width: *;
+		height: 378px;
+		aspect: AnimLoop;
+		background-repeat: repeat-x;
+	}
+	.anim { transition: background-position(linear, 6000ms, none); }
+
+	#wave1 { background-image: url(xwave01.png); }
+	#wave2 { background-image: url(xwave02.png); }
+	#wave3 { background-image: url(xwave03.png); }
+	#wave4 { background-image: url(xwave04.png); }
+	#wave5 { background-image: url(xwave05.png); }
+	#wave6 { background-image: url(xwave06.png); }
+	#wave1.anim { background-position: -292px 0; }
+	#wave2.anim { background-position: -512px 0; }
+	#wave3.anim { background-position: -684px 0; }
+	#wave4.anim { background-position: -584px 0; transition: background-position(linear, 4000ms, none); }
+	#wave5.anim { background-position: -820px 0; }
+	#wave6.anim { background-position: -820px 0; }
+	
+	.figure { size: *; aspect: AnimFigure; }
+	.figure { visibility: none; }
+</style>
+
+<body>
+	<div #area-buttons>
+		<widget data-fg="#boia"><div style="background-image: url(pet_boia.png)" /></widget>
+		<widget data-fg="#willy, #bottle"><div style="background-image: url(pet_willy.png)" /></widget>
+		<widget data-fg="#octo"><div style="background-image: url(pet_octo.png)" /></widget>
+		<widget data-fg="#fishl, #fishr"><div style="background-image: url(pet_fishl.png)" /></widget>
+		<widget data-fg="#whale"><div style="background-image: url(pet_whale.png)" /></widget>
+	</div>
+	
+	<div #area-waves>
+		<div #wave1 .wave></div>
+		<div #wave2 .wave></div>
+		<div .figure #bottle data-img="pet_bottle.png" data-speed="1.2" data-y-height="60" />
+		<div #wave3 .wave></div>
+		<div .figure #whale data-img="pet_whale.png" data-speed="1.6" data-y-height="84" />
+		<div .figure #fishl data-img="pet_fishl.png" data-speed="1.7" data-y-height="84" data-y-offset="-30" />
+		<div .figure #fishr data-img="pet_fishr.png" data-speed="1.3" data-y-height="84" data-y-offset="-30" />
+		<div #wave4 .wave></div>
+		<div #wave5 .wave></div>
+		<div .figure #willy data-img="pet_willy.png" data-speed="1.0" />
+		<div .figure #octo data-img="pet_octo.png" data-speed="1.0" />
+		<div #wave6 .wave></div>
+		<div .figure #boia data-img="pet_boia.png" data-speed="1.3" data-y-offset="70" />
+	</div>
+</body>
+
+</html>

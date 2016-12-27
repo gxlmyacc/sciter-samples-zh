@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+	  include "../../log.tis"
+    
+      var socket = null;
+      var form = $(form#data);
+      var output = $(pre#out);
+      
+      /*function reportData(data) {
+        output.text = "<text>接收到:\n" + JSON.stringify(data, "  ") + "</text>";
+      }
+      function reportConnected() {
+        output.text = "已连接";
+        form.state.disabled = false;
+      }*/
+      
+    
+      $(button#connect) << event click() {
+        if(socket = DataSocket.connect(22349)) 
+        {
+          socket << event connect {
+                      log.text = "connected";
+                      form.state.disabled = false; }
+                 << event data(data) {
+                      log.text += "<text>received:\n" + JSON.stringify(data, "  ") + "</text>"; };
+                
+        } else {
+          output.text = "连接失败！";
+        }
+      }
+
+      $(button#send) << event click() {
+	    	socket.send({test:1});
+        socket.send(form.value);
+      }
+
+    
+    </script>
+  </head>
+<body>
+  <button#connect>连接到 localhost:22349</button>
+
+  <form #data disabled >
+    <label>编号<label> <input|integer(number) value=0>
+    <label>消息<label> <input|text(message) value="123，你好">
+    <button#send>发送</button>
+  </form>
+  
+  <pre#out>
+  </pre>
+
+</body>
+</html>

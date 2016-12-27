@@ -1,0 +1,22 @@
+﻿<html>
+  <head>
+    <script type="text/tiscript">
+    
+      $(input#uppercase).on("keypress", function(evt) 
+      {
+        var s = String.fromCharCode(evt.keyCode);
+        s = s.toUpperCase();
+        evt.keyCode = s.charCodeAt(0);
+        stdout.println(s);
+      });
+    
+    </script>
+  </head>
+<body>
+
+  <p>将下面输入框中的字符串都转换为大写：</p>
+
+  <input|text #uppercase>
+
+</body>
+</html>

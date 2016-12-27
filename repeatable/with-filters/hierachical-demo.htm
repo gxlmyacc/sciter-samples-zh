@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>重复模板示例: 层次结构</title>
+    <style>
+    
+      /* repeatable 规则: */
+      
+      [repeatable] { aspect: Repeatable url(repeatable.tis);  }
+      [repeatable] > * { behavior:form; } /* 每个重复的子元素被当做一个form，所以它们可以接受一个对象值 */     
+           
+
+      body { font: system; } 
+      #tree { line-height: 2em; }
+      #tree li.terminal { flow:horizontal; border-bottom: 1px solid #ccc; }
+      #tree li.terminal > [name=price] { margin-left:*; }      
+      
+      #tree li.group > text { background:#DADADA; }
+     
+    </style>
+    <script type="text/tiscript">
+    
+      var treeData = [
+        { 
+          group: "水果", 
+          items: [
+            { product:"苹果", price: 0.95 },
+            { product:"橘子", price: 0.75 },
+            { product:"梨", price: 1.25 }, 
+            { group: "热带水果", 
+              items: [
+                { product:"红毛丹", price: 1.95 },
+                { product:"菠萝蜜", price: 4.75 },
+                { product:"百香果", price: 2.45 },
+                { product:"荔枝", price: 1.2 },
+              ]
+            }, 
+          ]
+        },
+        { 
+          group: "货物", 
+          items: [
+            { product:"牙刷", price: 1.75 },
+            { product:"香皂", price: 2.75 },
+          ]
+        },
+        { product:"礼品卡", price: 20.00 },
+      ];
+      
+    </script>
+    
+    <script type="text/tiscript" >
+    
+      function self.ready() {
+      
+        var list = $(ul#tree);
+        
+        list.value = treeData; // 显示数据树
+      }
+    
+    </script>
+    
+  </head>
+<body>
+
+  下面的项反应了数据的层次结构:
+ 
+  <ul #tree repeatable> <!-- 重复模板在这里定义 -->
+  
+    <!-- 项组模板 -->
+    <li if="{items:Array}" class="group">
+      <text name="group" /> 
+      <ul name="items" repeatable></ol> <!-- 注意: 组中每一项也可以定义重复模板(repeatable) -->
+    </li>
+    
+    <!-- 终端项 -->
+    <li class="terminal" >
+      <span name="product" />
+      <output type="currency" name="price" />
+    </li>
+  </ul>
+
+
+</body>
+</html>

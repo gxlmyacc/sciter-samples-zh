@@ -1,0 +1,58 @@
+﻿<html>
+  <head>
+    <title>Plus: select元素的绑定</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      p { margin-top: 3em; }
+
+    </style>
+    
+    <script type="text/tiscript">
+  
+      namespace Data // 我们的模型
+      {  
+      
+        var currentVal = 1;
+      
+        var items = [
+          {name: "选项1", value: 1},
+          {name: "选项2", value: 2},
+          {name: "选项3", value: 3}
+        ];
+      }    
+    
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>选择列表(select) 绑定数据 示例</note>
+
+  <div>
+    后面的下拉列表&lt;select&gt;绑定了&lt;optgroup&gt;, &lt;optgroup&gt;中的option列表绑定了<code>namespace Data</code>名称空间中的<code>items</code>变量:
+    <select>
+      <option>所有</option>
+      <optgroup each="item in items">
+        <option(item.name) @value="item.value" />
+      </optgroup>
+    </select>
+  </div>
+  <p>下面两个列表的值(value)绑定了相同的<code>currentVal</code>变量: <code(currentVal) style="color:red;" />。
+   <br>它们中的option列表也同样绑定了相同的<code>Data.items</code>变量。</p> 
+  <div>
+    下拉列表&lt;select&gt;中的&lt;option&gt;：
+    <select each="item in items" (currentVal)>
+      <option(item.name) @value="item.value" />
+    </select> 
+  </div>
+  <div>
+    &lt;select&gt;列表中的&lt;option&gt;：
+    <select size=3 each="item in items" (currentVal)>
+      <option @value="item.value"><output(item.name)/></option>
+    </select>
+  </div>
+
+</body>
+</html>

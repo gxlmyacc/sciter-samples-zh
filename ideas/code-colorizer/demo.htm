@@ -1,0 +1,49 @@
+﻿<html>
+  <head>
+    <title>Source code colorizing viewer</title>
+    <style>
+    
+      @import url(source-code.css);
+      
+      h2, p { margin:12dip; }
+      
+      /* for the demo 
+         purposes: */
+         
+      widget#some-id { background:url(some.png); }
+      
+      // another comment (sciter support single line comments in CSS)
+          
+    </style>
+    <SCRIPT type="text/tiscript">
+    
+      var sourceCode = $(source-code);
+      
+      // hyperlinks here will open them in browser:
+      
+      self.on("click", "a[href]", function() {
+        Sciter.launch( this.attributes["href"] );
+        return true; // consume it
+      });
+      
+     /* for the demo 
+        purposes: */
+      
+      $(button#set-current).on("click", function() {
+        sourceCode.setCurrentLine(23,"active");
+      }) 
+      
+    </SCRIPT>
+  </head>
+<body>
+  <h2>源代码高亮显示器</h2>
+  <p>这个代码实现参考了Craig Campbell写的<a href="http://craig.is/making/rainbows">Rainbow JavaScript colorizing</a>引擎</p>
+  <!-- multiline
+       comment  -->
+  <source-code src="demo.htm">Let's do selfie</source-code>
+  
+  <button #set-current>设置当前到23行</button>
+  
+  
+</body>
+</html>

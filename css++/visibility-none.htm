@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      @import "../widgets/switch/switch.css";
+      
+      
+      // visiblity rules:
+      [for-mode] { visibility:none; /* same as display:none */ }
+      
+      // this defines @for-mode as a visibility descriptor for different modes:
+      html[mode='all']      [for-mode~='all'], 
+      html[mode='pending']  [for-mode~='pending'], 
+      html[mode='complete'] [for-mode~='complete'] { visibility:visible; }
+      
+      html[mode='pending'] tr:not(.pending), 
+      html[mode='complete'] tr:not(.complete) { visibility:none; }
+    
+    </style>
+    <script type="text/tiscript">
+    
+    self.on("change","switch", :: self.attributes["mode"] = this.value); 
+    
+    </script>
+  </head>
+<body>
+
+<p>点击下面的开关</p>
+
+<switch>
+    <option value="all">所有</option>
+    <option value="pending">待处理</option>
+    <option value="complete">完成</option>
+</switch>
+
+  <p for-mode="all pending complete" >当前模式是：
+     <span for-mode="all">所有</span><span for-mode="pending">待处理</span><span for-mode="complete">完成</span></p>
+
+  <table border>
+    <caption>待办事项:</caption>
+    <tbody>
+      <tr.complete><td>实现 visibility:none</td><td>完成</td></tr>
+      <tr.complete><td>修复 DDM</td><td>完成</td></tr>
+      <tr.pending><td>memcpy -> memcpy_s</td><td>待处理</td></tr>
+      <tr.pending><td>CSS 透视</td><td>待处理</td></tr>
+    </tbody>
+  </table>
+  
+  <p for-mode="pending complete">警告: 不是所有的记录都会显示!</p>  
+
+</body>
+</html>

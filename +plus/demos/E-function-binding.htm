@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>Plus 函数绑定</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      output { display: inline-block; border: 1px gray dotted; }
+    </style>
+    
+    <script type="text/tiscript">
+    
+      include "../plus.tis"; // 因为要使用@observing，所以需要引入plus.tis
+  
+      namespace Data // 我们的模型
+      {  
+        var a = 0; 
+        var b = 32;
+        var sum = 0;
+        
+        // 这个函数观察'a'、'b'变量，并且计算'sum'变量
+        @observing "a", "b"
+          function calcSum() {
+            sum = a + b;
+          }
+      }    
+    
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>下面两个输入框分别绑定了<code>a</code>、<code>b</code>变量。
+  这两个变量也都绑定了calcSum()函数，以便来计算它们的合计值(sum)。 
+  </note>
+
+  <p><input|number(a) > + <input|number(b)> = <output(sum)></p>
+
+</body>
+</html>

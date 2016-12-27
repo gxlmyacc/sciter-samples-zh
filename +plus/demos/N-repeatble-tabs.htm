@@ -1,0 +1,55 @@
+﻿<html>
+  <head>
+    <title>Plus: very basic sample</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      tabs { display:block; flow:vertical; size:*; }
+      tabs > labels { display:block; flow:horizontal; border-spacing:0.5em; }
+      tabs > labels > label  { background:#eee; padding: 0.25em 1em; behavior:clickable; cursor:pointer; }
+      tabs > labels > label:expanded  { background:gold; }
+      tabs > panels { display:block; flow:stack; size:*; }
+      tabs > panels > panel { display:block; size:*; visibility:none; border:1dip solid; }
+      tabs > panels > panel:expanded { visibility:visible; }
+
+    </style>
+    
+    <script type="text/tiscript">
+      
+  
+      namespace Data // 我们的模型
+      {  
+        var objects =
+        [
+          { name: "标签一", content: "标签一的内容"},
+          { name: "标签二", content: "标签二的内容"},
+          { name: "标签三", content: "标签三的内容"},
+        ];
+        var currentObject = objects[0]; // 当前tab的对象
+      }
+      
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note><p>Tabs作为两个repeatable项的容器。</p></note>
+
+
+  <tabs>
+    <labels each="index,object in objects">
+      <label @expanded="object === Data.currentObject" click="Data.currentObject = object" >
+        <output(index+1) /> - <output(object.name)/>
+      </label>
+    </labels>
+    <panels each="object in objects">
+      <panel @expanded="object === Data.currentObject">
+        <div(object.content)></div>
+        (<span(object.name) />对象的内容)
+      </panel>
+    </panels>
+  </tabs>
+  
+</body>
+</html>

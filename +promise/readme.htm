@@ -1,0 +1,37 @@
+﻿<html>
+  <head>
+    <title>Promises/A+规范</title>
+    <meta name="generator" content="h-smile:richtext"/>
+  </head>
+<body>
+  <h1><a href="http://promises-aplus.github.io/promises-spec">Promises/A+规范</a> 的实现</h1>
+  <h2>promise()函数</h2>
+  <p><code>promise()</code>函数返回一个可调用的对象(函数)，这个对象(函数)有一个<code>.then(onFulfilled, onRejected)</code>方法。<br />
+    <ul>
+      <li>promise的中文意思是"承诺、诺言、指望";</li>
+	  <li>Fulfill的中文意思是"履行、执行、达到";</li>
+	  <li>Reject的中文意思是"拒绝、抛弃、扔掉";</li>
+	</ul>
+    <p>Promises/A+规范:</p>
+	<ul>
+	  <li>一个promise可能有三种状态：等待（pending）、已完成（fulfilled）、已拒绝（rejected）</li>
+	  <li>一个promise的状态只可能从“等待”转到“完成”态或者“拒绝”态，不能逆向转换，同时“完成”态和“拒绝”态不能相互转换</li>
+	  <li>promise必须实现<code>then</code>方法（可以说，then就是promise的核心），而且then必须返回一个promise，同一个promise的then可以调用多次，并且回调的执行顺序跟它们被定义时的顺序一致</li>
+	  <li>then方法接受两个参数，第一个参数是成功时的回调，在promise由“等待”态转换到“完成”态时调用，另一个是失败时的回调，在promise由“等待”态转换到“拒绝”态时调用。同时，then可以接受另一个promise传入，也接受一个“类then”的对象或方法，即thenable对象。</li>
+	</ul>
+  </p>
+  <p>promise使用下面的方法创建:</p>
+  <pre>var prom = promise();
+</pre>
+  <h3>履行/满足 承诺(promise)</h3>
+  <p>调用承诺<code>prom(</code><u><code>true</code></u><code>, params)</code>，其中，<code>.then()</code>注册的onFulfilled回调函数的参数数组。</p>
+  <h3>拒绝 承诺(promise)</h3>
+  <p>调用承诺<code>prom(</code><u><code>false</code></u><code>, params)</code>，其中，<code>.then()</code>注册的onRejected回调函数的参数数组。</p>
+  <h2>重定义Element.request()函数</h2>
+  <p><em>promise.tis</em>脚本也重定义了Element.request()方法的http get/post/put/delete调用。因此，在引入<em>promise.tis</em>脚本情况下，Element.request()函数可以使用下面三种方式调用:</p>
+  <ol>
+    <li><strong>element.request(</strong> <strong>callback</strong>: function, <strong>httpcmd </strong>, <strong>url</strong>: string [, <strong>params</strong>: object [, <strong>headers</strong>: object] ] <strong>) </strong>: true | false<br/>- 异步请求，服务器响应信息传递到callback函数。</li>
+    <li><strong>element.request(</strong> <strong>timeout</strong>: integer, <strong>httpcmd </strong>, <strong>url</strong>: string [, <strong>params</strong>: object [, <strong>headers</strong>: object] ] <strong>) </strong>: (data, status)<br/>- 同步请求，服务器响应信息作为第一个返回值，http状态码作为第二个返回值。</li>
+    <li><strong>element.request(</strong> <strong>httpcmd </strong>, <strong>url</strong>: string [, <strong>params</strong>: object [, <strong>headers</strong>: object] ] <strong>) </strong>: promise,<br/>- 异步请求，服务器的响应信息传递到promise调用<code>.then(onsuccess,onfailure)</code>注册的onsuccess回调函数上。</li></ol>
+</body>
+</html>

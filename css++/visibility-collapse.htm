@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+    section {
+      flow:vertical;
+      border:1px solid;
+      width:max-content;
+      margin:1em;
+    }
+    
+    div { margin:1em; }
+    
+    [collapsed] { visibility:collapse; }
+	  [hidden] {visibility:hidden;}
+	  [none] {visibility:none;}
+    [displaynone] { display:none; }    
+    
+    </style>
+    <script type="text/tiscript"></script>
+  </head>
+<body>
+
+<h3>CSS <code>visibility</code>属性 效果</h3>
+
+下面两个子元素都是visible/displayed
+<section>
+  <div>短文本</div>
+  <div>一些长文本</div>
+</section>
+
+第二个子元素是<code>visibility:collpase;</code>
+<section>
+  <div>短文本</div>
+  <div collapsed>一些长文本</div>
+</section>
+
+第二个子元素是<code>visibility:hidden;</code>
+<section>
+  <div>短文本</div>
+  <div hidden>一些长文本</div>
+</section>
+
+
+第二个子元素是<code>visibility:none;</code>
+<section>
+  <div>短文本</div>
+  <div none>一些长文本</div>
+</section>
+
+第二个子元素是<code>display:none;</code>
+<section>
+  <div>短文本</div>
+  <div displaynone>一些长文本</div>
+</section>
+
+</body>
+</html>

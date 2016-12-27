@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      button > menu { width:*; }
+   
+      popup { background:gold; padding:1em; border:1px solid; prototype: PopupDialog; }
+      
+    
+    </style>
+    <script type="text/tiscript">
+      class PopupDialog {
+        function onControlEvent(evt) {
+          if( evt.type == Event.BUTTON_CLICK ||
+              evt.type == (Event.BUTTON_CLICK | Event.HANDLED) ) {
+              this.state.popup = false;
+          }
+        }
+      } 
+    </script>
+  </head>
+<body>
+
+<button|menu #main>显示菜单
+  <menu>
+    <li>第一项</li>
+    <li>第二项</li>
+    <li>第三项：
+      <button|menu>问题
+        <popup>
+          <caption>测试?</caption>
+          <button>是</button>
+          <button>否</button>
+        </popup>
+      </button>
+    </li>
+    
+  </menu>
+</button>  
+
+
+</body>
+</html>

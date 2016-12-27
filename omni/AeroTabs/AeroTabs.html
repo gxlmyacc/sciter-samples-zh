@@ -1,0 +1,63 @@
+<html>
+
+<head>
+	<style>
+		@import url(AeroTabs.css);
+		
+		html { font-family: system; }
+		.aero-tab { max-width: 550px; }
+	</style>
+
+	<script type="text/tiscript">
+		include "AeroTabs.tis";
+		
+		self.ready = function() {// cant call at main cause prototype is not yet attached to DOM
+			if(!$(.aero-tab).prototype)
+			{
+				log("ERROR: prototype not attached!");
+				self.post(::self.ready());
+				return;
+			}
+			
+			for(var el in $$(.aero-tab))
+			{
+				el.setupTabData({
+					"Second": [
+						{ cmd: "compile", tip: "Compile output", icon: "log3.png" },
+						{ cmd: "find", tip: "Find/Replace", icon: "search.png" }
+					],
+					"First": [
+						{ cmd: "mapinfo", tip: "Map Info", icon: "scroll.png" },
+						{ cmd: "logoutput", tip: "Log output", icon: "log4.png" },
+						{ cmd: "build", tip: "Build/Compile", icon: "build.png" }
+					]
+				});
+
+				el.on("ontabchange", function(evt) {
+					log(this, evt.data);
+				});
+			}
+		};
+	</script>
+</head>
+
+<body>
+	<div .aero-tab coloring="StyleWhite" />
+	<div .aero-tab coloring="StyleBlue" />
+	<div .aero-tab coloring="StyleYellow" />
+	
+	<h4>About:</h4>
+	<p>This is a port of this Ribbon style tabbed interface: <a href="">http://www.codeproject.com/Articles/35143/Ribbon-style-Two-level-Tab-Bar-for-Dialog-Boxes-in</a></p>
+	<p>Features: <i>plays nicely with Aero/transparent background, mouse wheel support, and 3 has different stylings (but you can easily create your own)</i></p>
+	<p></p>
+	<p>Plz, let me know if you use it in any project. If needed, I can give you support, just contact me - midi</p>
+	
+	<script type="text/tiscript">
+		$(a).onClick = function() {
+			Sciter.launch(this.text);
+			return true;
+		};
+	</script>
+</body>
+
+</html>

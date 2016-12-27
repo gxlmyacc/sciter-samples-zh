@@ -1,0 +1,76 @@
+<html>
+<head>
+  <style>
+    html { background-color: white; }
+    ul#items { 
+      flow:horizontal-wrap; //水平可换行布局
+      height: max-intrinsic; 
+      width:*; 
+      overflow:scroll-indicator; 
+      border:1px solid red; 
+      padding:0;
+    }
+    ul#items > li 
+    {
+      display:block;
+      padding: 4px;
+      margin:4px;
+      border: 1px solid #777;
+      //border-radius: 4px;
+      background-color: silver;
+      width: max-content;
+      max-width:400px;  
+    }
+    
+    ul#items > li.placeholder
+    {
+      visibility:hidden;
+      background:transparent;
+      outline:1px solid red -1px;
+    }
+    
+    tb-button {
+      behavior:clickable;
+      display:block;
+      size:max-content;
+      margin:*;
+      background:gold;
+    }
+    tb-button:hover {
+      background:yellow;
+    }
+    
+  </style>  
+  <script type="text/tiscript">
+    
+    include "ddm.tis";
+    include "animations.tis";
+    
+    DragDrop
+    {
+      what      : "ul#items > li",
+      where     : "ul#items",
+      container : "ul#items",
+      easeDrop  : Animation.Ease.OutQuad
+    };
+  
+    var n = 0; // new button counter
+  
+    $(button#add).onClick = function() {
+      $(ul#items).$append(<li><tb-button>New #{++n}</tb-button></li>);
+    }
+  
+  </script>  
+</head>
+<body>
+  <p>可重新排序的按钮列表</p>
+  <button #add>添加按钮</button>
+  <ul #items>
+    <li><tb-button>第一个</tb-button></li>
+    <li><tb-button>第二个</tb-button></li>
+    <li><tb-button>第三个</tb-button></li>
+    <li><tb-button>第四个</tb-button></li>
+    <li><tb-button>第五个</tb-button></li>
+  </ul>
+</body>
+</html>

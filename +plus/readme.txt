@@ -1,0 +1,1 @@
+Plus类似于AngularJS， 一种MV[Whatever]框架: https://plus.google.com/+AngularJS/posts/aZNVhj355G2

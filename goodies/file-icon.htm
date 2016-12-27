@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <style>
+      select.file-list > option
+      {
+        behavior:file-icon;//指定行为
+        padding:2px 2px 2px 20px;
+        foreground-repeat: no-repeat;
+        foreground-position: 2px 50%;
+        foreground-image:url(images/unknown-icon.png);
+      }
+      
+      select.file-list > option:invalid { /* 文件未找到 */
+        color:gray;
+      }
+      
+      widget.file-list
+      {
+        width:*;
+        height:min-content;
+        flow:h-flow;
+        border-spacing:3px;
+      }
+      widget.file-list > option
+      {
+        behavior:file-icon;  //指定行为
+        foreground-repeat: no-repeat;
+        foreground-position: 50% 2px; 
+        foreground-image:url(images/unknown-icon.png);
+        width:max-intrinsic;
+      }
+
+      widget.file-list.large > option
+      {
+        -icon-size:"large"; // 使用大图标
+        padding:32px 2px 2px 2px;        
+      }
+      widget.file-list.x-large > option
+      {
+        -icon-size:"x-large"; // 使用x-large图标
+        padding:48px 2px 2px 2px;        
+      }
+      widget.file-list.xx-large > option
+      {
+        -icon-size:"xx-large"; // 使用xx-large图标, 又名"jumbo"
+        padding:256px 2px 2px 2px;
+        width:256px;
+      }
+
+
+      /* image-transformation can be applied to icons too: */
+      widget.file-list > option:current 
+      {
+        foreground-image-transformation: hue(highlight);
+      }
+      
+    </style>
+  </head>
+<body>
+  <h1>behavior:file-icon 示例</h1>
+  <p>behavior:file-icon行为根据文件名或扩展名设置元素的前景图片为系统文件图标。</p>
+  <p>要获取文件名，behavior:file-icon行为使用<code>filename</code>属性。
+     如果没有这个属性，则它使用<b>DOM元素的文本</b>作为文件名。</p>
+  <p>下面的&lt;select&gt;中&lt;option&gt;应用了behavior:file-icon行为:</p>
+  <p>文本内容作为文件名:  
+  <select .file-list size=6>
+    <option>c:\windows\notepad.exe</option>
+    <option>c:\windows\regedit.exe</option>
+    <option>c:\windows\system.ini</option>
+    <option>c:\windows\explorer.exe</option>
+    <option>c:\windows\twain.dll</option>
+    <option>c:\unknown.unk</option>
+  </select> 使用filename属性:
+  <select .file-list size=6 >
+    <option filename="c:\windows\notepad.exe" >c:\windows\notepad.exe</option>
+    <option filename="c:\windows\regedit.exe" >c:\windows\regedit.exe</option>
+    <option filename="c:\windows\system.ini"  >system.ini</option>
+    <option filename="c:\windows\explorer.exe">explorer.exe</option>
+    <option filename="c:\windows\twain.dll">twain.dll</option>
+    <option filename="c:\unknown.unk">unknown.unk</option>
+  </select></p>
+  <p>如果你要使用大图标，请使用-icon-size:"large" CSS属性 或 icon-size="large" DOM属性:</p>
+  <widget type="select" .file-list .large >
+    <option filename="c:\windows\notepad.exe" >notepad.exe</option>
+    <option filename="c:\windows\regedit.exe" >regedit.exe</option>
+    <option filename="c:\windows\system.ini"  >system.ini</option>
+    <option filename="c:\windows\explorer.exe">explorer.exe</option>
+    <option filename="c:\windows\twain.dll">twain.dll</option>
+    <option filename="c:\windows\nonexistent.dll">nonexistent.dll</option>
+  </widget>         
+  <p>icon-size:"x-large"</p>  
+  <widget type="select" .file-list .x-large >
+    <option filename="c:\windows\notepad.exe" >notepad.exe</option>
+    <option filename="c:\windows\regedit.exe" >regedit.exe</option>
+    <option filename="c:\windows\system.ini"  >system.ini</option>
+    <option filename="c:\windows\explorer.exe">explorer.exe</option>
+    <option filename="c:\windows\twain.dll">twain.dll</option>
+    <option filename="c:\windows\nonexistent.dll">nonexistent.dll</option>
+  </widget>
+  <p>icon-size:"xx-large"</p>  
+  <widget type="select" .file-list .xx-large >
+    <option filename="c:\windows\notepad.exe" >notepad.exe</option>
+    <option filename="c:\windows\regedit.exe" >regedit.exe</option>
+    <option filename="c:\windows\system.ini"  >system.ini</option>
+    <option filename="c:\windows\explorer.exe">explorer.exe</option>
+    <option filename="c:\windows\twain.dll">twain.dll</option>
+    <option filename="c:\windows\nonexistent.dll">nonexistent.dll</option>
+  </widget>         
+
+</body>
+</html>

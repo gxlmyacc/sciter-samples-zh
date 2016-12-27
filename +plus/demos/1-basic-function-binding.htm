@@ -1,0 +1,46 @@
+﻿<html>
+  <head>
+    <title>Plus 基本示例</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      output { display: inline-block; border: 1px gray dotted; }
+    </style>
+    
+    <script type="text/tiscript">
+    
+      include "../plus.tis"; // 下面的模型使用了plus.tis中定义的@observing装饰器
+  
+      namespace Data // 我们的模型
+      {  
+        var celsius = 0; 
+        var fahrenheit = 32;
+        
+        // 这个函数观察'celsius'变量，并计算'fahrenheit'变量
+        @observing "celsius"
+          function toFahrenheit() {
+            fahrenheit = celsius.toFloat() * 9 / 5 + 32;
+          }
+        // 这个函数观察'fahrenheit'变量，并计算'celsius'变量
+        @observing "fahrenheit"
+          function toCelcius() {
+            celsius = (fahrenheit.toFloat() - 32) * 5 / 9;
+          }
+        
+      }    
+    
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>下面的两个输入框分别绑定了<code>celsius</code>和<code>fahrenheit</code>变量。
+  有两个观察函数计算celsius和fahrenheit变量间的转换。
+  <br>在下面任意一个输入框内输入，在另个输入框内可以看到转换结果。</note>
+
+  <p>摄氏度：<input|number(celsius) >°C</p>
+  <p>华氏度：<input|number(fahrenheit)>°F</p>
+
+</body>
+</html>

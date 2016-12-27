@@ -1,0 +1,53 @@
+﻿<html>
+  <head>
+    <title>Plus: very basic sample</title>
+    <style>
+      @import url(../plus-routes.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      toolbar > button { 
+        behavior:radio;
+        height:*; 
+        width:64dip; 
+        height:48dip; 
+        text-align:center;
+        vertical-align:middle;
+      }
+      toolbar > caption { 
+        width:*; 
+        text-align:center;
+        vertical-align:middle;
+      }
+      
+      
+    </style>
+    
+    <script type="text/tiscript">
+      
+      function self.ready() {
+        Plus.app.routes = [
+          { path:"/first", url:"routes/first.htm" },
+          { path:"/second", url:"routes/second.htm" },
+          { path:"/third", url:"routes/third.htm" }
+        ]; 
+      }
+      
+      self << event "routechange" (evt) {
+        var button = $(toolbar>button[href="{Plus.app.path}"]); 
+        button.value = true;
+      }
+      
+    </script>
+  </head>
+
+<body> <!-- 这个示例中没有数据模型 -->
+  <toolbar>
+    <button(route) href="/first" checked>一</button> 
+    <button(route) href="/second">二</button> 
+    <button(route) href="/third">三</button> 
+    <caption>Routes and views on Plus</caption>
+  </toolbar>
+  <main></main>
+  
+</body>
+</html>

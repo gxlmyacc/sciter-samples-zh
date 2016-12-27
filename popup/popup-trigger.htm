@@ -1,0 +1,71 @@
+<html>
+<head>
+  <style>
+  
+    popup#test
+    {
+      background-color: orange;
+      border:1dip solid red;
+      width:100dip;
+      height:100dip;
+      cursor:pointer;
+    }
+    div#anchor
+    {
+      behavior: button;    
+      border:1dip solid blue;
+      width:50dip;
+      height:50dip;
+      cursor:pointer;
+      aspect: PopupTrigger;
+    }
+
+  </style>  
+  <style #actions>
+    div#anchor
+    {
+      behavior: button; 
+    }
+  </style>    
+  <script type="text/tiscript">
+    
+    function PopupTrigger() {
+      var popup;
+      if( var popupSelector = this.attributes["popup"] )
+        popup = self.select(popupSelector);
+      if( !popup )
+        popup = this.select("popup");
+      assert popup : "PopupTrigger: popup not found";
+      
+      var popupShown = false;
+      var me = this;
+      
+      this << event click {
+        if(popupShown)
+          popup.state.popup = false;
+        else
+          this.popup(popup);
+      }
+     
+      popup << event popupready { popupShown = true; }
+            << event popupdismissed { me.timer(500ms, ::popupShown = false); };
+
+    } 
+      
+    </script>
+  
+</head>
+<body>
+
+   <p>点击下面的"锚点":</p>
+    <div#anchor popup="#test" title="你好"> 
+      锚点
+    </div>
+    
+    <popup #test>
+      弹出框
+    </popup>
+    
+
+</body>
+</html>

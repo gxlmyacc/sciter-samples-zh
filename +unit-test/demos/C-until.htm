@@ -1,0 +1,44 @@
+﻿<html>
+  <head>
+    <title></title>
+    
+    <style>
+    
+      @import url(../unittest.css);
+      @import url(../../note.css);
+      
+      section.collapsible { aspect: collapsible; }
+      section.collapsible > caption { behavior: clickable;  }
+      section.collapsible > div { size:200px; background:gold;}
+      section.collapsible:collapsed > div { visibility:none; }
+    
+    </style>
+    
+    <link rel="unittest" href="C-until-tests.tis" />
+    
+    <script type="text/tiscript">
+    
+      function collapsible() {
+        var me = this;
+        if( me.attributes.exists("collapsed") )
+          me.state.collapsed = true;
+        else if( me.attributes.exists("expanded") )
+          me.state.expanded = true;
+        this.$(caption).on("click", function() {
+          me.state.collapsed = !me.state.collapsed;
+        });
+      }
+    
+    </script>
+  </head>
+<body>
+  <note>按Shift + Ctrl + F5显示测试列表</note>
+  <section.collapsible>
+    <caption>可点击的标题</caption>
+    <div>
+      内容
+    </div>
+  </section>
+  
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+      
+      include "pub-sub.tis";
+      
+      var eventsource = PubSub({});
+      
+      // subscription
+      eventsource.on("name:change", function(text) 
+      { 
+        $(output.name).value = text; 
+      });
+      
+      // publishing (triggering the event)
+      $(input.name).onValueChanged = function() {
+        eventsource.post("name:change", this.value);
+        //eventsource.trigger("name:change", this.value);
+      }
+    
+    </script>
+  </head>
+<body>
+  <h1>普通对象、类、名称空间的PubSub控制器 示例</h1>
+  请输入: <input .name novalue="这里" /> 
+  在这里观察修改: <output .name />
+</body>
+</html>

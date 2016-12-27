@@ -1,0 +1,52 @@
+﻿<html>
+  <head>
+    <title>Sciter的对话框</title>
+    <style>
+      html { width:600dip; height:480dip; }
+      textarea { display:block; size:*; }
+    </style>
+    <script type="text/tiscript">
+    
+    function self.ready() {
+      // 从调用者获取数据，并且显示它:
+      $(output#mainData).value = view.parameters.mainData;
+    }
+    
+    $(#call-foo).on("click", function() {
+      // 调用主窗口提供的回调函数:
+      var d = view.parameters.mainFoo();
+      // 这里显示回调函数的返回值:
+      $(textarea).value = d;
+    });
+    
+    
+    $(textarea).on("change", function() {
+      var text = this.value;
+      // 调用主窗口提供的回调函数:
+      view.parameters.mainUpdate(text);
+    });
+    
+    $(#close).on("click", function() {
+      var dataToReturn = {
+        text: $(textarea).value,
+        author: "Dialog!"
+      };
+      view.close(dataToReturn);
+    });
+    
+    
+    </script>
+  </head>
+<body>
+  <p>来自主窗口的数据: <output id="mainData" /></p>
+  
+  <p>调用<code>mainFoo()</code>函数从main.htm获取数据: <button id="call-foo">调用</button></p>
+  
+  <p>下面的文本区域的每次变化都会调用主窗口提供的mainUpdate()函数:</p>
+
+  <textarea>请在这里输入一些内容</textarea>
+  
+  <button id="close">关闭对话框并且返回数据<button>
+
+</body>
+</html>

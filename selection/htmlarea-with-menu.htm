@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>behavior:htmlarea 示例</title>
+    <style>
+      div.selectable {
+        border:1px solid;
+        behavior:htmlarea;
+        context-menu: selector(menu#for-htmlarea);
+      }
+    </style>
+    <menu.context #for-htmlarea>
+      <li command="edit:copy"	style="foreground-image:url(sciter:copy.png)"><label>复制</label><span class="accesskey">Ctrl+C</span></li>
+      <hr/>
+      <li command="edit:selectall"><label>选择所有</label><span class="accesskey">Ctrl+A</span></li>
+      <hr/>
+      <caption>自定义操作</caption>
+      <li #selected-text><label>显示选择文本</label></li>
+      <li #selected-html><label>显示选择HTML</label></li>
+    </menu>
+    <script type="text/tiscript">
+    
+    function getSelectedText() {
+      return $(div.selectable).selection.text;
+    }
+    
+    function getSelectedHTML() {
+      return $(div.selectable).selection.html;
+    }
+    
+    function hasSelection() {
+      return $(div.selectable).selection.type;
+    }
+    
+    
+    $(div.selectable).on("click","li#selected-text", function() { view.msgbox(#information,getSelectedText().htmlEscape()); })
+                     .on("click","li#selected-html", function() { view.msgbox(#information,getSelectedHTML().htmlEscape()); })
+                     .on("keydown", function(evt) { return true; /*supress key handling in selectable */ } );
+    
+    </script>
+  </head>
+<body>
+  <p>下面的div元素应用了 <code>behavior:htmlarea</code> 行为，所以这个div中的内容是可以选择的：</p>
+  <div.selectable>
+    <h1>behavior:menu</h1>
+    <p>这个行为提供了基本的层次菜单功能</p>
+    <h2>元素</h2>
+    <p>默认情况下，应用了该行为的元素有:</p>
+    <ul>
+      <li><code>&lt;menu class=&quot;context&quot;&gt;</code> - 上下文菜单;</li>
+      <li><code>&lt;menu class=&quot;popup&quot;&gt;</code> - 弹出菜单;</li></ul>
+    <h2>模型</h2>
+    <p>Sciter中菜单声明的示例:</p>
+ <div>
+</body>
+</html>
+

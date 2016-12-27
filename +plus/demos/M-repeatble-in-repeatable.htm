@@ -1,0 +1,47 @@
+﻿<html>
+  <head>
+    <title>Plus: very basic sample</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      span { display:inline-block; border:1dip solid; margin: 4dip; }
+
+    </style>
+    
+    <script type="text/tiscript">
+      
+  
+      namespace Data // 我们的模型
+      {  
+        var objects =
+        [
+          {
+            nestedObjects: [  { id: 1, name:"aaa" },
+                              { id: 2, name:"bbb" } ]
+          },
+          {
+            nestedObjects: [  { id: 3, name:"ccc" },
+                              { id: 4, name:"ddd" },
+                              { id: 5, name:"eee" } ]
+          }
+        ];
+      }
+      
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note><p>下面的Repeatable节内嵌了其他的repeatable节。</p></note>
+
+  <!-- 可重复节 -->
+  <div each="object in objects">
+    <!-- 内嵌重复节 -->
+    <div each="nestedObject in object.nestedObjects">
+        <span(nestedObject.name)/>
+    </div>
+  </div>  
+  
+</body>
+</html>

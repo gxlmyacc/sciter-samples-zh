@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+    @import url(../note.css);
+    
+    form {
+      flow: row(label, input);
+    }
+    form > label { white-space:nowrap; }
+    
+    </style>
+    <script type="text/tiscript">
+    
+      $(button) << event click() {
+        view.msgbox(#information, "按钮被点击");
+      };
+    
+    </script>
+  </head>
+<body>
+
+  <note>
+    <ul>
+      <li><kbd>Ctrl+1</kbd> - 设置焦点为第一个输入框</li>
+      <li><kbd>Ctrl+2</kbd> - 设置焦点为第二个输入框</li>
+      <li><kbd>Ctrl+T</kbd> - 设置焦点为"测试"按钮</li>
+    </ul>
+    注意: 在Mac OS中，使用CMD替代CTRL.
+  </note>
+
+  <form>
+    <label>输入框 1</label> <input|text accesskey="^1" />
+    <label>输入框 2</label> <input|text accesskey="^2" />
+    <button accesskey="^T">测试</button>
+  </form>
+
+</body>
+</html>

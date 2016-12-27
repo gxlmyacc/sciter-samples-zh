@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+    
+    String.printv = function(args..) {
+      return this.replace
+      (   /\{([0-9]+)\}/g, 
+          function(match, number) { 
+            number = number.toInteger();
+            return args[number] !== undefined ? args[number]: match; }
+      );
+    }
+        
+   self.$(pre#out).html = "再见 {1}, 我是 {0}!".printv("张三","世界");
+    
+    </script>
+  </head>
+<body>
+  String.printv()函数的测试:
+  <pre #out />
+</body>
+</html>

@@ -1,0 +1,58 @@
+<html>
+<head>
+  <style>
+    @import url(tapev.css);
+    
+    #tapes {  flow:"1 3"
+                   "2 4";
+              border-spacing:10dip; height:*; }
+              
+    div.tapev > div.item
+    {
+      border:1px solid #aaa;
+      flow: "1 1"
+            "2 3"; 
+      border-spacing:6dip;
+    }
+    div.tapev > div.item > .content { width:*; } 
+    div.tapev > div.item > img { max-width:64dip; }
+              
+  </style>  
+  <script type="text/tiscript">
+    include "items-source.tis";
+    include "tapev.tis";
+    
+    self.$(div#tape).onBufferChanged = function(firstIdx, lastIdx)
+    {
+      self.$(pre#status).text = String.printf("Buffer: first record %d, last record %d", firstIdx, lastIdx);
+    }
+        
+  </script>  
+</head>
+<body>
+  <h1>虚拟列表 示例</h1>
+  <p>这个示例用于演示虚拟列表。虚拟列表用于列表项数量未知的情况。 
+     通常，因为列表项未知，所以我们没法显示标准的滚动条。
+     这个列表使用固定的DOM元素缓冲区(TapeV.BUFFER_SIZE = 20)，所以渲染速度与item-source中列表项的数量无关。</p>
+  <p>请在下面的列表中使用滚轮滚动列表。</p>
+  <div #tapes>
+    <caption>正常滚动的列表</caption>
+    <div #tape .tapev items-source="LoremIpsum" >
+      <div .item .template>
+        <caption merge-code="caption" />
+        <img merge-code="image" />
+        <div .content merge-code="content" />
+      </div>
+    </div>
+    <caption>有弹力的滚动列表</caption>
+    <div #kinetic-tape .tapev items-source="LoremIpsum" kinetic >
+      <div .item .template>
+        <caption merge-code="caption" />
+        <img merge-code="image" />
+        <div .content merge-code="content" />
+      </div>
+    </div>  
+  </div>
+  <pre #status>.</pre>
+</body>
+</html>

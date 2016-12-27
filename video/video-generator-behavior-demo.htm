@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+      body { background:gold; }
+      
+			video.generator {
+				behavior: video-generator video;
+				size: *;
+				foreground-size:contain;
+				border:1px solid #000;
+			}
+		
+		</style>
+    <script type="text/tiscript">
+		
+		$(video).onSize = function() {
+		  var (w,h) = this.box(#dimension);
+			$(form).value = { width:w, height:h };
+		}
+		
+		</script>
+  </head>
+<body>
+  <p>这个示例模拟部分视频的更新。参见 sdk/include/behaviors/behavior_video_generator.cpp 源码。
+  在每一帧 (24 FPS)，它更新帧的一部分。</p>
+  <form>像素 <output(width)/>x<output(height)/></form>
+  <video.generator />
+</body>
+</html>

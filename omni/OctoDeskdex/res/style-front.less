@@ -1,0 +1,100 @@
+.hidden { display: none; }
+
+#front
+{
+	position: relative;
+	z-index: 99;
+	flow: stack;
+	size: 505px 504px;
+	background: url(front.png) no-repeat;
+}
+#front-wrap { size: *; padding: 4px; overflow: hidden; }
+
+
+#f-open-dex
+{
+	position: absolute;
+	left: 17px;
+	top: 222px;
+	size: 31px 52px;
+	background: url(btn_open.png) no-repeat;
+	cursor: pointer;
+}
+#f-open-dex:hover
+{
+	transition: blend-atop(quad-out, 250ms);
+	background: url(btn_open_h.png) no-repeat;
+}
+#f-open-dex { margin-left: -45px; transition: margin(quad-in-out, 250ms); }
+body:hover #f-open-dex { margin: 0; }
+
+#f-wband
+{
+	position: absolute;
+	left: 4px;
+	top: 4px;
+	size: 165px 50px;
+	background: url(wband.png) no-repeat;
+}
+
+#btn-close
+{
+	position: relative;
+	top: 14px; left: 12px;
+
+	size: 18px 19px;
+	background: url(close.png) no-repeat;
+	cursor: pointer;
+}
+#btn-close:active { background-position: 1px 1px; }
+
+#f-title
+{
+	position: absolute;
+	top: 454px; left: 165px;
+
+	size: 190px 33px;
+	background: url(title.png) no-repeat;
+}
+
+#f-octo
+{
+	position: absolute;
+	top: 147px; left: 142px;
+
+	size: 239px 204px;
+	background: url(front_octo_crazy.png) red no-repeat;
+}
+
+
+#f-wow
+{
+	position: absolute;
+	left: 335px; top: 90px;
+	size: 65px 49px;
+	background: url(wow.png) no-repeat;
+	transform: scale(0);
+}
+
+#f-loader
+{
+	position: absolute;
+	top: 458px; left: 458px;
+	size: 32px;
+	background: url(loader.png) no-repeat;
+	opacity: 0;
+}
+#f-loader.show
+{
+	opacity: 1;
+	transition: opacity(linear, 200ms);
+}
+
+
+.intrans-hide1 #f-open-dex { opacity: 0; transition: opacity(linear, 200ms); background: url(btn_open_h.png) no-repeat; }
+.intrans-hide1 #f-wband { top: -46x; transition: top(quad-in-out, 300ms); }
+.intrans-hide1 #f-title { margin-top: 48px; transition: margin(quad-in-out, 300ms); }
+
+.intrans-show2 #f-wow { transform: scale(1); transition: transform(back-out, 450ms); }
+.intrans-hide2 #f-octo { width: 0; transition: width(quint-in-out, 1500ms); }
+.intrans-hide2 #f-wow { transform: scale(0); transition: transform(back-in, 450ms, 200ms); }

@@ -1,0 +1,60 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style>
+    
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      
+      @import url(../../note.css); 
+      
+      widget { flow:horizontal; }
+      form { flow:row(label, input widget); }
+      form > label { width: max-content; }
+      
+      div { margin: 1em; }
+      div > span { visibility:none; }
+      div > span:expanded { visibility:visible; }
+    
+    </style>
+    <script type="text/tiscript">
+    
+      namespace Data {
+        
+        var connection = {
+          name: "本地网络",
+          dhcp: false,
+          ip: [192,168,0,1]
+        }
+      }
+    
+    </script>
+  </head>
+<body model="Data">
+
+  <note> 
+    DOM元素绑定了一个数组
+  </note>
+
+  <form>
+    <label>名称:</label><input(connection.name) />
+    <label>是否DHCP:</label><input|checkbox(connection.dhcp)>
+    <label>IP地址:</label>
+       <widget @disabled="connection.dhcp">
+         <input|integer(connection.ip[0]) max=255>.
+         <input|integer(connection.ip[1]) max=255>.
+         <input|integer(connection.ip[2]) max=255>.
+         <input|integer(connection.ip[3]) max=255>
+       </widget>
+  </form>
+  <div>
+     "<(connection.name)/>": 
+     <span @expanded="connection.dhcp">自动获取IP</span>   
+     <span @expanded="!connection.dhcp">IP地址 
+       <(connection.ip[0])/>.<(connection.ip[1])/>.<(connection.ip[2])/>.<(connection.ip[3])/>
+     </span>
+  </div>
+  
+</body>
+</html>
+
+

@@ -1,0 +1,94 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style>
+    
+    body {
+      flow:grid(1 1 1,
+                2 3 4);
+      border-spacing:1em;
+    }
+    
+    @const PANEL-BACK: #eee;
+    @const EDIT-BACK: var(edit-back,#fee);
+    
+    /* Basic theme defintions */
+    
+    form { 
+      flow:row(label,input); 
+      background: var(panel-back, #f00); /* uses variable */
+      color: var(panel-text, #ff0); /* uses variable */
+      padding:10dip;
+      border-spacing:10dip;
+    }
+    form > label { white-space:nowrap; vertical-align:baseline; }
+    
+    input[type=text] {
+      background: @EDIT-BACK; /* uses variable */
+      padding:3dip;
+      border:1dip solid var(edit-border, #00f); /* uses variable */
+      color:var(edit-text, #044); /* uses variable */
+      vertical-align:baseline;
+    }
+ 
+    /* Light theme settigns: defines only colors */
+    
+    .light {
+      var(panel-back) : @PANEL-BACK;
+      var(panel-text) : #000;
+      var(edit-back)  : #fff;
+      var(edit-border): #999;
+      var(edit-text)  : #000;
+    }
+
+    .dark {
+      var(panel-back) : #000;
+      var(panel-text) : #ccc;
+      var(edit-back)  : #333;
+      var(edit-border): #666;
+      var(edit-text)  : #fff;
+    }
+
+        
+    </style>
+    <script type="text/tiscript"></script>
+  </head>
+<body>
+
+<h2>关于主题的一个想法</h2>
+
+<section>
+  <header>未定义主题</header>
+  <form>
+    <label>姓</label>
+    <input|text value="Albert"/>
+    <label>名</label>
+    <input|text value="Einshtein"/>
+  </form>
+</section>
+
+<section.light>
+  <header>"light" 主体</header>
+  <form>
+    <label>姓</label>
+    <input|text value="Albert"/>
+    <label>名</label>
+    <input|text value="Einshtein"/>
+  </form>
+</section>
+
+<section.dark>
+  <header>"dark" 主题</header>
+  <form>
+    <label>姓</label>
+    <input|text value="Albert"/>
+    <label>名</label>
+    <input|text value="Einshtein"/>
+  </form>
+</section>
+
+<p>注意：声明元素的样式仅定义一次，但是却有两种不同颜色的样式。</p>
+
+
+</body>
+</html>

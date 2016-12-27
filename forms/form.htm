@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      body { flow: "1 1"
+                   "2 3"
+                   "4 3" ;
+             font:system; }
+                   
+      body > form { size:*; padding:8px; }
+      
+      .table { flow: row(label, select input div textarea button); border-spacing: 6px;}
+      .table > label { padding:4px; white-space:nowrap; horizontal-align:right; }
+      /*.table > * { display:block; }*/
+
+      body > div { size:*; }
+      textarea#json { size:*; font-family:monospace; font-size:120%; border:1px solid gray; background:#EFF; display:block; margin-top:2dip; }
+      
+      label[for] { text-decoration:underline; cursor:pointer; }
+
+      note { display:block; padding:6px; margin:6px; background:#FEE; }
+    
+    </style>
+    <script type="text/tiscript">
+    
+      function showValues() { 
+        $(textarea#json).value = String.printf("%V", $(form).value).replace("\t","  "); 
+      }
+      function setValues() { 
+        $(form).value = parseData($(textarea#json).value); 
+      }
+      
+      
+      $(form).subscribe("change", showValues ); 
+      $(button#set).subscribe("click", setValues ); 
+      
+      showValues();
+    
+    </script>
+  </head>
+<body>
+  <h2><code>behavior:form</code> 示例</h2>
+  <form .table>
+    <label>下拉选择框</label>
+      <select(dropdownSelect) title="numbers">
+        <option>一</option>
+        <option>二</option>
+        <option>三</option>
+        <option selected>四</option>
+        <option>五</option>
+        <option>六</option>
+        <option>七</option>
+        <option>八</option>
+        <option>九</option>
+        <option>十</option>
+        <option>十一</option>
+        <option>十二</option>
+      </select>
+    
+    <label>文本区</label>
+      <textarea(textArea) cols=40 rows=4>示例文本</textarea>
+      
+    <label for=textEdit>文本编辑框</label>
+      <input|text(textEdit)  value="示例文本" />
+      
+    <label>密码框</label>
+      <input|password(passWord) />
+      
+    <label for=checkboxButton>复选按钮</label>
+      <button|checkbox(checkboxButton) value=true>复选框</button>
+  
+    <label>单选组</label>
+      <div>
+         <button|radio(radioGroup) value="1" checked>选项 1</button>
+         <button|radio(radioGroup) value="2">选项 2</button>
+         <button|radio(radioGroup) value="3">选项 3</button>
+      </div>
+      
+    <label>名称(子组)</label>
+    <div.table (names) style="background:#FFD; padding:6px">
+      <label>第一姓名:</label><input|text(first) value="张三">
+      <label>第二姓名:</label><input|text(last) value="李四">
+    </div>
+    
+  </form>
+  <div>
+    <button #set>设置值</button>
+    <textarea #json></textarea>
+  </div>
+  <note>
+      注意：<code>&lt;form&gt;</code>和它的<code>behavior:form</code>行为支持深层对象：将有<i>name</i>属性的容器作为子对象。检查声明的黄色容器中的两个输入框。
+  </note>  
+
+</body>
+</html>

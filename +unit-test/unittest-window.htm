@@ -1,0 +1,105 @@
+﻿<html resizeable>
+  <head>
+    <title>已定义的测试</title>
+    <style>
+    
+      body { font:system; margin:0; padding:4dip; }
+    
+      select#list { 
+        display:block;
+        size:*;
+        margin: 0.5em 0;
+      } 
+      
+      select#list option[state=running] > caption { background:#fffabf; }
+      select#list option[state=ok] > caption { background:#d7ffbf; }
+      select#list option[state=failure] > caption { background:#ffc2bf; }
+      
+      form { flow:horizontal; padding:0.4em; }
+      form > span { display:block; width:*; flow:vertical; text-align:center; }
+      form > span > label { display:block; width:*; }
+      form > span > output { font-size:18pt; font-weight:bold; display:block; width:*;  }
+      
+      body[state=running] > form { background:#fffabf; }
+      body[state=ok]      > form { background:#d7ffbf; }
+      body[state=failure] > form { background:#ffc2bf; }
+      
+    </style>
+    <script type="text/tiscript">
+     
+      function self.ready() {
+      
+        const UnitTest = view.parameters.testNs;
+        const rootTest = view.parameters.testRoot;
+        
+        const Body = $(body);
+        const TestListView = $(select#list);
+        const RunButton = $(button#run);
+        const FormResults = $(form);
+        
+        TestListView.clear();
+        var rootOption = TestListView.$append(<option expanded><caption>{rootTest.name}</caption></option>);
+        
+        function addChildren(parentOption, parentItem) {
+          for(var (i,item) in parentItem.list) {
+            if( item.run ) // this is a leaf 
+              parentOption.$append(<option value={item.id}><caption>{item.name}</caption></option>);
+            else {
+              var node = parentOption.$append(<option expanded><caption>{item.name}</caption></option>);
+              addChildren(node,item);
+            }
+          }
+        }
+        
+        addChildren(rootOption,rootTest);
+        
+        function onTestStart ( test, nSucc, nFail, nTests )
+        {
+          var opt = TestListView.$(option[value={test.id}]);
+          assert opt;
+          opt.attributes["state"] = "running";
+        }
+        
+        function onTestEnd ( result, test, nSucc, nFail, nTests )
+        {
+          var opt = TestListView.$(option[value={test.id}]);
+          assert opt;
+          opt.attributes["state"] = result ? "ok" : "failure";
+        }
+        
+        function onAllTestsEnd ( nSucc, nFail )
+        {
+          //stdout.println("onAllTestsEnd", nSucc, nFail, nSucc + nFail);
+          FormResults.value = {
+            succeeded: nSucc,
+            failed: nFail,
+            total: nSucc + nFail
+          };
+          Body.attributes["state"] = nFail == 0 ? "ok" : "failure";
+        }
+        
+        RunButton.on("click",function(){
+          var indexes = TestListView.value;
+          Body.attributes["state"] = "running";
+          UnitTest.run(indexes, onTestStart, onTestEnd,onAllTestsEnd);
+        });
+
+        TestListView.on("change",function(){
+          var indexes = TestListView.value || [];
+          RunButton.state.disabled = indexes.length == 0;
+        });
+        
+      }
+    
+    </script>
+  </head>
+<body>
+  <button #run disabled>运行</button>
+  <select|tree #list multiple="checkmarks"></select>
+  <form>
+    <span><label>成功</label><output(succeeded)/></span>
+    <span><label>失败</label><output(failed)/></span>
+    <span><label>总计</label><output(total) /><span>
+  </form>
+</body>
+</html>

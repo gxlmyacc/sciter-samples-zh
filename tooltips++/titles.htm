@@ -1,0 +1,119 @@
+﻿<html>
+	<head>
+		<title>title和popup弹出框</title>
+	<style type="text/css"> 
+  dt 
+  { 
+    border-bottom:1dip dashed gray; 
+  }
+  dd 
+  { 
+    margin-top:10dip; 
+    margin-bottom:10dip; 
+  }
+  
+  /* 为我们的弹出元素定义样式 */
+  popup.info 
+  { 
+    padding:4dip;
+    font: system;
+    background-color:infobackground infobackground #FFEFD5 #FFEFD5;
+    width: 220dip; 
+    border: 1px solid chocolate;
+  }
+  popup.info p { margin:4dip 0;}
+  popup.info .with-divider
+  {
+    margin-top: 0.5em;
+    border-top: 1px dashed chocolate;
+    padding-top: 0.5em;
+    text-align:center;
+  }
+  popup.info em {
+    font-weight: bold;
+    font-style: normal;
+    color: red;
+  }  
+
+  /* 为我们的弹出元素定义样式 */
+  popup.balloon 
+  { 
+    background-color:transparent;
+    background-image: url(images/speech-bubble.png);
+    background-repeat: expand;
+    background-position:80px 33px 33px 74px; /*上 右 下 左 偏移量*/
+    padding:71dip 25dip 25dip 16dip;
+    border: none;
+    font: 11pt "Comic Sans MS", Verdana;
+    width:30%;
+  }
+
+  popup.balloon em {
+    font-weight: bold;
+    font-style: normal;
+    color: red;
+  }  
+
+  popup.balloon p {
+  
+    background-image: url(images/corner.png);
+    background-repeat: no-repeat;
+    background-position:100% 100%;
+  }  
+
+  popup#balloon-transparent
+  {
+    opacity:0.75;
+  }
+
+  /* 为标准气泡提示定义样式( title属性定义的气泡 ). 
+     下面的样式金山示例: 这里的宽度是最大内在宽度，但是不会超过100px */
+  _service > popup[role=tooltip]
+  { 
+    width:max-intrinsic; 
+	background-color:orange; 
+    font: 24pt Verdana;
+    font-weight:normal;
+  }
+  
+	</style>
+	</head>
+<body>
+	<dl>
+		<dt>简单标题 (气泡提示)</dt>
+		<dd>如果你将鼠标悬停在<b title="This is pretty long text!">粗体部分</b>的文本上,
+		    你将看到一个简单的建议文本</dd>
+		<dt>有HTML标记代码的简单气泡提示</dt>
+		<dd>如果你将鼠标悬停在<b tooltip="This is pretty long <b>bold</b> text!">粗体部分</b>的文本上,
+			你将看到一个简单的建议文本</dd>
+		<dt>格式化后的气泡提示</dt>
+		<dd>如果你将鼠标悬停在<b titleid="info">粗体部分</b>的文本上,
+			你将看到一个气泡提示，内容是在这个文档中定义的</dd>
+		<dt>非矩形气泡提示</dt>
+		<dd>如果你将鼠标悬停在<b titleid="balloon">粗体部分</b>的文本上,
+			你将看到一个自定义边框样式的气泡提示</dd>
+		<dt>非矩形半透明(opacity:0.75)气泡提示</dt>
+		<dd>如果你将鼠标悬停在<b titleid="balloon-transparent">粗体部分</b>的文本上,
+			你将看到一个自定义边框样式的半透明气泡提示</dd>
+	</dl>
+  <popup id="info" class="info">
+    <p><img src="images/attn.png" align="left" hspace=8>这是一个<b>html气泡弹出框</b>示例。</p>
+    <p>这个弹出框现在可以使用<b>HTML</b>标记代码，使用<em>CSS</em>定义样式。</p>
+    <p>要为元素定义气泡提示，请使用titleid="弹出元素的id"属性，并在在文档的某处定义这个id的弹出元素内容。</p>
+  </popup>
+
+  
+  <popup id="balloon" class="balloon">
+    <p>这是一个<b>html气泡弹出框</b>示例。</p>
+    <p>这个弹出框现在可以使用<b>HTML</b>标记代码，使用<em>CSS</em>定义样式。</p>
+    <p>要为元素定义气泡提示，请使用titleid="弹出元素的id"属性，并在在文档的某处定义这个id的弹出元素内容。</p>
+  </popup>
+
+  <popup id="balloon-transparent" class="balloon">
+    <p>这是一个<b>html气泡弹出框</b>示例。</p>
+    <p>这个弹出框现在可以使用<b>HTML</b>标记代码，使用<em>CSS</em>定义样式。</p>
+    <p>要为元素定义气泡提示，请使用titleid="弹出元素的id"属性，并在在文档的某处定义这个id的弹出元素内容。</p>
+  </popup>
+  
+</body>
+</html>

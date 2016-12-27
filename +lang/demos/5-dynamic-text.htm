@@ -1,0 +1,33 @@
+﻿<html lang="en">
+  <head>
+    <title>UI翻译 基本示例</title>
+    
+    <!-- 这里4个link定义了4个不同的语言文件 -->
+    <link href="lang/ru.tis" hreflang="ru" rel="translation" >
+    <link href="lang/en.tis" hreflang="en" rel="translation" >
+    <link href="lang/zh.tis" hreflang="zh" rel="translation" >
+    <link href="lang/en.tis" hreflang="ar" rel="translation" >    
+    
+    <style>
+      @import url(../lang.css);
+    </style>
+    
+    <script type="text/tiscript">
+      include "../lang.tis";
+      include "../lang-tool.tis"; // 引用以便生成报告
+    
+      $(select#lang) << event change() { self.language = this.value; }
+      $(button#test) << event click() { this.text="Second test"; }
+    </script>
+    
+  </head>
+  <body>
+    <h2>UI翻译 基本示例 使用Lang框架</h2>
+    <p>测试Element.text属性的可翻译性</p>
+    <fieldset>
+      <p><label>UI语言</label><include src=lang-selector.htm /></p>
+      <hr>
+      <button.dfn #test>First test</button>
+    </fieldset>
+  </body>
+</html>

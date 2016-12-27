@@ -1,0 +1,121 @@
+﻿<html>
+<head>
+
+<style>
+	/* Firefox OS alike switch button - by midi*/
+	.btn-fos-toggle
+	{
+		style-set: ToggleFos;
+		display: block;
+		margin: 10px;
+	}
+	
+	@set ToggleFos
+	{
+		:root
+		{
+			behavior: check;
+			size: 60px 27px;
+			padding: 0;
+			border-radius: 13.2px;
+			background: url(background_off.png) no-repeat;
+			background-position: -32px 0;
+		}
+		
+		:root:ready { transition: background-position(cubic-out, 200ms); }
+		:root:checked
+		{
+			background-image: url(background.png);
+			background-position: 0 0;
+		}
+	}
+</style>
+
+<style>
+	.btn-bluish-toggle
+	{
+		style-set: ToggleBluish;
+		display: block;
+		margin-left: 12px;
+	}
+	
+	@set ToggleBluish
+	{
+		:root
+		{
+			flow: horizontal;
+			width: auto;
+			padding: 5px 0;
+			
+			
+			background: none;
+			font-size: 12px;
+			font-weight: bold;
+			font-family: monospace;
+			
+			//prototype: "ToggleBluishBehavior";
+		}
+		label.off
+		{
+			color: #888;
+		}
+		
+		#band
+		{
+			cursor: pointer;
+			behavior: check;
+			
+			margin: 0 5px;
+			padding: 4px 10px;
+			
+			background: url(bandi.png) no-repeat center;
+			
+			size: 25px 6px;
+		}
+		#band:checked
+		{
+			background: url(band.png) no-repeat center;
+		}
+		
+		#handle
+		{
+			size: 17px 21px;
+			background: url(slider_handles.png) no-repeat;
+			
+			position: relative;
+			top: -5px;
+			left: 18px;
+		}
+		#handle:ready { transition: left(cubic-out, 200ms); }
+		#band:checked #handle { left: -10px; }
+	}
+</style>
+
+</head>
+
+<body>
+	<button .btn-fos-toggle />
+	<button .btn-fos-toggle checked />
+	
+	
+	<div .btn-bluish-toggle style="margin-top: 20px">
+		<label>开</label>
+		
+		<div #band>
+			<div #handle />
+		</div>
+		
+		<label .off>关</label>
+	</div>
+	
+	<div .btn-bluish-toggle>
+		<label>开</label>
+		
+		<div #band checked>
+			<div #handle />
+		</div>
+		
+		<label .off>关</label>
+	</div>
+</body>
+</html>

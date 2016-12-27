@@ -1,0 +1,50 @@
+<html>
+
+<style>
+	body { margin: 0; }
+
+	p { margin: 10px; }
+
+	hr { border: 0; background: linear-gradient(left, #00c3de, #92f133); height: 5px; margin: 0; }
+	h1 { font-size: 50px; margin: 0; padding: 50px 30px; }
+
+	#tpl { visibility: none; }
+	div:nth-child(2n+1) { background: #f2f3fb; }
+</style>
+
+<script type="text/tiscript">
+	if(!View.omni)
+		stderr.println("you need to run this HTML inside Omni");
+	
+	for(var fobj in ns_fonts)
+	{
+		var el_div = self#tpl[0].clone();
+		self.append(el_div);
+		var el_h1 = el_div.$(h1);
+
+		el_h1.text = fobj.name;
+		el_h1.style#font-family = fobj.styles[0][2];
+	}
+	
+	$(input).onValueChanged = function() {
+		for(var el in $$(h1)) 
+		{
+			el.text = this.value;
+		}
+	};
+</script>
+
+<body>
+	<p>
+		Omni comes with a bundle of fonts that you can use in your design process for testing which one is better. You can choose a font for an element by CTRL + SHIT + CLICKING it and then clicking the Aa button to open the font chooser popup.
+		<br /><br />Please note that all fonts bundled in Omni are allowed to be redistributed, but not all of them are allowed for comercial use.
+		<br /><br />Type a text to see below: <input />
+	</p>
+	<div #tpl>
+		<div>
+			<hr />
+			<h1></h1><!--The quick brown fox jumps over the lazy dog-->
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<html>
+	<head>
+	<title>混合特效</title>
+	<style type="text/css"> 
+  
+  body 
+  { 
+    margin:0;
+    padding:10px;
+    background-color:#c7c5c6; 
+  }
+  
+  .leds { flow:horizontal-wrap; width:*; }
+  .leds > img { display:block; }
+  .leds > img:nth-child(20n) { clear:after; }
+  
+  img 
+  { 
+    width:16px; 
+    height:16px; 
+    foreground-image:url(images/led-green.png);
+  }
+
+  img:hover
+  { 
+    foreground-image:url(images/led-red.png);
+    transition: blend-atop( timing-function: linear, duration-in:1ms, duration-out:400ms );
+  }
+  
+  /* 弹出元素的样式 */
+  
+  #test > popup
+  { 
+    width: 164px;
+    padding:4px;
+	  background: radial-gradient(0% 0%, ellipse farthest-corner, white, #c7c5c6 );
+    border-left: 1px solid gray;
+	  border-top: 1px solid gray;
+	  border-right: 1px solid black;
+	  border-bottom: 1px solid black;
+    flow:horizontal-wrap;
+    horizontal-align:center;
+  }
+
+  #test > popup img
+  { 
+    display:block;  
+    foreground-image:url(images/led-yellow.png);
+  }
+  
+  #test > popup > img:hover
+  { 
+    foreground-image:url(images/led-blue.png);
+    transition: blend-atop( timing-function: linear, duration-in:20ms, duration-out:400ms );
+  }
+  
+	</style>
+	</head>
+<body>
+
+  <div.leds><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+            <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+            <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+            <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+            <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+            <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+            <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+            <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+  </div>
+  <button|menu id="test">
+    <caption>点我查看弹出窗口</caption>
+	  <popup>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+		  <img/><img/><img/><img/><img/><img/><img/><img/><img/><img/>
+	  </popup>
+  </button>
+  
+  <p>测试用例:</p>
+  <ol>
+      <li>在LED灯上移动鼠标 - 你应该可以在主窗口和弹出窗口上看到溶解轨迹。</li>
+	  <li>点击弹出窗口的外部，它将消失。将不会留下LED灯的溶解轨迹。</li>
+	  <li>通过鼠标滚动主窗口，轨迹应该保留在适当的位置。</li>
+  </ol>
+</body>
+</html>

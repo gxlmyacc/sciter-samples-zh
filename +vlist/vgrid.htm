@@ -1,0 +1,149 @@
+<html>
+  <head>
+  <title></title>
+  <style>
+    
+    @import url(vgrid.css);
+    
+    table { style-set: vgrid; // see vgrid.css
+            width:*;
+            height:*; } 
+    
+    table th:nth-child(2) { width:*; }
+
+    table th:last-child { width:8em; }
+      
+  </style>
+  <script type="text/tiscript">
+  
+  function self.ready() {
+    var records = new Array(500);
+    
+    for(var i = 0; i < records.length; ++i)
+      records[i] = {index: i, caption:"项", status:"" };
+
+    var n = records.length;
+    var p = 0;
+       
+    var vlist = $(table);
+    
+    // 反馈这些数据
+    vlist.value = records;
+    
+    // 设置第一条数据未当前数据:    
+    vlist.tbody.currentIndex = 0;
+    
+    $(#mutate) << event click() {
+    
+      function add() { 
+        var at = rand(records.length + 1);
+        records.splice(at,0, {index: ++n, caption:"项", status:"已添加" });
+      }
+      
+      function del() { 
+        var at = rand(records.length);
+        var r = records[at];
+        records.splice(at,1);
+      }
+     
+      
+      function upd() { 
+        var at = rand(records.length);
+        var r = records[at];
+        var times = r.nupdates || 0;
+        ++times;
+        r.nupdates = times;
+        r.status = String.$(已更新: {times});
+      }
+      
+      function noop() {}
+      
+      var ops = [add,del,upd,noop];
+
+      self.timer(60ms, function() {
+        if(!vlist.animating) // 阻止动画中更新数据
+          ops[ rand(ops.length) ]();
+        return true;
+      });
+
+    }
+    
+    $(#populate) << event click() {
+    
+      records.splice(0,records.length); // 清空列表
+
+      function addChunk() {
+        var n = 1 + rand(5);    
+        for(var i = 0; i < n; ++i)
+          records.push {index: records.length, caption:"新项", status:"" };
+      }
+      
+      this.timer(100ms, function() {
+        if(records.length > 200)
+          return false; // 最多产生200个数据
+        if(!vlist.animating) // 阻止动画中更新数据
+          addChunk();
+        return true;
+      });
+    
+    }
+     
+    $(#addone) << event click()
+    {
+	    records.push {index: records.length, caption:"新项", status:"" };
+	    vlist.tbody.scrollTo(0, 9999999, true, true);
+    }
+    $(#copy) << event click() 
+    {
+      view.clipboard(#put,records[vlist.tbody.currentIndex].data);
+    }
+    $(#deleteall) << event click() 
+    {
+      //records.length = 0;
+      records.splice(0,records.length);
+    }
+    $(#delete) << event click() 
+    {
+      records.splice(vlist.tbody.currentIndex,1);
+    }    
+    
+    $(#toLast) << event click() 
+    {
+      vlist.tbody.currentIndex = records.length - 1; 
+    }    
+    
+    vlist.on("change",function(evt) {
+      stdout.println("change", vlist.tbody.currentIndex)
+    });    
+  }
+  
+  </script>
+  </head>
+<body>
+
+  <h2>虚拟表列表中动态数据突变</h2>
+  
+  <p>记录数组默认有500条记录，并且每隔60ms数据被修改下(新增、移除、更新)。</p> 
+
+  <button #populate>模拟 渐进填充</button>
+  <button #mutate>启动 随机更新</button>
+ 
+  <button #addone>添加一条</button>
+  <button #toLast>调到最后一条</button>
+  <button #copy>复制</button>
+  <button #deleteall>删除所有</button>
+  <button #delete>删除</button>
+
+  <table resizeable rowselect >
+    <thead>
+      <tr><th(index) style="width:max-intrinsic;">索引</th><th(caption)>标题</th><th(status)>状态</th></tr>
+    </thead>
+    <tbody>
+      <tr><td(index) editable edittype=decimal></td><td(caption) editable></td><td(status) ></td></tr>
+    </tbody>
+    <tfoot>
+	  <tr><th(index) style="width:max-intrinsic;">1000</th><th(caption)>--</th><th(status)>--</th></tr>
+	</tfoot>
+  </table>
+</body>
+</html>

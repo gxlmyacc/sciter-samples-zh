@@ -1,0 +1,44 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style>
+    
+      widget { size:100dip; }
+    
+    </style>
+    
+    <style#dynamic></style>
+    
+    <script type="text/tiscript">
+    
+      function updateWidgetStyles(clr,hoverClr) {
+      
+        const styleBag = $(style#dynamic);
+        
+        styleBag.deactivate(); // 移除定义的所有规则
+        
+        styleBag.text = String.printf(
+             "widget { background:rgb(%d,%d,%d); } "
+             "widget:hover { background:rgb(%d,%d,%d); }", 
+             clr.r,clr.g,clr.b, hoverClr.r,hoverClr.g,hoverClr.b);
+        
+        styleBag.activate(); // 应用规则
+      }
+    
+      $(#hue).on("change", function(){
+        var clr = Color.hsv( deg(this.value), 1, 1 );
+        var clrHover = Color.hsv( deg((180 + this.value) % 360), 1, 1 );
+        updateWidgetStyles(clr,clrHover);
+      });    
+    
+    </script>
+  </head>
+<body>
+
+  <widget>widget示例</widget>
+  
+  <p>修改背景和悬停颜色: <input|hslider id="hue" min=0 max=360 value=54 /></p>
+
+
+</body>
+</html>

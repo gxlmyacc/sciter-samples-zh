@@ -1,0 +1,14 @@
+﻿<style>
+  /* this route/view spacific styles */
+  html { color:red; } /* note theses styles can define elements outside of the <main> */
+  main {
+    prototype: FirstController url(routes/first.tis);
+    background-color:#fcc;
+    padding:10dip;
+  }
+</style>
+<p>第一页</p>
+<p #msg></p>
+<button #test>测试事件处理</button>
+
+<button href="/second">跳转到第二页</button>

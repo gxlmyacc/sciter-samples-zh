@@ -1,0 +1,23 @@
+﻿<html>
+
+<script type="text/tiscript">
+	include "lib_search.tis";
+
+	if(Omni)
+		Omni.dom_tree_enabled = false;
+
+	self.post(function() {
+		SearchShow(true);
+	});
+</script>
+
+<style>
+	@import url(lib_search.css);
+
+	body { overflow: auto; }
+</style>
+
+<body>
+	<frame src="cssmap.htm" .search_target />
+</body>
+</html>

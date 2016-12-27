@@ -1,0 +1,55 @@
+﻿<html>
+	<head>
+		<title>Date Time controls demo</title>
+    <style>
+      body { font-family:verdana; font-size:10pt }
+      
+      input.custom td.today { background-color:yellow; }
+      input.custom td.today:current { background-color:orange; }
+      input.custom span.today-legend { background-color:yellow; }
+      input.custom span.today-caption { content:"Сегодня"; }
+      
+      button#to-set-time 
+      {
+        click!: self.$1p(.group).$1(input#time-to-set).now();
+      }
+      button#to-clear-time 
+      {
+        click!: self.$1p(.group).$1(input#time-to-set):value = null;
+      }
+      
+    </style>
+	</head>
+	<body>
+    <h3>input type="calendar"</h3> 
+    <input type="calendar" name="calendar" value="2004-07-24"/>
+    自定义日期样式: <input type="calendar" .custom />
+    <h3>input type="date"</h3>     
+    <text .group>
+      <input type="date" name="date" value="2004-01-24" />, 
+      未设置值: <input type="date" name="date" value="" #time-to-set /> <button #to-set-time>设置当前日期</button> <button #to-clear-time>清空</button>,
+      今天日期: <input type="date" name="date" value="today" />  
+    </text>
+    
+    <h3>input type="time"</h3>         
+    <text .group>
+      <input type="time" name="time" value="11:00:00" /> , 
+      未设置值: <input type="time" name="time" #time-to-set /> <button #to-set-time>设置当前时间</button> <button #to-clear-time>清空</button>, 
+      当前时间: <input type="time" name="time" value="now" />
+    </text>      
+    <p>无秒时间:</p>
+    <text .group>
+      <input type="time" name="time" value="11:00:00" no-seconds /> , 
+      未设置值: <input type="time" name="time" #time-to-set no-seconds /> <button #to-set-time>设置当前时间</button> <button #to-clear-time>清空</button>, 
+      当前时间: <input type="time" name="time" value="now" no-seconds />     
+    </text> 
+    
+    <h3>input type="masked"</h3>     
+    <input type="masked" name="medit" mask="( ### ) ### - ####" value="2223334444" /> 
+    
+    <h3>input type="text" with filter</h3>     
+    <input type="text" name="fedit" filter=".0~9a~z" value="12345" /> - 仅允许输入0..9, A..Z (小写) 和 '.'(小数点)。
+    
+    
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<!-- OmniView:off -->
+<html>
+  <head>
+    <title>Formation + Repeatable 示例</title>
+    <style>
+    
+      div { flow:row(label,input); font:system; border-spacing:4px; margin:4px; }
+      div > label { vertical-align: baseline; width:max-intrinsic;}
+      section[name=person] { border:1px solid; padding:4px; margin:4px; }
+
+	  div#sexgroup { flow: horizontal; }
+    
+    </style>
+    <script type="text/tiscript">
+    
+      include "../formation.tis";
+      
+      var root = formation( self );
+      
+      var data = {
+        person: { 
+          details : {
+            name: { first: "第一姓名1", last: "第二姓名1"},
+            age: 34,
+			      sex: 1
+          },
+          friends: [
+            { name: "张三", type: "123" },
+            { name: "李四", type: "1234"},
+            { name: "王五", type: "12345" },
+          ]
+        }
+      }
+      
+      // 注意: <ol(friends)>中会根据模板自动生成<li>列表
+      $(#set) << event click() { root.value = data; }
+      
+      $(#get) << event click() { $(#out).text = String.printf("%V", root.value ).replace("\t","  "); }
+      
+      // 显示formation数据结构:
+      $(#show) << event click() { 
+        view.msgbox( #information, root.toHtmlString());
+      }
+    
+    </script>
+  </head>
+<body>
+
+  <h1>Formation + Repeatable 示例</h1>
+
+  <section(person)>
+    <div(details)>
+      <label for=name.first >第一姓名</label> <input(name.first)>
+      <label for=name.last >第二姓名</label> <input(name.last)>
+      <label for=age >年龄</label> <input|integer(age)>
+	  <div#sexgroup>
+	    性别：男<input|radio(sex) checked value=0 /> 女<input|radio(sex) value=1 /> 
+	   </div> 
+    </div>
+    朋友: <!-- repeatable, sic! -->
+    <ol(friends)>
+      <li ready="this.@#target1 = name;" name="{{name}}" type="type" target="{{type}}"><output|text(name) /></li>
+    </ol>
+  </section>
+  
+  <button #get>获取</button>
+  <button #set>设置</button>
+  <button #show>Formation 数据结构</button>
+  
+  <pre #out></pre>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿<html>
+  <head>
+    <title>Plus: function binding</title>
+    <style>
+      @import url(../plus.css);   /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      output { display: inline-block; border: 1px gray dotted; }
+    </style>
+    
+    <script type="text/tiscript">
+    
+      include "../plus.tis"; // 下面的模型使用了plus.tis中定义的@observing装饰器
+  
+      namespace Data // 我们的模型
+      {  
+        var obj = { a:0, b:32 };
+        var sum = 0;
+        var src = "?";
+        
+        // 这个函数观察obj中任意属性的改变
+        @observing #changes "obj.*"
+          function calcSum(path /*changed path*/) { 
+            sum = obj.a + obj.b;
+            src = path; // 报告改变源
+          }
+
+          
+      }    
+    
+    </script>
+  </head>
+
+<body model="Data">  <!-- 定义我们要观察的数据模型 -->
+
+  <note>下面这两个输入框分别绑定了<code>obj.a</code>和<code>obj.b</code>变量。
+  calcSum()函数也绑定了这两个变量来计算它们的和。
+  </note>
+
+  <p><input|number(obj.a) > + <input|number(obj.b)> = <output(sum)/>, 改变源: <output(src)/> </p>
+
+</body>
+</html>

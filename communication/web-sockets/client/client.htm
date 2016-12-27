@@ -1,0 +1,45 @@
+<html>
+  <head>
+  <title></title>
+<style>
+  #errmsg { color:red; }
+</style>
+<script type="text/tiscript">
+  include "connection.tis";
+
+  var sendStart = 0;
+  
+  var channel = connection {
+    url       : "ws://localhost:8126/echo",
+    onText    : function(text) { 
+                  var t = System.ticks - sendStart; 
+                  $(#messages).$append(<li>{text} in {t}ms </li>); 
+                },
+    onConnect : function() { 
+                  $(form).state.disabled = false; // enable inputs 
+                },
+    onClose   : function() { 
+                  $(form).state.disabled = true; // disable inputs
+                },
+    onError   : function(msg) {
+                  $(#errmsg).text = msg; 
+                }
+  };
+  
+  event "click|button#send" () { var msg = $(input#message);  channel( msg.value ); msg.value = ""; sendStart = System.ticks; }
+  event "click|button#close" () { channel( null ); }
+  
+</script>
+  </head>
+<body>
+
+  <ol #messages>
+  </ol>
+  <form disabled>
+    <input|text #message novalue="type message">
+    <button #send>发送</button>
+    <button #close>关闭</button> 或 发送"." 到服务端来关闭服务端的连接。
+  </form>
+  <p #errmsg />
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+<head>
+  <title>一个简单的对话框</title>
+  <style>
+    @import url(sample-dialog-1.css);
+  </style>
+  <script type="text/tiscript">
+    include "../../decorators.tis";
+    
+    @click @on "#close-dialog":
+    {
+      view.close("Hello from Dialog");
+    }
+    </script>
+</head>
+<body>
+<h1>一个简单的对话框</h1>
+
+<button id="close-dialog">关闭对话框并且返回一个值</button>
+
+</body>
+</html>

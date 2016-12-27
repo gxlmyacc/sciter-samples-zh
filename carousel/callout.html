@@ -1,0 +1,43 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style>
+       @import "callout.css";
+       
+       body {
+         flow: row(input, button);
+       }
+    </style>
+    <script type="text/tiscript">
+       include "callout.tis";
+
+      $(button#click1).onClick = function() {
+        ShowCallout($(input#input1), "Test message 1234567890<br/>sdfs");
+      }  
+      $(button#click2).onClick = function() {
+        ShowCallout($(input#input2), "Test message 1234567890<br/>sdfs");
+      }
+      $(button#click3).onClick = function() {
+        ShowCallout($(input#input3), "Test message 1234567890<br/>sdfs");
+      }
+      $(button#click4).onClick = function() {
+        ShowCallout($(input#input4), "Test message 1234567890<br/>sdfs");
+      }
+      $(button#click5).onClick = function() {
+        ShowCallout($(input#input5), "Test message 1234567890<br/>sdfs");
+      }
+      $(button#click6).onClick = function() {
+        ShowCallout($(input#input6), "Test message 1234567890<br/>sdfs");
+      }
+
+    </script>
+  </head>
+  <body>
+    <input #input1 type="text" value="" /> <button #click1>default</button>
+    <input #input2 .primary type="text" value="" /> <button #click2>primary</button>
+    <input #input3 .info type="text" value="" /> <button #click3>info</button>
+    <input #input4 .success type="text" value="" /> <button #click4>success</button>
+    <input #input5 .warning type="text" value="" /> <button #click5>warning</button>
+    <input #input6 .error type="text" value="" /> <button #click6>error</button>
+  </body>
+</html>

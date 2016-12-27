@@ -1,0 +1,57 @@
+<html  window-frame="standard" window-resizable window-blurbehind>
+<head>
+  <title>尺寸可调整对话框</title>
+  <style>
+    html 
+    { 
+      font:system;
+      min-width:min-content;  /* 内容区不会溢出，没有水平滚动条 */
+      max-width:100%;         /* 最大宽度-全屏 */
+      width:300dip;            /* 首选/初始宽度 */
+      height:240dip;     /* 内容区不会溢出，没有垂直滚动条 */  
+      min-height:min-content; 
+      max-height: 70%;        /* 70%的屏幕高度 */
+      background:window; 
+      overflow:none;
+      padding:0;
+    }
+    
+    @media composition-supported /* 媒体查询：Aero DWM特效有效 */
+    {
+      html 
+      {
+        //background:transparent; /* 背景看起来像老化的塑料 */
+      }
+    }    
+    
+    body { padding:0; margin:0; }
+    
+    h1, p { text-align:center; }
+
+    #content { flow:horizontal; size:*; }   
+    #content > picture { display:block; size:auto; margin:6px; }
+    #content > textarea { display:block; size:*; min-width:16em; min-height:6em; }   
+    
+  </style>
+  <script type="text/tiscript">
+  
+    include "../../decorators.tis";
+    
+    @click @on "#close-dialog" :: view.close( $(textarea).value );
+    @click @on "#cancel-dialog" :: view.close( null );
+
+    </script>
+</head>
+<body>
+  <h1>尺寸可调整对话框</h1>
+  <p>请试着调整窗口的尺寸</p>
+  <div #content>
+    <picture src="../user-login-48.png" />
+    <textarea novalue="请输入信息..."></textarea>
+  </div>
+  <p>
+    <button id="close-dialog">确定</button>
+    <button id="cancel-dialog" tabindex=1 >取消</button>
+  </p>
+</body>
+</html>

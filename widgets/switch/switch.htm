@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+      @import url(switch.css);
+    </style>
+    <script type="text/tiscript">
+    
+    $(button#get).onClick = function() { $(#out).text = String.printf("开关值:%V", $(switch).value); }
+    $(button#set).onClick = function() { $(switch).value = 1; }
+    
+    </script>
+  </head>
+<body>
+  简单的"单选组"开关: 
+  <switch>
+    <option value=0 checked>所有</option>
+    <option value=1>待处理</option>
+    <option value=2>完成</option>
+  </switch>
+  <p>
+    <button#get>获取值</button>
+    <button#set>设置值</button>
+  </p>
+  <pre #out>
+  </pre>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>有参数的对话框</title>
+  <style>
+    html 
+    { 
+      font:system;
+      width:max-intrinsic; 
+      height:max-intrinsic; 
+      overflow:hidden; 
+    }
+    
+    form { flow: row(label,input); border-spacing: 4dip; }
+    form > label { white-space:nowrap; text-align:right; vertical-align:baseline; }
+    
+  </style>
+  <script type="text/tiscript">
+  
+    include "../../decorators.tis";
+    
+    @click @on "#close-dialog" :: view.close( $(form).value );
+    
+    // 将对话框参数填充到表单上，'parameters'是由dialog传递过来的参数。
+    $(form).value = view.parameters;
+
+    </script>
+</head>
+<body>
+<h1>简单对话框</h1>
+<p>下面的字段值是通过dialog的的<var>view.parameters</var>对象(映射表)传递过来的。</p>
+<form>
+  <label>One (Ctrl+1):</label><input type="text" name="one" accesskey="^1" />
+  <label>Two (Ctrl+2):</label><input type="text" name="two" accesskey="^2" />
+</form>
+<p style="text-align:center">
+<button id="close-dialog" role="default-button">关闭对话框并且返回一个值</button>
+</p>
+</body>
+</html>

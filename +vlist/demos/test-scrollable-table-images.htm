@@ -1,0 +1,92 @@
+﻿<html>
+  <head>
+  <title></title>
+  <style>
+    
+    
+    table {
+      font:system;
+      height:*; width:500px; 
+      border:1px solid black; 
+      flow:table-fixed; // 注意: 这个样式很关键
+    }
+    
+    table > tbody, table > tbody { border-spacing:0; }
+
+    table > tbody 
+    { 
+      overflow: scroll-indicator;
+      size:*;
+    }
+
+    table > tbody > tr {
+      behavior:form; // 关键样式: 每个子节点被当做一个form来对待，这样它可以接受对象值了
+    } 
+    
+    table > tbody > tr.highlighted {
+      background: #da9;
+    }
+
+    table > tbody > tr:hover {
+      background: #bcd;
+    }
+
+    table > tbody > tr:current {
+      background:gold;
+    } 
+
+    table td:nth-child(2),   
+    table th:nth-child(2) { width:*; }
+
+    table td:last-child,   
+    table th:last-child { width:8em; }
+      
+  </style>
+  <script type="text/tiscript">
+  
+  include "../vlist.tis";
+  
+  function self.ready() {
+  
+    var records = new Array(500);
+    
+    for(var i = 0; i < records.length; ++i)
+      records[i] = {index: i, caption:"项", status:"", imageUrl: (i & 1 ? "sciter:copy.png": "sciter:cut.png") };
+
+    var n = records.length;
+    var p = 0;
+    
+    function setupItemView(recordNo, record, itemEl) {
+      itemEl.$(img).attributes["src"] = record.imageUrl; // 或者任何你想要做的事
+    }    
+   
+    var vlist = VirtualList {
+      container     : $(table>tbody),
+      bufferSize    : 100, // 滑动窗口中的记录数
+      setupItemView : setupItemView
+    };
+    
+    // 绑定这些记录
+    vlist.value = records;   
+  }
+  
+  </script>
+  </head>
+<body>
+
+  <h2>自定义setupItemView示例</h2>
+  
+  <p>记录数组初始时创建了500条记录。记录视图由自定义的setupItemView()函数来配置</p> 
+
+  <table>
+    <thead>
+      <tr><th(index)>索引</th><th(caption)>标题</th><th(status)>状态</th><th>图像</th></tr>
+    </thead>
+    <tbody>
+      <tr><td(index)></td><td(caption)></td><td(status)></td><td><img/></td></tr>
+    </tbody>
+  </table>
+ 
+  
+</body>
+</html>

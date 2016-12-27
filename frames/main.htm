@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Frame namespace</title>
+    <style>
+    
+      frame { border:3px gray solid; }
+    
+    </style>
+    <script type="text/tiscript">
+    
+      include "../decorators.tis";
+    
+      function bar() { view.msgbox(#information,"成功调用bar()!"); }
+      function on_something_click() { view.msgbox(#information,"成功调用bar()!"); }
+      
+      @click @on "#test" :: view.msgbox(#information,"你点击了#test!"); 
+    
+    </script>
+  </head>
+<body>
+<p>这个示例演示在slave框架(frame)中访问宿主文档对象。</p>
+slave框架(frame):
+<frame src="slave.htm" />
+</body>
+</html>

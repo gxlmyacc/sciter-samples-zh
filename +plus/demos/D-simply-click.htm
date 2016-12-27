@@ -1,0 +1,25 @@
+﻿<html>
+  <head>
+    <title>Plus 基本示例</title>
+    <style>
+    
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+    
+    </style>
+    <script type="text/tiscript">
+    
+      namespace MyModel { // 我们的模型
+
+        var msg = "让我们做些什么";
+        function doSomething() { msg = "doSomething()函数被调用！"; }    
+      }
+    
+    </script>
+  </head>
+<body model="MyModel">
+  <p name=msg></p>
+  <button click="doSomething()">点我</button>
+</body>
+</html>
+
+

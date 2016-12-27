@@ -1,0 +1,110 @@
+﻿<html>
+
+<style>
+html { background: url(bg.png); }
+body { font: system; font-size: 14px; }
+</style>
+
+<script type="text/tiscript">
+function AngleBetweenPoints(p1, p2)// return in radians
+{
+	var dx = p2[0] - p1[0];
+	var dy = p1[1] - p2[1];
+	var r = Math.atan2(dy, dx);
+	if(r < 0)
+		return 2*Math.PI + r;
+	return r;
+}
+
+function DistanceBetweenPoints(p1, p2)
+{
+	var dx = p2[0]-p1[0];
+	var dy = p2[1]-p1[1];
+	return Math.sqrt(dx*dx + dy*dy);
+}
+
+function PolarOffset(angle, dist)
+{
+	var dx = Math.cos(angle)*dist;
+	var dy = Math.sin(angle)*dist;
+	return [dx,dy];
+}
+
+var cpoint;
+var point;
+var dragging;
+
+var angle;
+var distance;
+
+self.onSize = function() {
+	var (w,h) = self.box(#dimension);
+	cpoint = [w/2, h/2];
+	self.refresh();
+};
+
+self.on("mousedown", function(evt) {
+	dragging = true;
+	
+	self.refresh();
+});
+
+self.on("mousemove", function(evt) {
+	if(dragging)
+	{
+		point = [evt.x, evt.y];
+		angle = AngleBetweenPoints(cpoint, point);
+		distance = DistanceBetweenPoints(cpoint, point).toInteger();
+		
+		self.refresh();
+	}
+});
+
+self.on("mouseup", function(evt) {
+	dragging = false;
+});
+
+
+self.paintForeground = function(gfx) {
+	if(!cpoint) return true;
+	
+	gfx.noFill().lineColor(color(0,0,0)).lineWidth(2);
+	gfx.ellipse(cpoint[0], cpoint[1], 1.5);
+	
+	if(!point) return true;
+	
+	// draw angle arc
+	gfx.lineWidth(.8).lineColor(Color.parse("silver"));
+	if(angle > Math.PI)
+	{
+		gfx.arc(cpoint[0], cpoint[1], distance/2, distance/2, 0, -Math.PI);
+		gfx.arc(cpoint[0], cpoint[1], distance/2, distance/2, Math.PI, -angle-Math.PI);
+	} else {
+		gfx.arc(cpoint[0], cpoint[1], distance/2, distance/2, 0, -angle);
+	}
+	
+	// draw distance line
+	gfx.lineColor(color(0,0,0)).lineWidth(1).line(cpoint[0], cpoint[1], point[0], point[1]);
+	
+	// draw texts
+	var str_dist = distance.toString();
+	var str_angle = String.printf("%.2f", angle / Math.PI * 180);
+	
+	var poffset_dist = PolarOffset(-angle, distance + 20);
+	var poffset_angle = PolarOffset(-angle/2, distance/2 + 23);
+	var text_dist = new Graphics.Text( "Distance: " + str_dist + "px" );
+	var text_angle = new Graphics.Text( "Angle: " + str_angle + "°" );
+	
+	gfx.noLine();
+	gfx.fillColor(color(0,0,0));
+	gfx.drawText(text_dist, cpoint[0] + poffset_dist[0], cpoint[1] + poffset_dist[1], color(255,255,255), 5);
+	gfx.drawText(text_angle, cpoint[0] + poffset_angle[0], cpoint[1] + poffset_angle[1], color(255,255,255), 5);
+	return true;
+};
+</script>
+
+<body>
+	<h5 style="color: red; margin: 10px 4px">Click and drag the mouse hover this page...</h5>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      @import url(editor.css);
+    
+      widget#stage {
+        size:*;
+        border:1px solid;
+        background: linear-gradient(top,#efa,#aef)
+      }
+
+	  ports { width: max-intrinsic;}
+    
+    </style>
+    <script type="text/tiscript">
+    
+    
+      $(#zoom).subscribe("change", function() {
+        $(#stage > canvas).zoom = this.value;
+      });
+    
+    
+    </script>
+  </head>
+<body>
+
+  缩放: <input|hslider #zoom min=25 max=100 value=100 />
+  
+  <widget#stage .editor> 
+    <canvas>
+      <node x=10 y=10 #test>
+        <caption>节点 1</caption>
+        <ports>
+          <in>输入1</in><out>输出1</out>
+          <in>输入2</in><out>输出2</out>
+          <in>输入3</in><out>输出3</out>
+        </ports>
+      </node>
+      <node x=150 y=10>
+        <caption>节点 2</caption>
+        <ports>
+          <in>输入1</in><out>输出1</out>
+          <in>输入2</in><out>输出2</out>
+        </ports>
+      </node>
+      <node x=140 y=150 >
+        <caption>节点 3</caption>
+        <ports>
+          <in>输入1</in><out>输出1</out>
+        </ports>
+      </node>
+    </canvas>
+    <widget|vscrollbar />
+    <widget|hscrollbar />
+    <widget />
+  </widget>
+
+</body>
+</html>

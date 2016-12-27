@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      widget#tree {
+        size: 300px *;
+        overflow-x:hidden;
+        prototype: VirtualTree;
+      }
+
+      widget#tree option:not(:node) 
+      {
+        padding:0;
+      }
+
+      widget#tree option > text  /* option text */
+      {
+        behavior:file-icon;
+        line-height:18px;        
+        padding:1dip 3dip 1dip 20dip;
+        foreground-repeat:no-repeat;
+        foreground-position:0 50%;
+        min-width:4em;
+      }
+      
+      widget#tree option > text:rtl
+      {
+        padding:1dip 20dip 1dip 3dip;
+        foreground-position:100% 50%;
+      }
+     
+      body { flow:horizontal; }
+    	  
+    </style>
+    <script type="text/tiscript">
+    
+    include "../../decorators.tis";
+    include "virtual-tree.tis";
+    include "tree-data-source.tis";
+    
+    var treew = $(widget#tree);
+
+    @click @on "#add-root":{
+      // 通过创建TreeDataSource新实例来初始化树视图
+      treew.dataSource = new TreeDataSource();
+    }   
+    
+    treew.on("change", function() {
+      var current = this.$(option:current);
+      var currentFilename = current.attributes["filename"];
+      stdout.println(currentFilename, (current.state.collapsed || current.state.expanded) ? "folder" : "file");
+    });
+    
+    </script>
+  </head>
+<body>
+  <widget type=tree #tree>
+  </widget>
+  <section #ctls>
+    <button #add-root>添加根元素</button>
+  </section>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<html>
+<head>
+  <style>
+    body { flow:horizontal; }
+  
+    div.marquee-h 
+    {
+      border:1px solid black;
+      background: gold;
+      behavior: marquee;
+      width:100px;
+      overflow:hidden;
+      flow:horizontal;
+
+      -marquee: horizontal;
+      -marquee-direction: forward;
+      -marquee-style: scroll;
+    }
+    
+    div.marquee-v 
+    {
+      border:1px solid black;
+      background: gold;
+      height:100px;
+      width:max-intrinsic;
+      overflow:hidden;
+      flow:vertical;
+
+      behavior: marquee; //绑定行为
+
+      -marquee: vertical;
+      -marquee-direction: forward;
+      -marquee-style: scroll;
+    }
+    
+    
+    div.marquee-h > p
+    {
+      margin:10px 20px;
+    }
+    
+    div.slide 
+    { 
+      -marquee-style: slide;
+      -marquee-play-count:1; /* 只播放一次 */
+    }
+    div.alternate 
+    { 
+      -marquee-style: alternate;
+    }    
+  
+  </style>  
+</head>
+<body>
+  
+  <div #horizontal>
+    <h1>-marquee: horizontal</h1> 
+    marquee-style: scroll
+    <div .marquee-h>
+      <p>第一个</p>
+      <p>第二个</p>
+      <p>第三个</p>
+      <p>第四个</p>
+    </div>
+    marquee-style: slide
+    <div .marquee-h .slide>
+      <p>第一个</p>
+      <p>第二个</p>
+      <p>第三个</p>
+      <p>第四个</p>
+    </div>
+    marquee-style: alternate
+    <div .marquee-h .alternate >
+      <p>第一个</p>
+      <p>第二个</p>
+      <p>第三个</p>
+      <p>第四个</p>
+    </div>
+  </div>  
+  <div #vertical>
+    <h1>-marquee: vertical</h1> 
+    marquee-style: scroll
+    <div .marquee-v>
+      <p>第一个</p>
+      <p>第二个</p>
+      <p>第三个</p>
+      <p>第四个</p>
+      <p>第五个</p>
+      <p>第六个</p>
+      <p>第七个</p>
+      <p>第八个</p>
+      <p>第九个</p>
+      <p>第十个</p>
+    </div>
+    marquee-style: slide
+    <div .marquee-v .slide>
+      <p>第一个</p>
+      <p>第二个</p>
+      <p>第三个</p>
+      <p>第四个</p>
+      <p>第五个</p>
+      <p>第六个</p>
+      <p>第七个</p>
+      <p>第八个</p>
+      <p>第九个</p>
+      <p>第十个</p>
+    </div>
+    marquee-style: alternate
+    <div .marquee-v .alternate >
+      <p>第一个</p>
+      <p>第二个</p>
+      <p>第三个</p>
+      <p>第四个</p>
+      <p>第五个</p>
+      <p>第六个</p>
+      <p>第七个</p>
+      <p>第八个</p>
+      <p>第九个</p>
+      <p>第十个</p>
+    </div>
+  </div>  
+
+  <div #vertical>
+    <h1>-marquee: vertical, various speeds</h1> 
+    marquee-speed:slow
+    <div .marquee-v marquee-speed="slow">
+      <p>第一个</p>
+      <p>第二个</p>
+      <p>第三个</p>
+      <p>第四个</p>
+      <p>第五个</p>
+      <p>第六个</p>
+      <p>第七个</p>
+      <p>第八个</p>
+      <p>第九个</p>
+      <p>第十个</p>
+    </div>
+    marquee-speed:normal
+    <div .marquee-v marquee-speed="normal">
+      <p>第一个</p>
+      <p>第二个</p>
+      <p>第三个</p>
+      <p>第四个</p>
+      <p>第五个</p>
+      <p>第六个</p>
+      <p>第七个</p>
+      <p>第八个</p>
+      <p>第九个</p>
+      <p>第十个</p>
+    </div>
+    marquee-speed:fast
+    <div .marquee-v marquee-speed="fast" >
+      <p>第一个</p>
+      <p>第二个</p>
+      <p>第三个</p>
+      <p>第四个</p>
+      <p>第五个</p>
+      <p>第六个</p>
+      <p>第七个</p>
+      <p>第八个</p>
+      <p>第九个</p>
+      <p>第十个</p>
+    </div>
+  </div>  
+
+</body>
+</html>

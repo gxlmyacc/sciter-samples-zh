@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>CSS 背景/前景 图像</title>
+<style type="text/css"> 
+	body { 
+		font-family:Verdana; font-size:10pt; 
+		width:100%%; height:100%%;  
+		background-color: window;
+		padding:10px;
+		margin:0;
+	}
+  header { font-size:150%; margin-top:1em; margin-bottom:0.5em; }
+
+	img
+  {
+	  //foreground-image: url(images/color-transform.png);
+		margin: 6px;
+	}	
+
+	#c1 img
+  {
+    //foreground-image-transformation: color-schema(system);
+	}	
+	#c1 
+  {
+    background-color: threedface;
+	}	
+	#c1:hover img
+  {
+    foreground-image-transformation: color-schema(darksalmon,salmon,lightsalmon,peachpuff,antiquewhite);
+	}	
+	#c1:hover
+  {
+    transition:blend;
+    background-color: darksalmon;
+	}	
+  
+  #c1:active img
+  {
+    foreground-image-transformation: color-schema(brown,red,lightsalmon,peachpuff,white);
+	}	
+	
+  
+  
+  #c2 
+  {
+    background-color: threedface;
+	}	  
+  #c2:hover img
+  {
+    foreground-image-transformation: colorize(black);
+	}	
+  #c2:active img
+  {
+    foreground-image-transformation: colorize(salmon);
+	}	
+
+	
+</style>
+	</head>
+	<body>
+	<header>图像颜色变换：在下面的块中移动鼠标，图像将会改变颜色：从系统gamma到自定义设置。</header>
+  <p id="c1"><img src="images/color-transform.png" /> </p>
+  
+  <p>不过，这里请不要问我这是怎么实现的...</p> 
+  <p>好吧... 下面是一个插值弧线的五强点定义 - 从纯灰到最终颜色。</p>
+ <pre>
+    foreground-image-transformation: color-schema(darksalmon,salmon,lightsalmon,peachpuff,antiquewhite);  
+ </pre> 
+  不是灰色的显示将不被转换。声明的那个红球就是这样的。当你想用一张图片在不同状态显示时可以考虑使用这个特性。
+  
+	<header>图像颜色变换：<b>colorize</b>。在下面的块中点击鼠标</header>
+  <p id="c2"><img src="images/color-transform.png" /> </p>
+  
+  
+ 	</body>  
+</html>

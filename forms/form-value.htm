@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+    
+      $(button#set).onClick = function()
+      {
+        $(form).value = { 
+          name : {
+            first: "张三",
+            last: "李四",
+          },
+          age:64
+        };
+      }
+      
+      $(button#get).onClick = function()
+      {
+        var msg = String.printf("%V", $(form).value ).replace("\t","  ");
+        view.msgbox(#information,msg);
+      }
+      
+    
+    </script>
+  </head>
+<body>
+
+  <form>
+    <span(name) >
+      <input(first) novalue="first">
+      <input(last)>
+    </span>
+    <input|integer(age)>
+  </form>
+  <button #set>设置表单值</button>
+  <button #get>获取表单值</button>
+
+</body>
+</html>

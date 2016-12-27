@@ -1,0 +1,61 @@
+<html>
+<head>
+  <style>
+  
+    caption
+    {
+      background:#444;
+      color:white;
+      behavior:check;
+    }
+    
+    caption + div
+    {
+      visibility:collapse; //默认不可见
+      height:0px;
+      background-color:white;
+      color:white;
+      padding:4px;
+      vertical-align:bottom;
+    }
+    
+    caption:checked
+    {
+      color:red;
+    }
+    
+    caption:checked + div
+    {
+      visibility:visible;   //按钮选中时 div可见 
+      height:min-content;
+      background-color:#EEE;
+      color:#000;
+      
+      transition: height(quad-out,0.4s)  //设置选中时的动画效果
+                  background-color(linear,0.4s)
+                  color(linear,0.4s);
+    }
+        
+    div:animating
+    {
+      visibility:visible; // 动画中div需要是可见的
+      overflow-y:hidden;  // 裁剪内容区
+    }
+  </style>  
+  <script type="text/tiscript"></script>  
+</head>
+<body>
+  <h1>transition属性的扩展 示例</h1>
+  <p>动画从height:0 到 height:min-content:</p>
+  
+  <div style="width:50%;margin:4px *;" >
+    <caption>点我!</caption>
+    <div>
+      <p>从2006年开始，Sciter已经被很多家公司使用了。目前，基于Sciter的UI程序运行在超过1.2亿台PC和Max机器上。因此，在你的机器上可能已经有使用Sciter的应用程序了。</p>
+      <p>Sciter使用HTML5元素的集合，实现了全部CSS 2.1标准，加上当前最流行的CSS3的特征。它也包含一些用于支持桌面UI的自定义CSS扩展。例如flex单位和各种各样的布局管理器。</p>
+      <p>Sciter是HTMLayout的下一个大版本升级，相比HTMLayout，Sciter增加了硬件加速、跨平台支持和TIScript;</p>
+    </div>
+  </div>
+  <hr>
+</body>
+</html>

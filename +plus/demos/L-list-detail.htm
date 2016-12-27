@@ -1,0 +1,67 @@
+﻿<html>
+  <head>
+    <title>Plus 示例</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      ol { width:*; }
+      ol > li { flow:horizontal; border-bottom:1px solid dotted;}
+      ol > li:hover { color:red; cursor:pointer; }
+      ol > li > label { display:inline-block;  }
+      
+      textarea { width:*; display:block; }
+      
+      div#details {
+        flow:row(label,input textarea);
+      }
+      
+
+    </style>
+    
+    <script type="text/tiscript">
+      
+  
+      namespace Data // 我们的模型
+      {  
+        var someCustomers = [{name:"Symantec", motto:"Stay ahead of tomorrows threats."   },
+                             {name:"ESET", motto:"The best security money can buy"   },
+                             {name:"Comodo", motto:"Real time cloud protection when you are online. Containment protection when you are offline"} ,
+                             {name:"BitDefender", motto:"Protect & optimize!"}];
+        
+        var currentCustomer = {};
+        
+        // 选择当前客户
+        function selectCustomer(object) { 
+          currentCustomer = object; 
+        }
+        
+      }    
+      
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note><p>下面的列表绑定到了<code>Data.someCustomers</code>数组上。所以它可以反映那个数组中的列表项的数据。</p>
+        <p>下面的"Current record" 绑定到了currentCustomer变量上。</p>
+        <p>currentCustomer编号的值由@click处理器设置</p>
+  </note>
+
+  <!-- 重复节 -->
+  <ol each="customer in someCustomers">
+      <li click="selectCustomer(customer)"><output(customer.name)/>: 
+          <output(customer.motto)</li>
+  </ol>
+  
+  <!-- 当前记录 -->
+  <div model="currentCustomer">
+    <header>Details of <output(name)/>:</header>  
+    <div#details>
+      <label>name</label><input(name)/>
+      <label>motto</label><textarea(motto) />   
+    </div>
+  </div>
+  
+</body>
+</html>

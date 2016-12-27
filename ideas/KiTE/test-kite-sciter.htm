@@ -1,0 +1,167 @@
+<html>
+  <head>
+  <title></title>
+    <style>
+    
+      .c1 { color:green; }
+      .c2 { color:blue; }
+      .c3 { color:gray; }
+      
+      .data, .src { background-color: #EEE; }
+    
+    </style>
+    <script type="text/tiscript" src="kite.tis"> 
+	  //引入kite.tis
+	</script>
+
+    <!-- 简单列表 --> 
+    <script type="text/kite" id="t1">
+      简单列表:
+      <ul>
+        {{#contacts}}
+          <li><b>{{firstName}}</b> <i>{{lastName}}</i></li>
+        {{/contacts}}
+      </ul>
+    </script>
+    
+    <!--有条件列表 --> 
+    <script type="text/kite" id="t2">
+      有条件列表:
+      <ul>
+        {{#contacts}}
+          {{? role == "作家"}}
+            <li class="c1"><b>{{firstName}}</b>
+                           <i>{{lastName}}</i>, 作家</li>
+          {{? role == "演员"}}
+            <li class="c2"><b>{{firstName}}</b>
+                           <i>{{lastName}}</i>, 演员</li>
+          {{^?}}
+            <li class="c3"><b>{{firstName}}</b>
+                           <i>{{lastName}}</i>, 其他</li>
+          {{/?}}
+        {{/contacts}}
+      </ul>
+    </script>
+    
+    <!--有条件列表, 省略末尾的{ {/?} } 标记 --> 
+    <script type="text/kite" id="t3">
+      有条件列表, 省略末尾的{ {/?} } 标记:
+      <ul>
+        {{#contacts}}
+          {{? role == "作家"}}
+            <li class="c1"><b>{{firstName}}</b>
+                           <i>{{lastName}}</i>, 作家</li>
+          {{? role == "演员"}}
+            <li class="c2"><b>{{firstName}}</b>
+                           <i>{{lastName}}</i>, 演员</li>
+          {{^?}}
+            <li class="c3"><b>{{firstName}}</b>
+                           <i>{{lastName}}</i>, 其他</li>
+        {{/contacts}}
+      </ul>
+    </script>
+    
+    <!-- 有子列表的列表--> 
+    <script type="text/kite" id="t4">
+      有子列表的列表:
+      <ul>
+        {{#contacts}}
+          <li><b>{{firstName}}</b> <i>{{lastName}}</i>, 作品:
+            <ol>
+             {{#works}}
+               <li><q>{{.}}</q></li>
+             {{^works}}
+               没有重要作品?
+             {{/works}}
+            </ol>
+          </li>
+        {{/contacts}}
+      </ul>
+    </script>
+    
+    <!-- list with sublists--> 
+    <script type="text/kite" id="t5">
+      列表索引(index)处理 (注意列表中的逗号的生成):
+      <dl>
+        {{#contacts}}
+          <dt><b>{{firstName}}</b> <i>{{lastName}}</i><br/></dt>
+          <dd>
+             {{#works}}
+                {{? at != 0}}, {{/?}} <q>{{.}}</q>
+             {{^works}}
+               没有重要作品?
+             {{/works}}
+          </dd>
+        {{/contacts}}
+      </dl>
+    </script>
+    
+
+    <!-- 自定义格式 --> 
+    <script type="text/kite" id="t6">
+      自定义字段格式器:
+      <ul>
+        {{#contacts}}
+          <li><b>{{firstName}}</b> <i>{{lastName}}</i>, 
+              生于 {{birthdate|date}}</li>
+        {{/contacts}}
+      </ul>
+    </script>
+    
+  <script type="text/tiscript" >
+    
+    var data = { 
+      contacts:[ 
+        { firstName: "张", lastName:"三", role:"作家", birthdate:"1899-07-21",
+            works:["《西游记》", "《水浒传》","《三国演义》","《红楼梦》"] },
+        { firstName: "李", lastName:"四", role:"作家", birthdate:"1896-09-24",
+            works:["《罗密欧与朱丽叶》", "《巴黎圣母院》","《悲惨世界》"] }, 
+        { firstName: "王",lastName:"五", role:"演员", birthdate:"1889-04-16",
+            works:["《指环王》", "《泰坦尼克号》","《大话西游》"] }, 
+        { firstName: "赵",lastName:"六", role:"编剧", birthdate:"1672-06-09" },       
+        ] 
+    };
+    
+    function run_tests()
+    {
+      for(var n = 1; n <= 6; ++n)
+      {
+        self.select("#r" + n ).html = kite("#t" + n, data); // 调用kite方法
+        self.select("#s" + n + ">pre").text = self.select("#t" + n ).text;
+      }
+    }
+    
+    run_tests();
+    
+    </script>
+    
+  </head>
+<body>
+  KiTE 示例, 源代码和结果:<br />
+  
+  数据：
+  <pre.data >  var data = { 
+      contacts:[ 
+        { firstName: "张", lastName:"三", role:"作家", birthdate:"1899-07-21",
+            works:["《西游记》", "《水浒传》","《三国演义》","《红楼梦》"] },
+        { firstName: "李", lastName:"四", role:"作家", birthdate:"1896-09-24",
+            works:["《罗密欧与朱丽叶》", "《巴黎圣母院》","《悲惨世界》"] }, 
+        { firstName: "王",lastName:"五", role:"演员", birthdate:"1889-04-16",
+            works:["《指环王》", "《泰坦尼克号》","《大话西游》"] }, 
+        { firstName: "赵",lastName:"六", role:"编剧", birthdate:"1672-06-09" },       
+        ] 
+    };
+  </pre><br />
+  代码：
+  <pre.src >  include "kite.tis"
+  el.html = kite(el_template, data); </pre>
+  <table border="1" width="100%">
+    <tr><th>源代码</th><th>结果</th></tr>
+    <tr><td id="s1"><pre/></td><td id="r1"></td></tr>
+    <tr><td id="s2"><pre/></td><td id="r2"></td></tr>
+    <tr><td id="s3"><pre/></td><td id="r3"></td></tr>
+    <tr><td id="s4"><pre/></td><td id="r4"></td></tr>
+    <tr><td id="s5"><pre/></td><td id="r5"></td></tr>
+    <tr><td id="s6"><pre/></td><td id="r6"></td></tr>
+</body>
+</html>

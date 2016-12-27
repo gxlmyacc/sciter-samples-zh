@@ -1,0 +1,53 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+    
+    
+    function showDialogWithParameters() {
+    
+      var out = $(pre#out);
+    
+      function update(data) {
+        out.text = JSON.stringify(data);
+      }
+      
+      function foo() {
+        return "这里是主窗口!";
+      }
+    
+      // 作为view.parameters对象传递给对话框的参数:
+      var dialogParameters = {
+        mainData: 42,          // 传递的数据
+        mainUpdate: update,    // 传递给对话框的函数
+        mainFoo: foo,          // ditto 
+      };
+      
+      // 显示模态对话框，同时将参数传递给对话框:
+      var dialogRetVal = view.dialog {
+        url: self.url("dialog.htm"), 
+        parameters: dialogParameters 
+      };
+      
+      // 显示对话框返回的数据
+      update(dialogRetVal); 
+    } 
+    
+    $(button#show-dialog).on("click",showDialogWithParameters);
+    
+    </script>
+  </head>
+<body>
+
+<p>view.dialog()函数的使用演示。</p>
+<p><code>view.dialog {parameters:...}</code>对象允许传递任意的数据和函数给对话框。</p>
+<p>对话框中的脚本也可通过<code>view.parameters</code>给主窗口传递参数。</p>
+
+<button #show-dialog>显示对话框</button>
+
+<pre#out>
+</pre>
+
+</body>
+</html>

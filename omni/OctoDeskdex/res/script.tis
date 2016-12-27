@@ -1,0 +1,209 @@
+// DBG ----------------------------------------------------------------------------------------
+/*self.timer(100, function() {
+	SetupRequest(function() {
+		self.@.addClass("show-inner");
+		self#front-wrap.@.addClass("hidden");
+		self#inner-left.@.removeClass("hidden");
+	});
+});*/
+
+/*function self#btn-dbg.onClick()
+{
+	log("click");
+	$(select).value = 0;
+	$(select).postEvent("change");
+}*/
+
+// UI handler - front ----------------------------------------------------------------------------------------
+self#f-open-dex.onClick = function() {
+	self#front.@.addClass("intrans-hide1");
+	self#front.@.addClass("intrans-show1");
+	self#f-loader.@.addClass("show");
+
+	SetupRequest(function() {
+		self.timer(1200, function() {
+			self#front.@.addClass("intrans-show2");
+			self#f-loader.@.removeClass("show");
+
+			self.timer(1200, function() {
+				self#front.@.addClass("intrans-hide2");
+
+				self.timer(300, function() {
+					self.@.addClass("show-inner");
+					self#front-wrap.@.addClass("hidden");
+					self#inner-left.@.removeClass("hidden");
+				});
+			});
+		});
+	});
+	return true;
+};
+
+self#btn-close.onClick = function() {
+	view.close();
+};
+
+
+// Setups
+function SetupRequest(fdone)
+{
+	self.request(function(data, status) {
+		if(status==200)
+		{
+			FillList(data);
+			fdone();
+		}
+	}, #get, "http://cdn.misoftware.rs/octodexapi.php");
+}
+
+function FillList(data)
+{
+	var el_sel = $(select);
+	for(var (i, item) in data)
+	{
+		el_sel.$append(<option value="{i}" class="btn">#{item.number} - {item.name}</option>);//<figure />
+	}
+
+	el_sel.subscribe("change", function(evt) {
+		var item = data[this.value];
+		log(data);
+		LoadImage(item);
+	});
+	el_sel.value = rand(data.length);
+	el_sel.postEvent("change");
+}
+
+var g_loadedmap = {};
+var g_lastimg = $(#iwrap div);
+var g_imgurl;
+var g_overflow = false;
+function LoadImage(item)
+{
+	g_imgurl = "https://octodex.github.com" + item.image;
+	self#desc.@.removeClass("show");
+	if( !g_loadedmap.exists(g_imgurl) )
+	{
+		g_loadedmap[g_imgurl] = true;
+		g_lastimg.@.addClass("loading");
+		self#iloader.@.addClass("loading");
+
+		self.loadImage(g_imgurl, function() {
+			self.loadImage(item.authorAvatar, function() {
+				self#iloader.@.removeClass("loading");
+				ChangeImage(item);
+			});
+		});
+	} else {
+		ChangeImage(item);
+	}
+}
+
+function ChangeImage(item)
+{
+	g_lastimg.remove();
+
+	// add new image
+	g_lastimg = new Element(#div);
+	self#iwrap.insert(g_lastimg);
+	if(g_overflow)
+		g_lastimg.style#foreground-image = "url(" + g_imgurl + ")";
+	else
+		g_lastimg.style#background-image = "url(" + g_imgurl + ")";
+
+	// update author
+	$(#name span).text = item.name;
+	$(#avatar).@#src = item.authorAvatar;
+	self#desc.@.addClass("show");
+}
+
+
+// UI handlers - inner ----------------------------------------------------------------------------------------
+self#btn-close-dex.onClick = function() {
+	self.@.removeClass("show-inner");
+
+	self.timer(1500, function() {
+		self#front-wrap.@.removeClass("hidden");
+		self#inner-left.@.addClass("hidden");
+		self#front.@.removeClass("intrans-hide2");
+		self#front.@.removeClass("intrans-show2");
+		self.timer(1000, function() {
+			self#front.@.removeClass("intrans-hide1");
+		});
+	});
+};
+self#exit-app-btn.onClick = function() {
+	view.close();
+};
+
+$(.box-btn:nth-child(1)).onClick = function() {
+	this.@.toggleClass("active");
+	self#iwrap.@.toggleClass("round");
+};
+$(.box-btn:nth-child(2)).onClick = function() {
+	this.@.toggleClass("active");
+	g_overflow = !g_overflow;
+	if(g_overflow)
+	{
+		g_lastimg.style#background-image = "none";
+		g_lastimg.style#foreground-image = "url(" + g_imgurl + ")";
+	} else {
+		g_lastimg.style#foreground-image = "none";
+		g_lastimg.style#background-image = "url(" + g_imgurl + ")";
+	}
+};
+$(.box-btn:nth-child(3)).onClick = function() {
+	this.@.toggleClass("active");
+	self#iwrap.@.toggleClass("noborder");
+};
+$(.box-btn:nth-child(4)).onClick = function() {
+	this.@.toggleClass("active");
+	self#iwrap.@.toggleClass("whitebg");
+};
+$(.box-btn:nth-child(5)).onClick = function() {
+	this.@.toggleClass("active");
+	self#tail.@.toggleClass("show");
+	self#tail-img.@.toggleClass("show");
+	self#tail-midi.@.toggleClass("show");
+};
+
+self#forkme.onClick = function() {
+	Sciter.launch("https://github.com/midiway/OctoDeskdex");
+};
+self#tail-img.onClick = self#tail-midi.onClick = function() {
+	Sciter.launch("http://misoftware.rs");
+};
+
+/*self.timer(1000, function() {
+	var stats = self.host_stats();
+	var text_mem = HS_Bytesize(stats.memory).toString();
+	var text_cpu = (stats.cpu*100).toString();
+	self#area-stats.text = text_mem + " / " + text_cpu + "%";
+	return true;
+});*/
+
+
+// Utils ----------------------------------------------------------------------------------------------------
+function round(num, to = 100.0) {
+	return (num * to + 0.5).toInteger() / to;
+}
+
+function HS_Bytesize(bytes) {
+    var sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+    var posttxt = 0;
+    while( bytes >= 1024.0 ) {
+        posttxt++;
+        bytes = bytes / 1024.0;
+    }
+    return round(bytes).toString() + " " + sizes[posttxt];
+}
+
+for(var el in $$(.tooltiped))
+{
+	el.subscribe("mouseenter", function() {
+		self#tooltip.text = this.@#tooltip;
+		this.popup(self#tooltip, (2 << 16) | 8);
+	});
+	el.subscribe("mouseleave", function() {
+		self#tooltip.closePopup();
+	});
+}

@@ -1,0 +1,36 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+    
+     function self.ready() {
+
+        function getRemoteTextTask(url) 
+        {
+          try {
+            var text = await view.request { url: url, output: #string };
+            $(pre#out).text = text;
+          } catch(e) {
+            $(pre#out).text = String.$( HTTP status: {e.data.status}, response length: {e.data.response.length} );
+          }
+        }
+        
+        $(button#getExisting).on("click", :: getRemoteTextTask("http://sciter.com/test/text.txt") );      
+        $(button#getNonExisting).on("click", :: getRemoteTextTask("http://sciter.com/test/unknown.txt") );
+  
+      }
+      
+    </script>
+  </head>
+<body>
+
+  <p>这个示例演示如何使用<code>await</code>语句</p>
+ 
+  <button #getExisting>获取已存在的远程文本</button>
+  <button #getNonExisting>尝试获取不存在的远程文件</button>
+
+  <pre#out></out>
+
+</body>
+</html>

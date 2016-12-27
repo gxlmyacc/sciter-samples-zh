@@ -1,0 +1,79 @@
+<html>
+<head>
+	<style>
+		body
+		{
+			margin: 20px;
+			font-size: 11pt;
+		}
+		em { display: block; }
+		em.em-question { color: #828E96; font-size: 24px; }
+		em.em-love { font-style: normal; }
+
+		h1 { color: #FB6480; font-size: 30px; }
+		
+		form { margin-top: 28px; }
+		form label { display: block; margin-bottom: 14px; }
+		input, textarea
+		{
+			background: #F4F6F8;
+			border: solid 1px #E0E5E6;
+			margin-right: 6px;
+			font-size: 15px;
+			font-weight: normal;
+			font-rendering-mode: enhanced;
+		}
+		input
+		{
+			height: 36px;
+			width: 280px;
+			line-height: 36px;
+			vertical-align: middle;
+			padding: 0 10px;
+		}
+		textarea
+		{
+			overflow: auto;
+			width: 550px;
+			padding: 10px;
+		}
+
+		.area-submit button
+		{
+			display: block;
+			flow: horizontal;
+			padding: 2px 15px;
+			
+			background: none;
+			background-color: #F44F75;
+			border-radius: 4px;
+			color: white;
+			font-size: 20px;
+		}
+
+		.area-submit button:hover
+		{
+			background-color: #DE005F;
+			transition: background-color(linear, 250ms);
+		}
+	</style>
+</head>
+
+<body>
+	<em .em-question>Your thoughts?</em>
+	<h1>Leave a Comment</h1>
+	<em .em-love>We love to hear them! Please share.</em>
+
+	<form>
+		<label><input />Name <small>(required)</small></label>
+		<label><input />Email <small>(will not be published) (required)</small></label>
+		<label><input value="The lazy fox jumps over brown dog" />Website</label>
+		<label><textarea>The lazy fox jumps over brown dog</textarea></label>
+
+		<div .area-submit>
+			<button>SPEAK!</button>
+			<checkbox />
+		</div>
+	</form>
+</body>
+</html>

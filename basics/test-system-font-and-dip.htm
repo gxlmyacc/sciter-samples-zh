@@ -1,0 +1,53 @@
+<html>
+  <head>
+  <title>系统字体 和 DIP单位</title>
+  <style>
+  
+    html
+    {
+      //font:system;
+    }
+    
+    div#cont { flow:horizontal; border-spacing:10px; }
+    div#cont > div { border:4px solid black; width:100px; height:100px; }
+    div#cont > div.dip { size:100dip; }
+    div#cont > div.dip-all { size:100dip; border-width:4dip; }
+    
+  
+  </style>
+  <script type="text/tiscript">
+  
+    function showResolution() {
+      var ppi = (1in).toFloat(#px);
+      var ppdip = (1dip).toFloat(#px);
+      
+      $(#ppi).value = ppi;
+      $(#ppdip).value = ppdip;
+    }  
+  
+    view.onResolutionChanged = showResolution; // when it will change
+    showResolution(); // right now
+  
+  
+  </script>
+  </head>
+<body>
+
+  <p>这个网页使用系统字体(UI默认)</p>
+  
+  物理 和 设备独立像素(1/96 每英尺)
+  <div id=cont>
+    <div>100px</div>
+    <div .dip>100dip 尺寸</div>
+    <div .dip-all>100dip 尺寸 和 4dip边框</div>
+  </div>
+  <text .comment>注意 1: 在125%屏幕缩放因子时，这些矩形有不同的尺寸。最后一个矩形将拥有更粗的边框。</text>
+  <text .comment>注意 2: 长度被四舍五入到相近像素值。</text>
+
+  <p style="font-size:16px">font-size:16px</p>
+  <p style="font-size:16dip">font-size:16dip</p>
+  
+  <p>当前窗口的解决方案是每英尺<code #ppi />像素, 1dip=<code #ppdip />px。</p>
+  
+</body>
+</html>

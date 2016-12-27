@@ -1,0 +1,68 @@
+<html window-frame="transparent" window-resizable > <!-- 图层尺寸可调整窗口 -->
+<head>
+  <title>尺寸可调整对话框</title>
+  <style>
+    html 
+    { 
+      font:system;
+      min-width:min-content;  /* 内容区不会溢出，没有水平滚动条 */
+      max-width:100%;         /* 最大宽度-全屏 */
+      width:300dip;           /* 首选/初始宽度 */
+      height:240dip;          /* 内容区不会溢出，没有垂直滚动条 */  
+      min-height:min-content; 
+      max-height: 70%;        /* 70%的屏幕高度 */
+      overflow:none;
+      padding:0;
+      background-color:transparent; /* 窗口背景 */
+      background-image: url(custom-frame.png);
+      background-repeat: expand;
+      background-position: 36 36 36 36;
+    }
+    
+    window-icon    { display:inline-block; size: 14; border: 1px solid red; }
+    window-button  { display:inline-block; width:max-content; font-family: Marlett; font-size:14px; outline-color:red; behavior:clickable; }
+    window-caption { display:block; flow:text; width:*; font:system; padding: 4px 8px; }
+    window-button#window-close { background-color:#dbb7ab; color:white; }
+    window-button#window-close:hover { background-color:red; outline:5px glow red -1px; transition: outline(linear,200ms) background-color(linear,200ms); }
+        
+    body { 
+      padding:0; margin:18px 20px 20px 20px; 
+      flow: "1 2 3" 
+            "4 4 4";
+    }
+    
+    html > body > section { height:*; }
+    
+    h1, p { text-align:center; }
+
+    #content { flow:horizontal; size:*; }   
+    #content > picture { display:block; size:auto; margin:6px; }
+    #content > textarea { display:block; size:*; min-width:16em; min-height:6em; }   
+    
+  </style>
+  <script type="text/tiscript">
+  
+    include "../../decorators.tis";
+    
+    @click @on "#close-dialog" :: view.close( $(textarea).value );
+    @click @on "#cancel-dialog" :: view.close( null );
+
+    </script>
+</head>
+<body>
+  <window-icon #window-icon role="window-icon"></window-icon>
+  <window-caption role="window-caption">尺寸可调整对话框</window-caption>
+  <window-button #window-close role="window-close">r</window-button>
+  <section>
+    <p>请试着调整窗口的尺寸</p>
+    <div #content>
+      <picture src="../user-login-48.png" />
+      <textarea novalue="请输入信息..."></textarea>
+    </div>
+    <p>
+      <button id="close-dialog">确定</button>
+      <button id="cancel-dialog" tabindex=1 >取消</button>
+    </p>
+  </section>  
+</body>
+</html>

@@ -1,0 +1,44 @@
+# Ignore everything
+*
+!*/
+!.gitignore
+
+
+# Playground entrys
+!/AeroTabs/**
+!/AngleDistPolar/**
+!/ButtonToggle/**
+!/Comments/**
+!/DateCalendar/**
+!/DrawPolygon/**
+!/ImageClipping/**
+!/LibSearch/**
+!/Lightbox/**
+!/LinearRegression/**
+!/OceanFriends/**
+!/OctoDeskdex/**
+!/OmniFonts/**
+!/ProjectilesSeries/**
+!/RunicCircle/**
+!/SelectRectangle/**
+
+
+# Reignore somethings
+*.psd
+
+
+# IDE Garbage
+ipch/
+Debug/
+Release/
+*.o
+*.obj
+*.suo
+*.sdf
+*.aps
+
+
+#DUB things
+.dub
+docs.json
+__dummy.html

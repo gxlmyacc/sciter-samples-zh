@@ -1,0 +1,28 @@
+﻿<html>
+<head>
+    <style>
+         @import url(../plus.css);
+         @import url(../../+micro-charts/micro-chart.css);
+         
+         div { flow: horizontal; }
+         div > * { display:block; margin: 1* 1em; }
+         div > svg.chart.donut { size: 20dip; }
+    </style>
+
+    <script type="text/tiscript">
+        namespace Data // 我们的模型
+        {
+          var val = 0.5; // 可观察的变量
+        }
+    </script>
+</head>
+
+<body model="Data">
+    <p>下面的两个输入框(input)和svg.chart.donut图表都绑定到了Data.val变量上:</p>
+    <div>
+      <svg.chart.donut(val) value="0.0/1.0" />
+      <input|decimal(val) min="0" max="1.0" step="0.1" />
+      <input|hslider(val) min="0" max="1.0" step="0.1" />    
+    </div>
+</body>
+</html>

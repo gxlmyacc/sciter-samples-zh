@@ -1,0 +1,196 @@
+﻿<html>
+<head>
+
+<style>
+	/* Firefox OS alike switch button - by midi*/
+	.btn-fos-toggle
+	{
+		style-set: ToggleFos;
+		display: block;
+		margin: 10px;
+	}
+	
+	@set ToggleFos
+	{
+		:root
+		{
+			behavior: check;
+			size: 60px 27px;
+			padding: 0;
+			border-radius: 13.2px;
+			background: url(background_off.png) no-repeat;
+			background-position: -32px 0;
+			
+		}
+		
+		:root:ready { transition: background-position(cubic-out, 200ms); }
+		:root:checked
+		{
+			background-image: url(background.png);
+			background-position: 0 0;
+		}
+	}
+</style>
+
+<style>
+	.btn-bluish-toggle
+	{
+		style-set: ToggleBluish;
+		display: block;
+		margin-left: 12px;
+	}
+	
+	@set ToggleBluish
+	{
+		:root
+		{
+			padding: 5px 0;
+			font-size: 10px;
+			font-weight: bold;
+			font-family: sans-serif;
+			
+			width: auto;
+			flow: horizontal;
+			
+			prototype: "ToggleBluishBehavior";
+		}
+		
+		#band
+		{
+			cursor: pointer;
+			
+			margin: 0 6px;
+			padding: 4px 10px;
+			
+			background: url(band.png) no-repeat center;
+			size: 25px 6px;
+		}
+		:root:checked #band
+		{
+			background: url(bandi.png) no-repeat center;
+		}
+		
+		label.ui-inactive
+		{
+			color: #888;
+		}
+		
+		#handle
+		{
+			position: relative;
+			top: -5px;
+			left: -9px;
+			
+			size: 17px 21px;
+			background: url(slider_handles.png) no-repeat;
+		}
+	}
+</style>
+
+<script type="text/tiscript">
+	namespace AnimationEase
+	{
+		// signature of functions: 
+		//	p - progress, between 0.0 and 1.0
+		//	v - delta value = end_value-start_value
+		function InOutQuad( p, v )
+		{
+			assert( typeof p == #float );
+			
+			if( (p*=2) < 1 ) return v/2*p*p;
+			return -v/2 * ((--p)*(p-2) - 1);
+		}
+		
+		function OutCubic( p, v )
+		{
+			return v*((p=p-1)*p*p + 1);
+		}
+	}
+	
+	class ToggleBluishBehavior : Behavior
+	{
+		const cTICKPROG	= 0.08;
+		const cSPEED	= 1000 / 60;
+		
+		function attached()
+		{
+			this.m_anim = false;
+			this.m_prog;
+			this.m_elhandle = this.$(#handle);
+			
+			// attach click event to childs
+			var labels = this.$$(label);
+			labels[0].onMouse = function(e) {
+				if( (this super).m_state && e.type==Event.MOUSE_CLICK )
+					(this super).toggleStateAnimated();
+				return e.type==Event.MOUSE_CLICK || e.type==Event.MOUSE_DCLICK;
+			};
+			labels[1].onMouse = function(e) {
+				if( !(this super).m_state && e.type==Event.MOUSE_CLICK )
+					(this super).toggleStateAnimated();
+				return e.type==Event.MOUSE_CLICK || e.type==Event.MOUSE_DCLICK;
+			};
+			
+			this.$(#band).onMouse = function(e) {
+				if( e.type==Event.MOUSE_CLICK || e.type==Event.MOUSE_DCLICK )
+				{
+					(this super).toggleStateAnimated();
+					return true;
+				}
+			};
+		}
+		
+		function toggleStateAnimated()
+		{
+			this.state.checked = !this.state.checked;
+			this.m_prog = this.m_anim ? 1.0-this.m_prog : 0.0;
+			
+			if( !this.m_anim )
+			{
+				this.m_anim = true;
+				this.animate(animHandleStep);
+			}
+		}
+		
+		function animHandleStep()
+		{
+			this.m_prog += cTICKPROG;
+			if( this.m_prog>=1.0 )
+			{
+				this.m_prog = 1.0;
+				this.m_anim = false;
+			}
+			this.m_elhandle.style#left = px( -9 + AnimationEase.InOutQuad(this.state.checked ? this.m_prog : 1-this.m_prog, 20) );
+			
+			return this.m_anim ? cSPEED : 0;
+		}
+	}
+</script>
+</head>
+
+<body>
+	<button .btn-fos-toggle />
+	<button .btn-fos-toggle checked />
+	
+	
+	<div .btn-bluish-toggle>
+		<label>开</label>
+		
+		<div #band>
+			<div #handle />
+		</div>
+		
+		<label .ui-inactive>关</label>
+	</div>
+	
+	<div .btn-bluish-toggle>
+		<label>开</label>
+		
+		<div #band>
+			<div #handle />
+		</div>
+		
+		<label .ui-inactive>关</label>
+	</div>
+</body>
+</html>

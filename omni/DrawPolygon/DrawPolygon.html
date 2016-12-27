@@ -1,0 +1,188 @@
+<html>
+
+<script type="text/tiscript">
+	var mdx = self.box(#width) / 2;
+	var mdy = self.box(#height) / 2;
+	var points = [ [mdx,mdy-81], [mdx-93,mdy+81], [mdx+93,mdy+81] ]; //var points = [ [250,175], [157,337], [343,337] ];
+	var handles, dhandles;
+
+	function RecreateHandles()
+	{
+		if(handles)
+		{
+			for(var el in handles) el.remove();
+			for(var el in dhandles) el.remove();
+		}
+		handles = [];
+		dhandles = [];
+		for(var (i,item) in points)
+		{
+			var el_handle = $(body).$append(<div .handle />);
+			el_handle.style#left = item[0] - 4;
+			el_handle.style#top = item[1] - 4;
+			el_handle.i = i;
+			handles.push(el_handle);
+
+			var el_dhandle = $(body).$append(<div .handle.dummy />);
+			var item2 = points[i+1==points.length ? 0 : i+1];
+			var dmx = (item2[0] + item[0])/2;
+			var dmy = (item2[1] + item[1])/2;
+			el_dhandle.style#left = dmx - 4;
+			el_dhandle.style#top = dmy - 4;
+			el_dhandle.i = i;
+			el_dhandle.dummy = true;
+			dhandles.push(el_dhandle);
+		}
+		self.refresh();
+	}
+	RecreateHandles();
+	
+
+	self.paintContent = function(gfx) {
+		gfx.fillColor(color(242,34,42,0.2)).strokeWidth(1.7).strokeColor(color(242,34,42)).translate(0.5,0.5);
+
+		// draw polygon
+		var path = new Graphics.Path();
+		path.moveTo(points[0][0], points[0][1]);
+		for(var item in points[1..])
+			path.lineTo(item[0], item[1]);
+		path.close();
+		gfx.drawPath(path);
+
+		// if dragging dummy handle, draw two lines
+		if(drag_el)
+		{
+			path = new Graphics.Path();
+			path.moveTo(drag_axis_pt1[0], drag_axis_pt1[1]);
+			path.lineTo(drag_point[0], drag_point[1]);
+			path.lineTo(drag_axis_pt2[0], drag_axis_pt2[1]);
+			gfx.noFill().drawPath(path);
+		}
+	};
+
+	var drag_polygon;
+	var drag_polygon_points;
+	var drag_el;
+	var drag_point;
+
+	var drag_axis_pt1;
+	var drag_axis_pt2;
+
+	self.on("mousedown", function(evt) {
+		if(!drag_el && self.@#hit-polygon)
+		{
+			drag_polygon = [evt.x, evt.y];
+			drag_polygon_points = points;
+			return true;
+		}
+	});
+
+	self.on("mousedown", ".handle", function(evt) {
+		if(this.dummy)
+		{
+			drag_axis_pt1 = points[this.i];
+			drag_axis_pt2 = points[this.i+1==points.length ? 0 : this.i+1];
+		} else {
+			drag_axis_pt1 = points[this.i-1==-1 ? points.length-1 : this.i-1];
+			drag_axis_pt2 = points[this.i+1==points.length ? 0 : this.i+1];
+		}
+		drag_point = [evt.x, evt.y];
+		drag_el = this;
+		return true;
+	});
+	
+	self.on("mousemove", function(evt) {
+		if(drag_polygon)
+		{
+			var offx = evt.x - drag_polygon[0];
+			var offy = evt.y - drag_polygon[1];
+			points = [];
+			for(var p in drag_polygon_points)
+				points.push([p[0] + offx, p[1] + offy]);
+			RecreateHandles();
+		}
+		else
+		{
+			if(drag_el)
+			{
+				drag_el.style#left = evt.x - 4;
+				drag_el.style#top = evt.y - 4;
+				drag_point[0] = evt.x;
+				drag_point[1] = evt.y;
+			} else {
+				self.@#hit-polygon = pointIsInPoly([evt.x, evt.y], points) ? true : undefined;
+			}
+		}
+	});
+
+	self.on("mouseup", function(evt) {
+		if(drag_el)
+		{
+			assert(!drag_polygon);
+			if(drag_el.dummy)
+			{
+				points.splice(drag_el.i+1, 0, 0);
+				points[drag_el.i+1] = [evt.x, evt.y];
+			}
+			else
+				points[drag_el.i] = [evt.x, evt.y];
+		
+			drag_el = undefined;
+			RecreateHandles();
+		} else {
+			drag_polygon = undefined;
+			self.@#hit-polygon = undefined;
+		}
+	});
+
+	function pointIsInPoly(point, vs)
+	{
+		// ray-casting algorithm based on
+		// http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+    
+		var x = point[0], y = point[1];
+		var inside = false;
+		for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+			var xi = vs[i][0], yi = vs[i][1];
+			var xj = vs[j][0], yj = vs[j][1];
+        
+			var intersect = ((yi > y) != (yj > y))
+				&& (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+			if (intersect) inside = !inside;
+		}
+		return inside;
+	}
+</script>
+
+<style>
+	html
+	{
+		background: url(brasil.jpg) center no-repeat;
+	}
+	[hit-polygon]
+	{
+		cursor: move;
+	}
+	.handle.dragging
+	{
+		cursor: move;
+	}
+	.handle
+	{
+		position: absolute;
+		size: 8px;
+		background: white;
+		border: solid 1px red;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	.handle.dummy
+	{
+		opacity: 0.5;
+	}
+</style>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+﻿<html>
+  <head>
+  <style>
+    @import url(vgrid.css);
+    
+    table { style-set: vgrid; 
+            width:*;
+            height:*; } 
+    table th:nth-child(1) { width:2em; }
+    table th:nth-child(2) { width:3em; }
+    table th:nth-child(3) { width:*; }
+    table th:last-child { width:8em; }
+    
+    table input { display:block; }
+      
+  </style>
+  <script type="text/tiscript">
+  
+  function self.ready() {
+  
+    var records = new Array(5);
+    
+    for(var i = 0; i < records.length; ++i)
+      records[i] = {selected: false, index: i, caption:"Item", status:"aaaa" };    
+      
+    var vlist = $(table);
+    vlist.value = records;
+    
+    const selectAll = vlist.$(input#select-all);
+    
+    vlist.on("change","tbody > tr", function() { // 监听tr内容的修改
+      // 注意: 这里，每行(this)是一个form，所以它的值是结构体: 
+      this.data.selected = this.value.selected; // 这里是input(selected).value 到 record.selected 
+      this.@#isOK = this.value.selected;
+      if( !this.data.selected )
+        selectAll.value = false;
+    });
+    
+    vlist.on("change","#select-all", function() { // select/deselect all
+      var selected = this.value;
+      for( var record in records )
+        record.selected = selected; 
+    });
+    
+    $(#test).on("click", function () {
+      view.msgbox(#information, String.printf("%V", records).replace("\t", " "));
+    });
+
+  }
+  
+  
+  </script>
+  </head>
+<body>
+  <button #test>显示记录</button>
+
+  <table resizeable>
+    <thead>
+      <tr><th><input#select-all|checkbox /></th><th(index)>索引</th><th(caption)>标题</th><th(status)>状态</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><input(selected)|checkbox /></td><td(index)></td><td(caption)></td><td(status)></td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

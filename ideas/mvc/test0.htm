@@ -1,0 +1,40 @@
+<html>
+  <head>
+<style>
+  form#myView { prototype: "Knockout.View";  }
+</style>
+
+<script type="text/tiscript">
+  include "knockout.tis";
+  
+  namespace MyModel
+  {
+    function onArgChanged() { result.value = arg1.value + arg2.value; }
+  
+    var arg1   = Knockout.observable(onArgChanged);
+    var arg2   = Knockout.observable(onArgChanged);
+    var result = Knockout.observable();
+  }
+  
+  $(button#test).onClick = function()
+  {
+    MyModel.arg1.value = 100;
+  }
+  
+</script>
+
+  </head>
+<body>
+
+  <h2>MVC测试, 想法来源于knockout.js</h2>
+
+  <form id="myView" model="MyModel">
+    <input type="number" name="arg1" value="1" max=10000 /> + 
+    <input type="number" name="arg2" value="1" max=10000 /> =
+    <span name="result" />
+  </form>
+  
+  <button #test>修改arg1测试</button>
+ 
+</body>
+</html>

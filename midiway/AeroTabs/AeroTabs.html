@@ -1,0 +1,182 @@
+<html>
+
+<head>
+	<style>
+		@const TAB_SIDEPADDING: 19px;
+		
+		html
+		{
+			overflow: hidden;
+			font-family: system;
+		}
+		@media on-glass
+		{
+			html { background: none; }
+		}
+		
+		.aero-tab
+		{
+			prototype: FrameTabGfx;
+			style-set: AeroTabs;
+			
+			max-width: 550px;
+			margin-bottom: 10px;
+		}
+		
+		@set AeroTabs
+		{
+			:root
+			{
+				//padding: 0 1px;// commented it cause 
+			}
+			
+			#row-tabs
+			{
+				flow: horizontal;
+				margin: 0 @TAB_SIDEPADDING;
+				height: 30px;
+			}
+			#row-tabs > div
+			{
+				width: max-content;
+				
+				height: *;
+				padding: 0 25px;
+				padding-bottom: 1px;
+				margin-top: 3px;
+				background: center no-repeat;
+				
+				/* TEMP */
+				//outline: solid 1px red;
+			}
+
+			#row-tabs > div
+			{
+				font-size: 14px;
+				text-align: center;
+				vertical-align: middle;
+			}
+			#row-tabs > div:not(:current):hover
+			{
+				text-decoration: underline;
+			}
+			
+			#row-subtabs
+			{
+				flow: stack;
+				padding: 0 7px;
+			}
+			
+			section
+			{
+				flow: horizontal;
+				visibility: hidden;
+			}
+			section:current
+			{
+				visibility: visible;
+			}
+			section > div /* BUG: direct child of container with 'flow: horizontal' won't call script paint-handlers */
+			{
+				prototype: SubTab_RibbonCheck;
+				behavior: check;
+				flow: stack;
+				
+				height: 28px;
+				width: max-content;
+				margin-top: 5px;
+				margin-bottom: 5px;
+				margin-right: 10px;
+			}
+			section > div > .layer-label
+			{
+				size: *;
+				flow: horizontal;
+				vertical-align: middle;
+				padding: 0 11px;
+			}
+			section > div > .layer-label img
+			{
+				margin-left: -5px;
+				margin-right: 7px;
+			}
+			section > div > .layer-label text
+			{
+				width: *;
+				font-size: 14px;
+				text-align: center;
+			}
+			section > div > .layer-gfx
+			{
+				size: *;
+				opacity: 0;
+			}
+			section > div:checked > .layer-gfx
+			{
+				opacity: 1;
+				transition: opacity(linear, 200ms);
+			}
+			
+			section > div:not(:checked):hover > .layer-label
+			{
+				text-decoration: underline;
+			}
+			section > div:not(:checked) > .layer-label img
+			{
+				foreground-image-transformation: colorize(rgb(79,115,158));
+			}
+		}
+		
+		
+		
+		/* mmm: picture.transparent75 { foreground-image-transformation: opacity(0.75); } */
+	</style>
+
+	<script type="text/tiscript">
+		include "AeroTabs.tis";
+		
+		self.post(function() {
+			// cant call at main cause prototype is not yet attached to DOM
+			for(var el in $$(.aero-tab))
+			{
+				el.setupTabData({
+					"Second": [{ tip: "Compile output", icon: "log3.png" }, { tip: "Find/Replace", icon: "search.png" }],
+					"First": [{ tip: "Map Info", icon: "scroll.png" }, { tip: "Log output", icon: "log4.png" }, { tip: "Build/Compile", icon: "build.png" }]
+				});
+			}
+		});
+	</script>
+</head>
+
+
+<body>
+	<div .aero-tab coloring="StyleWhite">
+		<div #row-tabs />
+		<div #row-subtabs />
+	</div>
+	
+	<div .aero-tab coloring="StyleBlue">
+		<div #row-tabs />
+		<div #row-subtabs />
+	</div>
+	
+	<div .aero-tab coloring="StyleYellow">
+		<div #row-tabs />
+		<div #row-subtabs />
+	</div>
+	
+	<h4>About:</h4>
+	<p>This is a port of this Ribbon style tabbed interface: <a href="">http://www.codeproject.com/Articles/35143/Ribbon-style-Two-level-Tab-Bar-for-Dialog-Boxes-in</a></p>
+	<p>Features: <i>plays nicely with Aero/transparent background, mouse wheel support, and 3 has different stylings (but you can easily create your own)</i></p>
+	<p></p>
+	<p>Plz,let me know if you use it in any project. If needed, I can give you support, just contact me - midi</p>
+	
+	<script type="text/tiscript">
+		$(a).onClick = function() {
+			Sciter.launch(this.text);
+			return true;
+		};
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+﻿<html>
+  <head>
+    <title>Plus: very basic sample</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      ol { width:40em; }
+      ol > li { 
+        behavior:radio; /* !!! 同一时刻只有一项处于:checked状态 !!! */
+        border-bottom:1px solid dotted;
+      }
+      ol > li > div.details { 
+        prototype: FruitDetails; // see below
+        visibility:none; 
+        background-color:white;
+        overflow:hidden;
+        flow:row(label,output); 
+        border-spacing: 1em 0;  
+        height:0; 
+      }
+      ol > li:checked > div.details { 
+        background-color:gold;
+        visibility:visible; 
+        height:4em; 
+        transition: height(linear, 200ms) background-color(linear, 200ms);
+      }
+      
+      ol > li > div.details:animating { visibility:visible; /* visible while animating */ }
+      ol > li > div.details > label { display:block; white-space:nowrap; width:max-content; text-align:right; }
+      
+    </style>
+    
+    <script type="text/tiscript">
+  
+      namespace Data // 我们的模型
+      {  
+        var fruits = [{name:"苹果", energy:52, carbohydrates:13.81, protein:0.26 },
+                      {name:"橘子", energy:49, carbohydrates:11.89, protein:0.94 },
+                      {name:"甜樱桃", energy:63, carbohydrates:16.1, protein:1.06 }];
+      }  
+      
+      class FruitDetails : Element 
+      {
+        function onVisibilityChanged(onOff) {
+          if(onOff)
+            this.$content(
+              <label>energy, cal</label><output|number(fruit.energy)/>
+              <label>carbohydrates, g</label><output|number(fruit.carbohydrates)/>
+              <label>protein, g</label><output|number(fruit.protein)/>
+            );
+          else
+            this.clear(); // clear it to remove not used DOM.
+        }
+      }
+      
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>
+<note>下面的列表绑定到了<code>Data.fruits</code>数组上，所以它能够反映Data.fruits数组中的数据。</note>
+  <p>&lt;div.details&gt;元素绑定了FruitDetails行为。</p>
+  <p>当元素不可见时，FruitDetails清除元素的明细信息，并且在元素显示时，创建并渲染明细信息。</p>
+  </note>
+
+  <p>请在下面项上点击。</p>
+  <p>Numbers below are for 100g of product</p>
+  <!-- 可重复节 -->
+  <ol each="fruit in fruits">
+    <li><caption><output(fruit.name)/></caption>
+        <div.details />
+    </li>
+  </ol>
+  
+</body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+      div { behavior:htmlarea; }
+    </style>
+    <script type="text/tiscript">
+      $(button#sel-vidi).onClick = function() {
+        var div = $(div);
+        var p = div.first;
+        var textNode = p.firstNode;
+        
+        var pos = textNode.text.indexOf("李四");
+        assert pos >= 0 : "李四应该在这里";
+                
+        var start = [bookmark: textNode, pos, false];
+        var end = [bookmark: textNode, pos+1, true];
+        
+        div.selection.select(end,start);
+      }
+      
+      $(button#sel-span).onClick = function() {
+        var div = $(div);
+        div.selection.select(div.$(span));
+      }
+      
+    </script>
+  </head>
+<body>
+  <button #sel-vidi>选择 "李四"</button>
+  <button #sel-span>选择 span 元素</button>
+  <div>
+    <p>张三, 李四, 王五.</p> 
+    <p>后面的内容在一个span中：<span>span</span>。</p> 
+  </div>
+</body>
+</html>

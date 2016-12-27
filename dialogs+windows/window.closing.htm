@@ -1,0 +1,21 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+    
+      view.root.on("closerequest",function(evt) {
+        const REASONS = ["BY CHROME", "BY CODE", "BY LOAD"];
+        view.msgbox(#information, "closing " + REASONS[evt.reason]);    
+        // evt.data = #cancel ; 取消关闭
+      });
+      
+      $(button).on("click", function() {
+        view.close();
+      });
+    </script>
+  </head>
+<body>
+  <button>点我关闭</button>
+</body>
+</html>

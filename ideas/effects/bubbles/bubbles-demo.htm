@@ -1,0 +1,32 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style>
+    
+      div.bubbles {
+        size:800dip 400dip;
+        aspect: Bubbles url(bubbles.tis);
+        margin:*;
+        background: radial-gradient(75% 75%, circle farthest-side, #FFB06B, #FFD671);  
+      }
+      
+      div.animated {
+        size:100dip;
+        background:gold;
+        transform:translate(0,0);
+      }
+      
+      div.animated:hover {
+        transform:translate(0,-50%);
+        transition: transform(linear,300ms);
+      }
+    
+    </style> 
+
+  </head>
+<body>
+  <p>aspect：气泡示例</p>
+  <div.bubbles/>
+  <div.animated>Animation<div>
+</body>
+</html>

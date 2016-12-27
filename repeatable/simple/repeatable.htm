@@ -1,0 +1,56 @@
+<html>
+  <head>
+  <title>Repeatable 示例</title>
+<style>
+  /* repeatable 规则: */
+  [repeatable] { aspect: Repeatable url(repeatable.tis);  }
+  [repeatable] > * { behavior:form; } /* 每个重复的子元素被当做一个form，所以它们可以接受一个对象值 */ 
+  
+  
+  body { flow: "1 1"
+               "2 3"
+               "4 4";
+         border-spacing: 1em; }
+         
+  div, ul { size:*; }
+  textarea { display:block; size:*; }
+  ul { border:1px solid; }
+  ul > li { flow:horizontal; width:70%; border-bottom:1px solid #aaa; }
+  ul > li > [name=price] { margin-left:*; }
+  
+</style>
+<script type="text/tiscript">
+
+
+  $(button#set).onClick = function() {
+
+    var json = parseData( $(textarea#json).value );
+    
+    $(#products).value = json;
+    
+  };
+</script>
+  </head>
+<body>
+
+  <h1>重复模板(Repeatable) 示例</h1>
+
+  <!-- 重复列表 \ -->
+  <ul #products repeatable>
+    <li><output|text(product) /> <output|currency(price) /></li>
+    <div>no records!</div>
+  </ul>
+  <!-- 重复列表 / -->  
+  
+  <div>
+    <button #set>设置左边重复模板(Repeatable)的值</button>
+    <textarea #json>[
+  { product:"苹果", price: 0.95 },
+  { product:"橘子", price: 0.75 },
+  { product:"梨", price: 1.25 },
+];</textarea>
+  </div>
+  
+  <p>本示例演示了非常简单的重复内容元素的实现。注意，它不需要任何模板引擎或类似的库。</p>
+</body>
+</html>

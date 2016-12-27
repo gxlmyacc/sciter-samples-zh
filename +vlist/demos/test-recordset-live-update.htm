@@ -1,0 +1,116 @@
+<html>
+  <head>
+  <title></title>
+  <style>
+    
+    vlist 
+    { 
+      display:block; 
+      height:*; width:300px; 
+      border:1px solid black; 
+      overflow: scroll-indicator;
+    }
+
+    vlist > li {
+      display:block; 
+      padding:0 6dip;
+      line-height:31dip;
+      background: linear-gradient(top, #fff, #ddd);
+      behavior:form; /* 每个重复子元素都认作表单，这样它可以接受对象值 */ 
+    } 
+    
+    vlist > li.highlighted {
+      background: linear-gradient(top, #fff, #da9);
+    }
+
+    vlist > li:hover {
+      background: linear-gradient(top, #fff, #bcd);
+    }
+
+    vlist > li:current {
+      background:gold;
+    }    
+    
+      
+  </style>
+  <script type="text/tiscript">
+  
+  include "../vlist.tis";
+  
+  function self.ready() {
+  
+    var records = new Array(500);
+    
+    for(var i = 0; i < records.length; ++i)
+      records[i] = {index: i, caption:"新项" }
+
+    var n = records.length;
+    var p = 0;
+    
+   
+    var vlist = VirtualList {
+      container     : $(vlist),
+      bufferSize    : 40 // 滑动窗口中的记录数
+    };
+    
+    // 反馈这些数据
+    vlist.value = records;
+    
+    $(#mutate) << event click() {
+    
+      function add() { 
+        var at = rand(records.length + 1);
+        records.splice(at,0, {index: ++n, caption:"已添加项" });
+        //stdout.$n(New item #{n} added at {at});
+      }
+      
+      function del() { 
+        var at = rand(records.length);
+        var r = records[at];
+        records.splice(at,1);
+        //stdout.$n(Item #{r.index} removed at {at});
+      }
+      
+      function upd() { 
+        var at = rand(records.length);
+        var r = records[at];
+        var times = r.nupdates || 0;
+        ++times;
+        r.extend { 
+            nupdates: times,
+            caption: String.$(已更新{times}次 {times > 1?"s":""})
+         };
+        //stdout.$n(Item at {at} was updated);
+      }
+      
+      function noop() {}
+      
+      var ops = [add,del,upd,noop];
+
+      self.timer(60ms, function() {
+        if(!vlist.state.animating) // 阻止动画中更新数据
+          ops[ rand(ops.length) ]();
+        return true;
+      });
+
+    }
+    
+  }
+  
+  </script>
+  </head>
+<body>
+
+  <h2>动态数据集突变 示例</h2>
+  
+  <p>记录数组默认有500条记录，并且每隔60ms数据被修改下(新增、移除、更新)。</p> 
+
+  <button #mutate>启动随机更新</button>
+
+  <vlist>
+    <li><span(index)/> <span(caption)>???</span></li>
+  </vlist>
+ 
+  
+</body>
+</html>

@@ -1,0 +1,94 @@
+<html>
+  <head>
+  <title></title>
+<style>
+  html { background:#EDEDED; }
+  div#forms { flow:"1 3"
+                   "2 4"; }
+  
+  form { flow:row(label,output); width:20em; border-spacing:4dip; }
+  form > label { horizontal-align: right; width: max-intrinsic;}
+  form > output { background:#fff; min-width:3em; }
+  form > output[negative] { color:red; }
+
+</style>
+<script type="text/tiscript">
+
+  var vals1 = {
+      text:"Hello world!",
+      integer:12345,
+      decimal:12345.67,
+      currency:12345.67,
+      date: new Date(1914,7,28),
+      dateLocal: new Date(1914,7,28),
+      time: Date.now(),
+      timeLocal: Date.now()
+    };
+  var vals2 = {
+      text:"Hello universe!",
+      integer:-12345,
+      decimal:-12345.67,
+      currency:-12345.67,
+      date: new Date(1939,9,1),
+      dateLocal: new Date(1939,9,1),
+      time: Date.now(),
+      timeLocal: Date.now()
+    };    
+
+  $(button#set) << event click() { $(form#data).value = vals1; };
+  $(button#set-ru) << event click() { $(form#data-ru).value = vals1; };
+
+  $(button#set2) << event click() { $(form#data).value = vals2; };
+  $(button#set2-ru) << event click() { $(form#data-ru).value = vals2; };
+
+</script>
+  </head>
+<body>
+  <button#set>设置值</button> 
+  <button#set-ru>设置值(lang=ru)</button> 
+  <button#set2>设置另一个值</button> 
+  <button#set2-ru>设置另一个值(lang=ru)</button> 
+  <div #forms>
+    <h3>表单, 默认语言 </h3>
+    <form#data>
+      <label>文本</label>
+        <output!text name="text" />
+      <label>整数</label>
+        <output!integer name="integer" />
+      <label>浮点数</label>
+        <output!decimal name="decimal" />
+      <label>金额</label>
+        <output!currency name="currency" />
+      <label>日期</label>
+        <output!date name="date" />
+      <label>日期(本地)</label>
+        <output!date-local name="dateLocal" />
+      <label>时间</label>
+        <output!time name="time" />
+      <label>时间(本地)</label>
+        <output!time-local name="timeLocal" />
+    </form>
+    <h3>表单, lang="ru"</h3>
+    <form#data-ru lang=ru>
+      <label>文本</label>
+        <output!text name="text" />
+      <label>整数</label>
+        <output!integer name="integer" />
+      <label>浮点数</label>
+        <output!decimal name="decimal" />
+      <label>金额</label>
+        <output!currency name="currency" />
+      <label>日期</label>
+        <output!date name="date" />
+      <label>日期(本地)</label>
+        <output!date-local name="dateLocal" />
+      <label>时间</label>
+        <output!time name="time" />
+      <label>时间(本地)</label>
+        <output!time-local name="timeLocal" />
+    </form>
+  </div>
+
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<html>
+<head>
+  <style>
+
+    div.container div.example
+    {
+      background-image:url(images/arrow.png);
+      background-size:48dip 48dip;
+      background-repeat:no-repeat;
+      size:48dip;
+      background-image-transformation: hue(red);
+      border:1px solid red;
+    }
+    div.container div.example:hover
+    {
+      background-image-transformation: hue(orange);
+    }
+
+    .RtlBkGrndImgFlipX:rtl
+    {
+      background-image-transformation: ~ flip-x();  /* '~'是列表合并操作，所以flip-x()将会添加掉样式列表中，而不是替换它 */
+    }
+
+
+  </style>
+ </head>
+  <body >
+    你应该能够看到这个<img src="images/arrow.png">箭头，不过它的颜色应该是红色的，且箭头向左。在:hover状态时它应该是黄色的:
+    <div class="container" dir="rtl">
+      <div class="example RtlBkGrndImgFlipX" />
+    </div>
+  </body>
+</html>

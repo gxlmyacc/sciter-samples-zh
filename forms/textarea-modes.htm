@@ -1,0 +1,23 @@
+<html>
+  <head>
+  <title>文本框中单词换行模式</title>
+<style>
+
+  textarea { display:block; width:200px; }
+  #pre-wrap { white-space:pre-wrap; }
+  #char-wrap { white-space:pre-wrap; word-wrap:break-word; }
+
+</style>
+<script type="text/tiscript"></script>
+  </head>
+<body>
+  <h2>文本框中单词换行模式</h2>
+  <p>默认换行模式(white-space:pre):</p>
+  <textarea id="pre">The quick brown fox jumps over the lazy dog</textarea> 
+  <p>在单词的边界换行(white-space:pre-wrap):</p>
+  <textarea id="pre-wrap">The quick brown fox jumps over the lazy dog</textarea> 
+  <p>在字符边界换行(white-space:pre-wrap; word-wrap:break-word):</p>
+  <textarea id="char-wrap">The quick brown fox jumps over the lazy dog</textarea> 
+
+</body>
+</html>

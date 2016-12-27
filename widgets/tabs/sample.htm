@@ -1,0 +1,48 @@
+<html>
+  <head>
+  <title></title>
+  <style>
+    @import url(tabs.css);
+    
+    html { background:#ffffee; }
+    form { margin-bottom:1em; }
+    section { text-align: center; vertical-align:middle; }
+    
+  </style>
+  <script type="text/tiscript">
+  
+    self.subscribe("statechange","tabs", function() { $(select).value = this.current; });
+    self.subscribe("change", "select", function() { $(tabs).current = this.value; });
+  
+  </script>
+  </head>
+<body>
+
+  <form>
+    当前标签页: <select #current-tab>
+      <option value=first>第一个</option>
+      <option value=second>第二个</option>
+      <option value=third>第三个</option>
+    </select>
+  </form>
+
+  <tabs #test>
+    <div.strip>
+      <label for=first >第一个</label>
+      <label for=second >第二个</label>
+      <label for=third >第三个</label>
+    </div>
+    <section(first)>
+      第一个标签页内容
+    </section>
+    <section(second)>
+      第二个标签页内容
+    </section>
+    <section(third)>
+      第三个标签页内容
+    </section>
+  </tabs>
+
+
+</body>
+</html>

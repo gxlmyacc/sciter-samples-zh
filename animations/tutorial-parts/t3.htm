@@ -1,0 +1,39 @@
+<html>
+  <head>
+  <title></title>
+<style src="style.css"></style>
+<style> 
+  div#box { flow:horizontal; overflow:hidden;}  
+  picture { transform:translate(200px,0px) rotate(0deg); }
+</style>
+<script type="text/tiscript" src="script.tis"></script>
+  </head>
+<body>
+  <h2>有趣的(组)动画</h2>
+  <div #box>
+    <picture src="heart.png" />
+    <picture src="spade.png" />
+    <picture src="diamond.png" />
+    <picture src="tref.png" />
+  </div>
+  <form>
+    <button #run>运行</button>
+    <button #clear>清空</button>
+  </form>
+  
+  <div .explanation>
+    <p>FROM 状态 - DOM元素的当前状态。</p>
+    <p>TO 状态 - 代码中定义的状态:</p>
+    <p>注意 1: $$(picture)返回picture元素的列表。每个picture的动画都偏移interval:0.3s的时间。</p>
+    <p>注意 2: 在SCC中，使用translate(200px,0px)来初始化所有picute的偏移位置。</p>
+  </div>
+  
+  <textarea #src>Timeline.on(this)
+  
+    .to( $$(picture), { duration:1s, interval:0.3s, ease: #quadInOut },
+                      { transform: translate(0px,0px) rotate(1turn) } )
+    .play();
+  </textarea>
+  
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html window-resizable >
+  <head>
+    <title>你好!</title>
+    <style></style>
+    <script type="text/tiscript">
+
+	include "../../decorators.tis";
+    
+    function self.ready() {
+      // 这是使用post方法是因为当前窗口仍然处于创建阶段，这样做是为了避免无意义的重绘。
+      this.post ( ::view.state = View.WINDOW_SHOWN ); 
+    }
+
+    @click @on "#test" :: $(output#out).text = "test clicked";
+    </script>
+  </head>
+<body>
+  你好!
+  
+  测试APNG动画：<img src="../loading-16.png">
+  
+  <button id="test">测试消息</button>
+
+  <br>测试一张在线GIF图像：<img src="http://www.terrainformatica.com/res/terrainformatica.gif">
+  <output#out>
+ </output> 
+</body>
+</html>

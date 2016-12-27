@@ -1,0 +1,128 @@
+<html window-frame="transparent">
+  <head>
+  <style>
+    .with-context-menu
+    {
+      context-menu: selector(menu#context); /* 指定上下文菜单 */
+    }
+    .with-context-menu-ext
+    {
+      context-menu: url(res/c-menu.htm); /* 使用自定义URL指定上下文菜单 */
+    }
+
+    menu
+    {
+      width:max-intrinsic;
+    }
+  
+    select#test { font:16pt Verdana; }
+  
+    select#test option:nth-child(odd)
+    {
+      background-color: beige;
+      context-menu: selector(menu#option-odd); /* 上下文菜单元素的选择器 */
+    }
+    select#test option:nth-child(even)
+    {
+      background-color: lavender;
+      context-menu: selector(menu#option-even);
+    }
+    
+    select#test option:current
+    {
+      background-color:highlight; color:highlighttext; 
+    }
+    
+    caption 
+    { 
+      color:graytext; text-align:center; 
+      border-bottom:1px solid graytext;
+    }
+    
+    menu#option-odd
+    {
+      width:max-intrinsic;
+      background-color: beige;
+    }
+    menu#option-even
+    {
+      width:max-intrinsic;
+      background-color: lavender;
+    }
+    
+    
+  </style>
+  </head>
+
+<body>
+
+<h2>上下文菜单</h2>
+请在按钮上右击，查看它们的上下文菜单：
+<button class="with-context-menu">右键点我</button>
+<button class="with-context-menu-ext">右键点我/菜单来自外部URL</button>
+
+<p>这些选择框为奇数项和偶数项显示不同的上下文菜单：
+<select id="test" size="5">
+  <option>项 1</option>
+  <option>项 2</option>  
+  <option>项 3</option>  
+  <option>项 4</option>
+  <option>项 5</option>  
+  <option>项 6</option>  
+  <option>项 7</option>
+  <option>项 8</option>  
+  <option>项 9</option>  
+</select>
+<select id="test" style="font:system">
+  <option>项 1</option>
+  <option>项 2</option>  
+  <option>项 3</option>  
+  <option>项 4</option>
+  <option>项 5</option>  
+  <option>项 6</option>  
+  <option>项 7</option>
+  <option>项 8</option>  
+  <option>项 9</option>  
+</select>
+
+</p>
+
+
+<popup> <!-- 在这里的popup元素，只是想将菜单元素放在一起，与其他元素分开 -->
+  <!-- 注意这里的.context 类, 对于上下文菜单，必须要有这个类，
+    因为CSS主样式表需要所有的menu.context定义-->
+  <menu.context id="context">
+    <li id="i1">第一项</li>
+    <li id="i2">第二项</li>
+    <li id="i3">第三项</li>
+    <li id="i4">第四项</li>
+    <li>子菜单
+        <menu>
+          <li id="i5">第五项</li>
+          <li id="i6">第六项</li>
+        </menu>  
+    </li>
+    
+  </menu>
+  
+  <menu.context id="option-odd">
+    <caption>奇数项操作</caption>
+    <li id="i1">第一项</li>
+    <li id="i2">第二项</li>
+    <li id="i3">第三项</li>
+    <li id="i4">第四项</li>
+  </menu>
+  
+  <menu.context id="option-even">
+    <caption>偶数项操作</caption>
+    <li id="i1">第一项</li>
+    <li id="i2">第二项</li>
+    <li id="i3">第三项</li>
+  </menu>
+</popup>
+
+</body>
+
+</html>
+	
+	

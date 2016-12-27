@@ -1,0 +1,40 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+    
+    
+    function self.ready() {
+    
+      var sidebar = null;
+    
+      $(#sidebar).onClick = function() {
+        
+          var (screenX1,screenY1,screenX2,screenY2) = view.screenBox(#workarea,#rect);
+        
+          if(!sidebar)
+            sidebar = View.window // 注意：这里的.window()方法是被当做View类的静态方法调用，
+            {                     // 这样创建的窗口将使用分离模式创建 - 即使它的父窗口被关闭，它也依然存在。
+              type:View.POPUP_WINDOW,
+              url: self.url("samples/sample-sidebar-window.htm"),
+              x:screenX2 - 480 + 1,
+              y:screenY1,
+              width : 480,
+              height : screenY2 - screenY1,
+              state: View.WINDOW_HIDDEN,
+              alignment:7,
+            };
+          
+          sidebar.expand();
+          
+      }            
+    }
+    
+    
+    </script>
+  </head>
+<body>
+  <button#sidebar>显示侧边栏</button>
+</body>
+</html>

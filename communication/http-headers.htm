@@ -1,0 +1,70 @@
+<html>
+<head>
+	<title>sciter3 Element.request fail</title>
+	<style>
+		html 
+		{ 
+			background-color: threedface; 
+		}
+		#sandbox 
+		{ 
+			margin:20px; 
+			padding:20px; 
+			overflow:auto;
+			background-color:window; 
+			border:1px solid threedface; 
+			width:*; height:*;
+		}
+		#sandbox:busy // that small spinning thing...
+		{
+			visibility:visible;
+			foreground-image:url(res:busy.png); 
+			foreground-repeat:no-repeat; 
+			foreground-position:2px 2px; 
+		}
+
+		code { background:white; }
+
+	</style>
+	<script type="text/tiscript"> // comment to fix line at exception
+	
+	var sandbox = $(#sandbox), indicator = $(#indicator);
+		
+	sandbox.value = "已准备好，可以'获取'http请求了!";
+
+	// 显示反馈数据
+	function show(data,status = 200)
+	{
+		try {
+			indicator.value = String.$(状态: {status}, 数据: {typeof(data)});
+			sandbox.html = data.toString();
+		} catch (e) {
+			sandbox.value = e.toString();
+		}
+	}
+
+	$(#clear) << event click() {
+		sandbox.value = indicator.value = "";
+	}
+	
+	$(#get) << event click() {
+    var params = { q:1 }; // 传递自定义参数
+    var headers = { "user-token": "for the demo purposes!" }; // 传递自定义请求头
+		var re = sandbox.request(show, #get, "http://www.terrainformatica.com/tools/http-headers.php", params,headers);
+	}
+
+	</script>
+</head>
+<body>
+
+	<div id="controls">
+		<button id="clear">清空</button>
+		<button id="get">获取</button>
+	</div>
+	<div id="sandbox">
+	  sandbox
+	</div>
+	<div id="indicator">正在通讯...</div>
+
+</body>
+</html>

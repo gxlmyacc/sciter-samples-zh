@@ -1,0 +1,110 @@
+<html>
+  <head>
+  <title>view.msgbox() 示例</title>
+<style></style>
+
+<script type="text/tiscript">
+  include "../decorators.tis";
+
+  @click @on "#hello-world-1": {
+    var r = view.msgbox(#alert,"你好!");
+    $(#out).text = String.println(r);        
+  }
+  @click @on "#hello-world-2": {
+    var r = view.msgbox { type:#information, 
+                  content:"你好!", 
+                  title:"我是自定义标题" };
+    $(#out).text = String.println(r);        
+  }
+  @click @on "#hello-world-3": {
+    view.msgbox { type:#information, 
+                  content:"世界!", 
+                  title:"你好",
+                  onLoad: function(root){ $(#out).text = String.printf("消息框加载了：%s\n",root); },
+                  onClose: function(root,buttonSym){ $(#out).text = String.printf("消息框被关闭：#%s\n",buttonSym); }
+                };
+  }
+
+  @click @on "#hello-world-4": {
+    var result = view.msgbox { type:#question, 
+                               content:"有没有人啊啊啊?", 
+                               //buttons:[#yes,#no]
+                                buttons:[
+                                 {id:#yes,text:"是"},
+                                 {id:#cancel,text:"否",role:"default-button"}]   
+                             };
+	 $(#out).text = String.printf("消息框结果: #%s\n",result);
+  }
+
+  @click @on "#hello-world-5": {
+    var result = view.msgbox { type:#error, 
+                               content:"<b #name></b> 好像有些不太对。<br>让我们来解决它!", 
+                               onLoad: function(root){ root.$(#name).text = "你好!"; }
+                             };
+  }
+
+  @click @on "#hello-world-6": {
+
+    var data = { name:"", password:"" };  
+    
+    function onClose(root,btn)
+    {
+      if(btn == #cancel)
+        return true;
+      data = root.$(form).value; // 从表单收集数据
+      if( !data.password || !data.name)
+      {
+        root.$(p#error).text = "姓名或密码不能为空！";
+        return false; // 拒绝关闭
+      }
+      return true;
+    }
+    
+    var result = view.msgbox { //type:#error, - 无类型
+                               icon: "user-login-48.png",
+                               title: "登录",
+                               content:$(#msg-box-contnent).text, // 见下面的<script type=...> 
+                               onClose: onClose,
+                               buttons:[{id:#login,text:"登录"},{id:#cancel,text:"取消"}]
+                             };
+    if( result == #login )
+	  $(#out).text = String.printf("获得登录请求: %V\n",data);
+
+  }
+
+
+</script>
+
+  </head>
+<body>
+
+  <h1>view.msgbox() 示例</h1>
+
+  <button #hello-world-1>简单消息框</button>
+  <button #hello-world-2>有标题的简单消息框</button>
+  <button #hello-world-3>有事件的消息框</button>
+  <button #hello-world-4>有自定义按钮的消息框</button>
+  <button #hello-world-5>有初始化的消息框</button>
+  <button #hello-world-6>有自定义图标和输入框的消息框</button>
+  <img src="sres:busy.png">
+
+  <!-- 为消息框设置自定义布局custom layout for message box -->  
+  <script type="text/html" #msg-box-contnent>
+    <style>
+	  form { flow:row(label,input); border-spacing:10dip; }
+	  form > * { vertical-align:baseline; }
+	  form > label { horizontal-align:right; }
+	</style>
+    <p>请提供登录凭据<img src="sres:busy.png">:</p>
+    <form>
+      <label>姓名:</label><input name="name" type="text" />
+      <label>密码:</label><input name="password" type="password" />
+    </form>
+    <p #error style="color:red; height:1.4em;"></p>
+  </script>
+  
+  <br />
+  <output #out></output>
+    
+</body>
+</html>

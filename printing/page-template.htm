@@ -1,0 +1,38 @@
+﻿<html page-no page-parity>
+<!-- 页面模板中的html元素有两个属性:
+     page-no=N - 在pageframe中渲染的当前页号
+     page-parity="odd" | "even" - 页面奇偶标志 -->
+  <head>
+    <style>
+      body {  font-family: 宋体; padding:0.2in;  } /* 设置页面的非打印区域*/
+      pageframe  { size:*; }
+      header { border-bottom: 1dip solid gray; }
+      footer { border-top: 1dip solid gray; }
+      
+      html[page-parity=odd] footer  { text-align:left; }
+      html[page-parity=even] footer { text-align:right; }
+      html[page-parity=odd] pageframe 
+      { 
+        margin-left:10pt;
+        margin-right:20pt;
+      }
+      html[page-parity=even] pageframe
+      {
+        margin-left:20pt;
+        margin-right:10pt;
+      }
+      /* html[page-no=1] footer  { text-align:center; } */
+    </style>
+  </head>
+<body>
+<!-- 页面模板可以包含下面这几种元素，这些元素在每个页面将会自动填充:
+   id="document-url" - 被打印的文档的url
+   id="document-title" - 文档的<title>元素的内容
+   id="page-no" - 当前页号
+   id="total-pages" - 总页数-->
+
+  <header #document-title>头部....</header>
+  <pageframe />
+  <footer>第 <span #page-no /> 页，共 <span #total-pages /> 页</footer>
+</body>
+</html>

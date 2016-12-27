@@ -1,0 +1,206 @@
+﻿// Find search target: first element with .search_target class
+var el_search_target = $(.search_target);
+assert(el_search_target);
+
+// create the #search-box element
+$(body).$append(<div #search-box disabled>
+		Search: <input #search-input />
+		<button .std-btn #btn-seek-prev><i .ft.ft-up-open /></button>
+		<button .std-btn #btn-seek-next><i .ft.ft-down-open /></button>
+		<close />
+	</div>);
+
+// DOM event handling
+function DoSearch()
+{
+	var needle = $(#search-box input).value
+	needle = needle.toLowerCase();
+
+	LibSearchInternal.InternalReset();
+
+	function SearchTextNode(nd)
+	{
+		var txt = nd.text.toLowerCase();
+		var isearch = 0;
+		while(true)
+		{
+			isearch = txt.indexOf(needle, isearch);
+			if(isearch==-1)
+				break;
+
+			var start = [bookmark: nd, isearch, false];
+			var end   = [bookmark: nd, isearch+needle.length, false];
+			Selection.applyMark(start, end, "omni-hilite");
+
+			var el;
+			if(nd.isElement)
+				el = nd;
+			else
+				el = nd.parent;
+
+			LibSearchInternal.arr_marks.push([start, end]);
+			isearch++;
+		}
+	}
+	function DeepSearch(el)
+	{
+		assert(typeof el == #Element);
+
+		if(!el.isVisible)
+			return;
+
+		var nd = el.firstNode;
+		while(nd)
+		{
+			if(nd.isElement)
+				DeepSearch(nd);
+			else if(nd.isText)
+				SearchTextNode(nd);
+			nd = nd.nextNode;
+		}
+	}
+
+	if(needle.length)
+	{
+		DeepSearch(el_search_target);
+		if(LibSearchInternal.arr_marks.length)
+			InternalShowCurrent();
+
+		self#search-input.@#reddish = LibSearchInternal.arr_marks.length==0 ? true : undefined;
+		//view.update();
+	} else {
+		self#search-input.@#reddish = undefined;
+	}
+}
+
+function SearchShow(select=false)
+{
+	if(self#search-box.state.disabled)
+	{
+		self#search-box.state.disabled = false;
+		DoSearch();
+	}
+
+	if(select)
+	{
+		self#search-input.state.focus = true;
+		self#search-input.setSelection(0, 99999);
+	}
+}
+function SearchClose()
+{
+	if(self#search-box.state.disabled==false)
+	{
+		self.state.focusable = true;
+		self.state.focus = true;
+
+		LibSearchInternal.InternalReset();
+		self#search-box.state.disabled = true;
+		return true;
+	}
+}
+function SearchSeek(next)
+{
+	SearchShow();
+	
+	if(LibSearchInternal.arr_marks.length)
+	{
+		Selection.clearMark(LibSearchInternal.arr_marks[LibSearchInternal.actual_mark_idx][0], LibSearchInternal.arr_marks[LibSearchInternal.actual_mark_idx][1], undefined);
+		Selection.applyMark(LibSearchInternal.arr_marks[LibSearchInternal.actual_mark_idx][0], LibSearchInternal.arr_marks[LibSearchInternal.actual_mark_idx][1], "omni-hilite");
+
+		if(next)
+			LibSearchInternal.actual_mark_idx = (LibSearchInternal.actual_mark_idx+1) % LibSearchInternal.arr_marks.length;
+		else
+			LibSearchInternal.actual_mark_idx = LibSearchInternal.actual_mark_idx==0 ? LibSearchInternal.arr_marks.length-1 : LibSearchInternal.actual_mark_idx-1;
+
+		InternalShowCurrent();
+	}
+}
+
+self.on("~keydown", function(evt) {
+	if(evt.ctrlKey)
+	{
+		if(evt.keyCode==Event.VK_F)
+		{
+			SearchShow(true);
+			return true;
+		}
+		else if(evt.keyCode==Event.VK_G)
+		{
+			SearchSeek(true);
+			return true;
+		}
+	} else if(evt.shiftKey) {
+		if(evt.keyCode==Event.VK_F3)
+		{
+			SearchSeek(false);
+			return true;
+		}
+	} else {
+		if(evt.keyCode==Event.VK_F3)
+		{
+			SearchSeek(true);
+			return true;
+		}
+		if(evt.keyCode==Event.VK_ESCAPE)
+		{
+			return SearchClose();
+		}
+	}
+});
+
+$(#search-box input).onValueChanged = function() {
+	DoSearch();
+};
+
+$(#search-box button#btn-seek-prev).on("click", function() {
+	SearchSeek(false);
+});
+$(#search-box button#btn-seek-next).on("click", function() {
+	SearchSeek(true);
+});
+
+$(#search-box close).on("click", function() {
+	SearchClose();
+});
+
+
+// Private
+namespace LibSearchInternal
+{
+	var arr_marks = [];
+	var actual_needle;
+	var actual_mark_idx;
+
+	function InternalReset()
+	{
+		actual_needle = undefined;
+		actual_mark_idx = 0;
+	
+		//this method is faster but have problem with <frames>
+		if(arr_marks)
+		{
+			for(var v in arr_marks)
+				Selection.clearMark(v[0], v[1], undefined);
+		}
+
+		// optionally use the method bellow, but it is slow, be aware
+		//Selection.clearMark(self.firstCaretPos, self.lastCaretPos, undefined);
+
+		arr_marks = [];
+	}
+
+	function InternalShowCurrent()
+	{
+		assert(arr_marks.length);
+
+		var mark = arr_marks[actual_mark_idx];
+		Selection.applyMark(mark[0], mark[1], "omni-hiactual");
+
+		var nd = mark[0][0];
+		var el = nd.isElement ? nd : nd.parent;
+		assert(typeof el == #Element);
+
+		el.scrollToView(false, true);
+	}
+}

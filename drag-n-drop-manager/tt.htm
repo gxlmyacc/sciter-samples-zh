@@ -1,0 +1,111 @@
+<html>
+<head>
+	<style>
+	html { background-color: white; }
+	
+	ul#items { 
+		flow:vertical; 
+		width: max-intrinsic;
+		overflow:scroll-indicator; 
+		border:1px solid red; 
+		padding:4px;
+    }
+	ul#items > li 
+	{
+		display:block;
+		min-width: 150px;
+		padding: 8px;
+		margin: 3px;
+		border: 1px solid #777;
+		border-radius: 4px;
+		background-color: MediumSeaGreen;
+		flow: horizontal;
+		vertical-align: middle;
+	}
+	
+	
+	ul#items > li > button {
+		margin:*;
+		background:gold;
+		border-radius: 3px;
+		font-size: 1.5em;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	
+	ul#items > li > button:hover {
+		background:yellow;
+	}
+	
+	
+	img.draghandle {
+		background: white;
+		border-radius: 4px;
+		border: 2px solid black;
+		margin-left: *;
+		size: 14px;
+	}
+	
+	ul > img.placeholder {
+		border: 2px solid darkgrey;
+		width: *;
+		height: 1px !important;
+		background: white;
+	}
+	
+	ul > img.draghandle { display: none; }
+    
+  </style>  
+  <script type="text/tiscript">
+    
+    include "ddm.tis";
+    include "animations.tis";
+    
+	
+	function onDrop( draggable, from )
+	{
+		var prev = draggable.prior;
+		var parent = draggable.parent;
+		draggable.detach();
+		draggable = null;
+		
+		var pos = prev ? prev.index+1 : 0;
+		$(#msg).text = "放置位置: " + pos + ", 来自: " + from.index;
+		
+		if( from == prev || pos == from.index )
+		{
+			$(#msg).text = "放置到相同问题 - 什么也没做!";
+			return; // nothing to do;
+		}
+		
+		//view.msgbox( "info", "drop position: " + pos );
+		parent.insert( from, pos );
+		
+	}
+	
+    DragDrop
+    {
+      what      : ".draghandle",
+      where     : "ul#items",
+      container : "ul#items",
+	    acceptDrag: function( el ) { return #copying; },
+	    dropped : onDrop;
+    };
+	
+	for( var btn in $$(button) )
+		btn.onClick = function() { view.msgbox( "info", this.text + " clicked" ); }
+  
+  </script>
+</head>
+<body>
+  <p><s>可重新排序的按钮列表</s></p>
+  <p>如果可拖拽元素中有控件(如按钮), 则这些控件在装载了拖拽功能后将不能正确工作。这个示例颜色如果允许用户对有控件的元素进行排序组合。做法是在区块中提供一个允许用户拖拽的特殊拖拽句柄。</p>
+  <ul #items>
+    <li><button>1</button><img .draghandle /></li>
+    <li style="background-color: plum;"><button>2</button> <img .draghandle /></li>
+    <li style="background-color: cornsilk;"><button>3</button> <img .draghandle /></li>
+    <li style="background-color: LightSkyBlue;"><button>4</button> <img .draghandle /></li>
+  </ul>
+  <p #msg>请使用右侧的白色方框来拖拽</p>
+</body>
+</html>

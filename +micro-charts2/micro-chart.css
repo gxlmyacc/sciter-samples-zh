@@ -1,0 +1,25 @@
+﻿
+chart {
+  vertical-align:bottom;
+  display:inline-block;
+}
+
+chart[type=pie] { 
+  aspect: MicroChart.Pie url(micro-chart.tis);
+  size:16dip;
+}
+
+chart[type=donut] { 
+  aspect: "MicroChart.Donut" url(micro-chart.tis);
+  size:16dip;
+}
+
+chart[type=line] { 
+  aspect: "MicroChart.Line" url(micro-chart.tis);
+  size:32dip 16dip;
+}
+
+chart[type=bar] { 
+  aspect: "MicroChart.Bar" url(micro-chart.tis);
+  size:40dip 16dip;
+}

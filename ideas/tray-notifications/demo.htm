@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+    @import url(notification.css); //气泡的样式定义
+    
+    </style>
+    <script type="text/tiscript">
+      include "notification.tis"
+      
+    /* 弹出元素格式：
+    <popup|tray>
+      <header>
+        <caption></caption>       标题(非必须)，如果没有，标题将是header元素的文本内容
+        <span.cancel>关闭</span>  关闭按钮(非必须)   
+      </header>     
+      <content></content>       气泡内容区(必须)
+    </popup>    
+    */  
+    
+    event "click|button#test1" () {
+      Notification.show($(#popup1), "授权已到期，是否续费?", "授权提醒", 5s)      
+    }
+    
+    event "click|button#test2" () {
+      Notification.show($(#popup2), "授权已到期，是否续费?", "授权提醒(没有关闭)", 5s)      
+    }
+    
+    /* Toast弹出元素格式：
+    <popup|toast>
+      <content></content>   气泡内容区(必须)
+    </popup>    
+    */  
+    event "click|button#test3" {
+      Notification.toast("这是一个<b>Toast</b>提示")      
+    }
+    
+    event "click|button#cancel" {
+      Notification.cancel();     
+    }
+    
+    </script>
+  </head>
+<body>
+  <button#test1>显示通知1</button>
+  <button#test2>显示通知2</button>
+  <button#test3>显示Toast</button>
+  <button#cancel>取消通知</button>
+
+<popup|tray #popup1>
+  <header>
+    <caption>消息提醒</caption>
+    <span.cancel>关闭</span>
+  </header>
+  
+  <content></content><!--气泡提示的内容区-->
+</popup>
+
+<popup|tray #popup2>
+  <header>
+    <caption>消息提醒</caption>
+  </header>
+  <content></content>
+</popup>
+
+<!--popup|toast #toast>
+  <content></content>
+</popup-->
+
+</body>
+</html>

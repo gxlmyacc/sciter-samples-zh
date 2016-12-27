@@ -1,0 +1,5 @@
+﻿function foo() {
+
+  $(body).$append(<p>脚本被加载，且被执行!</p>);
+
+}

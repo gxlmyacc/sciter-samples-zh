@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+    @import url(../note.css);
+    
+    video.camera {
+    
+      behavior: camera video;
+      
+      width: *;
+      height: *;
+      border:1px solid black;
+      foreground-size:contain;
+    }
+    
+    #device-list { width:max-content; }
+
+    #device-list > button { display:block; }
+    
+    #container { flow:horizontal; size:*; }
+    
+    </style>
+    <script type="text/tiscript">
+    
+    function self.ready() {
+    
+      var video = $(video.camera);
+      var devices = video.devices();
+      
+      var dl = $(#device-list);
+      
+      for( var dname in devices )
+        dl.$append(<button|radio>{ dname }</button>);
+        
+      dl.on("click", "button", function() {
+        video.streamFrom( this.index );
+      });
+        
+    }
+    
+    
+    </script>
+  </head>
+<body>
+  <note>要使这个Demo可以工作，你需要启用sdk/incluse/behaviors/behavior_camera_capture.cpp</note>  
+
+  <div #container>
+    <video.camera />
+    <section>
+      请选择相机设备: 
+      <div #device-list></div>
+      <!--<img src="res:busy.png">-->
+    <section>
+  </div>
+
+</body>
+</html>

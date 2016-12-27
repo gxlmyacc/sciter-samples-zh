@@ -1,0 +1,39 @@
+﻿<html>
+  <head>
+    <title>旋转多行文本</title>
+    <style>
+    
+    body { font:10pt verdana,sans-serif; }
+
+    table { border:1px dashed blue; border-spacing:0; padding:0 }
+
+    td { padding:0.5em; }
+    
+    td.rotated { 
+      overflow:visible;
+      width:2.4em;
+      border-right:1px dashed gray;
+      height:12em; /* this should match text width below */
+      horizontal-align:middle;
+      vertical-align:middle;
+    }
+    
+    td.rotated > text { width:12em; height:2.4em; transform:rotate(-90deg); text-align: center;}
+    td.another { border-top:1px dashed gray; }
+    
+</style>
+  </head>
+<body>
+  <p>文本90°旋转 示例</p> 
+  <table>
+    <tr>
+      <td rowspan="2" class="rotated"><text>多行文本<br>90° 旋转</text></td>
+      <td>普通单元格</td>
+    </tr>
+    <tr>
+      <td class="another">另一个普通单元格</td>
+    </tr>
+  </table>
+
+</body>
+</html>

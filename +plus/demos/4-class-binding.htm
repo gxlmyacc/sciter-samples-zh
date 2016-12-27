@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Plus: very basic sample</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      .hide { display:none; }
+      .pwd { color:red; }
+      
+      .comment { font-size:85%; }
+      
+    </style>
+    
+    <script type="text/tiscript">
+    
+      include "../plus.tis"; // 因为要使用@observing，所以需要引入plus.tis
+  
+      namespace Data // 我们的模型
+      {  
+        var pass = ""; // 被观察变量
+        
+        var passStrength;
+        
+        @observing "pass"
+          function checkPasswordStrength() {
+            if( pass.length >= 8 )
+              passStrength = #strong;
+            else if( pass.length >= 1 )
+              passStrength = #weak;
+            else
+              passStrength = null;
+          }
+      }    
+    
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>这个示例显示基本的CSS class 绑定。下面的输入框的class属性绑定了<code>passStrength</code>变量。</note>
+
+  <p>请输入密码: 
+    <input|password(pass)> 
+           <span class="pwd {{hide:passStrength != #weak}}">弱!</span>
+           <strong class="pwd {{hide:passStrength != #strong}}">强!</strong> 
+  </p>
+                    
+  <p .comment>(这里pass.length >= 8被认为是 强壮 的密码)</p>
+</body>
+</html>

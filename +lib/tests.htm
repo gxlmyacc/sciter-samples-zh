@@ -1,0 +1,52 @@
+﻿<html>
+  <head>
+    <title>+lib测试</title>
+    <style>
+    
+      #results li.failure { color:red; }   
+      var { color:red; }
+    
+    </style>
+    <script type="text/tiscript">
+      include "function.tis";
+      include "array.tis";
+            
+      var cnt1 = 0;
+      function show1() { $(var[name=cnt1]).text = (++cnt1).toString(); }
+      var cnt2 = 0;
+      function show2() { $(var[name=cnt2]).text = (++cnt2).toString(); }
+      
+      $(body).subscribe("mousemove", show1.debounce(0.5s) );
+      $(body).subscribe("mousemove", show2.throttle(1s) );
+      
+      var ulr = $(#results);
+      
+      function run(TestFunc)
+      {
+        var li = new Element("li");
+        ulr.insert(li);
+        try 
+        {
+          TestFunc();
+          li.text = String.printf("%s 测试通过", TestFunc );
+        }
+        catch(err)
+        {
+          li.html = String.printf("%s 测试失败：<pre>%s</pre>", TestFunc, err );
+          li.@#class = "failure";
+        }
+      }
+      
+      include "tests.tis";
+      
+    </script>
+  </head>
+<body>
+  <p>debounce()演示: 移动鼠标，然后偶尔停下，你将看到#<var(cnt1) />事件被触发。</p>
+  <p>throttle()演示: 移动鼠标, 你应该看到 #<var(cnt2) /> 事件被触发，不过频率不是很高，大于1秒一次。</p>
+  
+  <ul #results>
+  </ul>
+  
+</body>
+</html>

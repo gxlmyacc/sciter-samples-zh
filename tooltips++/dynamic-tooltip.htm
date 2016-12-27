@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      div.dyn-tip { 
+        aspect: DynTip;
+        width:max-content;
+        border:1px solid;
+      }
+    
+    </style>
+    <script type="text/tiscript">
+    
+      function DynTip() {
+      
+        var tooltip = $(popup#dyn-tooltip); // element will be shown as tooltip 
+        var format = tooltip.attributes["format"]; // message format
+        var counter = 0;
+        
+        function provideTip(evt) {
+          tooltip.text = String.printf(format,++counter);
+          evt.source = tooltip;
+          return true;
+        }
+      
+	    //绑定气泡提示事件
+        this.subscribe(provideTip, Event.BEHAVIOR_EVENT,  Event.REQUEST_TOOLTIP);
+      }
+    
+    </script>
+    
+    <popup role="tooltip" id="dyn-tooltip" format="气泡提示 # %d"></popup>
+  </head>
+<body>
+
+  <div.dyn-tip>请将鼠标悬停在我上面</div>
+
+</body>
+</html>

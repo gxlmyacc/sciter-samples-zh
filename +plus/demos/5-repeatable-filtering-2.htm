@@ -1,0 +1,54 @@
+﻿<html>
+  <head>
+    <title>Plus 基本示例</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      @import url(../../widgets/switch/switch.css); 
+      
+      html { font:system; }
+      
+      ol { width:*; }
+      ol > li { flow:horizontal; border-bottom:1px solid dotted;}
+      ol > li > input { display: block; vertical-align:middle;}
+      ol > li > output { display: block; width:*; vertical-align:middle;}
+      ol > li.done > output { text-decoration:line-through; }
+    </style>
+    
+    <script type="text/tiscript">
+  
+      namespace Todo // 我们的模型
+      {  
+        var items = [ {subject:"基础 变量 绑定 示例", done:true},
+                      {subject:"基础 函数 绑定 示例", done:true},
+                      {subject:"基础 重复项 绑定 示例", done:true},
+                      {subject:"重复项 表格(table) 示例", done:true},
+                      {subject:"CSS class绑定 示例", done:true},
+                      {subject:"重复项过滤 示例", done:false},
+                      {subject:"UI事件处理 Plus风格", done:false},
+                    ];
+                    
+        var filter = null; // 当前过滤器，为null时显示所有  
+      }    
+    
+    </script>
+  </head>
+
+<body model="Todo"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>下面的列表绑定了<code>Todo.items</code>数组，这个列表的过滤器绑定到了模型中的<code>filter</code> 变量上。
+  <br>下面的开关允许你选择你需要的过滤器。</note>
+  
+  <p>完成项</p>
+  <ol each="item in items|{done:true}" #test>
+      <li class="{{done:item.done}}"><input|checkbox(item.done)/> <output|text(item.subject)/></li>
+  </ol>
+
+  <p>所有项</p>
+  <ol each="item in items" #all>
+      <li class="{{done:item.done}}"><input|checkbox(item.done)/> <output|text(item.subject)/></li>
+  </ol>
+
+  
+</body>
+</html>

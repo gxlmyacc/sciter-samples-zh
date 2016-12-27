@@ -1,0 +1,57 @@
+<html>
+<head>
+  <style>
+  
+    @import url(../widgets/resizeable/resizeable.css);
+  
+    popup#test
+    {
+      background-color: gold;
+      border:2dip solid red;
+      width:200dip;
+      height:100dip;
+      cursor:pointer;
+    }
+    
+    popup#test.mouse-on-corner {
+      cursor:se-resize;
+    }
+    
+    div#anchor
+    {
+      border:1dip solid blue;
+      width:50dip;
+      height:50dip;
+      cursor:pointer;
+    }
+  </style>  
+  <style #actions>
+    div#anchor
+    {
+      behavior: button; 
+    }
+  </style>    
+  <script type="text/tiscript">
+    
+      $(div#anchor) << event click 
+      {
+        $(popup#test).move( 400, 400, #view, #detached-window );
+      } 
+    </script>
+  
+</head>
+<body>
+
+    <p>这个示例颜色弹出窗口尺寸被用户自定义调整。</p>
+
+    <div#anchor> 
+      点我
+    </div>
+    <popup#test resizeable >
+      <p>已移动(到桌面)的元素。</p>
+      <p>可调整尺寸。</p>
+    </popup>
+    
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<title>Width 120% is cute</title>
+		<style type="text/css"> 
+		
+body { 
+	font:10pt Verdana;  
+	background: linear-gradient(top,white,peachpuff); 
+}
+
+#horizontal-container 
+{ 
+	size:*;
+	flow:horizontal; 
+}
+
+div { height:50vh; width:*; }
+ul { 
+	margin: 10px; 
+	padding: 5px; 
+	size: *; 
+	border: dashed black 4px; 
+	list-style-type: none; 
+	color: black; 
+}
+li { 
+	margin: 5px; 
+	padding: 5px; 
+	width: 240px; 
+	border: dashed black 1px; 
+	background-color: white; 
+	color: black; 
+	}
+#window-scroll-always
+{ 
+	overflow: scroll;
+}
+#window-scroll-auto
+{ 
+	overflow: auto; 
+}
+#window-scroll-hidden
+{ 
+	overflow: hidden; 
+}
+#window-scroll-visible
+{ 
+	overflow: visible; 
+}
+
+	</style>
+	</head>
+	<body>
+	<h1>渐变背景 和 透明溢出(overflow) 示例</h1>
+	<div id="horizontal-container">
+		<div>
+			<center>oveflow:scroll</center>
+			<ul id="window-scroll-always" tabindex=0>
+				<li>一</li>
+				<li>二</li>
+				<li>三</li>
+				<li>四</li>
+				<li>五</li>
+			</ul>
+		</div>
+		<div>
+			<center>oveflow:auto</center>
+			<ul id="window-scroll-auto" tabindex=0>
+				<li>一</li>
+				<li>二</li>
+				<li>三</li>
+				<li>四</li>
+				<li>五</li>
+				<li>六</li>
+				<li>七</li>
+				<li>八</li>
+				<li>九</li>
+				<li>十</li>
+			</ul>
+		</div>
+		<div>
+			<center>oveflow:hidden</center>
+			<ul id="window-scroll-hidden" tabindex=0>
+				<li>一</li>
+				<li>二</li>
+				<li>三</li>
+				<li>四</li>
+				<li>五</li>
+			</ul>
+		</div>
+		<div>
+			<center>oveflow:visible</center>
+			<ul id="window-scroll-visible">
+				<li>一</li>
+				<li>二</li>
+				<li>三</li>
+				<li>四</li>
+				<li>五</li>
+			</ul>
+		</div>
+	</div>	
+	</body>
+</html>

@@ -1,0 +1,80 @@
+﻿<html>
+  <head>
+    <title>Plus 基本示例</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      ol { width:*; }
+      ol > li { flow:horizontal; border-bottom:1px solid dotted;}
+      ol > li > output { display: block; }
+      ol > li > output[name="fruit.price"] { margin-left:*; }
+    </style>
+    
+    <script type="text/tiscript">
+  
+      namespace Data // 我们的模型
+      {  
+        var fruits = [
+		      {name:"苹果", price:1.2, selected: true },
+          {name:"橘子", price:1.0, selected: false }
+		    ];
+      
+        var newName = undefined;   
+        var newPrice = undefined;
+
+        function add() { // 被下面的<button click="add()">按钮调用
+          if(newName && newPrice) { 
+			      // 向fruits数组中添加一项, 注意: 下面的ol元素会相应的更新li列表
+            fruits.push {name:newName,price:newPrice};
+            newPrice = undefined;
+            newName = undefined;
+          }
+        }
+        
+        function deleteFirst() {
+          if (fruits.length > 0) then
+            fruits.remove(0);
+        }
+       
+        function clear() { 
+		     fruits.length = 0; 
+        }  
+
+        function modifySelected() {
+          $(li[name=苹果]).@#selected = null;
+        }        
+        
+         function showFruits() {
+          view.msgbox(#alert, String.printf("%V", fruits).replace("\t", " "));
+        } 
+      }    
+      
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>下面的列表绑定到了<code>Data.fruits</code>数组上，所以它能够反映Data.fruits数组中的数据。<br />
+  下面输入框中的内容可以填充到列表中。</note>
+
+  <!-- 重复部分 定义each元素，each元素必须放在name、model属性之前 -->
+  <ol each="fruit in fruits">
+      <li ready="this.@#name=fruit.name;" @selected="fruit.selected"><output(fruit.name)/> <output|currency(fruit.price)/> </li>
+  </ol>
+  
+  <!-- 用于添加新项 -->
+  <div>
+    新的水果: 
+      <input|text(newName) novalue="水果名称" / >
+      <input|decimal(newPrice) novalue="水果价格" />
+      <button click="showFruits()">显示fruits</button>
+  </div>
+  
+  <button click="deleteFirst()">删除第一个</button> 
+  <button click="clear()">清空列表</button> 
+  <button click="modifySelected()">修改selected</button> 
+  <button click="showFruits()">显示Fruits</button> 
+  
+</body>
+</html>

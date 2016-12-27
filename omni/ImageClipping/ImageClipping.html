@@ -1,0 +1,47 @@
+<html>
+<script type="text/tiscript">
+	var path = new Graphics.Path();
+	path.moveTo(51,0);
+	path.lineTo(149,0);
+	path.lineTo(199,101);
+	path.lineTo(149,202);
+	path.lineTo(51,202);
+	path.lineTo(0,101);
+	path.close();
+
+	self.loadImage("clip-demo.jpg", function(img) {
+		if(typeof img==#Image)
+		{
+			$(.clip-path).paintBackground = function(gfx) {
+				gfx.strokeColor(color(0,0,0)).strokeWidth(0.6).drawPath(path);
+				return true;
+			};
+			
+			$(.clip-img).paintBackground = function(gfx) {
+				gfx.pushLayer(path);
+				gfx.drawImage(img, 0, 0);
+				gfx.popLayer();
+				return true;
+			};
+		} else {
+			stdout.println("failed loading image", img);
+		}
+	});	
+</script>
+
+<style>
+	section { flow: horizontal; font-size: 30px; vertical-align: middle; }
+	span { padding: 0 10px; }
+	section div { size: 202px; }
+</style>
+
+<body>
+	<section>
+		<img src="clip-demo.jpg" />
+		<span>+</span>
+		<div .clip-path />
+		<span>=</span>
+		<div .clip-img />
+	</section>
+</body>
+</html>

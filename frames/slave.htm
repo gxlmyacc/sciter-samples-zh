@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+    
+      $(button#call-bar).onClick = function() { bar(); }
+      
+      $(button#post-call-bar).onClick = function() { this.post(function() { bar(); }); }
+      
+      function globalNs() { return this; }
+     
+      $(button#show-namespaces).onClick = function() {
+        var list = $(#this-ns);
+        list.clear();
+        for(var (k,v) in globalNs())
+          list.$append(<li>{k} - {typeof v}</li>);
+          
+        list = $(#parent-ns);
+        list.clear();
+        for(var (k,v) in globalNs().prototype)
+          list.$append(<li>{k} - {typeof v}</li>);          
+      }
+    
+    </script>
+  </head>
+<body>
+  <button #call-bar>调用主框架中的bar()函数</button>
+  <button #post-call-bar>异步调用主框架中的bar()函数</button>
+  
+  <button #test>测试 (将在宿主文档中被处理)</button>
+  
+  <button #show-namespaces>显示名称控件:</button>
+  <div>
+    这个框架默认名称空间包含:
+    <ul #this-ns></ul>
+    名称空间的父文档包含:
+    <ul #parent-ns></ul>
+</body>
+</html>

@@ -1,0 +1,76 @@
+﻿<html>
+  <head>
+    <title>Plus: bound属性示例</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      ol { width:*; }
+      ol > li { flow:horizontal; border-bottom:1px solid dotted;}
+      ol > li > picture { size: 200dip 100dip; foreground-size: contain; }
+      ol > li > output { display:block; }
+      
+      div.test { visibility:none; background: gold; width: max-content; }
+      div.test:expanded { visibility:visible; }
+      
+      [testbool] {
+        color: red;
+      }
+      
+      //div.test2 { visibility:visible; }
+      //div.test2:collapsed { visibility:none; }
+      
+      [@collapsed] { visibility:none; }
+      [@collapsed]:not(:collapsed) { visibility:visible; }  
+    </style>
+    
+    <script type="text/tiscript">
+  
+      namespace Data // 我们的模型
+      {  
+        var someCustomers = [{name:"Symantec", image:"http://sciter.com/screenshots/slide-norton360.png" },
+                             {name:"ESET", image:"http://sciter.com/screenshots/slide-eset.png"},
+                             {name:"Avast", image:"http://sciter.com/screenshots/slide-avast.png"},
+                             {name:"BitDefender", image:"http://sciter.com/screenshots/slide-bitdefender.png"},
+                             {name:"Comodo", image:"http://sciter.com/screenshots/slide-comodo.png"} ];
+                             
+        var isButtonEnabled = true;
+        
+        var isSectionExpanded = true;
+        var isSectionCollapsed = true;
+        
+      }    
+      
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note><p>下面的这个列表绑定了<code>Data.someCustomers</code>数组，所以它可以反应这个列表中的列表项。</p>
+        <p>其中的Picture元素使用了"bound"属性语句: <code>&lt;picture @src="customer.image" /&gt;</code></p>
+  </note>
+  
+  <h3>@src 属性示例</h3> 
+
+  <!-- 重复匹配(repeateable)节 -->
+  <ol each="customer in someCustomers">
+      <li><picture @src="customer.image" /> <output(customer.name)/></li>
+  </ol>
+  
+  <h3>@enabled属性示例</h3> 
+  <form>
+    <button @enabled="isButtonEnabled" @testbool="isSectionExpanded">一个按钮</button> <button|checkbox(isButtonEnabled)>启用</button> 
+  </form>
+  
+  <h3>@expanded属性示例</h3> 
+  
+  <section>  
+    <button|checkbox(isSectionExpanded)>显示/隐藏下一个div块</button>:
+    <div.test @expanded="isSectionExpanded">一个div块</div> 
+  </section>
+  <section>
+    <button|checkbox(isSectionCollapsed)>显示/隐藏下一个div块</button>:
+    <div.test2 @collapsed="isSectionCollapsed">一个div块</div> 
+  </section> 
+</body>
+</html>

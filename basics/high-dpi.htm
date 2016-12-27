@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+    div#test {
+      border:1px solid;    
+      background-image:url(images/stretchable.png);
+      background-repeat:no-repeat;
+      background-size:187dip 183dip;
+      size: 187dip 183dip;      
+      /* 或者
+        background-repeat:stretch; 
+           这种情况无需设置background-size属性
+      */
+      /* 或者
+        background-repeat:no-repeat; 
+        background-size:100% 100%;
+      */
+    }
+    
+    </style>
+    <script type="text/tiscript"></script>
+  </head>
+<body>
+  <p>由于background-size属性的设置，在不同的DPI设置中，下面的背景图片都会铺满整个DIV区域。</p>
+  
+  <div #test>
+  </div>
+  
+</body>
+</html>

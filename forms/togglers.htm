@@ -1,0 +1,59 @@
+<html>
+  <head>
+  <title></title>
+<style>
+
+  @import url(toggler.css);
+
+  body { font:system;  }
+
+  form { flow:row(label,button); border-spacing: 1em; }
+  form > label { min-width:max-content; text-align:right; display:block; }
+
+  button.switch { flow: stack; }  
+  button.switch > caption { display:block; visibility:hidden; }  
+  button.switch:checked > caption.true { visibility:visible; }
+  button.switch:not(:checked) > caption.false { visibility:visible; }
+  
+</style>
+<script type="text/tiscript">
+
+  $(form).subscribe("change", function()
+  {
+    $(pre#out).text = String.printf("%V",this.value).replace("\t","  ");
+  });
+
+</script>
+  </head>
+<body>
+  
+  <form>
+    <label>标准复选框:</label>
+      <button|checkbox name="standard">测试</button>
+    <label>标准复选框(选中):</label>
+      <button|checkbox checked name="standardChecked">测试</button>
+    <label>标准三态复选框:</label>
+      <button|checkbox mixed name="standardMixed">测试</button>
+    <label>有状态标签的标准复选框:</label>    
+      <button|checkbox .switch name="standardWithLabels">
+        <caption .true>选中状态</caption>
+        <caption .false>非选中状态</caption>
+      </button>
+    <label>有状态标签的标准复选框(选中):</label>    
+      <button|checkbox .switch checked name="standardWithLabelsChecked">
+        <caption .true>选中状态</caption>
+        <caption .false>非选中状态</caption>
+      </button>
+    <label>切换器:</label>
+      <button|toggler name="toggler">
+        <caption .true>打开</caption>
+        <caption .false>关闭</caption>
+      </button>
+    <label>切换器(选中) :</label>
+      <button|toggler checked name="togglerChecked" oncaption="打开" offcaption="关闭">
+      </button>
+  </form>
+  <pre #out></pre>
+
+</body>
+</html>

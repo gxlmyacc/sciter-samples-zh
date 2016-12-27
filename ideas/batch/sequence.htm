@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+    
+      include "sequence.tis";
+    
+      function self.ready() {
+
+        const test = $(#test);
+        
+        sequence(
+           0ms,   function() { test.text = "第1个" },
+           500ms,  function() { test.text = "第2个" },
+           500ms,  function() { test.text = "第3个" },
+           1000ms, function() { test.text = "结束！" }
+        );
+     };
+    
+    </script>
+  </head>
+<body>
+  <p>一个简单的函数序列</p>
+  <div #test>...</div>
+</body>
+</html>

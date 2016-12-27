@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Plus 基本示例</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+
+      div { size:100dip; border:2px solid; }      
+      div.ok { background:green; }
+      div.warning { background:gold; }
+      div.alarm { background:red; }
+      
+    </style>
+    
+    <script type="text/tiscript">
+    
+      include "../plus.tis"; // 因为要使用@observing，所以需要引入plus.tis
+  
+      namespace Data // 我们的模型
+      {  
+        var status = "ok"; // 被观察变量
+      }    
+    
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>这个示例显示基本的CSS class绑定。类(class)名称来自<code>status</code>变量。</note>
+
+  <div class="{{status}}">状态: <(status)>
+  </div>
+  <br />
+  修改状态：
+  <select(status)>
+    <option value="ok">确定</option>
+    <option value="warning">警告</option>
+    <option value="alarm">错误</option>
+  </select>
+  
+</body>
+</html>

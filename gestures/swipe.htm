@@ -1,0 +1,72 @@
+<html>
+  <head>
+  <title></title>
+  <style>
+    @import url(swipe-list.css);
+  
+    body { flow:horizontal; border-spacing:20dip; }
+    body > div { width:*; }
+  
+    ul#list { 
+      style-set: swipeable-list; //滑动列表
+      font:system;
+      font-rendering-mode:classic;
+      
+      height:*; 
+      width:25%;
+      background:white;
+      border:1px solid black;
+    }
+    ul#list > li { 
+      padding: 12dip;
+	  //background: #eeeef0;
+	  border-bottom:1px solid #aaa;
+      background: linear-gradient(top, #fff,#dedee0);
+    }
+
+    ul#list > li:hover { 
+      //background: linear-gradient(top, #fff,#dedef0);
+    }
+    
+    ul#list > menu
+    {
+      margin:0;
+      padding:0 10px;
+      flow:horizontal;
+      vertical-align:middle;
+      horizontal-align:right;
+    }
+    ul#list > menu > button { display:block; }
+
+  
+  </style>
+<script type="text/tiscript">
+  include "../decorators.tis";
+  
+  :{ 
+    var s = $(ul);
+    for(var n = 0; n < 100; ++n)
+      s.append(new Element("li", String.$(项 NO. {n + 1})));
+  }();
+  
+</script>
+  </head>
+<body>
+  <ul #list>
+    <menu>
+      <button>1</button>
+      <button .delete>删除</button>
+    </menu>
+	<!--在这里会间距列表项-->
+  </ul>
+  <div>
+    <p>滚动和滑动列表 示例</p>
+    <ul>
+      <li>向右滑动 - 显示项菜单</li>
+      <li>向左滑动 - 删除项</li>
+      <li>在垂直方向滑动 - 滚动列表</li>
+    </ul>
+  </div>
+  
+</body>
+</html>

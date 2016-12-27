@@ -1,0 +1,54 @@
+﻿<html>
+  <head>
+  <title></title>
+  <style>
+    @import url(vlist.css);
+    
+    body { flow:horizontal; border-spacing:1em;  }
+    
+    body > vlist { width:*; }
+    
+    /*vlist > li { flow:horizontal;}
+      vlist > li > span { display:block; }
+      vlist > li > span[name=index] { width:3em; text-align:right; margin-right:0.5em; } */
+      
+      
+    body > div { width:*; }      
+      
+    picture { 
+      foreground-position:50% 50%; 
+      foreground-repeat:no-repeat; 
+      width:280px;
+      height:*; } 
+      
+  </style>
+  <script type="text/tiscript">
+  
+  function self.ready() {
+    var records = [];
+    for(var i in 10000)
+      records.push { index: i, caption:"项" };
+    // 反馈这些数据
+    $(vlist).records = records;
+  }
+  
+  </script>
+  </head>
+<body>
+
+  <vlist>
+    <li><span(index)/> <span(caption)>???</span></li>
+  </vlist>
+  
+  <div>
+    <h1>VList - 固定列表项高度的虚拟滚动列表</h1>
+    <p>左边的列表在滑动缓存区中包含固定数量的DOM元素。</p>
+    <p>在任何时刻，该列表都只包含最大为BUFFER_SIZE(这里是100)个需要显示列表的最大数量的DOM元素。</p>
+    <p>因此这个列表可以在包含大量数据的情况下有着较好的性能表现。这里显示了10000条数据。</p>
+    <p>实现的基本思路请看右边的图片。</p>
+  </div>
+  
+  <picture src=vlist-idea.png />
+  
+</body>
+</html>

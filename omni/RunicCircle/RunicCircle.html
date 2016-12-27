@@ -1,0 +1,29 @@
+<!-- OmniView:on -->
+<html>
+
+<script type="text/tiscript" src="RunicCircle.tis" />
+
+<style>
+	// idea from http://www.kevs3d.co.uk/dev/warpfield/
+	body { margin: 0; }
+	div { size: *; }
+
+	.rune
+	{
+		size: *;
+		foreground: url(rune2.png) center no-repeat;
+		aspect: AnimLoop;
+	}
+	.rune.anim
+	{
+		transition: transform(linear, 40s, none);
+		transform: rotate(360deg);
+	}
+</style>
+
+<body>
+	<div .starfield>
+		<div .rune2 />
+	</div>
+</body>
+</html>

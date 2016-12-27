@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+    input[type="text"] { aspect:selectAllOnTab; }
+    
+    </style>
+    <script type="text/tiscript">
+    
+    function selectAllOnTab() {
+    
+      const BY_TAB_NEXT = 2;
+      const BY_TAB_PREV = 3;
+    
+      function gotfocus(evt) {
+        if(evt.reason == BY_TAB_NEXT || evt.reason == BY_TAB_PREV)
+          this.doSelectAll();
+      }
+      this.on("focusin", gotfocus );
+    }
+    
+    </script>
+  </head>
+<body>
+
+  <p>通过TAB键切换焦点会导致全选文本:</p>
+
+  <input|text(n1) value="你好">
+  <input|text(n2) value="早上好">
+
+</body>
+</html>

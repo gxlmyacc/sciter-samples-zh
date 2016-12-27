@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>角度示例</title>
+    <style>
+    
+      #gradient-rotated
+      {
+        position:absolute;
+        top:40px; left:40px;
+        width:300px; height:300px; 
+        background: linear-gradient(45deg, red, yellow);
+          background-image: -moz-linear-gradient(top left -45deg, red, yellow); // firefox浏览器使用的是逆时针角度
+          background-image: -webkit-linear-gradient(-45deg, red, yellow);
+      }
+      
+      #rotated { 
+        position:absolute;
+        top:40px; left:40px;
+        border:1px dashed brown; 
+        width:424px; height:50px; 
+        transform:rotate(45deg);
+        transform-origin:top left;
+          -moz-transform:rotate(45deg);
+          -webkit-transform:rotate(45deg);
+          -moz-transform-origin:top left;
+          -webkit-transform-origin:top left;
+        background: linear-gradient(left, red, yellow);
+          background-image: -moz-linear-gradient(left, red, yellow);
+          background-image: -webkit-linear-gradient(left, red, yellow);
+      }
+      
+      
+    </style>
+  </head>
+  <body>
+    <div id=gradient-rotated>背景渐变旋转+45&deg;</div>
+    <div id=rotated>元素旋转+45&deg;</div>
+  </body>
+</html>

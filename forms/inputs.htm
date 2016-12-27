@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <title>基本输入元素集合</title>
+    <style>
+      div.h-flow
+      {
+        flow:horizontal-flow;
+        padding:0;
+        border-spacing:10px;
+      }
+      div.h-flow > *
+      {
+        //display:block;
+        height:*;
+        min-height:100px;
+      }
+      select { vertical-align:baseline; }
+      
+      button {
+        font:system;
+        font-rendering-mode:snap-pixel;
+      }
+      
+      //*:focus { background:yellow; }
+      
+    
+    </style>
+    <script type="text/tiscript"></script>
+  </head>
+<body>
+  <h2>标准HTML4输入元素</h2>
+  
+  <h3>Inline-block版本：</h3>
+  选择列表:
+  <select size=4>
+    <optgroup label="第一节">
+      <option>一</option>
+      <option selected>二</option>
+      <option>三</option>
+      <option>四</option>
+    </optgroup>
+    <option>五</option>
+    <option>六</option>
+    <option>七</option>
+    <option>八</option>
+    <option>九</option>
+    <option>十</option>
+    <option>十一</option>
+    <option>十二</option>
+  </select>
+  
+  下拉框: <select>
+    <option>一</option>
+    <option>二</option>
+    <option>三</option>
+    <option selected>四</option>
+    <option>五</option>
+    <option>六</option>
+    <option>七</option>
+    <option>八</option>
+    <option>九</option>
+    <option>十</option>
+    <option>十一</option>
+    <option>十二</option>
+  </select>
+
+  文本区域：<textarea cols=40 rows=4>示例</textarea>
+  编辑框：<input type="text" value="" />
+  <button type="checkbox">复选框</button>
+  <button type="radio" name="rg1" checked>单选框 1</button>
+         <button type="radio" name="rg1">单选框 2</button>
+         <button type="radio" name="rg1">单选框 3</button>
+  
+  <h2>HTML5 和 HSMILE 输入元素</h2>  
+  <p>日期: <input type="date" value="today" /> 
+    时间: <input type="time" value="now" />
+  </p> 
+  
+  <p>input type=number:<input!number step=10 min=40 max=160 value=0/></p>
+  <p>input type=decimal:<input!decimal step=10 min=40 max=160 value=0.0/></p>
+  
+  <p>日历: <input type="calendar" value="today" /></p>
+  
+  <h2>Block版本</h2>
+  <div .h-flow>
+    <select size=4 .block>
+      <optgroup label="第一节">
+        <option>一</option>
+        <option>二</option>
+        <option>三</option>
+        <option>四</option>
+      </optgroup>
+      <optgroup label="第二节">
+        <option>五</option>
+        <option>六</option>
+        <option>七</option>
+        <option>八</option>
+      </optgroup>
+      <optgroup label="第三节">
+        <option>九</option>
+        <option>十</option>
+        <option>十一</option>
+        <option>十二</option>
+      </optgroup>
+    </select>
+    <textarea cols=40 rows=4>示例</textarea>
+  </div>
+
+</body>
+</html>

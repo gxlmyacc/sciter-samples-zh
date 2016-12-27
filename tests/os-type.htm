@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      div {display:none; font-weight:bold; }
+      
+      @media (os-vendor == "Microsoft") && desktop {
+        div.windows.desktop { display:block; }
+      }
+      @media (os-vendor == "Microsoft") && handheld {
+        div.windows.handheld { display:block; }
+      }
+      @media (os-vendor == "Apple") && desktop {
+        div.apple.desktop { display:block; }
+      }
+      @media (os-vendor == "Apple") && handheld {
+        div.apple.handheld { display:block; }
+      }
+      @media (os-vendor == "GNU") && desktop {
+        div.gnu.desktop { display:block; }
+      }
+      @media (os-vendor == "GNU") && handheld {
+        div.gnu.handheld { display:block; }
+      }
+    
+    </style>
+    <script type="text/tiscript"></script>
+  </head>
+<body>
+  <p>CSS媒体类型, 操作系统提供商 和 设备类型</p>
+  当前系统是:
+  <div.windows.desktop> Windows, 桌面</div>
+  <div.windows.handheld> Windows, 移动</div>
+  <div.apple.desktop> Apple, 桌面</div>
+  <div.apple.handheld> Apple, 移动</div>
+  <div.gnu.desktop> Linux, 桌面</div>
+  <div.gnu.handheld> Linux, 移动</div>
+
+</body>
+</html>

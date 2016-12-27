@@ -1,0 +1,68 @@
+﻿<html>
+  <head>
+    <title>Plus 基本示例</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      @import url(volume/volume.css);
+      
+      #channels { width: 300px; height:300px; margin: 20px auto ; border: 1px solid; overflow:scroll-indicator;}
+      #channels > li { flow:horizontal; }
+      #channels > li > output { display:block;  width:*;}
+      #channels > li > volume { display:block;  margin:* 3px; }
+      
+      .comment { font-size:85%; }
+           
+    </style>
+    
+    <script type="text/tiscript">
+    
+      include "../plus.tis"; // 因为要使用@observing，所以需要引入plus.tis
+         
+      class Instrument {
+         this var name;
+         this var volume;
+         function this( name, volume ) {  this.name = name; this.volume = volume; }
+      };
+
+      namespace Data // 我们的模型
+      {  
+        var instruments = [];
+      }    
+      
+      var i = 0;
+      var state = #adding;
+
+      view.root.timer( 100, function() {
+          
+          if( state == #adding ) {
+            if(Data.instruments.length > 100)
+              state = #removing;
+            else
+              Data.instruments.push( new Instrument( "Name " + (++i), i % 5 ) );
+          } else {
+            if(Data.instruments.length == 0)
+              state = #adding;
+            else 
+              Data.instruments.remove(Data.instruments.length - 1);
+          }
+          return true; // 保持该函数一直运行
+      });
+    
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>这个示例演示repeatable绑定到动态填充的数据上。下面的列表每隔100ms增加/删除数据。</note>
+  
+  <!-- 重复部分 -->
+  <ol #channels each="instrument in instruments">
+    <li><output name="instrument.name" /> <volume name="instrument.volume" /></li>
+  </ol>
+  
+  <p .comment>上面的'音量'部分是可以'点击'的。</p>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <title>CSSS 'transform' Ê¾Àý</title>
+    <style>
+      html { background:transparent; }
+      p
+      {
+        font:18pt verdana;
+        padding:15px;
+        margin:40px;
+        background-image:url(images/stretchable.png); 
+        background-position:16px 16px 16px 16px; /*top right bottom left Æ«ÒÆ*/
+        background-repeat:expand stretch-top stretch-bottom stretch-middle; /* h-smile ¶ÀÓÐ */
+      }
+      
+      p.rotated 
+      {
+        margin:0;
+        width:max-intrinsic;
+        transform-origin:left bottom;
+      }
+      
+      p.rotated:hover
+      {
+        transform:rotate(90deg);
+        transition: transform(bounce-in,0.5s,bounce-out);
+      }
+      
+      p.translated
+      {
+      }
+      p.translated:hover
+      {
+        transform:translate(40px,0);
+        transition: transform(linear,0.5s);
+      }
+      
+      p.skew
+      {
+      }
+      
+      p.skew:hover
+      {
+        transform-origin:left center;
+        transform:skew(45deg,0) scale(1.0,0.6);
+        transition: transform(linear,0.5s);
+      }
+      p.scale
+      {
+        width:25%;
+        margin:0 *;
+      }
+     
+      p.scale:hover
+      {
+        transform:scale(2);
+        transition: transform(bounce-in,0.5s,bounce-out);
+      }
+      
+       p.rotated-scaled 
+      {
+        margin:40px *;
+        width:max-intrinsic;
+        //transform-origin:left bottom;
+      }
+      
+      p.rotated-scaled:hover
+      {
+        transform:rotate(30deg) scale(.5);
+        transition: transform(quart-out,0.5s,quart-in);
+      }
+    
+    </style>
+  </head>
+<body>
+
+  <p class="rotated">Ðý×ª <a href="#">transform:rotate(90deg);</a></p>
+  <p class="translated">Æ«ÒÆ <a href="#">transform:translate(40px,0);</a></p>
+  <p class="scale">Ëõ·Å <a href="#">transform:scale(2);</a></p>
+  <p class="skew">ÍáÐ± <a href="#">transform:skew(45deg,0) scale(1.0,0.6);</a></p>
+  <p class="rotated-scaled">Ðý×ªºÍËõ·Å <a href="#">transform:rotate(30deg) scale(.5);</a></p>
+  
+
+</body>
+</html>

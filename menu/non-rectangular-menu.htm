@@ -1,0 +1,186 @@
+<html>
+  <head>
+  <style>
+
+    /* cool menu */    
+    menu.cool,
+    menu.cool menu 
+    {
+      background: radial-gradient(25% 25%, circle farthest-corner, white, yellow, gold, brown );
+      color:white;
+    }
+    
+    /* table menu */    
+    menu.table 
+    {
+      border-spacing:1px;
+    }
+    menu.table td[role="menu-item"]
+    { 
+      border:1px solid threedface; 
+    }
+    menu.table td[role="menu-item"]:current
+    { 
+      background-color:highlight; color:highlighttext; 
+    }
+    menu.table caption
+    {
+      padding:2px;
+      font-size:8.5pt;
+      background-color: threedlightshadow;
+      color: threedshadow;
+    }
+
+    /* menu with clock */
+    .clock 
+    {
+      behavior:clock;
+      padding:4px;
+      color:black; /* our behavior will use it for "hands" */
+      width:153px;
+      height:153px;
+
+      /* clock face */	   
+      background-image:url(clock-images/clock-back.png);
+      background-repeat:no-repeat;	   
+      background-position:50% 50%; /* middle center */
+	   
+      /* clock glass */	   
+      foreground-image:url(clock-images/clock-fore.png);
+      foreground-repeat:no-repeat;	   
+      foreground-position:50% 50%; /* middle center */
+    }	
+
+
+    .with-popup-menu
+    {
+      behavior:popup-menu;  /* 绑定弹出菜单行为 */
+      border:1px dotted red;
+      background-color: #FFFAFA;
+      padding: 4px;
+      width:max-intrinsic;
+    }
+    .with-popup-menu:hover
+    {
+      background-color: #FFAFAF;
+    }
+    .with-popup-menu:owns-popup
+    {
+      border:1px solid red;
+      background-color: #FF0000;
+      color: #FFFFFF;
+    }
+    
+    menu#expandable-image
+    {
+      background-color: transparent;
+      background-image: url(images/menu-back.png);
+      background-repeat: expand;
+      background-position:12px 19px 19px 13px; /*上 右 下 左 偏移量*/
+      padding:4px 11px 13px 5px;
+      border: none;
+    }    
+
+    
+  </style>
+  </head>
+
+<body>
+
+<h2>&lt;button type="menu" /&gt;</h2>
+
+<button type="menu">菜单按钮
+  <menu .popup id="expandable-image">
+    <li title="hello!">第一<font color="red">项</font></li>
+    <li>第二项</li>
+    <li>第三项
+      <menu>
+        <li>子菜单1</li>
+        <li>子菜单2</li>
+      </menu>
+    </li>
+    <li>第四项</li>
+  </menu>
+</button>
+<button type="menu">渐变背景菜单
+  <menu .popup .cool>
+    <li>第一项</li>
+    <li>第二项</li>
+    <li>第三项
+      <menu>
+        <li>子菜单1</li>
+        <li>子菜单2</li>
+        <li>子菜单3
+          <menu>
+            <li>子子菜单1</li>
+            <li>子子菜单2</li>
+          </menu>
+        </li>
+        <li>子菜单4</li>
+      </menu>
+    </li>
+    <li>第四项</li>
+  </menu>
+</button>  
+
+<button type="menu">表格菜单
+  <menu .popup .table>
+    <caption>则是一个将菜单项<br/>组织到一个表格中的示例:</caption>
+    <table width="*">
+    <tr>
+      <td role="menu-item">项#1.1</td>
+      <td role="menu-item">项#1.2</td>
+      <td role="menu-item">项#1.3</td>
+    </tr>
+    <tr>
+      <td role="menu-item">项#2.1</td>
+      <td role="menu-item">项#2.2...
+          <menu>
+            <li>子菜单1</li>
+            <li>子菜单2</li>
+          </menu>
+      </td>
+      <td role="menu-item">项#2.3</td>
+    </tr>
+    </table>    
+    <caption><img src="progress.gif" />注意：菜单面板可以包含<br/>任意的HTML代码和布局<br/>甚至是动态图片!</caption>
+  </menu>
+</button>  
+
+<button type="menu">有行为的菜单
+  <menu .popup .cool>
+    <li>第一项</li>
+    <li>第二项</li>
+    <li>当前时间是多少？
+      <menu>
+        <div class="clock"></div>
+      </menu>
+    </li>
+    <li>第四项</li>
+  </menu>
+</button>  
+
+<h2>附加behavior:popup-menu行为的其他元素</h2>
+这里是一个无焦点的div元素包含弹出菜单的示例: 
+<div class="with-popup-menu">
+  点击这里会看到弹出菜单
+  <menu .popup .cool>
+    <li>第一项</li>
+    <li>第二项</li>
+    <li>当前时间是多少？
+      <menu>
+        <div class="clock"></div>
+      </menu>
+    </li>
+    <li>第四项</li>
+  </menu>
+</div>
+
+
+</body>
+
+
+
+</html>
+	
+	

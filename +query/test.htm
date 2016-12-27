@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <title>q 框架测试用例</title>
+    <style>
+    
+      body { behavior:htmlarea; cursor:text; }
+    
+      li.failure { color:red; }
+      div.invisible { display:none; }
+      
+      div#arena { color: rgb(0,0,0); }
+    
+    </style>
+    <script type="text/tiscript">
+    
+      include "q.tis";
+      
+      var ulr = self.select("#results");
+  
+      function run(TestFunc)
+      {
+        var li = new Element("li");
+        ulr.append(li);
+        try 
+        {
+          TestFunc();
+          li.text = String.printf("%s 通过", TestFunc );
+        }
+        catch(err)
+        {
+          li.html = String.printf("%s 失败：<pre>%s</pre>", TestFunc, err );
+          li.@#class = "failure";
+        }
+      }    
+
+      include "q-tests.tis";  
+    
+    </script>
+  </head>
+<body>
+
+  <p>请注意：q-tests.tis的测试覆盖内容远远没有完成，如果你发现了错误，请在地址为http://www.terrainformatica.com/forum/list.php?4的Sciter论坛上告诉我。</p>
+
+  <ol #results>
+  </ol>
+
+  <div #arena .invisible>
+    <div>First</div>
+    <div>Last, has <a href=#>a</a> inside</div>
+  </div>
+  <div #arena-for-after .invisible>
+    <div>First</div>
+    <div>Last</div>
+  </div>
+  <div #arena-for-attr .invisible>
+    <div>First</div>
+    <div>Last</div>
+  </div>
+  <div #arena-for-before .invisible>
+    <div>First</div>
+    <div>Last</div>
+  </div>
+  <div #arena-for-wrap .invisible>
+    <span>First</span>
+    <span>Last</span>
+  </div>
+  <div #arena-for-unwrap .invisible>
+    <button><span>First</span></button>
+    <button><span>Last</span></button>
+  </div>
+  <div #arena-for-appendTo>
+  </div>
+  
+  <div #arena-for-onoff>
+    <button #test-on .not-once>启动测试</button> 
+    <button #test-off .not-once>关闭测试(什么也不做)</button> 
+    <button #test-one>测试一次(将只做一次)</button> 
+  </div>
+  <button #test-trigger-1>测试触发器, 显示警告</button>
+  <button #test-trigger-2>测试触发器, 不显示警告</button>
+  <button #test-trigger-3>测试触发器, 自定义事件</button>
+</body>
+</html>

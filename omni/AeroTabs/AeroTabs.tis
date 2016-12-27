@@ -1,0 +1,330 @@
+// General functions/data -----------------------------------------------------------------------------------
+namespace StyleWhite
+{
+	const ARC_RADIUS	= 5;
+	const ARC_RADIUS2X	= ARC_RADIUS*2;
+	
+	const TAB_FILL_GRADIENTSTART	= color(221,235,245);
+	const TAB_FILL_GRADIENTMID		= color(252,252,252);
+	const TAB_FILL_GRADIENTEND		= color(255,255,255);
+	const TAB_OUTLINE1				= color(0xF5,0xF5,0xF5);
+	const TAB_OUTLINE2				= color(165,165,165);
+
+	const SUBTAB_OUTLINE			= color(176,176,176);
+	const SUBTAB_FILL_TOPHALF		= color(253,253,253);
+	const SUBTAB_FILL_BOTTOMHALF	= color(226,237,246);
+}
+namespace StyleBlue
+{
+	const ARC_RADIUS	= 5;
+	const ARC_RADIUS2X	= ARC_RADIUS*2;
+	
+	const TAB_FILL_GRADIENTSTART	= color(231,247,247);
+	const TAB_FILL_GRADIENTMID		= color(173,189,206);
+	const TAB_FILL_GRADIENTEND		= color(214,231,239);
+	const TAB_OUTLINE1				= color(0xF5,0xF5,0xF5);
+	const TAB_OUTLINE2				= color(0,18,39);
+	
+	const SUBTAB_OUTLINE			= color(79,115,158);
+	const SUBTAB_FILL_TOPHALF		= color(203,232,255);
+	const SUBTAB_FILL_BOTTOMHALF	= color(159,205,241);
+}
+
+namespace StyleYellow
+{
+	const ARC_RADIUS	= 0;
+	const ARC_RADIUS2X	= ARC_RADIUS*2;
+	
+	const TAB_FILL_GRADIENTSTART	= color(0xe1,0xe9,0xcf);
+	const TAB_FILL_GRADIENTMID		= color(253,252,229);
+	const TAB_FILL_GRADIENTEND		= color(0xe6,0xf2,0xbc);
+	const TAB_OUTLINE1				= color(0xed,0xf4,0xd8);
+	const TAB_OUTLINE2				= color(209,176,110);
+	
+	const SUBTAB_OUTLINE			= color(158,213,76);
+	const SUBTAB_FILL_TOPHALF		= color(196,237,104);
+	const SUBTAB_FILL_BOTTOMHALF	= color(226,255,158);
+}
+
+function GfxMark(gfx, x, y)
+{
+	gfx.save();
+	gfx.noFill().strokeWidth(1.0).strokeColor( color(255,0,0) ).ellipse( x, y, 5 );
+	gfx.restore();
+}
+
+// Behavior classes ------------------------------------------------------------------------------------
+class FrameTabGfx : Behavior
+{
+	function attached()
+	{
+		this.FrameStyle = this.ns[this.@#coloring] || StyleWhite;
+		this.m_el_row_tabs = this.$append(<div #row-tabs />);
+		this.m_el_row_subtabs = this.$append(<div #row-subtabs />);
+		this.m_el_sel_item = undefined;
+
+		this.on("click", "section > div", function() {
+			this.state.checked = true;
+
+			var el_main = (this super);
+			el_main.m_el_sel_item.state.checked = false;
+			el_main.m_el_sel_item = this;
+			el_main.sendEvent("ontabchange", this.cmd);
+		});
+	}
+	
+	function setupTabData(data)
+	{
+		assert(data instanceof Object);
+		
+		this.m_tab_widths	= [];
+		this.m_iTab			= 0;
+		this.m_nTabs		= data.length;
+
+		// create tab elements
+		var i = 0;
+		for( var (key, subdata) in data )
+		{
+			assert(subdata instanceof Array);
+
+			// insert/setup tab div
+			var el_tab_tip = this.m_el_row_tabs.insert{ div };
+			el_tab_tip.text = key;
+			el_tab_tip.iTab = i++;
+			
+			el_tab_tip.onMouse = function(e)
+			{
+				if( e.type==Event.MOUSE_DOWN )
+					(this super).SelectTabCategory(this.iTab);
+				else if( e.type==Event.MOUSE_UP )
+					return true;// supress onClick() event
+			};
+			
+			// insert sub-tab sections
+			var el_subtab_section = this.m_el_row_subtabs.insert{ section };
+
+			for( var obj in subdata )// and its sub-tabs
+			{
+				// TODO: switch (a future) button type
+				var el_subtab_btn = el_subtab_section.insert
+				{
+					div,
+					[
+						{div, class: "layer-gfx"},
+						{div, class: "layer-label", [obj.tip]}
+					]
+				};
+
+				if( obj.cmd )
+					el_subtab_btn.cmd = obj.cmd;
+				if( obj.icon )
+					el_subtab_btn[1].prepend( {img, src: obj.icon} );
+				
+				el_subtab_btn.el_main = this;
+
+				if(!this.m_el_sel_item)
+				{
+					el_subtab_btn.state.checked = true;
+					this.m_el_sel_item = el_subtab_btn;
+					this.sendEvent("ontabchange", el_subtab_btn.cmd);
+				}
+			}
+
+			this.m_el_row_tabs[0].state.current = true;
+			this.m_el_row_subtabs[0].state.current = true;
+		}
+
+		// tab/sub-tab creation done
+		// subscribe to frame events
+		this.subscribe( onWheelScroll, Event.MOUSE, Event.MOUSE_WHEEL );
+	}
+
+	function onSize()
+	{
+		if(!this.m_nTabs)
+			return;
+
+		// skips if width hasn't changed
+		var width = view.box(#width);
+		if( width==this.m_last_width )
+			return true;
+		
+		// saves state
+		this.m_last_width = width;
+		if( !this.m_has_sized )
+		{
+			// measures are now updated, get tab-tips widths
+			var el_row_tabs	= this[0];
+			for( var echild in el_row_tabs )
+			{
+				view.update();
+				echild.update(); // BUG: sometimes the width (total with margins) isnt yet ready
+				this.m_tab_widths.push( echild.box(#width, #margin) );
+			}
+
+			this.m_has_sized = true;
+			this.paintContent = this.render;
+		}
+
+		this.BackgroundUpdateImage();
+		return true;
+	}
+
+	function onWheelScroll(e)
+	{
+		var iTab = this.m_iTab - e.wheelDelta;
+		iTab = iTab.limit( 0, this.m_nTabs-1 );
+
+		this.SelectTabCategory(iTab);
+		return true;
+	}
+
+	function SelectTabCategory(iTab)
+	{
+		assert(iTab < this.m_nTabs);
+
+		if( this.m_iTab!=iTab )
+		{
+			this.$(section:current).state.current = false;
+			this.$$(section)[iTab].state.current = true;
+			this.m_el_row_tabs.$(> div:current).state.current = false;
+			var etab = this.m_el_row_tabs.$$(> div)[iTab];
+			etab.state.current = true;
+			etab.update();
+
+			this.m_iTab = iTab;
+			this.BackgroundUpdateImage();
+		}
+	}
+
+	function BackgroundUpdateImage()
+	{
+		//if( !this.m_paint_bgimg || width > this.m_paint_bgimg.width )
+		var (width, height) = this.box(#dimension);
+		this.m_render_bgimg = new Image( width, height, :gfx:(this super).BackgroundRender(gfx, width-3, height) );
+		this.refresh();
+	}
+
+	function BackgroundRender(gfx, width, height)
+	{
+		var ns_fx = this.FrameStyle;
+		var iTabXLeftPadding = 18;
+
+		for( var i=0; i!=this.m_iTab; i++ )
+			iTabXLeftPadding += this.m_tab_widths[i];
+
+		var rcTab = {// upper part, tabs
+			x: iTabXLeftPadding,
+			w: this.m_tab_widths[this.m_iTab], h: 29
+		};
+		var rcBar = {// lower part, subtabs
+			w: width, h: 37
+		};
+		
+		var path = new Graphics.Path();
+		path.moveTo(rcTab.x-ns_fx.ARC_RADIUS, rcTab.h);
+		path.arcTo(rcTab.x, rcTab.h, rcTab.x, rcTab.h-ns_fx.ARC_RADIUS, ns_fx.ARC_RADIUS);
+		path.arcTo(rcTab.x, 0, rcTab.x+ns_fx.ARC_RADIUS, 0, ns_fx.ARC_RADIUS);
+		path.arcTo(rcTab.x+rcTab.w, 0, rcTab.x+rcTab.w, ns_fx.ARC_RADIUS, ns_fx.ARC_RADIUS);
+		path.arcTo(rcTab.x+rcTab.w, rcTab.h, rcTab.x+rcTab.w+ns_fx.ARC_RADIUS, rcTab.h, ns_fx.ARC_RADIUS);
+
+		path.arcTo(rcBar.w, rcTab.h, rcBar.w, rcTab.h+ns_fx.ARC_RADIUS, ns_fx.ARC_RADIUS);
+		path.arcTo(rcBar.w, rcTab.h+rcBar.h, rcBar.w-ns_fx.ARC_RADIUS, rcTab.h+rcBar.h, ns_fx.ARC_RADIUS);
+		path.arcTo(0, rcTab.h+rcBar.h, 0, rcTab.h+rcBar.h-ns_fx.ARC_RADIUS, ns_fx.ARC_RADIUS);
+		path.arcTo(0, rcTab.h, ns_fx.ARC_RADIUS, rcTab.h, ns_fx.ARC_RADIUS);
+		path.close();
+		
+		var brush_BoxHeight = rcTab.h + rcBar.h;// for gradient
+		var brush_colors = [ns_fx.TAB_FILL_GRADIENTSTART, ns_fx.TAB_FILL_GRADIENTMID, ns_fx.TAB_FILL_GRADIENTEND, ns_fx.TAB_FILL_GRADIENTMID, ns_fx.TAB_FILL_GRADIENTEND];
+		var brush_stops = [0.0, 0.2, 0.45, 0.5, 1.0];
+		gfx
+			.translate( 1.5, 1.5 ) //must 1px padding for border painting, top and left
+			.fillLinearGradient( 0, 0, 0, brush_BoxHeight, brush_colors, brush_stops )
+			// outline1
+			.strokeColor( ns_fx.TAB_OUTLINE1 ).strokeWidth(2.)
+			.drawPath(path)
+			// outline2
+			.noFill()
+			.strokeColor( ns_fx.TAB_OUTLINE2 ).strokeWidth(1.)
+			.drawPath(path);
+	}
+	
+	function render(gfx)
+	{
+		gfx.drawImage( this.m_render_bgimg, 0, 0 );
+		//GfxMark(gfx, rcTab.x, rcTab.y);
+		//GfxMark(gfx, 10., 10.);
+		return false;
+	}
+}
+
+class SubTab_RibbonCheck : Behavior
+{
+	function onSize()
+	{
+		var (width,height) = this.box(#dimension);
+		this.m_render_bgimg = new Image( width, height, : gfx : (this super).BackgroundRender(gfx, width, height) );
+
+		if( !this.m_has_sized )
+		{
+			this.m_has_sized = true;
+			this.$(.layer-gfx).paintBackground = this.render;
+		}
+	}
+
+	function BackgroundRender(gfx, width, height)// gfx is the Graphics surface of the immutable Image
+	{
+		var ns_fx = this.el_main.FrameStyle; assert(ns_fx);
+		var rcSubTab = {
+			w: width-1, h: height-1
+		};
+
+		/*
+		arcTo(
+			float x,			: position to (relative if rel is true)
+			float y,			: position to (relative if rel is true)
+			float angle,		: ?
+			float rx,			: arc width - x radius of the circle
+			float ry,			: arc height - y radius of the circle
+			bool largeArc,		: bigger arc
+			bool sweep,			: inverts the arc
+			bool rel			: x and y are relative from current position
+		*/
+
+		var lPathHat = function(path) {
+			path.moveTo(0, ns_fx.ARC_RADIUS);
+			path.arcTo(0, 0, ns_fx.ARC_RADIUS, 0, ns_fx.ARC_RADIUS);
+			path.arcTo(rcSubTab.w, 0, rcSubTab.w, ns_fx.ARC_RADIUS, ns_fx.ARC_RADIUS);
+		};
+
+		var path_top = new Graphics.Path();
+		lPathHat(path_top);
+		path_top.lineTo(rcSubTab.w, rcSubTab.h/2 + 1.2);
+		path_top.lineTo(0, rcSubTab.h/2);
+		path_top.close();
+
+		var path_full = new Graphics.Path();
+		lPathHat(path_full);
+		path_full.arcTo(rcSubTab.w, rcSubTab.h, rcSubTab.w-ns_fx.ARC_RADIUS, rcSubTab.h, ns_fx.ARC_RADIUS);
+		path_full.arcTo(0, rcSubTab.h, 0, rcSubTab.h-ns_fx.ARC_RADIUS, ns_fx.ARC_RADIUS);
+		path_full.close();
+
+		gfx
+			.translate( 0.5, 0.5 )
+			// 2 fills
+			.fillColor( ns_fx.SUBTAB_FILL_BOTTOMHALF )
+			.drawPath(path_full)
+			.fillColor( ns_fx.SUBTAB_FILL_TOPHALF )
+			.drawPath(path_top)
+			// outline
+			.noFill()
+			.strokeColor( ns_fx.SUBTAB_OUTLINE ).strokeWidth(1.)
+			.drawPath(path_full)
+		;
+	}
+
+	function render(gfx)
+	{
+		gfx.drawImage( this.parent.m_render_bgimg, 0, 0 );
+	}
+}

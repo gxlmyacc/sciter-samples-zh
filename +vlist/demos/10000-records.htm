@@ -1,0 +1,138 @@
+﻿<html>
+  <head>
+  <title></title>
+  <style>
+    
+    vlist 
+    { 
+      display:block; 
+      height:*; width:300px; 
+      border:1px solid black; 
+      overflow: scroll-indicator;
+    }
+
+    vlist > li {
+      display:block; 
+      padding:0 6dip;
+      line-height:31dip;
+      background: linear-gradient(top, #fff, #ddd);
+      behavior:form; /* each repeated child is treated as a form so it can accept object values */ 
+    } 
+    
+    vlist > li.highlighted {
+      background: linear-gradient(top, #fff, #da9);
+    }
+
+    vlist > li:hover {
+      background: linear-gradient(top, #fff, #bcd);
+    }
+
+    vlist > li:current {
+      background:gold;
+    }    
+    
+      
+  </style>
+  <script type="text/tiscript">
+  
+  include "../vlist.tis";
+  
+  function self.ready() {
+  
+    var records = new Array(10000);
+    var n = 0;
+    var p = 0;
+    
+    function setupRecordView(recordNo,record,viewEl) {
+      viewEl.attributes.toggleClass( "highlighted", record.highlighted || false );
+    }
+    
+    function provideItemData(recordNo) {
+      return { index: recordNo, caption:"项" };  
+    }
+     
+    var vlist = VirtualList {
+      container     : $(vlist),
+      bufferSize    : 50, // records in sliding window
+      setupItemView : setupRecordView,
+      getItemData   : provideItemData
+    };
+    
+    // feed it by these records
+    vlist.value = records;
+    
+    $(#add) << event click() {
+      for(var i in 10)
+        records.push { index: ++n, caption:"新项" };
+    }
+    $(#insert) << event click() {
+      for(var i in 10)
+        records.unshift{ index: --p, caption:"新项" };
+    }
+    $(#delf) << event click() {
+      for(var i in 10)
+        records.shift();
+    }
+    $(#dell) << event click() {
+      records.length -= 10; // that's the same as:      
+      //for(var i in 10)
+      //  records.pop();
+    }
+
+    $(#update) << event click() {
+      for(var i in 10)
+        records[i] = { index: ++n, caption:"更新项" };
+    }
+    
+    $(#update-last) << event click() {
+      for(var i in 10)
+        records[records.length - 10 + i] = { index: ++n, caption:"已更新项" };
+    }
+
+    $(#updateIndex) << event click() {
+      for(var record in records)
+        if(record)
+          record.index += 1;
+    }
+
+    $(#removeHighlighted) << event click() {
+      for(var record in records)
+        if(record)
+          record.highlighted = false;
+    }
+    
+    $(#updateHighlighted) << event click() {
+      for(var (n,record) in records)
+        if(record)
+          record.highlighted = (n & 1) != 0;
+    }
+    
+  }
+  
+  </script>
+  </head>
+<body>
+
+  <h2><code>provideItemData</code> 示例</h2>
+  
+  <p>记录数组创建时没有数据(实际上有10,000个值为undefined的元素)。
+     <code>provideItemData</code>回调函数在需要时(需要显示记录时)被调用。</p>
+
+  <button #add>添加尾部10项</button>
+  <button #insert>添加头部10项</button> 
+  <button #delf>删除头部10项</button> 
+  <button #dell>删除尾部10项</button> 
+  <button #update>更新头部10项</button> 
+  <button #update-last>更新最后10项</button> 
+  <button #updateIndex>索引递增</button> 
+  <p>测试自定义setupItemView()函数</p>
+  <button #updateHighlighted>设置奇数项高亮显示(设置'record.highlighted = true')</button> 
+  <button #removeHighlighted>取消高亮显示</button> 
+
+  <vlist>
+    <li><span(index)/> <span(caption)>???</span></li>
+  </vlist>
+ 
+  
+</body>
+</html>

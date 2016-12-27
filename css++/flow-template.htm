@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      section {
+        flow:verical;
+        border-spacing: 4dip; /* 内部子元素间距 */
+        border:2dip dotted brown;
+        height:*;
+        width:*;
+      }
+      
+      section > div {
+        background: gold;
+        width: *;
+        border-color: brown;
+      }
+      
+      columns {
+        flow: "1 3 5 7"
+              "2 4 6 8";
+        display:block;
+        size:*;
+        border-spacing: 1em;
+      }
+    
+    </style>
+    
+  </head>
+<body>
+
+  <h1>CSS 布局管理器: flow:"template"</h1>
+    
+    <h3>弹性高度(height)</h3>
+    <section>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </section>
+
+    <h3>弹性外边距(margin)</h3>
+    <section>
+      <div style="height:64dip">64dip</div>
+      <div style="height:64dip">64dip</div>
+      <div style="height:64dip;margin-top:*">64dip/margin-top:*</div>
+    </section>
+
+    <h3>弹性高度和外边距(height、margin)</h3>
+    <section>
+      <div style="height:64dip">64dip</div>
+      <div style="height:2*">2*</div>
+      <div style="height:64dip;margin-top:1*">64dip/margin-top:1*</div>
+    </section>
+
+    <h3>弹性高度和边框(height、border)</h3>
+    <section>
+      <div style="height:64dip">64dip</div>
+      <div style="height:2*">2*</div>
+      <div style="height:64dip;border-width:* 0 0 0; border-style:solid">64dip/border-top-height:1*</div>
+    </section>
+
+</body>
+</html>

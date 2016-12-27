@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      div { margin:1em; }
+    
+      .custom-back { background-color: rgb(255,229,0); }
+    
+    </style>
+    <script type="text/tiscript">
+    
+      function updateCustomBack(clr) {
+      
+        function mutateProps(rule) 
+        {
+          return { background-color: clr }; // 通过这句代码更新CSS规则
+        }
+      
+        self.style.documentRules {
+          selector:".custom-back",
+          properties: mutateProps
+        };
+      
+      }
+      
+      
+      $(#hue).on("change", function(){
+      
+        var clr = Color.hsv( deg(this.value), 1, 1 );
+        updateCustomBack(clr);
+        stdout.println(clr, this.value);
+      
+      });
+    
+    
+    </script>
+  </head>
+<body>
+
+  <p>通过修改下面的滑块的值，你将可以修改CSS中定义的<code>.custom-back { background-color: rgb(255,229,0); }</code> 规则：</p>
+
+  <div id="one" class="custom-back">一</div>
+  <div id="two" class="custom-back">二</div>
+  <div>和 <span class="custom-back">三</span></div>
+  
+  背景颜色: <input|hslider id="hue" min=0 max=360 value=54 />
+ 
+</body>
+</html>

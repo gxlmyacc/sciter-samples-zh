@@ -1,0 +1,101 @@
+<html>
+  <head>
+  <title></title>
+<style></style>
+<script type="text/tiscript">
+
+  include "../decorators.tis";
+
+  @click @on "#show-dialog-1": 
+    {
+      var v = view.dialog( self.url("samples/sample-dialog-1.htm"), true, -5); // -5 - 相对于父窗口居中
+      $(output#out).text = String.printf("%V", v).replace("\t","  ");
+    }
+
+  @click @on "#show-dialog-2": 
+    {
+      var params = { one: "first", two: "second" }; // 传递给对话框的参数
+      var v = view.dialog {
+         url: self.url("samples/sample-dialog-2.htm"), 
+         //screen:1, // on second screen
+         //x:100,
+         //y:100,
+         parameters: params 
+      };
+      $(output#out).text = String.printf("%V", v).replace("\t","  ");
+    }
+
+  @click @on "#show-dialog-3": 
+    {
+      var params = { one: "one", two: "two" }; // 传递的参数
+      var v = view.dialog {
+         url: self.url("samples/sample-dialog-2.htm"),
+         x:300,  
+         y:300,
+         alignment:5, // 参考小键盘：窗口的中心位置在[200,200]。
+         parameters: params 
+      };
+      $(output#out).text = String.printf("%V", v).replace("\t","  ");
+    }
+
+
+  @click @on "#show-dialog-resizeable": 
+    {
+      var v = view.dialog( self.url("samples/sample-dialog-resizeable.htm"));
+	  $(output#out).text = String.printf("%V", v).replace("\t","  ");
+    }
+
+  @click @on "#show-dialog-custom-frame-1": 
+    {
+      var v = view.dialog( self.url("samples/sample-dialog-layred.htm"));
+      $(output#out).text = String.printf("%V", v).replace("\t","  ");
+    }
+
+  @click @on "#show-dialog-custom-frame-2": 
+    {
+      var v = view.dialog( self.url("samples/sample-dialog-custom-frame-solid.htm"));
+      $(output#out).text = String.printf("%V", v).replace("\t","  ");
+    }
+
+  @click @on "#show-dialog-custom-frame-3": 
+    {
+      var v = view.dialog( self.url("samples/sample-dialog-custom-frame-solid-with-shadow.htm"));
+      $(output#out).text = String.printf("%V", v).replace("\t","  ");
+    }
+
+
+  @click @on "#show-dialog-custom-behavior": 
+    {
+      var v = view.dialog( self.url("samples/sample-dailog-with-tabs.htm"));
+      $(output#out).text = String.printf("%V", v).replace("\t","  ");
+    }
+
+  @click @on "#show-hole-dialog": 
+    {
+      var v = view.dialog( self.url("samples/sample-dialog-layred-hole.htm"));
+	  $(output#out).text = String.printf("%V", v).replace("\t","  ");
+    }
+
+
+</script>
+  </head>
+<body>
+ 自定义HTML对话框:
+ <ol>
+    <li><button #show-dialog-1>显示简单的对话框</button></li>
+    <li><button #show-dialog-2>显示有参数的对话框</button></li>
+    <li><button #show-dialog-3>在指定坐标显示对话框</button></li>
+    <li><button #show-dialog-resizeable>显示窗口尺寸可调整的对话框</button></li>
+    <li><button #show-dialog-custom-frame-1>显示自定义frame对话框: 图层</button></li>
+    <li><button #show-dialog-custom-frame-2>显示自定义frame对话框: 实体</button></li>
+    <li><button #show-dialog-custom-frame-3>显示自定义frame对话框: 实体有阴影</button></li>
+    <li><button #show-dialog-custom-behavior>显示有自定义行为(tabs)的对话框</button></li>
+
+    <li><button #show-hole-dialog>显示"hole"对话框</button></li>
+    
+ </ol>
+ 返回值：
+ <output#out>
+ </output>
+</body>
+</html>

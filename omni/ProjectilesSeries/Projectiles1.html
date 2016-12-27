@@ -1,0 +1,157 @@
+<html>
+
+<style>
+	#area
+	{
+		prototype: Area;
+		size: *;
+		margin: 50px;
+		border: solid 1px black;
+	}
+</style>
+
+<script type="text/tiscript">
+	function DistanceBetweenPoints(p1, p2)
+	{
+		var dx = p2[0]-p1[0];
+		var dy = p2[1]-p1[1];
+		return Math.sqrt(dx*dx + dy*dy);
+	}
+
+	function AngleBetweenPoints(p1, p2)// return in radians
+	{
+		var dx = p2[0] - p1[0];
+		var dy = p1[1] - p2[1];
+		var r = Math.atan2(dy, dx);
+		return r;
+	}
+
+	function PolarOffset(angle, dist)
+	{
+		var dx = Math.cos(angle)*dist;
+		var dy = Math.sin(angle)*dist;
+		return (dx,dy);
+	}
+</script>
+
+<script type="text/tiscript">
+	var projectiles = [];
+	var is_dragging;
+	var pt_dragstart;
+	var pt_dragend;
+
+	class Area : Behavior
+	{
+		function onMouse(evt)
+		{
+			if(evt.type==Event.MOUSE_DOWN)
+			{
+				pt_dragend = pt_dragstart = [evt.x, evt.y];
+				is_dragging = true;
+				self.capture(true);
+			}
+			else if(evt.type==Event.MOUSE_UP)
+			{
+				if(is_dragging)
+				{
+					is_dragging = false;
+					self.capture(false);
+
+					pt_dragend = [evt.x, evt.y];
+					new Projectile(pt_dragstart, pt_dragend);
+				}
+			}
+			else if(evt.type==Event.MOUSE_MOVE)
+			{
+				if(is_dragging)
+				{
+					pt_dragend = [evt.x, evt.y];
+				}
+			}
+		}
+
+		function paintForeground(gfx)
+		{
+			gfx.fillColor(color(0,0,0));
+			gfx.strokeColor(color(0,0,0));
+			gfx.strokeWidth(1);
+			for(var p in projectiles)
+			{
+				gfx.ellipse(p.x, p.y, 2);
+			}
+
+			if(is_dragging)
+			{
+				gfx.line(pt_dragstart[0], pt_dragstart[1], pt_dragend[0], pt_dragend[1]);
+			}
+		};
+	}
+
+	class Projectile
+	{
+		function this(pt_from, pt_to)
+		{
+			var dist = DistanceBetweenPoints(pt_from, pt_to);
+			var speed = Integer.min(300, dist.toInteger());
+			
+			speed = speed/300.0;
+			speed = speed*8.0;
+
+			var angle = AngleBetweenPoints(pt_from, pt_to);
+			var (dx,dy) = PolarOffset(angle, speed);
+			this.dx = dx;
+			this.dy = dy;
+
+			this.x = pt_from[0];
+			this.y = pt_from[1];
+
+			projectiles.push(this);
+			this.idx = projectiles.length-1;
+		}
+
+		function MoveFrame()
+		{
+			this.x += this.dx;
+			this.y += -this.dy;// why a minus here? because in the Graphics/screen coordinate system, the Y axis orientation in the inverser of the cartesian system
+		}
+
+		function CheckBounds(w,h)
+		{
+			if(this.x < 0 || this.x > w
+				|| this.y < 0 || this.y > h)
+			{
+				this.RemoveFromProjectiles();
+			}
+		}
+
+		function RemoveFromProjectiles()
+		{
+			// a special algorithm for removing this instance from the projectiles array
+			// I don't know if it has a name, but I know it works =) midi
+			var last_projectile = projectiles[projectiles.length-1];
+			projectiles[this.idx] = last_projectile;
+			last_projectile.idx = this.idx;
+			projectiles.pop();
+		}
+	}
+
+	self#area.animate(function() {
+		var (w,h) = self#area.box(#dimension);
+		for(var p in projectiles)
+		{
+			p.MoveFrame();
+			p.CheckBounds(w,h);
+		}
+
+		self.update();
+		return true;
+	});
+</script>
+
+<body>
+	Drag the mouse over the area below to create a projectile. Speed is controled by the length of the line you draw. Projectiles are removed if they hit the rectangle bounds.
+	<br />Now please, make a game from it. I just showed you the math!
+
+	<div #area />
+</body>
+</html>

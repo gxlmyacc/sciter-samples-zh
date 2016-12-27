@@ -1,0 +1,66 @@
+﻿<html>
+<style>
+	#canvas
+	{
+		margin: 0;
+		size: 700px 560px;
+		border: solid 1px;
+	}
+</style>
+
+<script type="text/tiscript">
+	var points = [];
+	var (w,h) = self#canvas.box(#dimension);
+
+	var eq_a;
+	var eq_b;
+
+	self#canvas.on("click", function(evt) {
+		points.push([evt.x.toFloat(), evt.y.toFloat()]);
+		this.refresh();
+
+		if(points.length>=2)
+		{
+			// here lies the math for finding a and b of the line equation formula
+			var sumx = 0;
+			var sumy = 0;
+			var sumx_square = 0;
+			var sumxy = 0;
+			points.filter(: p : sumx += p[0]);
+			points.filter(: p : sumy += p[1]);
+			points.filter(: p : sumx_square += p[0]*p[0]);
+			points.filter(: p : sumxy += p[0]*p[1]);
+
+			var n = points.length;
+			eq_a = (n*sumxy - sumx*sumy) / (n*sumx_square - sumx*sumx);
+			eq_b = (sumy - eq_a*sumx) / n;
+		}
+	});
+	
+	self#canvas.paintForeground = function(gfx) {
+		gfx.translate(.5, .5).strokeWidth(1);
+		gfx.strokeColor(color("silver"));
+		gfx.line(0, h/2, w, h/2);
+		gfx.line(w/2, 0, w/2, h);
+		gfx.translate(-.5, -.5);
+
+		gfx.fillColor(color(0,0,0));
+		for(var p in points)
+			gfx.ellipse(p[0], p[1], 3);
+
+		if(eq_a)
+		{
+			// applying the line equation formula to get the 2 points of the line we will draw
+			var y0 = eq_b;
+			var y1 = eq_b + eq_a*w;
+
+			gfx.line(0, y0, w, y1);
+		}
+	};
+</script>
+
+<body>
+	Click in the area below to add points. The line drawn is the mean line of all points.
+	<div #canvas />
+</body>
+</html>

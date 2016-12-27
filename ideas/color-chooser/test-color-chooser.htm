@@ -1,0 +1,64 @@
+﻿<html>
+<head>
+<style> 
+
+  html 
+  { 
+    background-color: #fff #e9e8f3 #e9e8f3 #fff; 
+  }
+  #sandbox 
+  { 
+    margin:20px; 
+    padding:10px; 
+    overflow:auto;
+    background-color:window; 
+    border:1px solid threedface; 
+    width:*; height:*;
+  }
+  
+  #result { border:1px solid threedface; }
+   
+</style>
+  
+  <style  src="color-chooser.css" />
+  
+  <script type="text/tiscript" > 
+  
+    var sandbox = self.select("#sandbox");
+    var result = self.select("#result");
+    var textColor = self.select("#textColor");
+    var backColor = self.select("#backColor");
+    
+    textColor.onValueChanged = function( ctl )
+    {
+      sandbox.value = "从" + ctl.attributes["id"] + "获取到一个新颜色值：" + ctl.value;
+    }
+    textColor.onClick = function( ctl )
+    {
+      result.style["background-color"] = ctl.value;
+    }
+    backColor.onValueChanged = textColor.onValueChanged;
+    backColor.onClick = textColor.onClick;
+  
+  </script>
+  
+  
+</head>
+<body>
+
+<h1>“颜色选择”弹出框示例</h1>
+
+  请选择你的颜色:<br />
+  textColor: <input type="color-chooser" id="textColor" /><br /> 
+  backColor: <input type="color-chooser" id="backColor" />
+  <br/> 
+  <img id="result" width="16" height="16" src="none" /> 
+
+
+<pre id="sandbox">
+  沙盒
+</pre>
+
+</body>
+
+</html>

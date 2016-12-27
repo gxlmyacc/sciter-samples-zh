@@ -1,0 +1,55 @@
+<html>
+  <head>
+  <title></title>
+<style>
+
+  button#snapshot > popup 
+  {
+    background-color: yellow;
+    background-image:url(in-memory:snapshot);  
+    background-repeat:stretch keep-ratio;
+    width:400px;
+    height:300px;
+    border:1px solid black;
+  }
+
+</style>
+<script type="text/tiscript">
+
+    var content = $(frame#content);
+
+    $(button#load).onClick = function()
+    {
+      var fn = view.selectFile(#open);
+      if( fn ) 
+      {
+        content.load(fn);
+      }
+    }
+    
+    $(button#snapshot).onClick = function()
+    {
+      var (w,h) = content.box(#dimension);
+      var image = new Image(w,h, content, color(255,255,255,255) ); // 对内容区创建快照图像
+      self.bindImage("in-memory:snapshot",image); //将图像绑定到某个URL上，这样就可以在CSS中使用这个URL了
+      this.popup(this.$(popup),2);
+    }
+
+
+
+</script>
+  </head>
+<body>
+  <button #load title="加载网页">加载</button>
+  <button #snapshot title="网页快照">
+    快照
+    <popup />
+  </button>
+    
+
+  <frame #content>
+    <p>测试</p>
+  </frame>
+
+</body>
+</html>

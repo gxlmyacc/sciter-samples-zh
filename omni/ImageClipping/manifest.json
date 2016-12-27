@@ -1,0 +1,4 @@
+{
+	"title": "Graphics.pushLayer() image clipping",
+	"description": "Image clipping through Graphics.pushLayer(clipPath) method"
+}

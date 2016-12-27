@@ -1,0 +1,35 @@
+﻿<html lang="en"> <!-- lang属性定义默认语言 -->
+  <head>
+    <title>UI翻译 基本示例</title>
+    
+    <!-- 这里4个link定义了4个不同的语言文件 -->
+    <link href="lang/ru.tis" hreflang="ru" rel="translation" >
+    <link href="lang/en.tis" hreflang="en" rel="translation" >
+    <link href="lang/zh.tis" hreflang="zh" rel="translation" >
+    <link href="lang/en.tis" hreflang="ar" rel="translation" >
+    
+    <style>
+      @import url(../lang.css);
+    </style>
+    
+    <script type="text/tiscript">
+      include "../lang.tis";
+      include "../lang-tool.tis";
+      
+      $(select#lang).onValueChanged = function() { self.language = this.value; }
+      $(input[name=nmatches]).onValueChanged = function() { $(var[name=nmatches]).value = this.value; }
+    
+    </script>
+    
+  </head>
+  <body>
+    <h2>UI翻译 基本示例 使用Lang框架</h2>
+    <fieldset>
+      <p><label>UI language</label> <include src=lang-selector.htm /></p>
+      <hr>
+      <label>Matches</label> : <input|integer(nmatches) min=0 max=100 step=1 value=0 >
+      <p><var(nmatches) value=0>There are # matches in the box</var>.</p> 
+    </fieldset>
+  </body>
+</html>
+

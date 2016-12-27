@@ -1,0 +1,149 @@
+﻿<html>
+<head>
+<style> 
+
+  html 
+  { 
+    background-color: threedface; 
+  }
+  #sandbox 
+  { 
+    margin:20px; 
+    padding:20px; 
+    overflow:auto;
+    background-color:window; 
+    border:1px solid threedface; 
+    width:*; height:*;
+  }
+ 
+  #sandbox:busy // that small spinning thing...
+  {
+    visibility:visible;
+    foreground-image:url(res:busy.png); 
+    foreground-repeat:no-repeat; 
+    foreground-position:2px 2px; 
+  }
+  
+  code { background:white; }
+      
+</style>
+  <script type="text/tiscript">
+  
+    include "jsonrpc.tis";
+    //include "../../+promise/promise.tis";
+  
+    var sandbox = $(#sandbox);
+    if( !sandbox) 
+      stderr << "sandbox 未找到！"; 
+      
+    sandbox.value = "已经准备好!";
+    
+    var rpc = new JsonRPC( "http://www.terrainformatica.com/tests/calc-web-service.php", sandbox );
+    //try this to get 404 request:
+    //var rpc = new JsonRPC( "http://www.terrainformatica.com/tests/calc-web-service-no.php", sandbox );
+
+    // 显示反馈数据
+    function show(data,status = 200)
+    {
+      if( data instanceof Error ) // 如果请求失败
+        sandbox.value = String.$(Error: {data.toString()} Status: {status});
+      else if( data instanceof String ) // 不是脚本对象...
+        sandbox.value = String.$(Text: {data} Status: {status});
+      else if( data instanceof Stream ) // 不是脚本对象...
+        sandbox.value = String.$(Stream, Status: {status} Url: { data.name } Content: {data.toString()});
+        //sandbox.value = "Status:" + status + "\nText(stream):" + data.toString();
+      else
+        sandbox.value = String.printf("值: %v 状态: %d", data, status );  // 解析数据, 然后打印它
+    }
+
+    // 异步请求
+    $(#SumA) << event click()
+    {
+      var p0 = $(#p0).value;
+      var p1 = $(#p1).value;
+      // 注意, 这里使用了promises:
+      rpc.post("add", p0, p1).then(show,show); // .then(show,show) a.k.a .always(show)
+    }
+
+    $(#SubA) << event click()
+    {
+      var p0 = $(#p0).value;
+      var p1 = $(#p1).value;
+      // note, use of promises here:
+      rpc.post( "sub", p0, p1 ).then(show, show); 
+    }
+    
+    // 串行
+    $(#Sum3seq) << event click()
+    {
+      var p2 = $(#p2).value;
+      var p3 = $(#p3).value;
+      var p4 = $(#p4).value;
+      // chaining promises (sequential execution):
+      rpc.post( "add", p2, p3 )
+       .then( :data: rpc.post("add", data, p4) )
+       .then( show, show) ; 
+    }
+    
+    // 平行, 使用了promise.when组合器
+    $(#Sum3par) << event click()
+    {
+      var p2 = $(#p2).value;
+      var p3 = $(#p3).value;
+      var p4 = $(#p4).value;
+      // 并行执行:
+      promise.when( rpc.post( "add", p2, p3 ), rpc.post( "add", 0, p4 ) )
+             .then( function(result1,result2) { show(result1 + result2)} ); 
+    }
+    
+    // 同步请求
+    $(#SumS) << event click()
+    {
+      var p0 = $(#p0).value;
+      var p1 = $(#p1).value;
+      
+      var (status,v) = rpc.send("add", p0, p1);
+      // 在这一点，数据传递到了v，然后显示它们
+      show(v,status);
+    }
+
+    $(#SubS) << event click()
+    {
+      var p0 = $(#p0).value;
+      var p1 = $(#p1).value;
+
+      var (status,v) = rpc.send("sub", p0, p1);      
+      // 在这一点，数据传递到了v，然后显示它们
+      show(v,status);
+       
+    }
+    
+    </script>
+
+</head>
+
+<body>
+<h1>JSON 远程过程调用, '异步'和'同步'调用</h1>
+<p>输入两个数字，然后按+ 或 - 按钮:<br>
+  <input type="number" id="p0" value=1 max=10000 step=1/>
+  <input type="number" id="p1" value=2 max=10000 step=1/> 
+  异步: <button id="SumA">+</button><button id="SubA">-</button>
+  同步: <button id="SumS">+</button><button id="SubS">-</button></p>
+
+<p>输入三个数字，然后按"sum"按钮:<br>
+  <input type="number" id="p2" value=1 max=10000 step=1/>
+  <input type="number" id="p3" value=2 max=10000 step=1/> 
+  <input type="number" id="p4" value=3 max=10000 step=1/> 
+  <button id="Sum3seq">串行求和</button>
+  <button id="Sum3par">并行求和</button></p>
+<ol>
+  <li>'串行求和'会向服务端一个接一个的发送两个请求: 1) <code>A + B -> R</code>, 然后 2) <code>R + C -> 最终结果。</code></li>
+  <li>'串行求和'会向服务端同时发送两个请求: 1) <code>A + B -> R1</code> 然后 2) <code>0 + C -> R2</code>, 最终显示<code>R1 + R2</code>的结果。</li>
+</ol>
+<pre id="sandbox">
+  sandbox
+</pre>
+<div id="indicator">正在通讯...</div>
+</body>
+
+</html>

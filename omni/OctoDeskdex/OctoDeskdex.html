@@ -1,0 +1,79 @@
+<html>
+
+<head>
+	<style>
+		html { background: none; }
+		body { margin: 0; flow: horizontal; }
+	</style>
+
+	<style src="res/style-front.less" />
+	<style src="res/style-inner.less" />
+	
+	<script type="text/tiscript">
+		include "res/script.tis";
+	</script>
+</head>
+
+
+<body>
+	<section #front>
+		<div #front-wrap>
+			<figure #f-octo />
+			<figure #f-wow />
+			<figure #f-wband>
+				<div #btn-close .btn />
+			</figure>
+			<figure #f-open-dex .btn />
+			<figure #f-title />
+			<figure #f-loader />
+		</div>
+
+		<div #inner-left.hidden>
+			<div #forkme .btn />
+			<div #iloader />
+			<div #iwrap>
+				<div />
+			</div>
+
+			<div #desc>
+				<div #wraper>
+					<span #name>
+						the <span /> by
+					</span>
+					<img #avatar />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section #inner-right>
+		<div #wrap-right>
+			<div #areas>
+				<div #area-btns>
+					<div .box-btn .tooltiped .btn tooltip="Round frame"><div .inner .btn /></div>
+					<div .box-btn .tooltiped .btn tooltip="Image overflow is visible"><div .inner .btn /></div>
+					<div .box-btn .tooltiped .btn tooltip="Hide border"><div .inner .btn /></div>
+					<div .box-btn .tooltiped .btn tooltip="White background"><div .inner .btn /></div>
+					<div .box-btn .tooltiped .btn tooltip="Say my name!"><div .inner .btn /></div>
+				</div>
+
+				<div #area-stats />
+				<div #area-site />
+				<div #btn-close-dex .btn />
+
+				<div #tail>
+					<a #tail-img .btn />
+					<a #tail-midi .btn />
+				</div>
+				<select size="3"/>
+			</div>
+
+			<div #exit-app-bg />
+			<div #exit-app-btn .btn />
+		</div>
+	</section>
+
+	<popover #tooltip/>
+</body>
+
+</html>

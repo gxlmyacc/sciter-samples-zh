@@ -1,0 +1,110 @@
+<!--OmniView-->
+<html>
+<head>
+	<script type="text/tiscript">
+		var dragging = false;
+		var pt_start;
+		var pt_mouse;
+		var fading_out;
+		var fading_p;
+
+		self.subscribe(function(evt) {
+			switch(evt.type)
+			{
+			case Event.MOUSE_DOWN:
+				pt_start = pt_mouse = [evt.x, evt.y];
+				dragging = true;
+
+				self.capture(#strict);
+				break;
+
+			case Event.MOUSE_MOVE:
+				if(dragging)
+				{
+					pt_mouse = [evt.x, evt.y];
+					self.refresh();
+				}
+				break;
+
+			case Event.MOUSE_UP:
+			case Event.MOUSE_LEAVE:
+				if(dragging)
+				{
+					dragging = false;
+					fading_out = true;
+					fading_p = 1.0;
+
+					const SPEED = (1/60.*1000).toInteger();
+					self.animate(function(p) {
+						fading_p = 1-p;
+						self.refresh();
+						return SPEED;
+					}, function() {
+						fading_out = false;
+					}, 300);
+
+					var tmp;
+					if(pt_mouse[0] < pt_start[0])
+					{
+						tmp = pt_mouse[0];
+						pt_mouse[0] = pt_start[0];
+						pt_start[0] = tmp;
+					}
+					if(pt_mouse[1] < pt_start[1])
+					{
+						tmp = pt_mouse[1];
+						pt_mouse[1] = pt_start[1];
+						pt_start[1] = tmp;
+					}
+
+					var rw = pt_mouse[0] - pt_start[0];
+					var rh = pt_mouse[1] - pt_start[1];
+					var el_div = $(body).$append(<div>);
+					el_div.style.set({
+						width: rw,
+						height: rh,
+						left: pt_start[0],
+						top: pt_start[1],
+					});
+				}
+				return;
+			}
+		}, Event.MOUSE);
+
+		self.paintForeground = function(gfx) {
+			if(!dragging && !fading_out)
+				return;
+
+			var rw = pt_mouse[0] - pt_start[0];
+			var rh = pt_mouse[1] - pt_start[1];
+			//var (bw, bh) = self.box(#dimension);
+			
+			gfx
+				.translate(.5,.5)
+				.strokeWidth(1);
+
+			if(fading_out)
+			{
+				gfx.strokeColor(color(255,255,255, 0.8 * fading_p));
+				gfx.fillColor(color(255,255,255,0.14 * fading_p));
+			} else {
+				gfx.strokeColor(color(255,255,255,0.8));
+				gfx.fillColor(color(255,255,255,0.14));
+			}
+
+			gfx.rectangle(pt_start[0], pt_start[1], rw, rh)
+		};
+	</script>
+
+	<style>
+		html { background: url(bg.jpg) no-repeat; }
+		body { margin: 0; }
+
+		div { position: absolute; border: solid 3px; opacity: 0.5; }
+	</style>
+</head>
+
+<body>
+
+</body>
+</html>

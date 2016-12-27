@@ -1,0 +1,52 @@
+﻿<html>
+  <head>
+    <title>Plus: very basic sample</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      ol { width:*; }
+      ol > li { flow:horizontal; border-bottom:1px solid dotted;}
+      ol > li > label { display:inline-block;  }
+      
+      .markup { prototype: Markup; }
+    </style>
+    
+    <script type="text/tiscript">
+    
+    
+      // 这个行为重定义了Element的value属性，这个元素的value值是它的内部的html。
+      // 标记(Markup)元素可以绑定到包含html标记的+pluse变量和字段上。
+      class Markup: Behavior 
+      {
+        property value(v) {
+          get return this.html;
+          set this.html = v;
+        }
+      }
+      
+  
+      namespace Data // 我们的模型
+      {  
+        var someCustomers = [{name:"Symantec", motto:"Stay ahead of <b>tomorrow</b> threats."   },
+                             {name:"ESET", motto:"The <b>best</b> security money can buy"   },
+                             {name:"Comodo", motto:"Real time cloud protection when you are <i>online</i>. Containment protection when you are <i>offline<i/>" } 
+                            ];
+      }    
+      
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note><p>下面的列表绑定到了<code>Data.someCustomers</code>数组上。所以它可以反映那个数组中的列表项的数据。</p>
+        <p><code>span.markup</code>字段绑定到了<code>customer.motto</code>这个包含了html的字段上。</p>
+  </note>
+
+  <!-- 重复节 -->
+  <ol each="customer in someCustomers">
+      <li><label(customer.name)/>:<span.markup(customer.motto)/></li>
+  </ol>
+  
+</body>
+</html>

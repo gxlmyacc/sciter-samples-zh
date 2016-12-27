@@ -1,0 +1,93 @@
+<html>
+  <head>
+  <title></title>
+  <style>
+  
+  select { vertical-align:top; }
+  
+  select > option
+  {
+    behavior:file-thumbnail; //指定行为
+    padding:20px 2px 2px 2px;
+    foreground-repeat: no-repeat;
+    foreground-position: 50% 2px;
+    //foreground-image:url(images/unknown-icon.png);
+    text-align:center;
+  }
+  
+  select > option:visited { background:red; }
+  
+  select > option:invalid { /* 文件未找到 */
+    color:gray;
+  }
+  
+  select.large > option
+  {
+    -icon-size:"large"; // 使用大图标
+    padding:32px 2px 2px 2px;        
+  }
+  select.x-large > option
+  {
+    -icon-size:"x-large"; // 使用x-large图标
+    padding:48px 2px 2px 2px;        
+  }
+  select.xx-large > option
+  {
+    prototype:WithOverlay;
+    -icon-size:"xx-large"; // 使用xx-large图标, 又名"jumbo"
+    padding:256px 2px 2px 2px;
+    width:256px;
+    
+  }  
+  
+  </style>
+  <script type="text/tiscript">
+  
+    class WithOverlay: Behavior
+    {
+      var overlayImage = self.loadImage("images/overlay.png");
+      function drawOverlay(gfx)
+      {
+        var img = overlayImage;
+        var (w,h) = this.box(#dimension); 
+        gfx.drawImage(overlayImage,w-img.width,h-img.height);
+      }
+      function attached()
+      {
+        this.paintOutline = drawOverlay;
+      }
+      
+    }
+  
+    function fillSelect(sel)
+    {
+      //var folderPath = System.home("../samples/goodies/files/");
+      var folderPath = self.url("files");
+      folderPath = folderPath.substr(7) + "/"; // strip "file://"
+      
+      function makeOption(filename, atts)
+      {
+        if(atts & (System.IS_DIR | System.IS_HIDDEN)) return true;
+        sel.$append(<option filename="{folderPath}{filename}">{filename}</option>);
+        return true;
+      }
+      System.scanFiles(folderPath + "*.*",makeOption);
+    }
+    
+    for(var sel in $$(select))
+      fillSelect(sel);    
+  
+  </script>
+  </head>
+<body>
+  <h1>behavior:file-thumbnail 示例</h1>
+  <p>behavior:file-icon行为根据文件名或扩展名设置元素的前景图片为缩略图。</p>
+
+  <select size=4 .default></select>
+  <select size=4 .small></select>
+  <select size=4 .large></select>
+  <select size=4 .x-large></select>
+  <select size=4 .xx-large></select>
+
+</body>
+</html>

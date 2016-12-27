@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      section { flow:row(label,input); font:system; border-spacing:4px; margin:4px; }
+      section > label { vertical-align: baseline; width:max-intrinsic; }
+      #structure span.name { display:inline-block; border:1px solid #999; background:#eee; padding: 1px 2px;}
+      #structure li { margin-top:2px; margin-bottom:2px; }
+
+	  div#sexgroup { flow: horizontal; }
+
+    </style>
+    <script type="text/tiscript">
+    
+      include "../formation.tis";
+      
+      var root = formation( self );
+      
+      $(#set) << event click() {
+      
+        // 注意: 访问子formation对象需要从root节点开始
+        root.person.value = {
+          name : {
+            first: "第一姓名1",
+            last: "第二姓名1"
+          },
+          age:69,
+		      sex: 1
+        };
+        
+      }
+
+      $(#get) << event click() { $(#out).text = String.printf("%V", root.value ).replace("\t","  "); }
+      $(#show) << event click() { $(#structure).html = root.toHtmlString(); }
+    
+    </script>
+  </head>
+<body>
+
+  <h1>Formation 基本示例</h1>
+
+  <section(person)>
+    <label for=name.first >第一姓名</label> <input(name.first) />
+    <label for=name.last >第二姓名</label> <input(name.last) />
+    <label for=age >年龄</label> <input|integer(age) />
+
+	<div#sexgroup>
+	性别：男<input|radio(sex) checked value=0 /> 女<input|radio(sex) value=1 /> 
+	</div> 
+  </section>
+  
+  <button #get>获取</button>
+  <button #set>设置</button>
+  <button #show>Formation 数据结构</button>
+  
+  <pre #out></pre>
+  <div #structure></div>
+
+</body>
+</html>

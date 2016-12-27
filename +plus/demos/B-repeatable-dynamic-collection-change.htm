@@ -1,0 +1,65 @@
+﻿<html>
+  <head>
+    <title>Plus 绑定select元素</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      @import url(../../widgets/switch/switch.css); 
+      
+      p { margin-top: 3em; }
+      select#list { display:block; width:100dip; }
+
+    </style>
+    
+    <script type="text/tiscript">
+      
+      include "../plus.tis"; // 因为要使用@observing，所以需要引入plus.tis
+    
+      namespace Data // 我们的模型
+      {  
+        var items1 = [
+          {name: "第1组第1项", value: 1},
+          {name: "第1组第2项", value: 2},
+          {name: "第1组第3项", value: 3}
+        ];
+        
+        var items2 = [
+          {name: "第2组第1项",  value: 11},
+          {name: "第2组第2项",  value: 12},
+          {name: "第2组第3项",  value: 13},
+          {name: "第2组第4项",  value: 14},
+          {name: "第2组第5项", value: 15}
+        ];
+      
+        var items = items1;
+      
+        var currentSet = "items1";
+        
+        @observing "currentSet" // 通过变量的名称设置`items`
+          function switchSets() 
+          {
+            items = //eval(currentSet,Data); // 对Data上下文中的name进行求值，结果可能为items1或items2数组
+                    Data[currentSet];
+          }   
+      }    
+      
+    
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>修改repeatable项数据集 示例</note>
+  
+  请选择数据集: <switch(currentSet)>
+    <option value="items1">数据集1</option>
+    <option value="items2">数据集2</option>
+  </switch>  
+
+  <select #list size=5 each="item in items">
+    <option value="{item.value}"><output(item.name)/></option>
+  </select>
+
+</body>
+</html>

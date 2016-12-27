@@ -1,0 +1,30 @@
+<html>
+  <head>
+  <title></title>
+    <style src="style.css"></style>
+    <script type="text/tiscript" src="script.tis"></script>
+  </head>
+<body>
+  <h2>简单的<code>timeline.to(element,params,tostyles)</code>动画</h2>
+  <div #box>
+    <picture src="heart.png" />
+  </div>
+  <form>
+    <button #run>运行</button>
+    <button #clear>清空</button>
+  </form>
+  
+  <div .explanation>
+    <p>FROM 状态 - DOM元素的当前状态。</p>
+    <p>TO 状态 - 代码中定义的:</p>
+  </div>
+  
+  <textarea #src>Timeline.on(this)
+  
+    .to( $(picture), { duration:1s, ease: #quadInOut },
+                     { transform:translate(500px,0px) } )
+    .play();
+  </textarea>
+  
+</body>
+</html>

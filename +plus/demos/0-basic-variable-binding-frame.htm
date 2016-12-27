@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Plus 基本示例</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      output { display: inline-block; border: 1px gray dotted; }
+    </style>
+ 
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>下面的输入和输出元素绑定到了<code>Data.saywhat</code>变量上。
+  <br>修改输入框中内容，它将反应到输出元素上。</note>
+
+  <p>您要说什么: <input|text(saywhat) /></p>
+  <p>您说: <output(saywhat) />!</p>
+</body>
+</html>

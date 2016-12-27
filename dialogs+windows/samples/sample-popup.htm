@@ -1,0 +1,31 @@
+<html window-frame="solid" window-resizable >
+  <head>
+    <title>你好!</title>
+    <style>
+    
+      html { background: orange; overflow:none;}
+      
+      html > header { width:*; line-height:1.6em; flow:horizontal;  margin:3dip 3dip 0 3dip; }
+      html > header > caption { width:*; height:*; }
+      html > header > button { behavior:clickable; /*non-focusable button*/ }
+    
+      body { margin:0 3dip 3dip 3dip; background:gold; overflow:none; }
+      
+    
+    </style>
+    <script type="text/tiscript">
+    
+    function self.ready() {
+      self.post(::view.state = View.WINDOW_SHOWN);
+    }
+    
+    </script>
+  </head>
+<header>
+  <caption role="window-caption">标题</caption>
+  <button role="window-close">X</button>
+</header>    
+<body>
+    弹出: 你好!
+</body>
+</html>

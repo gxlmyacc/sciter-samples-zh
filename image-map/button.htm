@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title></title>
+    <style>
+        @image-map pushbutton-blue
+        {
+            src: url(button-states.png);
+            cells:1 7; /* 1 列, 7 行 */
+            /* 图片中每一部分的逻辑名称，见button-states.png */ 
+            items:
+              normal,
+              normal-hover,
+              normal-pressed,
+              checked,
+              checked-hover,
+              default,
+              disabled;
+        }
+        button.push
+        {
+          flow:text;
+          background-position: 2px 10px 2px 10px; // 上 右 下 左
+          background-repeat: expand stretch-left stretch-middle stretch-right;
+        }
+        button.push        { background-image: image-map(pushbutton-blue, normal); transition: none; }
+        button.push:hover  { background-image: image-map(pushbutton-blue, normal-hover); transition: blend-atop(linear,200ms); }
+        button.push:active { background-image: image-map(pushbutton-blue, normal-pressed); transition: none;}
+        button.push:focus  { background-image: image-map(pushbutton-blue, normal-hover); }
+        button.push:focus:active { background-image: image-map(pushbutton-blue, normal-pressed); }
+    </style>
+</head>
+<body>
+    <p>通过单张图片和<code>@image-map</code>来自定义按钮样式 示例</p>
+    <button .push>按钮</button>
+    <button .push>两行<br>按钮</button>
+</body>
+</html>

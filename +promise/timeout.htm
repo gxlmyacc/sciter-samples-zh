@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+   
+    function self.ready() {
+    
+      // promisified超时, 返回promise
+      function timeout(ms,rv = null) {
+        var oath = promise();
+        self.timer( ms, function() { oath(true, [rv]);} ) // 履行诺言，包含可选参数
+        return oath;
+      }
+    
+      const testEl = $(#test);
+      
+      timeout(1s)
+        .then( :: testEl.text = "1秒已经结束!" )
+        .then( function(r) { throw "在" + r + "后发生错误" ; } ) /* 在处理器链中强制抛出错误 */
+        .catch( :e: stdout.println("失败",e) )
+        .finally( :: stdout.println("最终代码") );
+    
+    }
+    
+    </script>
+  </head>
+<body>
+  <p> Promise的<code>timeout(1s).then( function )</code>示例, 1秒后将会修改下面的文本:</p>
+  <div#test>嗯？</div>
+
+</body>
+</html>

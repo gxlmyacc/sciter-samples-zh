@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript"></script>
+  </head>
+<body>
+
+  <p>注意: Sciter支持将zip文件作为一个包并从中加载内容。</p> 
+  
+  <p>下面的框架中的内容是使用<code>content.zip</code>url从content.zip中加载的。</p>
+  
+  <p>注意: 在未指定从zip加载的文件情况下，Sciter默认按以下顺序查找加载文件:</p>
+  <ol>
+    <li>index.htm</li>
+    <li>index.html</li>
+    <li>main.htm</li>
+    <li>main.html</li>
+  </ol>
+  <p>这些文件应该放在zip档案中的根目录下。</p>
+
+  <frame src="content.zip" />
+
+</body>
+</html>

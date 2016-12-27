@@ -1,0 +1,75 @@
+﻿<html>
+  <head>
+    <title>Plus 基本示例</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      @import url(../../widgets/switch/switch.css); 
+      
+      html { font:system; }
+      
+      section#items { width:6*; margin:1em 2*; }
+      
+      section#items > input.new { margin-left:4em; width:*; display:block; min-width:235dip; }
+      
+      section#items > ol { width:*; margin-top:4px; }
+      section#items > ol > li { flow:horizontal; border-bottom:1px solid dotted;}
+      section#items > ol > li > input[type=checkbox] { display: block; vertical-align:middle;}
+      section#items > ol > li > input[type=text] { display: block; width:*; vertical-align:middle; background:white;}
+      section#items > ol > li.done > output { text-decoration:line-through; }
+      section#items > ol > li > b { behavior:clickable; font-size:150%; display:block; visibility:hidden; cursor: pointer; }
+      section#items > ol > li:hover { color:red; }
+      section#items > ol > li:hover > b { visibility:visible; }
+
+	  input:empty { color: gray; }
+      
+    </style>
+    
+    <script type="text/tiscript">
+    
+      include "../plus.tis"; // 因为要使用@observing，所以需要引入plus.tis
+
+      function openStorage() {
+        var dbpath = self.url("todo.db");
+        var storage = Storage.open(dbpath);
+    	  //var storage = Storage.open("todo.db");
+        if( !storage.root )
+          storage.root = { items: [] }; // 如果没有保存，则创建一个新的
+        return storage;
+      }
+  
+      namespace Todo // 我们的模型
+      {  
+        var items = openStorage().root.items;
+                    
+        function addNewFrom(el) // 被input|text.new元素的@enter事件调用 
+        {
+          items.unshift { subject:el.value, done:false }; // 在列表最前面插入新项
+          el.value = undefined;
+        }
+      }    
+    
+    </script>
+  </head>
+
+<body model="Todo"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>这个示例演示绑定持久化数据，这个持久化数据使用了Sciter的Storage机制。
+        <br>将<code>Todo.items</code>的引用设置到<code>storage.root.items</code>，这样就可以使用<code>Todo.items</code>持久化了。</note>
+
+  <section #items>
+    
+    <input|text .new novalue="请输入下一个待做事项，然后按ENTER键" enter="addNewFrom(this)"/> 
+  
+    <ol each="item in items">
+      <li class="done:item.done">
+           <input|checkbox(item.done)/>
+           <input|text(item.subject)/> 
+           <b click="items.removeByValue(item)">&times;</b></li>
+    </ol>
+  </section>
+  
+  <p>修改数据，关闭程序，然后重新打开，你将看到上一次列表中的数据依然存在。</p>
+  
+</body>
+</html>

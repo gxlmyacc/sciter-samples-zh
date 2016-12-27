@@ -1,0 +1,90 @@
+<html>
+<head>
+  <style>
+  
+    popup#test
+    {
+      background-color: orange;
+      border:1dip solid red;
+      width:100dip;
+      height:100dip;
+      cursor:pointer;
+      border-radius: 12dip; 
+    }
+    div#anchor
+    {
+      border:1px solid blue;
+      width:50dip;
+      height:50dip;
+      cursor:pointer;
+    }
+
+    popup#test > div {
+      background:red; size:10dip;
+    }
+    popup#test > div:hover {
+      background:blue;
+    }
+
+  </style>  
+  <style #actions>
+    div#anchor
+    {
+      behavior: button; 
+    }
+  </style>    
+  <script type="text/tiscript">
+    
+      $(div#anchor) << event mousedown
+      {
+        if(!this.state.ownspopup) {
+          var anchorPoint = $(select#anchor-point).value;
+          var popupPoint = $(select#popup-point).value;
+          this.popup( $(popup#test), (popupPoint << 16) | anchorPoint);
+        }
+      }
+      
+      // close popup on mouseup inside it
+      event "~mouseup|popup" {
+        this.state.popup = false;
+      };
+    </script>
+  
+</head>
+<body>
+
+   弹出点(见小键盘按键):
+   <select #popup-point>
+     <option value=1>1 - 左/下</option>   
+     <option value=2>2 - 中/下</option>   
+     <option value=3>3 - 右/下</option>   
+     <option value=4>4 - 左/中</option>   
+     <option value=5>5 - 中/中</option>   
+     <option value=6>6 - 右/中</option>   
+     <option value=7>7 - 左/上</option>   
+     <option value=8 selected>8 - 中/上</option>   
+     <option value=9>9 - 右/上</option>   
+   </select>，锚点(见小键盘按键):
+   <select #anchor-point>
+     <option value=1>1 - 左/下</option>   
+     <option value=2 selected>2 - 中/下</option>   
+     <option value=3>3 - 右/下</option>   
+     <option value=4>4 - 左/中</option>   
+     <option value=5>5 - 中/中</option>   
+     <option value=6>6 - 右/中</option>   
+     <option value=7>7 - 左/上</option>   
+     <option value=8>8 - 中/上</option>   
+     <option value=9>9 - 右/上</option>   
+   </select>
+   <p>在上面选择弹出位置，然后点击下面的锚点:</p>
+    <div#anchor> 
+      锚点
+    </div>
+    <popup #test>
+      弹出框
+      <div></div>
+    </popup>
+    
+
+</body>
+</html>

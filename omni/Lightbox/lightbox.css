@@ -1,0 +1,59 @@
+.ligthbox-overlay
+{
+	flow: horizontal;
+	horizontal-align: center;
+	padding: 20px;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	background: rgba(0,0,0,0.85);
+	opacity: 0;
+}
+.ligthbox-overlay.show
+{
+	opacity: 1;
+	transition: opacity(cubic-in-out, 350ms);
+}
+
+.ligthbox
+{
+	position: relative;	
+	transform: scale(0.8);
+}
+.ligthbox-overlay.show .ligthbox
+{
+	transform: scale(1);
+	transition: transform(linear, 350ms);
+}
+
+.ligthbox-close { text-align: right; margin-bottom: 15px; }
+
+.ligthbox-close button
+{
+	position: relative;
+	size: 37px;
+	padding: 0;
+
+	background-image: url(modal-close.svg);
+	background-repeat: no-repeat;
+	background-size: 22px 22px;
+	background-position: center;
+	border: solid 2px white;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.ligthbox-close button:hover
+{
+	transform: scale(1.1);
+	transition: transform(cubic-in-out, 400ms);
+}
+
+.ligthbox-body
+{
+	padding: 5px;
+	background: #438989;
+}

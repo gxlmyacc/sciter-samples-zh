@@ -1,0 +1,208 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style>
+    
+      body > button { display:block; }
+    
+    </style>
+    <script type="text/tiscript">
+    
+    !function() 
+    {
+      var other;
+    
+      $(#simple).onClick = function() {
+        other = view.window{
+				  type:View.TOOL_WINDOW,
+          url: self.url("samples/sample-tool-window.htm"),
+          //x:100,
+          //y:100,
+          width : 640,
+          height : 480,
+					alignment: 5
+        };
+      }  
+      
+      $(#frame).onClick = function() {
+        other = view.window{
+          type:View.FRAME_WINDOW,
+          url: self.url("samples/sample-frame-window.htm"),
+          x:100,
+          y:100,
+          width : 480,
+          height : 320,
+          state: View.WINDOW_SHOWN,
+          alignment:3,
+        };
+      }  
+      
+      $(#frame-detached).onClick = function() {
+        other = View.window // 注意 这里的.window()方法调用的是View类的静态方法
+        {                   // 窗口将以脱离(detached)模式被创建 - 即使它的拥有者被关闭，它也依然存在 
+          type:View.FRAME_WINDOW,
+          url: self.url("samples/sample-frame-window.htm"),
+          x:100,
+          y:100,
+          width : 480,
+          height : 320,
+          state: View.WINDOW_SHOWN,
+          alignment:3,
+        };
+      }  
+      
+      var sidebar = null;      
+      
+      $(#frame-sidebar).onClick = function() {
+      
+        var (screenX1,screenY1,screenX2,screenY2) = view.screenBox(#workarea,#rect);
+      
+        if(!sidebar)
+          sidebar = View.window // 注意 这里的.window()方法调用的是View类的静态方法
+          {                   // 窗口将以脱离(detached)模式被创建 - 即使它的拥有者被关闭，它也依然存在
+            type:View.POPUP_WINDOW,
+            url: self.url("samples/sample-glassy-window.htm"),
+            x:screenX2 - 480 + 1,
+            y:screenY1,
+            width : 480,
+            height : screenY2 - screenY1,
+            state: View.WINDOW_SHOWN,
+            alignment:7,
+          };
+        
+        //sidebar.display(#show, #slide, #from-right, 300ms); 
+        //function sidebar(progress) {
+        //  sidebar.move((screenX2 - progress * 480).toInteger(),screenY1);
+        //  return true;
+        //}
+        //sidebar.root.animate(step, 600ms);
+        
+      }        
+      
+    
+     $(#custom-tool).onClick = function() {
+        other = view.window{
+          type:View.TOOL_WINDOW,
+          url: self.url("samples/sample-window-custom.htm"),
+          alignment: 5,
+          screen:1,
+          //x:200,
+          //y:100,
+          //width : 200,
+          //height : 200
+        };
+      }      
+     $(#custom-frame).onClick = function() {
+        other = view.window{
+          type:View.FRAME_WINDOW,
+          url: self.url("samples/sample-window-custom.htm"),
+          alignment: 5,
+          screen:1,
+          //x:200,
+          //y:100,
+          //width : 200,
+          //height : 200
+        };
+      }      
+      
+     $(#popup).onClick = function() {
+        other = view.window{
+          url: self.url("samples/sample-popup.htm"),
+          type: View.POPUP_WINDOW,
+          state: View.WINDOW_HIDDEN, // initially hidden (for testing)
+          alignment: 5,
+          //x:200,
+          //y:100,
+          width : 200,
+          height : 200
+        };
+      }      
+      
+
+     $(#with-params).onClick = function() {
+     
+        function onClose() {
+          stdout.println("弹出窗口被关闭");
+        }
+     
+        // 打开窗口，并添加额外的onClose回调参数
+        other = view.window{
+          url: self.url("samples/sample-params-window.htm"),
+          x:200,
+          y:100,
+          width : 200,
+          height : 200,
+          parameters: { // 在新窗口中使用view.parameters访问参数
+            onClose: onClose 
+          }
+        };
+      }      
+      
+      
+    $(#tool-full-screen).onClick = function() {
+     
+        other = view.window{
+          url: self.url("samples/sample-tool-window-full-screen.htm"),
+          x:200,
+          y:100,
+          width : 200,
+          height : 200,
+        };
+      }      
+      
+    $(#tool-layered).onClick = function() {
+     
+        other = view.window{
+          url: self.url("samples/sample-layered-tool.htm"),
+          alignment:5,
+         };
+      }      
+
+    $(#ext-frame).onClick = function() {
+     
+        other = view.window {
+          type:View.FRAME_WINDOW,
+          url: self.url("samples/sample-window-extended-frame.htm"),
+          width : 640,
+          height : 480,
+          alignment:5,
+         };
+      }   
+      
+      
+    $(#hide).onClick = function() {
+      if(other)
+        other.state = View.WINDOW_HIDDEN;
+    }
+    $(#show).onClick = function() {
+      if(other)
+        other.state = View.WINDOW_SHOWN;
+    }
+      
+  }();
+    
+    
+    </script>
+  </head>
+<body>
+  <button #simple>工具条窗口</button>
+  <button #frame>框架窗口</button>
+  <button #custom-tool>自定义工具条窗口</button>
+  <button #custom-frame>自定义框架(frame)窗口</button>
+  <button #popup>弹出窗口</button>
+  <button #with-params>有参数的窗口</button>
+  <button #ext-frame>window-frame=extended</button>
+  <hr>  
+  <button #tool-full-screen>能全屏的工具条窗口</button>
+  <button #tool-layered>工具条 + 图层窗口</button> 
+  <hr>
+  <button #frame-detached>"脱离"框架窗口</button>
+  <button #frame-sidebar>"脱离"glassy边条窗口</button>
+  
+  <hr>
+  <button #hide>隐藏最后一个窗口</button>
+  <button #show>显示最后一个窗口</button>
+  
+  <output #out></output>
+</body>
+</html>

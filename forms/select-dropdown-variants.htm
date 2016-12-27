@@ -1,0 +1,151 @@
+<html>
+  <head>
+    <title>下拉选择框</title>
+    <style>
+    
+      form { flow:row(label,select); border-spacing: 0.5em;}
+      
+      form > label { font:system; line-height:1.5em; display:block; min-width: max-content; text-align:right; }
+      form > select {  }
+    
+      select[name=ddcm] option
+      {
+        padding-left:20px;
+      }
+      select[name=ddcm] option:checked
+      {
+        foreground-image:url(stock:checkmark);
+        foreground-repeat:no-repeat;
+        foreground-size:7px;
+        foreground-position:8px 50%;
+      }
+      
+      select[name=ddn]:empty > caption { color:red; }
+    
+    </style>
+    <script type="text/tiscript">
+    
+      $(button#get).onClick = function()
+      {
+        var v = $(form).value;
+        $(#out).value = String.printf("%V",v);
+      }
+      $(button#set).onClick = function()
+      {
+        var v = {
+          ddm: ["五","六","七"],
+          dde: "五",
+          dd: "五",
+          ddn: undefined // 空值
+        };
+        $(form).value = v;
+        $(#out).value = String.printf("%V",$(form).value);
+      }
+    
+    
+    </script>
+  </head>
+<body>
+
+  <h3>&lt;select|dropdown&gt;示例</h3>
+
+  <button #get>获取值</button>
+  <button #set>设置值</button>
+  <form>
+  <label>下拉框:</label><select name=dd>
+    <option>一</option>
+    <option>二</option>
+    <option>三</option>
+    <option selected>四</option>
+    <option>五</option>
+    <option>六</option>
+    <option>七</option>
+    <option>八</option>
+    <option>九</option>
+    <option>十</option>
+    <option>十一</option>
+    <option>十二</option>
+  </select>
+  <label>组合框(可编辑的下拉选择框):</label> <select name=dde editable>
+    <option>一</option>
+    <option>二</option>
+    <option>三</option>
+    <option selected>四</option>
+    <option>五</option>
+    <option>六</option>
+    <option>七</option>
+    <option>八</option>
+    <option>九</option>
+    <option>十</option>
+    <option>十一</option>
+    <option>十二</option>
+  </select>
+  <label>多选下拉框:</label><select name=ddm multiple>
+    <option>一</option>
+    <option>二</option>
+    <option>三</option>
+    <option selected>四</option>
+    <option>五</option>
+    <option>六</option>
+    <option>七</option>
+    <option>八</option>
+    <option>九</option>
+    <option>十</option>
+    <option>十一</option>
+    <option>十二</option>
+  </select>
+  <label>有自定义状态样式的下拉选择框:</label>
+  <select name=ddcm>
+    <option>一</option>
+    <option>二</option>
+    <option>三</option>
+    <option selected>四</option>
+    <option>五</option>
+    <option>六</option>
+    <option>七</option>
+    <option>八</option>
+    <option>九</option>
+    <option>十</option>
+    <option>十一</option>
+    <option>十二</option>
+  </select>
+  <label>可为空值的下拉选择框:</label>
+  <select name=ddn novalue="(nothing)">
+    <option>一</option>
+    <option>二</option>
+    <option>三</option>
+    <option selected>四</option>
+    <option>五</option>
+    <option>六</option>
+    <option>七</option>
+    <option>八</option>
+    <option>九</option>
+    <option>十</option>
+    <option>十一</option>
+    <option>十二</option>
+  </select>
+  <label>分组的下拉选择框:</label><select name=ddog>
+    <option>一</option>
+    <optgroup label="2..4">
+      <option>二</option>
+      <option>三</option>
+      <option>四</option>
+    </optgroup>
+    <optgroup>
+      <caption>5..8</caption>
+      <option>五</option>
+      <option>六</option>
+      <option>七</option>
+      <option>八</option>
+    </optgroup>
+    <option>九</option>
+    <option>十</option>
+    <option>十一</option>
+    <option>十二</option>
+  </select>
+  
+</form>  
+<pre #out></pre>
+  
+</body>
+</html>

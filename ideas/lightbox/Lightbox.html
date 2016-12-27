@@ -1,0 +1,44 @@
+﻿<html>
+<head>
+  <style>
+    @import url(lightbox.css);
+    
+    body { margin: 25px; }
+    h1 { margin-top: 0; flow: horizontal; font-size: 32px; vertical-align: middle; color: #73D76A; }
+    h1 img { margin-right: 15px; }
+    
+    .thumb
+    {
+      size: 90px;
+      display: inline-block;
+      margin-right: 5px;
+
+      border-radius: 5px;
+      border: solid transparent 3px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+    }
+    .thumb:hover { border-color: #44aaee; transition: border-color(none, linear, 300ms); }
+    .thumb img { display: block; width: 98px; border-radius: 20px; }
+
+    .ligthbox img { max-width: 600px; max-height: 500px; }
+  </style>
+  <script type="text/tiscript">
+    include "lightbox.tis";
+    SetupLightbox(".thumb", function(el_target, el_root) {
+      var img_url = el_target.style#background-image;
+      el_root.$append(<img src="{img_url}" />);
+    });
+  </script>
+</head>
+<body>
+	<h1><img src="picture.png" />Lightbox</h1>
+	
+	<span .thumb style="background-image: url(image-3.jpg)" />
+	<span .thumb style="background-image: url(image-4.jpg)" />
+	<span .thumb style="background-image: url(image-5.jpg)" />
+	<span .thumb style="background-image: url(image-6.jpg)" />
+</body>
+</html>

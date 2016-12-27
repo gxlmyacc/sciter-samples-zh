@@ -1,0 +1,57 @@
+<html>
+<head>
+<style>
+
+	.stuff
+	{
+		background:red;
+		width:70px;
+		height:70px;
+	}
+	.stuff > * {margin:5px; background:blue; height:*; color:white;}
+
+  .stuff[selected] {  //被矩形轨迹器覆盖的区块的样式定义(有selected属性)
+    background:gold; 
+  } 
+	
+  div#sandbox
+  {
+    border:1px dashed silver;
+    padding:4px;
+    border-spacing:4px;
+    flow:h-flow;
+    height:*;
+    
+    aspect:RectTracker; //绑定 矩形轨迹器
+  }
+</style>
+
+<script type="text/tiscript">
+
+  include "rect-tracker.tis"; //加载 矩形轨迹器 脚本库
+
+	function createSomeStuff()
+	{
+		self.$(div#sandbox).insert
+      { div, class:"stuff",
+        [
+          { div, "1" },
+          { div, "2" },
+          { div, "3" }
+        ]
+      };
+	}
+
+  self.ready = function()
+    {
+			for(var n = 0; n < 20; n++)
+			  createSomeStuff();
+    }
+
+</script>
+</head>
+<body>
+  <p>演示矩形轨迹。请在下面的区域中按下鼠标左键并拖动鼠标:</p>
+  <div #sandbox />
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿<html>
+  <head>
+    <title>Plus 基本示例</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      #container {
+        flow: row(label,input);
+      }
+      
+      output { display: inline-block; border: 1px gray dotted; }
+    </style>
+    
+    <script type="text/tiscript">
+    
+      include "../plus.tis"; // 因为要使用@observing，所以需要引入plus.tis
+  
+      namespace Data // 我们的模型
+      {  
+        var obj = {
+          foo:1,
+          bar:2,
+          baz: { abc:3, def:4 }
+        };
+        
+        var numChanges = 0;
+        
+        // 这个函数观察obj的所有改变 
+        @observing #changes "obj.*"
+          function anyChange() {
+            ++numChanges;
+          }
+        
+        function changeSubtree() {
+          // 注意: 你不能使用下面的代码:
+          //    obj.baz = { abc:"changed", def:"changed" };
+          // 上面的代码会将'obj.baz'替换为一个未绑定对象。
+          //
+          // 为了更新深层次的数据，并且保持绑定，
+		      // 请使用Object.merge方法 (定义在+plus.tis中):
+          obj.baz.merge { abc:"changed", def:"changed" };        
+        }
+        
+      }    
+    
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <note>
+    注意: 你不能使用下面的代码:
+    <pre>Data.obj.baz = { abc:"changed", def:"changed" };</pre>
+    上面的代码会将'obj.baz'替换为一个未绑定对象。
+    <p>为了更新深层次数据，并且保持绑定，请使用<code>Object.extend</code>方法 (定义在+plus.tis中)</p>
+  </note>
+  
+  <button click="changeSubtree()">修改子树</button>
+
+  <div #container>
+    <label for="obj.foo">obj.foo</label> <input|text(obj.foo)>
+    <label for="obj.bar">obj.bar</label> <input|text(obj.bar)>
+    <label for="obj.baz.abc">obj.baz.abc</label> <input|text(obj.baz.abc)> 
+    <label for="obj.baz.def">obj.baz.def</label> <input|text(obj.baz.def)>
+  </div>
+  'obj'树的改变次数: <output|number(numChanges) /><br>
+  obj.baz.abc的值为：<output|text(obj.baz.abc)>
+  
+</body>
+</html>

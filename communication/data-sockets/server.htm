@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title></title>
+    <style></style>
+    <script type="text/tiscript">
+    
+    var serverSocket = null;
+    
+    // simple echo server
+    function serve() {
+    
+      var log = $(pre#out);
+    
+      function acceptConnection(socket) 
+      {
+        log.text = "监听到连接请求";
+        socket << event data( data ) // subscribe on "data" event
+        {
+          log.text += JSON.stringify(data,"  ");
+          socket.send(data);
+        };
+        return true; // 接受这个连接请求
+      }
+    
+      serverSocket = DataSocket.listen(acceptConnection,22349);
+      log.text = "监听端口：22349";
+      
+      $(button#serve).remove();
+    
+    }
+    
+    event click $(button#serve) { 
+       serve(); 
+    }
+    
+    
+    </script>
+  </head>
+<body>
+
+  <button #serve>启动服务</button>
+  <pre #out>
+  </pre>
+
+</body>
+</html>
