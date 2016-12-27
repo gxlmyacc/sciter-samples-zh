@@ -19,11 +19,11 @@
       
       $(#set) << event click() {
       
-        // ×¢Òâ: ·ÃÎÊ×Óformation¶ÔÏóÐèÒª´Óroot½Úµã¿ªÊ¼
+        // æ³¨æ„: è®¿é—®å­formationå¯¹è±¡éœ€è¦ä»ŽrootèŠ‚ç‚¹å¼€å§‹
         root.person.value = {
           name : {
-            first: "µÚÒ»ÐÕÃû1",
-            last: "µÚ¶þÐÕÃû1"
+            first: "ç¬¬ä¸€å§“å1",
+            last: "ç¬¬äºŒå§“å1"
           },
           age:69,
 		      sex: 1
@@ -38,21 +38,21 @@
   </head>
 <body>
 
-  <h1>Formation »ù±¾Ê¾Àý</h1>
+  <h1>Formation åŸºæœ¬ç¤ºä¾‹</h1>
 
   <section(person)>
-    <label for=name.first >µÚÒ»ÐÕÃû</label> <input(name.first) />
-    <label for=name.last >µÚ¶þÐÕÃû</label> <input(name.last) />
-    <label for=age >ÄêÁä</label> <input|integer(age) />
+    <label for=name.first >ç¬¬ä¸€å§“å</label> <input(name.first) />
+    <label for=name.last >ç¬¬äºŒå§“å</label> <input(name.last) />
+    <label for=age >å¹´é¾„</label> <input|integer(age) />
 
 	<div#sexgroup>
-	ÐÔ±ð£ºÄÐ<input|radio(sex) checked value=0 /> Å®<input|radio(sex) value=1 /> 
+	æ€§åˆ«ï¼šç”·<input|radio(sex) checked value=0 /> å¥³<input|radio(sex) value=1 /> 
 	</div> 
   </section>
   
-  <button #get>»ñÈ¡</button>
-  <button #set>ÉèÖÃ</button>
-  <button #show>Formation Êý¾Ý½á¹¹</button>
+  <button #get>èŽ·å–</button>
+  <button #set>è®¾ç½®</button>
+  <button #show>Formation æ•°æ®ç»“æž„</button>
   
   <pre #out></pre>
   <div #structure></div>

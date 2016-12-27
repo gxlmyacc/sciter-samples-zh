@@ -1,8 +1,8 @@
-<html>
+ï»¿<html>
   <head>
     <title>Plus: very basic sample</title>
     <style>
-      @import url(../plus.css); /* ½öĞèÒıÈëPlus¿ò¼Ü */
+      @import url(../plus.css); /* ä»…éœ€å¼•å…¥Plusæ¡†æ¶ */
       @import url(../../note.css); 
       @import url(../../widgets/switch/switch.css); 
       
@@ -27,22 +27,22 @@
     
     <script type="text/tiscript">
     
-      include "../plus.tis"; // ÒòÎªÒªÊ¹ÓÃ@observing£¬ËùÒÔĞèÒªÒıÈëplus.tis
+      include "../plus.tis"; // å› ä¸ºè¦ä½¿ç”¨@observingï¼Œæ‰€ä»¥éœ€è¦å¼•å…¥plus.tis
   
-      namespace Todo // ÎÒÃÇµÄÄ£ĞÍ
+      namespace Todo // æˆ‘ä»¬çš„æ¨¡å‹
       {  
-        var items = [ {subject:"»ù´¡ ±äÁ¿ °ó¶¨ Ê¾Àı", done:true},
-                      {subject:"»ù´¡ º¯Êı °ó¶¨ Ê¾Àı", done:true},
-                      {subject:"»ù´¡ ÖØ¸´Ïî °ó¶¨ Ê¾Àı", done:true},
-                      {subject:"ÖØ¸´Ïî ±í¸ñ(table) Ê¾Àı", done:true},
-                      {subject:"CSS class°ó¶¨ Ê¾Àı", done:true},
-                      {subject:"ÖØ¸´Ïî¹ıÂË Ê¾Àı", done:false},
-                      {subject:"UIÊÂ¼ş´¦Àí Plus·ç¸ñ", done:false},
+        var items = [ {subject:"åŸºç¡€ å˜é‡ ç»‘å®š ç¤ºä¾‹", done:true},
+                      {subject:"åŸºç¡€ å‡½æ•° ç»‘å®š ç¤ºä¾‹", done:true},
+                      {subject:"åŸºç¡€ é‡å¤é¡¹ ç»‘å®š ç¤ºä¾‹", done:true},
+                      {subject:"é‡å¤é¡¹ è¡¨æ ¼(table) ç¤ºä¾‹", done:true},
+                      {subject:"CSS classç»‘å®š ç¤ºä¾‹", done:true},
+                      {subject:"é‡å¤é¡¹è¿‡æ»¤ ç¤ºä¾‹", done:false},
+                      {subject:"UIäº‹ä»¶å¤„ç† Plusé£æ ¼", done:false},
                     ];
                     
-        function addNewFrom(el) // ±»input|text.newÔªËØµÄ@enterÊÂ¼şµ÷ÓÃ
+        function addNewFrom(el) // è¢«input|text.newå…ƒç´ çš„@enteräº‹ä»¶è°ƒç”¨
         {
-          items.unshift { subject:el.value, done:false }; // ÔÚÁĞ±í×îÇ°Ãæ²åÈëĞÂÏî
+          items.unshift { subject:el.value, done:false }; // åœ¨åˆ—è¡¨æœ€å‰é¢æ’å…¥æ–°é¡¹
           el.value = undefined;
         }
         
@@ -57,26 +57,26 @@
     </script>
   </head>
 
-<body model="Todo"> <!-- ¶¨ÒåÎÒÃÇÒª¹Û²ìµÄÊı¾İÄ£ĞÍ -->
+<body model="Todo"> <!-- å®šä¹‰æˆ‘ä»¬è¦è§‚å¯Ÿçš„æ•°æ®æ¨¡å‹ -->
 
-  <note>ÏÂÃæµÄÁĞ±í°ó¶¨ÁË<code>Items</code>Êı×é¡£Õâ¸öÊ¾ÀıÑİÊ¾ÈçºÎ´¦ÀíENTER°´¼ü´¦Àí£¬ºÍ°´Å¥µã»÷´¦Àí(µã»÷ÒÆ³ıÄ³Ïî)¡£
-    <br>ÁĞ±íÖĞÖ§³Ö'active'ÊôĞÔµÄÔªËØ²Î¼ûplus.cssÎÄ¼ş¡£
-    <br>ÁĞ±íÖĞÃ¿Ò»Ïî¶¼ÊÇ¿É±à¼­µÄ£¬²¢ÇÒ°ó¶¨µ½¶ÔÓ¦¼ÇÂ¼ÖĞµÄsubject×Ö¶Î¡£</note>
+  <note>ä¸‹é¢çš„åˆ—è¡¨ç»‘å®šäº†<code>Items</code>æ•°ç»„ã€‚è¿™ä¸ªç¤ºä¾‹æ¼”ç¤ºå¦‚ä½•å¤„ç†ENTERæŒ‰é”®å¤„ç†ï¼Œå’ŒæŒ‰é’®ç‚¹å‡»å¤„ç†(ç‚¹å‡»ç§»é™¤æŸé¡¹)ã€‚
+    <br>åˆ—è¡¨ä¸­æ”¯æŒ'active'å±æ€§çš„å…ƒç´ å‚è§plus.cssæ–‡ä»¶ã€‚
+    <br>åˆ—è¡¨ä¸­æ¯ä¸€é¡¹éƒ½æ˜¯å¯ç¼–è¾‘çš„ï¼Œå¹¶ä¸”ç»‘å®šåˆ°å¯¹åº”è®°å½•ä¸­çš„subjectå­—æ®µã€‚</note>
 
   <section #items>
     
-    <input|text .new novalue="ÇëÊäÈëÏÂÒ»¸ö´ı×öÊÂÏî£¬È»ºó°´ENTER¼ü" enter="addNewFrom(this)"/> 
+    <input|text .new novalue="è¯·è¾“å…¥ä¸‹ä¸€ä¸ªå¾…åšäº‹é¡¹ï¼Œç„¶åæŒ‰ENTERé”®" enter="addNewFrom(this)"/> 
   
     <ol each="index,item in items">
       <li class="done:item.done">
            <input|checkbox(item.done)/>
            <input|text(item.subject)/> 
-           µÚ <output(index)/>/<output(items.length)/> ¼ÇÂ¼
+           ç¬¬ <output(index)/>/<output(items.length)/> è®°å½•
            <b click="items.removeByValue(item)">&times;</b></li>
     </ol>
   </section>
   
-  <p>ItemsÖĞµÄÊı¾İ:</p>
+  <p>Itemsä¸­çš„æ•°æ®:</p>
   <pre #out></pre>
   
   

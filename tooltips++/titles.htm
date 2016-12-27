@@ -1,6 +1,6 @@
 ﻿<html>
-	<head>
-		<title>title和popup弹出框</title>
+  <head>
+    <title>title和popup弹出框</title>
 	<style type="text/css"> 
   dt 
   { 
@@ -19,13 +19,13 @@
     font: system;
     background-color:infobackground infobackground #FFEFD5 #FFEFD5;
     width: 220dip; 
-    border: 1px solid chocolate;
+    border: 1dip solid chocolate;
   }
   popup.info p { margin:4dip 0;}
   popup.info .with-divider
   {
     margin-top: 0.5em;
-    border-top: 1px dashed chocolate;
+    border-top: 1dip dashed chocolate;
     padding-top: 0.5em;
     text-align:center;
   }
@@ -41,7 +41,7 @@
     background-color:transparent;
     background-image: url(images/speech-bubble.png);
     background-repeat: expand;
-    background-position:80px 33px 33px 74px; /*上 右 下 左 偏移量*/
+    background-position:80dip 33dip 33dip 74dip; /*上 右 下 左 偏移量*/
     padding:71dip 25dip 25dip 16dip;
     border: none;
     font: 11pt "Comic Sans MS", Verdana;
@@ -67,11 +67,11 @@
   }
 
   /* 为标准气泡提示定义样式( title属性定义的气泡 ). 
-     下面的样式金山示例: 这里的宽度是最大内在宽度，但是不会超过100px */
+     下面的样式金山示例: 这里的宽度是最大内在宽度，但是不会超过100dip */
   _service > popup[role=tooltip]
   { 
     width:max-intrinsic; 
-	background-color:orange; 
+	  background-color:orange; 
     font: 24pt Verdana;
     font-weight:normal;
   }

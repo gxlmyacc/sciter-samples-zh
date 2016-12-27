@@ -72,5 +72,9 @@
     <button|checkbox(isSectionCollapsed)>显示/隐藏下一个div块</button>:
     <div.test2 @collapsed="isSectionCollapsed">一个div块</div> 
   </section> 
+  
+  <section>
+    <div.test2 @collapsed="!isSectionCollapsed">显示/隐藏下一个div块 (条件表达式测试)</div> 
+  </section>
 </body>
 </html>

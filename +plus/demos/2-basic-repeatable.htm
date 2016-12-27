@@ -57,6 +57,8 @@
 
   <note>下面的列表绑定到了<code>Data.fruits</code>数组上，所以它能够反映Data.fruits数组中的数据。<br />
   下面输入框中的内容可以填充到列表中。</note>
+  
+  <p>共 <output(fruits.length) /> 项</p>  
 
   <!-- 重复部分 定义each元素，each元素必须放在name、model属性之前 -->
   <ol each="fruit in fruits">

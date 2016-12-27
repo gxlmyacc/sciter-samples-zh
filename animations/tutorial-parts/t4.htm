@@ -4,7 +4,7 @@
 <style src="style.css"></style>
 <style> 
   div#box { flow:horizontal; overflow:hidden;}  
-  picture { transform: translate(200px,0px); }
+  picture { transform: translate(200dip,0dip); }
 </style>
 <script type="text/tiscript" src="script.tis"></script>
   </head>
@@ -25,7 +25,7 @@
     <p>FROM 状态 - DOM元素的当前状态。</p>
     <p>TO 状态 - 代码中定义的状态:</p>
     <p>注意 1: $$(picture)返回picture元素的列表。每个picture的动画都偏移interval:0.3s的时间。</p>
-    <p>注意 2: 在SCC中，使用translate(200px,0px)来初始化所有picute的偏移位置。</p>
+    <p>注意 2: 在SCC中，使用translate(200dip,0dip)来初始化所有picute的偏移位置。</p>
     <p>注意 3: repeats:8和swing:true意思是4对向后和向前循环。</p>
   </div>
   
@@ -33,7 +33,7 @@
 
   .to( $$(picture), { duration:1s, interval:0.3s, ease: #quadInOut,
                       repeats:8, swing:true  }, 
-                    { transform: translate(0px,0px) } )
+                    { transform: translate(0dip,0dip) } )
   .play();
   </textarea>
   

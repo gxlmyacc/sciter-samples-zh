@@ -3,63 +3,63 @@
     <title></title>
     <style>
     
-    @import url(notification.css); //ÆøÅİµÄÑùÊ½¶¨Òå
+    @import url(notification.css); //æ°”æ³¡çš„æ ·å¼å®šä¹‰
     
     </style>
     <script type="text/tiscript">
       include "notification.tis"
       
-    /* µ¯³öÔªËØ¸ñÊ½£º
+    /* å¼¹å‡ºå…ƒç´ æ ¼å¼ï¼š
     <popup|tray>
       <header>
-        <caption></caption>       ±êÌâ(·Ç±ØĞë)£¬Èç¹ûÃ»ÓĞ£¬±êÌâ½«ÊÇheaderÔªËØµÄÎÄ±¾ÄÚÈİ
-        <span.cancel>¹Ø±Õ</span>  ¹Ø±Õ°´Å¥(·Ç±ØĞë)   
+        <caption></caption>       æ ‡é¢˜(éå¿…é¡»)ï¼Œå¦‚æœæ²¡æœ‰ï¼Œæ ‡é¢˜å°†æ˜¯headerå…ƒç´ çš„æ–‡æœ¬å†…å®¹
+        <span.cancel>å…³é—­</span>  å…³é—­æŒ‰é’®(éå¿…é¡»)   
       </header>     
-      <content></content>       ÆøÅİÄÚÈİÇø(±ØĞë)
+      <content></content>       æ°”æ³¡å†…å®¹åŒº(å¿…é¡»)
     </popup>    
     */  
     
-    event "click|button#test1" () {
-      Notification.show($(#popup1), "ÊÚÈ¨ÒÑµ½ÆÚ£¬ÊÇ·ñĞø·Ñ?", "ÊÚÈ¨ÌáĞÑ", 5s)      
+    event  click $(button#test1) {
+      Notification.show($(#popup1), "æˆæƒå·²åˆ°æœŸï¼Œæ˜¯å¦ç»­è´¹?", "æˆæƒæé†’", 5s)      
     }
     
-    event "click|button#test2" () {
-      Notification.show($(#popup2), "ÊÚÈ¨ÒÑµ½ÆÚ£¬ÊÇ·ñĞø·Ñ?", "ÊÚÈ¨ÌáĞÑ(Ã»ÓĞ¹Ø±Õ)", 5s)      
+    event click $(button#test2) {
+      Notification.show($(#popup2), "æˆæƒå·²åˆ°æœŸï¼Œæ˜¯å¦ç»­è´¹?", "æˆæƒæé†’(æ²¡æœ‰å…³é—­)", 5s)      
     }
     
-    /* Toastµ¯³öÔªËØ¸ñÊ½£º
+    /* Toastå¼¹å‡ºå…ƒç´ æ ¼å¼ï¼š
     <popup|toast>
-      <content></content>   ÆøÅİÄÚÈİÇø(±ØĞë)
+      <content></content>   æ°”æ³¡å†…å®¹åŒº(å¿…é¡»)
     </popup>    
     */  
-    event "click|button#test3" {
-      Notification.toast("ÕâÊÇÒ»¸ö<b>Toast</b>ÌáÊ¾")      
+    event click $(button#test3) {
+      Notification.toast("è¿™æ˜¯ä¸€ä¸ª<b>Toast</b>æç¤º")      
     }
     
-    event "click|button#cancel" {
+    event click $(button#cancel) {
       Notification.cancel();     
     }
     
     </script>
   </head>
 <body>
-  <button#test1>ÏÔÊ¾Í¨Öª1</button>
-  <button#test2>ÏÔÊ¾Í¨Öª2</button>
-  <button#test3>ÏÔÊ¾Toast</button>
-  <button#cancel>È¡ÏûÍ¨Öª</button>
+  <button#test1>æ˜¾ç¤ºé€šçŸ¥1</button>
+  <button#test2>æ˜¾ç¤ºé€šçŸ¥2</button>
+  <button#test3>æ˜¾ç¤ºToast</button>
+  <button#cancel>å–æ¶ˆé€šçŸ¥</button>
 
 <popup|tray #popup1>
   <header>
-    <caption>ÏûÏ¢ÌáĞÑ</caption>
-    <span.cancel>¹Ø±Õ</span>
+    <caption>æ¶ˆæ¯æé†’</caption>
+    <span.cancel>å…³é—­</span>
   </header>
   
-  <content></content><!--ÆøÅİÌáÊ¾µÄÄÚÈİÇø-->
+  <content></content><!--æ°”æ³¡æç¤ºçš„å†…å®¹åŒº-->
 </popup>
 
 <popup|tray #popup2>
   <header>
-    <caption>ÏûÏ¢ÌáĞÑ</caption>
+    <caption>æ¶ˆæ¯æé†’</caption>
   </header>
   <content></content>
 </popup>

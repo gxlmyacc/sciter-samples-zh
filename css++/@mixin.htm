@@ -25,7 +25,20 @@
     a { @LIKE-BUTTON; display:inline-block; }
     a:hover { @LIKE-BUTTON-HOVER; }
 
+    @mixin ELLIPSIS 
+    {
+      overflow-x:hidden;
+      text-overflow: ellipsis;
+      white-space:nowrap;
+      display:block;
+    }
 
+    section {
+      @ELLIPSIS;
+      margin:1em;
+    }
+
+    
     </style>
     <script type="text/tiscript"></script>
   </head>
@@ -36,6 +49,7 @@
   <div>测试</div>
   
   以及 <a>&lt;a&gt; based</a> 按钮;
-
+  
+  <section>非常长非常长非常长非常长非常长非常长非常长非常长非常长非常长非常长非常长非常长非常长非常长非常长非常长非常长非常长的文本</section>
 </body>
 </html>
