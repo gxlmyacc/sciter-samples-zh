@@ -1,0 +1,25 @@
+﻿<html>
+  <head>
+    <style>
+      @import url(sciter4d:route.css);
+      
+      div[name=main] {
+        border: 1px solid red;
+        height:*;
+      }
+    </style>
+    <script type="text/tiscript">
+      function self#test.onClick(){
+        $(div[name=main]).value = "route2";
+      }
+    </script>
+  </head>
+  <body>
+    <button#test>测试</button>
+    <div name="main" role="route-view" before-animation="scroll-right(cubic-in-out,500ms)" after-animation="scroll-left(cubic-in-out,500ms)" value="route1" >
+      <route name="route1" path="route1.htm?key1=value1&key2=value2" />
+      <route name="route2" path="route2.htm?key1=value1&key2=value2" />
+      <route name="route3" path="route3.htm?key1=value1&key2=value2" />
+    </div> 
+  </body>
+</html>

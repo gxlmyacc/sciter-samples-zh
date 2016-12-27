@@ -1,0 +1,66 @@
+﻿<html>
+  <head>
+    <style>
+
+    </style>
+    <script type="text/tiscript">
+      var routeManager;
+      function self.ready() {
+        if (self.parent && self.parent.router ) {
+          routeManager = self.parent.router;
+          $(#first).state.disabled = !routeManager.canFirst();
+          $(#prior).state.disabled = !routeManager.canPrior();
+          $(#next).state.disabled  = !routeManager.canNext();
+          $(#last).state.disabled  = !routeManager.canLast();
+          $(#back).state.disabled  = !routeManager.canBack();
+        }
+      }
+      
+      self << event "route-active" {
+        log("route3:route-active");
+      }
+
+      function self#first.onClick() {
+        if (routeManager) routeManager.goFirst();
+      }
+      function self#prior.onClick() {
+        if (routeManager) routeManager.goPrior();
+      }
+      function self#next.onClick() {
+        if (routeManager) routeManager.goNext();
+      }
+      function self#last.onClick() {
+        if (routeManager) routeManager.goLast();
+      }
+      function self#back.onClick() {
+        if (routeManager) routeManager.goBack();
+      }
+      function self#routes.onClick() {
+        alert(routeManager.routes);
+      }
+      function self#urlParams.onClick() {
+        alert(self.urlParams);
+      }
+      function self#historys.onClick() {
+        alert(routeManager.historys);
+      }
+      function self#go.onClick() {
+        if (routeManager.go($(#goName).value, { name: "你好3" }) < 0)
+          alert("跳转失败，未找到该路由！");
+      }
+    </script>
+  </head>
+  <body>
+    路由3
+    <input|button #first value="首页" />
+    <input|button #prior value="上一页" />
+    <input|button #next value="下一页" />
+    <input|button #last value="尾页" />
+    <input|button #back value="回退" />
+    <input|button #routes value="路由表" />
+    <input|button #urlParams value="url参数" />
+    <input|button #historys value="历史路由表" />
+    <hr/>
+    <input|button #go value="跳转到" /><input|text #goName value="route1" />
+  </body>
+</html>
