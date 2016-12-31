@@ -1,0 +1,34 @@
+﻿<html>
+<head>
+  <title>BBcode使用示例</title>
+  <style>
+    textarea {
+      height: 100pt;
+    }
+  </style>
+  <script type="text/tiscript" src="bbcode.tis"></script>
+  <script type="text/tiscript">
+    function self#toHTML.onClick(){
+      $(#htmlcode).value = BBCode.toHtml($(#bbcode).value.trim());
+    }
+
+    function self#toBB.onClick(){
+       $(#bbcode).value = BBCode.toBBCode($(#htmlcode).value.trim());
+    }
+  </script>
+</head>
+<body>
+  <h1>bbcode:</h1>
+  <textarea id="bbcode" style="width:100%" rows=12>
+  [b]asdasd[u][url="http://www.google.com/"]sadsadsdaasd[img=http://www.google.com/images/srpr/nav_logo13.png width=100 height=200][/img][/url][/u][/b]
+  </textarea>
+  <h1>HTML:</h1>
+  <textarea id="htmlcode" style="width:100%" rows=12>
+  
+  </textarea>
+  <br/>
+  <input id="toHTML" type="button" value="toHTML" />
+  <input id="toBB" type="button" value="toBB"/>
+</body>
+</html>
+
