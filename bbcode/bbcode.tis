@@ -3,15 +3,16 @@ namespace BBCode {
   var token_match = /\{[A-Z_]+[0-9]*\}/ig;
   // regular expressions for the different bbcode tokens
   var tokens = {
-    "URL" : "\"?((?:https?:\\/\\/)?(?:[\\da-z\.-]+)\\.(?:[a-z\\.]{2,6})(?:[\\/\\w \\.-]*)*\\/?)\"?\\s*",
-    "LINK" : "([a-z0-9\-\./]+[^\"\' ]*)",
-    "EMAIL" : "([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})",
-    "TEXT" : "(.*?)",
+    //"URL" : "\\s*((?:[a-zA-Z]+:\\/\\/)?(?:[a-zA-Z]:)?(?:[\\da-z\.-]+)\\.(?:[a-z\\.]{2,6})(?:[\\/\\w \\.-]*)*\\/?)\\s*",
+    "URL": "\\s*(.*?)\\s*",
+    "LINK" : "\\s*([a-z0-9\-\./]+[^\"\' ]*)\\s*",
+    "EMAIL" : "((?:[a-z0-9_\\.-]+)@(?:[\\da-z\\.-]+)\\.(?:[a-z\\.]{2,6}))",
+    "TEXT" : "([\\s\\S]*?)",
     "SIMPLETEXT" : "([a-zA-Z0-9-+.,_ ]+)",
     "INTTEXT" : "([a-zA-Z0-9-+,_. ]+)",
     "IDENTIFIER" : "([a-zA-Z0-9-_]+)",
-    "COLOR" : "([a-z]+|#[0-9abcdef]+)",
-    "NUMBER" : "([0-9]+)"
+    "COLOR" : "\"?([a-z]+|\#[0-9abcdef]+)\"?\\s*",
+    "NUMBER" : "\"?([.0-9]+)\"?\\s*"
   };
   var bbcode_Inited = false;
   var bbcode_matches = [];        // matches for bbcode to html
@@ -33,12 +34,12 @@ namespace BBCode {
    */
   function _getRegEx(str) {
     var matches = str.match(token_match);
-    var nrmatches = matches.length;
-    var i = 0;
-    var replacement = "";
+    var nrmatches = matches ? matches.length : 0;
     if (nrmatches <= 0) 
       return new RegExp(preg_quote(str), "g");        // no tokens so return the escaped string
 
+    var i = 0;
+    var replacement = "";
     for(; i < nrmatches; i += 1) {
       // Remove {, } and numbers from the token so it can match the
       // keys in tokens
@@ -61,16 +62,14 @@ namespace BBCode {
    */
   function _getTpls(str) {
     var matches = str.match(token_match);
-    var nrmatches = matches.length;
+    var nrmatches = matches ? matches.length : 0;
+    if (nrmatches <= 0) 
+      return str;       // no tokens so return the string
+
     var i = 0;
     var replacement = "";
     var positions = {};
     var next_position = 0;
-
-    if (nrmatches <= 0) {
-      return str;       // no tokens so return the string
-    }
-
     for(; i < nrmatches; i += 1) {
       // Remove {, } and numbers from the token so it can match the
       // keys in tokens
@@ -111,10 +110,14 @@ namespace BBCode {
    * Turns all of the added bbcodes into html
    */
   function toHtml(str) {
+    str = str.htmlEscape();
     var nrbbcmatches = bbcode_matches.length;
     var i = 0;
-    for(; i < nrbbcmatches; i += 1) 
+    for(; i < nrbbcmatches; i += 1) {
+      if (bbcode_matches[i])
       str = str.replace(bbcode_matches[i], html_tpls[i]);
+    }
+      
     return str;
   };
 
@@ -128,7 +131,7 @@ namespace BBCode {
       str = str.replace(html_matches[i], bbcode_tpls[i]);
     return str;
   };
-}
+} 
 
 if (!BBCode.bbcode_Inited) {
   BBCode.bbcode_Inited = true;
@@ -137,15 +140,20 @@ if (!BBCode.bbcode_Inited) {
   BBCode.add("[i]{TEXT}[/i]", "<em>{TEXT}</em>");
   BBCode.add("[u]{TEXT}[/u]", "<span style=\"text-decoration:underline;\">{TEXT}</span>");
   BBCode.add("[s]{TEXT}[/s]", "<span style=\"text-decoration:line-through;\">{TEXT}</span>");
-  BBCode.add("[url={URL}]{TEXT}[/url]", "<a href=\"{URL}\" title=\"link\" target=\"_blank\">{TEXT}</a>");
+  BBCode.add("[url={URL}]{TEXT}[/url]", "<a href=\"{URL}\" target=\"_blank\">{TEXT}</a>");
+  BBCode.add("[url]{URL}[/url]", "<a href=\"{URL}\" target=\"_blank\">{URL}</a>");
   BBCode.add("[img={URL} width={NUMBER1} height={NUMBER2}]{TEXT}[/img]", "<img src=\"{URL}\" width=\"{NUMBER1}\" height=\"{NUMBER2}\" alt=\"{TEXT}\" />");
   BBCode.add("[img]{URL}[/img]", "<img src=\"{URL}\" alt=\"{URL}\" />");
   BBCode.add("[img={LINK} width={NUMBER1} height={NUMBER2}]{TEXT}[/img]", "<img src=\"{LINK}\" width=\"{NUMBER1}\" height=\"{NUMBER2}\" alt=\"{TEXT}\" />");
   BBCode.add("[img]{LINK}[/img]", "<img src=\"{LINK}\" alt=\"{LINK}\" />");
-  BBCode.add("[color=COLOR]{TEXT}[/color]", "<span style=\"{COLOR}\">{TEXT}</span>");
-  BBCode.add("[highlight={COLOR}]{TEXT}[/highlight]", "<span style=\"background-color:{COLOR}\">{TEXT}</span>");
+  BBCode.add("[color={COLOR}]{TEXT}[/color]", "<span style=\"color:{COLOR};\">{TEXT}</span>");
+  BBCode.add("[highlight={COLOR}]{TEXT}[/highlight]", "<span style=\"background-color:{COLOR};\">{TEXT}</span>");
   BBCode.add("[quote=\"{TEXT1}\"]{TEXT2}[/quote]", "<div class=\"quote\"><cite>{TEXT1}</cite><p>{TEXT2}</p></div>");
   BBCode.add("[quote]{TEXT}[/quote]", "<cite>{TEXT}</cite>");
+  //BBCode.add("[code]{TEXT}[/code]", "<pre>{TEXT}</pre>");
   BBCode.add("[blockquote]{TEXT}[/blockquote]", "<blockquote>{TEXT}</blockquote>");  
+  BBCode.add("[size={NUMBER}]{TEXT}[/size]", "<span style=\"font-size:{NUMBER};\">{TEXT}</span>"); 
+  BBCode.add("[br]", "<br/>");  
+  BBCode.add("[hr]", "<hr/>");  
 }
 
