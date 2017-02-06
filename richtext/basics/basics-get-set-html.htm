@@ -1,0 +1,64 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style>
+
+    htmlarea {size:*;}
+    
+    </style>
+    <script type="text/tiscript">
+    
+      const htmlarea = $(htmlarea);
+      const plaintext = $(plaintext);
+      
+      event click $(#b1) { 
+        htmlarea.clear();
+        htmlarea.$append(<text><br></text>);
+        htmlarea.selection.advance(#first);
+        htmlarea.state.focus = true;
+        return true; 
+      }  
+
+      event click $(#b2){ 
+        htmlarea.clear();
+        htmlarea.$append(<div>Hello Macrocosm</div>);
+        htmlarea.selection.advance(#last);
+        htmlarea.state.focus = true;
+        return true; 
+      };  
+
+      event click $(#b3){ 
+        var text = plaintext.value;  
+        htmlarea.html = text;
+        htmlarea.state.focus = true;
+        return true; 
+      };  
+
+      event click $(#b4){ 
+        plaintext.value = htmlarea.html;  
+        htmlarea.state.focus = true;
+        return true; 
+      };  
+
+    
+    </script>
+  </head>
+<body>
+
+<button #b1>更新并且返回开始位置</button>
+<button #b2>更新并且返回结束位置</button>
+
+<button #b3>设置html内容</button>
+<button #b4>获取html内容</button>
+
+<htmlarea>
+  <p><br></p>
+</htmlarea>
+
+<plaintext>
+  <p>First</p>
+  <p>Second</p>
+</plaintext>
+
+</body>
+</html>

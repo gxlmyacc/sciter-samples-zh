@@ -13,6 +13,7 @@
       namespace Data // 我们的模型
       {  
         var at = "two";
+        var bits = 16;
       }    
     
     </script>
@@ -22,11 +23,19 @@
   <note>下面的Radio组合绑定到了<code>Data.at</code>变量上。注意: 为了使它能正常起效，每个radio按钮应该有它自己唯一的value值。
   <br>修改radio的值将反应到output元素上:
   </note>
-
+  字符串值：
   <div>
       <button|radio(at) value="one">First</button>
       <button|radio(at) value="two">Second</button>
+      <button|radio(at) value="three">Three</button>
   </div>
   <p>结果: <output(at) /></p>
+  整数值:
+  <div>
+      <button|radio(bits) value=8>8</button>
+      <button|radio(bits) value=16>16</button>
+      <button|radio(bits) value=32>32</button>
+  </div>
+  <p>结果: <output(bits) /></p>
 </body>
 </html>

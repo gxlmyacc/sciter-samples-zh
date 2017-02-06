@@ -25,12 +25,12 @@
     </style>
     <script type="text/tiscript">
     
-      $(button#get).onClick = function()
+      event click $(button#get)
       {
         var v = $(form).value;
         $(#out).value = String.printf("%V",v);
       }
-      $(button#set).onClick = function()
+      event click $(button#set)
       {
         var v = {
           ddm: ["五","六","七"],
@@ -42,6 +42,11 @@
         $(#out).value = String.printf("%V",$(form).value);
       }
     
+      event click $(button#set-by-dom-ref)
+      {
+        for(var option in $$(option.toset))
+          option.execCommand("set-current");
+      }
     
     </script>
   </head>
@@ -51,11 +56,12 @@
 
   <button #get>获取值</button>
   <button #set>设置值</button>
+  <button #set-by-dom-ref>通过DOM元素的引用设置</button>
   <form>
   <label>下拉框:</label><select name=dd>
     <option>一</option>
     <option>二</option>
-    <option>三</option>
+    <option.toset>三</option>
     <option selected>四</option>
     <option>五</option>
     <option>六</option>
@@ -69,7 +75,7 @@
   <label>组合框(可编辑的下拉选择框):</label> <select name=dde editable>
     <option>一</option>
     <option>二</option>
-    <option>三</option>
+    <option.toset>三</option>
     <option selected>四</option>
     <option>五</option>
     <option>六</option>
@@ -83,7 +89,7 @@
   <label>多选下拉框:</label><select name=ddm multiple>
     <option>一</option>
     <option>二</option>
-    <option>三</option>
+    <option.toset>三</option>
     <option selected>四</option>
     <option>五</option>
     <option>六</option>
@@ -98,7 +104,7 @@
   <select name=ddcm>
     <option>一</option>
     <option>二</option>
-    <option>三</option>
+    <option.toset>三</option>
     <option selected>四</option>
     <option>五</option>
     <option>六</option>
@@ -113,7 +119,7 @@
   <select name=ddn novalue="(nothing)">
     <option>一</option>
     <option>二</option>
-    <option>三</option>
+    <option.toset>三</option>
     <option selected>四</option>
     <option>五</option>
     <option>六</option>
@@ -128,7 +134,7 @@
     <option>一</option>
     <optgroup label="2..4">
       <option>二</option>
-      <option>三</option>
+      <option.toset>三</option>
       <option>四</option>
     </optgroup>
     <optgroup>

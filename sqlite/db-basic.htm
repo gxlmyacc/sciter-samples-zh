@@ -8,7 +8,7 @@
   
   include library "tiscript-sqlite"; //“˝»ÎDLL
     
-  function self#test.onClick()
+  event click $(#test)
   {  
     var db = DB.open(":memory:"); // in memory, temporary DB
            //DB.open("c:/test.db");

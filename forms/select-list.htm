@@ -6,22 +6,30 @@
     </style>
     <script type="text/tiscript">
     
-      $(#get).onClick = function()
+      event click $(#get)
       {
-		$(#out).text = String.printf("%V\n",$(select).value);
+		    $(#out).text = String.printf("%V\n",$(select).value);
       }
-      $(#set).onClick = function()
+      event click $(#set)
       {
         $(select).value = 8;
       }
-      $(#clear).onClick = function()
+      event click $(#clear)
       {
         $(select).value = undefined;
       }      
+      event click $(button#set-by-dom-ref)
+      {
+        $(option[value=8]).execCommand("set-current");
+      }
     </script>
   </head>
 <body>
-  值： <button #get>获取</button> <button #set>设置</button> <button #clear>清空</button>
+  值： 
+  <button #get>获取</button> 
+  <button #set>设置</button> 
+  <button #clear>清空</button>
+  <button #set-by-dom-ref>通过DOM引用设置</button>
   <output #out></output>
   <select|list name="country" size=16>
     <option value=0 selected>not specified</option>

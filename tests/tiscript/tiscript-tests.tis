@@ -1204,6 +1204,15 @@ function match_test() {
 
 }
 
+function regex_match_test() {
+   const nameRE = /^[\w\-_\.@\+ \$\&\!]*$/g;
+   
+   function isNameValid(val) { return val.match(nameRE); }
+   
+   assert isNameValid("oskryp");
+   assert isNameValid("test_test");
+}
+
 
 function referenceOf_test() {
 
@@ -1273,6 +1282,7 @@ run( JSON_test );
 run( Undefined_test );
 run( ForIn_test );
 run( match_test );
+run( regex_match_test );
 run( referenceOf_test );
 
 showMemStats("after");
