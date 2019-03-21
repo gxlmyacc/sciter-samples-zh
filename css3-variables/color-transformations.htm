@@ -1,0 +1,80 @@
+﻿<html>
+    <head>
+        <title>测试</title>
+        <style>
+            html {
+              var(base): #f00;
+              //background:gold;
+            }
+            input#hue
+            {
+              border:none;
+              height: 3dip;
+              width: 100dip;
+              background: linear-gradient(left, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+            }
+
+            div { width:300dip; padding:0.5em; margin:0.5em; color:#fff; }
+            div#base { background-color: color(base); }
+            div#lighten { background-color: morph(color(base),lighten:20%); }
+            div#darken { background-color: morph(color(base),darken:20%); }
+
+            div#saturate { background-color: morph(color(base),saturate:20%); }
+            div#desaturate { background-color: morph(color(base),desaturate:20%); }
+
+            div#rotatem { background-color: morph(color(base),rotate:-120deg); }
+            div#rotatep { background-color: morph(color(base),rotate:+120deg); }
+
+            div#mix { background-color: morph(color(base),#FFF,mix:50%); }
+
+            div#opacity50 { background-color: morph(color(base),opacity:50%); }
+            div#opacity75 { background-color: morph(color(base),opacity:75%); }
+
+            div#grayscale50 { background-color: morph(color(base),grayscale:50%); }
+            div#grayscale100 { background-color: morph(color(base),grayscale:100%); }
+
+            div#sepia100 { background-color: morph(color(base),sepia:100%); }
+
+
+        </style>
+        <script type="text/tiscript">
+
+
+        function updateColors(angle) {
+          self.style.variables { 
+            base: Color.hsv(360 + angle,0.8,0.8),
+          };
+
+        } 
+        event change $(input#hue) {
+          updateColors(this.value);
+        }
+
+        updateColors(0);
+
+        </script>
+    </head>
+    <body>
+      <h2>Sciter的CSS的色彩函数, 类似LeSS </h2> 
+
+      基色：<input|hslider#hue min=0 max=360 />
+      <div #base>基色 - hsv(angle,80%,80%)</div>
+      <div #lighten>亮 lighten:20%</div>
+      <div #darken>暗 darken:20%</div>
+      <div #saturate>饱和度 saturate:20%</div>
+      <div #desaturate>不饱和度 desaturate:20%</div>
+      <div #rotatem>旋转 rotate:-120deg</div>
+      <div #rotatep>旋转 rotate:+120deg</div>
+
+      <div #mix>混合 mix(50%)</div>
+
+      <div #opacity50>透明度 opacity:50%</div>
+      <div #opacity75>透明度 opacity:75%</div>
+
+      <div #grayscale50>灰度 grayscale:50%</div>
+      <div #grayscale100>灰度 grayscale:100%</div>
+
+      <div #sepia100>褐度 sepia:100%</div>
+
+    </body>
+</html>

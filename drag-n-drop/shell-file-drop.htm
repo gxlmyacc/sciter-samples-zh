@@ -10,6 +10,7 @@
         border: 4px dashed;
         vertical-align:middle;
         text-align:center;
+        margin:1em;
       }
       div.file-drop-zone.active-target {
         background:gold;
@@ -22,31 +23,57 @@
     
     class FileDropZone :Behavior 
     {
-    
-      function onExchange(evt)
+      this var filter;  
+      this var files = []; // filtered files
+
+      function checkFiles(list) {
+        if(typeof list != #array )
+          list = [list];
+        const patterns = this.filter;
+        function flt(fn) {
+          for(var x in patterns)
+            if( fn like x ) return true;
+          return false;
+        }
+        this.files = list.filter(flt);
+        return this.files.length > 0;
+      }
+
+      function attached() {
+        this.filter = (this.attributes["accept-drop"] || "*").split(";");
+        debug filter: this.filter;
+      }
+
+      event dragaccept (evt) {
+        if(evt.draggingDataType == #file && this.checkFiles(evt.dragging))
+          return true; // accept only files
+        return false;
+      }
+
+      event dragenter (evt) 
       {
-        if( evt.type == Event.X_DRAG_ENTER && evt.draggingDataType == #file)
-        {
-          this.attributes.addClass("active-target");
-          return true;
-        }
-        else if( evt.type == Event.X_DRAG_LEAVE )
-        {
-          this.attributes.removeClass("active-target");
-          return true;
-        }
-        else if( evt.type == Event.X_DRAG && evt.draggingDataType == #file)
-        {
-          return true;
-        }
-        else if( evt.type == Event.X_DROP && evt.draggingDataType == #file)
-        {
-          this.attributes.removeClass("active-target");
-          var fn = evt.dragging;
-          view.msgbox(#information, String.printf("放下:%V",fn));
-          return true;
-        }
-      }    
+        this.attributes.addClass("active-target");
+        return true;
+      }  
+
+      event dragleave (evt) 
+      {
+        this.attributes.removeClass("active-target");
+        return true;
+      }  
+
+      event drag (evt) 
+      {
+        stdout.println(evt.x,evt.y);
+        return true;
+      }  
+
+      event drop (evt) 
+      {
+        this.attributes.removeClass("active-target");
+        view.msgbox(#information, String.printf("Dropped:%V",this.files));
+        return true;
+      }  
     }
     
     </script>
@@ -57,6 +84,10 @@
 
   <div.file-drop-zone>
     在这里放下你的文件
+  </div>
+  
+  <div.file-drop-zone accept-drop="*.gif;*.png;*.jpg;*.jpeg;*.tiff">
+    在这里放下你的图片
   </div>
 
   <output #out></output>

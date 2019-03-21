@@ -1,0 +1,65 @@
+﻿<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+          main { flow:stack; size:*; background: gold; }  
+
+          main > section { // transparent layer
+            size:*;        // covers whole area.
+          }
+
+          main > section.n1 > div {
+            size:max-content;
+            background:orange;
+            margin-top:*;
+            margin-right:*; // bottom-left corner;
+          }
+
+          main > section.n2 > div {
+            size:max-content;
+            background:red; color:white;
+            margin-top:*;
+            margin-left:*; // bottom-right corner;
+          }
+
+          main > section > div:hover {
+            background-color:blue; color:white;
+          }
+
+          main > div {
+            size:max-content;
+            background:green; color:white;
+            margin:*; // in the middle
+          }
+
+          main > div:hover {
+            background-color:blue; color:white; 
+          }
+
+          #l2opaque:checked +
+             main > section.n2 
+          { 
+              background-color: rgba(0,0,0,0.2); // this will make non-transparent for the mouse events
+          }
+
+
+        </style>
+        <script type="text/tiscript"></script>
+    </head>
+    <body>
+      <p>图层使用flow:stack容器。注意: 如果图层拥有任何背景定义，则它将不再是"鼠标穿透"。</p>
+      <p>当下面的选项被勾选时，下面的图层1将不再响应鼠标 - 它被放在了一个非透明图层下面。</p>
+      <button|checkbox #l2opaque>图层2非透明</button>
+      <main>
+         <section.n1>
+            <div>on layer 1</div>
+         </section>  
+         <section.n2>
+            <div>on layer 2</div>
+         </section>  
+         <div>div-layer 3</div>
+      </main>
+
+    </body>
+</html>

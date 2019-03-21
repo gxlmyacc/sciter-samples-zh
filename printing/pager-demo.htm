@@ -8,7 +8,7 @@
     frame > pagebox {
       background-color:white;
       /*border: 1px solid #444;*/
-      box-shadow: 2px 2px 6px #224;
+      box-shadow: 2dip 2dip 6dip #224;
     }
     
     </style>
@@ -17,30 +17,37 @@
       var currentPageNo = $(#current-page);
       var contentUrl = self.url("samples/print-test.htm"); //.toUrlString();
       
-      $(button#select-printer).on("click",function() {  pager.selectPrinter(); });
-      $(button#print).on("click", function() { pager.print(); });
+      event click $(button#select-printer) {  pager.selectPrinter(); }
       
-      $(select#to-load).on("change", function() {   
+      event click $(button#print) { 
+        pager.print(); // print all pages
+        //pager.print([1]); // print only first page
+      }
+      
+      event change $(select#to-load) {   
         contentUrl = self.url( this.value ); //.toUrlString();
         currentPageNo.attributes["max"] = 1;
         currentPageNo.value = 1;
         pager.loadDocument( contentUrl ); 
       });
       
-      currentPageNo.on("change", function(){
+      event change $(#current-page) {
         pager.pageNo( this.value );
       });
 
-      $(button#load-template-alt).on("click", function() { 
+      event click $(button#load-template-alt) { 
         var templ = self.url("page-template-alt.htm"); //.toUrlString();
         pager.loadDocument( templ, contentUrl ); 
       });
       
-      pager.on("paginationend", function(evt) {
+      event paginationend $(frame) (evt) {
         $(#numpages).value = evt.reason;
         $(#current-page).attributes["max"] = evt.reason;
       });
-      
+
+      event click $(button#load-from-mem){ 
+        pager.loadHtml( "<html><body>this is a test.</body></html", "about:blank"); 
+      });      
       
     </script>
   </head>
@@ -49,13 +56,17 @@
   <button #select-printer>选择打印机</button>
   <button #print>打印</button>
   <button #load-template-alt>设置可选模板</button>
+  <button #load-from-mem>从内存中加载HTML</button>
   
   加载：<select|dropdown #to-load>
     <option>samples/print-test.htm</option>
+    <option>cheat-sheets/script.htm</option>    
+    <option>cheat-sheets/script-dom.htm</option>
     <option>samples/print-svg.htm</option>
     <option>samples/print-drawing.htm</option>
     <option>samples/print-image.htm</option>
     <option>samples/print-metrics.htm</option>
+    <option>http://www.terrainformatica.com/tests/printing/print-image.htm</option>
   </select>
   
   第 <input|integer #current-page value=1 step=1 min=1 max=1> 页，共 <output|integer #numpages /> 页

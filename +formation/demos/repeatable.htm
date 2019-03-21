@@ -4,9 +4,9 @@
     <title>Formation + Repeatable 示例</title>
     <style>
     
-      div { flow:row(label,input); font:system; border-spacing:4px; margin:4px; }
+      div { flow:row(label,input); font:system; border-spacing:4dip; margin:4dip; }
       div > label { vertical-align: baseline; width:max-intrinsic;}
-      section[name=person] { border:1px solid; padding:4px; margin:4px; }
+      section[name=person] { border:1dip solid; padding:4dip; margin:4dip; }
 
 	  div#sexgroup { flow: horizontal; }
     
@@ -33,12 +33,12 @@
       }
       
       // 注意: <ol(friends)>中会根据模板自动生成<li>列表
-      $(#set) << event click() { root.value = data; }
+      event click $(#set) { root.value = data; }
       
-      $(#get) << event click() { $(#out).text = String.printf("%V", root.value ).replace("\t","  "); }
+      event click $(#get) { $(#out).text = String.printf("%V", root.value ).replace("\t","  "); }
       
       // 显示formation数据结构:
-      $(#show) << event click() { 
+      event click $(#show) { 
         view.msgbox( #information, root.toHtmlString());
       }
     

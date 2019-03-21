@@ -50,24 +50,66 @@
   
     var records = new Array(500);
     
+    function imageUrl(i) {
+      switch(i) {
+        case 0: return "../../ideas/carousel/images/199480111_87d4cb3e38_s.jpg";
+        case 1: return "../../ideas/carousel/images/199481072_b4a0d09597_s.jpg";
+        case 2: return "../../ideas/carousel/images/199481087_33ae73a8de_s.jpg";
+        case 3: return "../../ideas/carousel/images/199481108_4359e6b971_s.jpg";
+        default:
+          if(i & 1) return "../../ideas/carousel/images/199481143_3c148d9dd3_s.jpg";
+          return "../../ideas/carousel/images/199481203_ad4cdcf109_s.jpg";
+      }
+    }
+    
     for(var i = 0; i < records.length; ++i)
-      records[i] = {index: i, caption:"项", status:"", imageUrl: (i & 1 ? "sciter:copy.png": "sciter:cut.png") };
+      records[i] = {
+        index: i, 
+        caption:"项", 
+        status:"",
+        imageUrl: imageUrl(i) //(i & 1 ? "sciter:copy.png": "sciter:cut.png") 
+      };
 
     var n = records.length;
     var p = 0;
     
     function setupItemView(recordNo, record, itemEl) {
       itemEl.$(img).attributes["src"] = record.imageUrl; // 或者任何你想要做的事
+      itemEl.$(td.custom).$content({record.caption} - {record.index});
     }    
    
     var vlist = VirtualList {
       container     : $(table>tbody),
-      bufferSize    : 100, // 滑动窗口中的记录数
+      bufferSize    : 20, // 滑动窗口中的记录数
       setupItemView : setupItemView
     };
     
     // 绑定这些记录
-    vlist.value = records;   
+    vlist.value = records; 
+
+    $(button#add-record) << event click {
+      var i = records.length;
+      records.push {
+        index: i, 
+        caption:"New item", 
+        status:"",
+        imageUrl: imageUrl(i);
+      }
+    }
+
+    $(button#change-record) << event click {
+      var i = 0;
+      records[i] = {
+        index: i, 
+        caption:"Changed item", 
+        status:"",
+        imageUrl: imageUrl(i);
+      };
+    }
+
+    $(button#update-record) << event click {
+      records[0].caption = records[0].caption + "*";
+    }    
   }
   
   </script>
@@ -78,12 +120,16 @@
   
   <p>记录数组初始时创建了500条记录。记录视图由自定义的setupItemView()函数来配置</p> 
 
+  <button#add-record>添加记录</button>
+  <button#change-record>修改第一个记录</button>
+  <button#update-record>更新第一个记录</button>
+  
   <table>
     <thead>
-      <tr><th(index)>索引</th><th(caption)>标题</th><th(status)>状态</th><th>图像</th></tr>
+      <tr><th(index)>索引</th><th(caption)>标题</th><th(status)>状态</th><th>图像</th><th>custom content</th></tr>
     </thead>
     <tbody>
-      <tr><td(index)></td><td(caption)></td><td(status)></td><td><img/></td></tr>
+      <tr><td(index)></td><td(caption)></td><td(status)></td><td><img/></td><td.custom></td></tr>
     </tbody>
   </table>
  

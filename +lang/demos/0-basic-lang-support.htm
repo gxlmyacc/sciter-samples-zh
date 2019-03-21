@@ -16,8 +16,8 @@
       include "../lang.tis";
       include "../lang-tool.tis";
       
-      $(select#lang).onValueChanged = function() { self.language = this.value; }
-      $(input[name=nmatches]).onValueChanged = function() { $(var[name=nmatches]).value = this.value; }
+      event change $(select#lang) { self.language = this.value; }
+      event change $(input[name=nmatches]) { $(var[name=nmatches]).value = this.value; }
     
     </script>
     
@@ -25,7 +25,7 @@
   <body>
     <h2>UI翻译 基本示例 使用Lang框架</h2>
     <fieldset>
-      <p><label>UI language</label> <include src=lang-selector.htm /></p>
+      <p><label title="Title test">UI language</label> <include src=lang-selector.htm /></p>
       <hr>
       <label>Matches</label> : <input|integer(nmatches) min=0 max=100 step=1 value=0 >
       <p><var(nmatches) value=0>There are # matches in the box</var>.</p> 

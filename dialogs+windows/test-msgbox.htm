@@ -8,18 +8,18 @@
 
   @click @on "#hello-world-1": {
     var r = view.msgbox(#alert,"你好!");
-    $(#out).text = String.println(r);        
+    $(#out).text = r;        
   }
   @click @on "#hello-world-2": {
     var r = view.msgbox { type:#information, 
                   content:"你好!", 
-                  title:"我是自定义标题" };
-    $(#out).text = String.println(r);        
+                  caption:"我是自定义标题" };
+    $(#out).text = r;        
   }
   @click @on "#hello-world-3": {
     view.msgbox { type:#information, 
                   content:"世界!", 
-                  title:"你好",
+                  caption:"你好",
                   onLoad: function(root){ $(#out).text = String.printf("消息框加载了：%s\n",root); },
                   onClose: function(root,buttonSym){ $(#out).text = String.printf("消息框被关闭：#%s\n",buttonSym); }
                 };
@@ -30,8 +30,8 @@
                                content:"有没有人啊啊啊?", 
                                //buttons:[#yes,#no]
                                 buttons:[
-                                 {id:#yes,text:"是"},
-                                 {id:#cancel,text:"否",role:"default-button"}]   
+                                 {id:#yes,text:"是",role:"default-button"},
+                                 {id:#cancel,text:"否",role:"cancel-button"}]   
                              };
 	 $(#out).text = String.printf("消息框结果: #%s\n",result);
   }

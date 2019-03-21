@@ -25,7 +25,11 @@
             src = path; // 报告改变源
           }
 
-          
+        @observing #changes "obj.a"
+          function changeA() { stdout.println("obj.a changed"); }
+        
+        @observing #changes "obj.b"
+          function changeB() { stdout.println("obj.b changed"); }          
       }    
     
     </script>

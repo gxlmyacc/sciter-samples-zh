@@ -13,35 +13,40 @@
                       flow:horizontal; }
       body > header > caption { width:*; }
       body > header > button { margin-bottom:20dip;; }
-      body > main { size:*; background:white;}
+      body > main { size:*; background:white; overflow:hidden;}
     
     </style>
     <script type="text/tiscript">
+    var x = 0;
+
+    function change() {
+     x = x + 1;
+     $(p).value = x;
+     return true;
+    }
     
     function self.ready() {
       view.state = View.WINDOW_SHOWN;
+
+      view << event statechange {
+        $(button#maximize).attributes.toggleClass("restore", view.windowState == View.WINDOW_MAXIMIZED); 
+      } 
+    
+      self.timer(1s, change);
     }
-    
-    self.on("click","button#hide", function() {
-      // hide it for 5 seconds:
-      view.state = View.WINDOW_HIDDEN;
-      self.timer(5s, function() {
-        view.state = View.WINDOW_SHOWN;
-      });
-    });
-    
+
     </script>
   </head>
 <body>
-  <header role="window-caption">
-    <caption disable>±êÌâ</caption>
+  <header>
+    <caption role="window-caption">Caption</caption>
     <button role="window-minimize">_</button>
     <button role="window-maximize">o</button>
     <button role="window-close">X</button>
     <button #hide>-</button>
   </header>
   <main>  
-    ÄãºÃ!
+    <p/>
   </main>
 </body>
 </html>

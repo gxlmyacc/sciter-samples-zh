@@ -38,16 +38,17 @@ function dialog(params)
       buttons_html += String.printf("<button%s>%s</button>", cls, button_def.caption || "");
   }
   
-  var html = "<div#lightbox-shim>"
+  var html =
     "<div.dialog-frame>"
       "<caption>" + caption + "</caption>"
       + body_html + 
       "<text.buttons>" + buttons_html + "</text>"
-    "</div>"
-  "</div>";
+    "</div>";
 
   //self.$(body).append(html);
   self.append(html);
+  
+  assert self.last.$is(div.dialog-frame);
   
   var dlg = self.last; // 我们的对话框层
   var prev_parent = null;
@@ -58,8 +59,8 @@ function dialog(params)
   else {
     // if we've got dialog body as a reference of existing Element 
     prev_parent = body.parent;
-    prev_index = body.index;
-    dlg.$(div.dialog-frame).insert(body,1); // insert it after the <caption>
+    prev_index = body.nodeIndex;
+    dlg.insert(body,1); // insert it after the <caption>
   }  
   
   var ret_val = null; // value to return
@@ -82,7 +83,7 @@ function dialog(params)
   // 装载控制事件处理器
   dlg.onControlEvent = function(evt)
   {
-    if( evt.type != Event.BUTTON_CLICK || !evt.target.$is(div#lightbox-shim > div.dialog-frame > text.buttons > button))
+    if( evt.type != Event.BUTTON_CLICK || !evt.target.$is(div.dialog-frame > text.buttons > button))
       return;
     //evt.target is a button on text.buttons bar
     var button_val = buttons[evt.target.index].value;
@@ -121,7 +122,9 @@ function dialog(params)
   
   body.state.expanded = true;
 
-  view.update(); 
+  //view.update(); 
+  var docBody = $(body);
+  docBody.attributes.addClass("dialog-shown");
 
   var sfocus = view.focus;
   view.eventsRoot = dlg;
@@ -133,8 +136,9 @@ function dialog(params)
   if(prev_parent) //如果我们是使用已经存在的DOM元素，则将它返还
     prev_parent.insert(body,prev_index);
   
-  dlg.detach(); // 从DOM中移除对话框元素
-  view.update(); 
+  dlg.remove(); // 从DOM中移除对话框元素
+  docBody.attributes.removeClass("dialog-shown");
+  //view.update(); 
   
   if(params.returns == #values && ret_val == #ok)
     return body.value;

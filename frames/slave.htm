@@ -4,9 +4,9 @@
     <style></style>
     <script type="text/tiscript">
     
-      $(button#call-bar).onClick = function() { bar(); }
-      
-      $(button#post-call-bar).onClick = function() { this.post(function() { bar(); }); }
+      event click $(button#call-bar) { bar(); }
+      event click $(button#post-call-bar) { this.post(function() { bar(); }); }
+      event click $(button#check-host-var) { view.msgbox(#information, "definedInMasterFrame=" + definedInMasterFrame); }
       
       function globalNs() { return this; }
      
@@ -27,6 +27,7 @@
 <body>
   <button #call-bar>调用主框架中的bar()函数</button>
   <button #post-call-bar>异步调用主框架中的bar()函数</button>
+  <button #check-host-var>检查在主命名空间中的var</button>
   
   <button #test>测试 (将在宿主文档中被处理)</button>
   

@@ -17,7 +17,7 @@
     
       // 这个行为重定义了Element的value属性，这个元素的value值是它的内部的html。
       // 标记(Markup)元素可以绑定到包含html标记的+pluse变量和字段上。
-      class Markup: Behavior 
+      class Markup: Element
       {
         property value(v) {
           get return this.html;
@@ -28,10 +28,14 @@
   
       namespace Data // 我们的模型
       {  
-        var someCustomers = [{name:"Symantec", motto:"Stay ahead of <b>tomorrow</b> threats."   },
-                             {name:"ESET", motto:"The <b>best</b> security money can buy"   },
-                             {name:"Comodo", motto:"Real time cloud protection when you are <i>online</i>. Containment protection when you are <i>offline<i/>" } 
-                            ];
+        var someCustomers = [
+          {name:"Symantec", motto:"Stay ahead of <b>tomorrow</b> threats."   },
+          {name:"ESET", motto:"The <b>best</b> security money can buy"   },
+          {
+            name:"Comodo", 
+            motto:"Real time cloud protection when you are <i>online</i>. Containment protection when you are <i>offline<i/>" 
+          } 
+        ];
       }    
       
     </script>

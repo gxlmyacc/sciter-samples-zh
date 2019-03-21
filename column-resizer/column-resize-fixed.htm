@@ -1,0 +1,37 @@
+<html>
+   <head>
+      <style type="text/css">
+         table thead { behavior: column-resizer; }
+         table  { border-spacing:0; border-collapse:collapse; width:*; 
+                  border:1dip solid red;
+                  overflow-x:auto;
+                  background:#ddd; }
+         td, th { border: solid 1dip grey; height: 24dip; background:#fff;}
+
+         body
+         {
+           background-color:hsl(103, 11, 195);
+         }
+      </style>
+   </head>
+   <body>
+      <p>这个表格只有固定列。通常情况下在水平方向上它是可以滚动的。</p>
+      <p>第一列因为min/max约束，所以尺寸时不可调整的。</p>
+
+      <table fixedlayout>
+        <thead>
+           <tr>
+             <th style="width:100dip; min-width:100dip; max-width:100dip;">类型</th>
+             <th style="width:100dip;">文件路径</th>             
+             <th style="width:100dip;">创建时间</th>
+             <th style="width:100dip;">状态</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr><td/><td/><td/><td/></tr>
+           <tr><td/><td/><td/><td/></tr>
+           <tr><td/><td/><td/><td/></tr>
+        </tbody>
+      </table>
+   </body>
+</html>

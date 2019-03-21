@@ -1,0 +1,92 @@
+﻿<html>
+  <head>
+    <title>Plus: very basic sample</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+      ol { width:*; }
+      ol > li { flow:horizontal; border-bottom:1px solid dotted;}
+      ol > li:hover { color:red; cursor:pointer; }
+      ol > li > label { display:inline-block;  }
+      
+      textarea { width:*; display:block; }
+      
+      div#details {
+        flow:row(label,input textarea);
+      }
+      
+
+    </style>
+    
+    <script type="text/tiscript">
+      
+  
+      namespace Data // our model
+      {  
+        var someCustomers = [{name:"Symantec", motto:"座右铭1", deck:[{name:"J",num:5},{name:"J",num:1},{name:"J",num:0}]   },
+                             {name:"ESET", motto:"座右铭2", deck:[{name:"Q",num:4},{name:"J",num:2}]   },
+                             {name:"Comodo", motto:"座右铭3", deck:[{name:"K",num:4}]} ,
+                             {name:"BitDefender", motto:"Protect & optimize!", deck:[{name:"A",num:2},{name:"J",num:2}]}];
+        
+        var currentCustomer = {};
+
+       
+        // select current customer
+        function selectCustomer(object) { currentCustomer = object; stdout.println("select"); }
+
+        function removeCard(index) {
+          currentCustomer.deck.remove(index);
+        }
+      }  
+      
+    </script>
+  </head>
+
+<body model="Data"> <!-- define data model we observe -->
+
+  <note><p>下面的列表绑定到了<code>Data.someCustomers</code>数组上，所以它反映了数组中列表项。</p>
+        <p>下面的"当前项"绑定了currentCustomer变量</p>
+        <p>currentCustomer变量通过@click处理器进行设置</p>
+        <p>currentCustomer包含绑定的子重复项</p>
+  </note>
+
+  <!-- the repeateable section -->
+  <ol each="customer in someCustomers">
+      <li click="selectCustomer(customer)">
+          <output(customer.name)/>: 
+          <output(customer.motto)/>,
+          项目: <output|number(customer.deck.length)/>
+      </li>
+  </ol>
+  
+  <!-- current record -->
+  <div model="currentCustomer">
+    <h3>Details of <output(name)/>:</h3>  
+    <div#details>
+      <label>姓名</label><input(name)/>
+      <label>座右铭</label><textarea(motto) />   
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>索引</th>
+                <th>姓名</th>
+                <th>数量</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr repeat="index,item in deck">
+                <td><output(index)/></td>
+                <td><output(item.name)/></td>
+                <td><output(item.num)/></td>
+                <td><button click="deck.remove(index)">移除</button></td>
+                <td><button click="removeCard(index)">移除 (alt)</button></td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  
+</body>
+</html>

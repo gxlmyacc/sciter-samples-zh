@@ -43,26 +43,36 @@
       
       generate();
       
-      $(button#test).onClick = function()
+      event click $(button#test)
       {
         generate();
       }
       
-      $(button#save).onClick = function()
+      event click $(button#save-png)
       {
         var bytes = dynImage.toBytes();
-        var filter = "PNG Files (*.png)|*.PNG|All Files (*.*)|*.*";
+        var filter = "PNG Files (*.png)|*.png|All Files (*.*)|*.*";
         var ext = "png";
         var path = view.selectFile(#save, filter, ext);
         if( path )
            bytes.save(path);
       }
-      $(button#to-clipboard).onClick = function()
+      event click $(button#save-jpg)
+      {
+        var bytes = dynImage.toBytes(85); // 85% quality level
+        var filter = "JPEG Files (*.jpg)|*.jpg|All Files (*.*)|*.*";
+        var ext = "jpg";
+        var path = view.selectFile(#save, filter, ext);
+        if( path )
+           bytes.save(path);
+      }
+      
+      event click $(button#to-clipboard)
       {
         view.clipboard(#put, dynImage);
       }
       
-      $(button#from-clipboard).onClick = function()
+      event click $(button#from-clipboard)
       {
         var img = view.clipboard(#get, #picture);
         if( img )
@@ -72,7 +82,8 @@
   </head>
 <body>
   <button #test>重新上传</button>
-  <button #save>保存图片到文件</button>
+  <button #save-png>保存PNG图片到文件</button>
+  <button #save-jpg>保存JPEG图片到文件</button>
   <button #to-clipboard>保存图片到剪切板</button>
   <button #from-clipboard>从剪切板加载图片</button>
   <div .test>参数</div>

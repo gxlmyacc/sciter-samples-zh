@@ -27,6 +27,8 @@
         src: url("fonts/Roboto-BoldItalic.ttf");
       }
       
+      body { font:system; }
+      
       p { font-family: Roboto, sans-serif; font-size: 12pt; }
     
     </style>
@@ -35,6 +37,12 @@
 <body>
 
   <p>测试Roboto字体: <i>斜体(italic)</i>, <b>粗体(bold)</b>, <i><b>粗斜体(bold-italic)<b></i></p>
+  
+  <svg width="500" height="40" viewBox="0 0 500 40" style="border:1dip solid">
+    <text x="0" y="35" style="font-family:Roboto; font-size:12pt; font-weight:bold; width:max-content">
+      Roboto字体测试
+    </text>
+  </svg>
 
 </body>
 </html>

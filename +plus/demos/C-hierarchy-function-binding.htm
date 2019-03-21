@@ -39,7 +39,17 @@
           //
           // 为了更新深层次的数据，并且保持绑定，
 		      // 请使用Object.merge方法 (定义在+plus.tis中):
-          obj.baz.merge { abc:"changed", def:"changed" };        
+          obj.baz.merge { abc:"changed", def:"changed" };
+
+          /*
+          // Merging the whole namespace
+          Object.merge (Data, {
+            obj:{
+              foo:1,
+              bar:4,
+              baz: { abc:"changed", def:4 }
+            }
+          });*/          
         }
         
       }    

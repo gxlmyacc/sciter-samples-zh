@@ -4,6 +4,7 @@
     body 
     {
       flow:horizontal-flow;
+      border-spacing: 1em;
     }
     form 
     { 
@@ -75,7 +76,7 @@
     for( var el in self.$$( form button.show ) )
       el.onClick = showValues;
       
-    class Phone: Behavior
+    class Phone: Element
     {
       function attached()
       {
@@ -95,8 +96,8 @@
       {
         get 
         { 
-          var v = this.state.value; 
-          return String.printf("(%s)%s-%s",v[0],v[1],v[2]);
+          var tv = this.state.value; 
+          return String.printf("(%s)%s-%s",tv[0],tv[1],tv[2]);
         }
         set
         {
@@ -106,13 +107,13 @@
       }
     }
     
-    class IPAddress: Behavior
+    class IPAddress: Element
     {
       const ipmask = [
-            { type:"integer", width:3, min:0, max:255, #leading-zero:true }, ".",
-            { type:"integer", width:3, min:0, max:255, #leading-zero:true }, ".",
-            { type:"integer", width:3, min:0, max:255, #leading-zero:true }, ".",
-            { type:"integer", width:3, min:0, max:255, #leading-zero:true } ];
+            { type:"integer", width:3, min:0, max:255, leading-zero:true }, ".",
+            { type:"integer", width:3, min:0, max:255, leading-zero:true }, ".",
+            { type:"integer", width:3, min:0, max:255, leading-zero:true }, ".",
+            { type:"integer", width:3, min:0, max:255, leading-zero:true } ];
             
       function attached()
       {

@@ -1,0 +1,73 @@
+﻿<html>
+  <head>
+    <title></title>
+    <style>
+      
+      body {
+        prototype: FileDropZone;
+      }
+      body.active-target { background:gold; }
+
+      popup { background: orange; size:max-content;}
+
+
+    </style>
+    <script type="text/tiscript">
+    
+    class FileDropZone : Element 
+    {
+
+      event dragaccept (evt) {
+        if(evt.draggingDataType == #file)
+          return true;
+        return false;
+      }
+
+      event dragenter (evt) 
+      {
+        this.attributes.addClass("active-target");
+        var fn = evt.dragging;
+        this.popup = $(popup);
+        this.popup.$(span).text = fn;
+        return true;
+      }  
+
+      event dragleave (evt) 
+      {
+        this.attributes.removeClass("active-target");
+        this.popup.move();
+        return true;
+      }  
+
+      event drag (evt) 
+      {
+        this.popup.move(evt.xView + 32,evt.yView + 32, #view, #detached-topmost-window );
+        return true;
+      }  
+
+      event drop (evt) 
+      {
+        this.attributes.removeClass("active-target");
+        this.popup.move();
+        //var fn = evt.dragging;
+        //view.msgbox(#information, String.printf("Dropped:%V",fn));
+        return true;
+      }  
+      
+    }
+    </script>
+
+
+  </head>
+<body>
+
+  <h2>IDropTarget 示例, 从Windows Shell 拖拽文件到DOM上</h2> 
+
+  <p>请将文件放在这里</p>
+
+  <popup disabled>
+    文件名:<span.fn/>
+  </popup>
+
+</body>
+</html>

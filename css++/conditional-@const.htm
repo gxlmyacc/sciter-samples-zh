@@ -17,10 +17,28 @@
    
     p { color: @MAIN_COLOR; }
     
-    
+    @set test {
+       @const MAIN_COLOR: #090;
+       p { color: @MAIN_COLOR; }
+    }
+
+    div.with-set { 
+      style-set:test;  
+    }    
     </style>
+    <script type="text/tiscript"> 
+      function self.ready() {
+        // this shall print different colors:
+        for(var el in $$(p)) {
+          stdout.println(el.style.constant("MAIN_COLOR"));
+        }
+      }
+    </script>  
   </head>
 <body>
   <p>这个文本在屏幕是红色，而在打印机上是黑色。</p>
+  <div.with-set>
+    <p>这个文本必须是绿色的。</p>
+  </div>
 </body>
 </html>

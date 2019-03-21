@@ -27,7 +27,7 @@
   </style>
   <script type="text/tiscript">
     include "lightbox.tis";
-    SetupLightbox(".thumb", function(el_target, el_root) {
+    Lightbox.setup(".thumb", function(el_root, el_target) {
       var img_url = el_target.style#background-image;
       el_root.$append(<img src="{img_url}" />);
     });

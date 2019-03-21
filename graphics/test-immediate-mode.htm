@@ -43,37 +43,38 @@
           var x1 = 10, y1 = 10;
           var x2 = w - 10, y2 = h - 10;
           var w1 = w - 20, h1 = h - 20;
+
+
+          var path = new Graphics.Path();
+          // pie 
+          path.moveTo((x1+x2)/2, (y1+y2)/2)
+              .arc( (x1+x2)/2, (y1+y2)/2, w1/3, h1/3, 0, Math.PI / 2)
+              .lineTo((x1+x2)/2, (y1+y2)/2)
+              .close();
           
           //gfx.scale(0.5,0.5, w/2,h/2);
           
-          gfx.lineWidth(2)
-             .lineLinearGradient(x1,y1,x1,y2,color(0xFF,0,0),color(0,0,0xFF) )
+          gfx.strokeWidth(2)
+             .strokeLinearGradient(x1,y1,x1,y2,color(0xFF,0,0),color(0,0,0xFF) )
              .fillLinearGradient(x1,y1,x1,y2,color(0xFF,0x7F,0x7F,0.3),color(0x7F,0x7F,0xFF,0.6) )
-             .rectangle( x1, y1, w1, h1, 20 );
-          
-          gfx.lineJoin = #round;
-          
-          gfx.lineWidth(10)
-             .strokeCap(#round)
-             .strokeDash(#dotted)
-             .lineColor(color(0,0xAF,0))
-             .fillRadialGradient( (x1+x2)/2, (y1+y2)/2, Integer.min(w,h) / 2, [color(0,0xFF,0,0.3), color(0xFF,0,0,0.5), color(0x7F,0xAF,0x7F)] )
-             .triangle( (x1+x2)/2, y1, x2, y2, x1, y2 )
-             .strokeDash(#solid);
+             .ellipse( (x1+x2)/2, (y1+y2)/2, w1/2, h1/2 );
 
-          gfx.lineWidth(2)
+          gfx.strokeWidth(4)
+             .strokeColor(color("gold"))
+             .fillColor(color(0xFF,0xFF,0,0.3))
+             //.arc( (x1+x2)/2, (y1+y2)/2, w1/3, h1/3, 0, Math.PI / 2);
+             .drawPath(path);
+          
+          gfx.strokeJoin(#round);
+          
+          gfx.strokeWidth(10)
+             .strokeColor(color(0,0xAF,0))
+             .fillRadialGradient( (x1+x2)/2, (y1+y2)/2, Integer.min(w,h) / 2, color(0,0xFF,0,0.3), color(0x7F,0xAF,0x7F))
+             .star( (x1+x2)/2, (y1+y2)/2, w1/3, h1/3, 0, 7);
+
+          /*gfx.lineWidth(2)
              .lineColor(color(0,0,0xFF))
-             .line( x1, y1, x2, y2 );
-
-          gfx.lineWidth(2)
-             .lineColor(color(0,0xFF,0))
-             .fillColor(color(0,0x7F,0,0.5))
-             .polygon( 0,0, 40,40, 40, 0, 0, 40);
-
-          gfx.translate(w-40,h-40)
-             .lineWidth(2)
-             .lineColor(color(0xFF,0,0))
-             .polyline( 0,0, 40,40, 40, 0, 0, 40);
+             .line( x1, y1, x2, y2 );*/
              
           //var (x,y) = gfx.worldToScreen(10,10);
           //stdout.printf("%f,%f\n",x,y);

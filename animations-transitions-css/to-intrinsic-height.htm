@@ -12,11 +12,12 @@
     caption + div
     {
       visibility:collapse; //默认不可见
-      height:0px;
+      height:4dip;
       background-color:white;
       color:white;
-      padding:4px;
+      padding:4dip;
       vertical-align:bottom;
+      transition: height 0.4s, background-color 0.4s, color 0.4s;
     }
     
     caption:checked
@@ -30,10 +31,6 @@
       height:min-content;
       background-color:#EEE;
       color:#000;
-      
-      transition: height(quad-out,0.4s)  //设置选中时的动画效果
-                  background-color(linear,0.4s)
-                  color(linear,0.4s);
     }
         
     div:animating
@@ -48,7 +45,7 @@
   <h1>transition属性的扩展 示例</h1>
   <p>动画从height:0 到 height:min-content:</p>
   
-  <div style="width:50%;margin:4px *;" >
+  <div style="width:50%;margin:4dip *;" >
     <caption>点我!</caption>
     <div>
       <p>从2006年开始，Sciter已经被很多家公司使用了。目前，基于Sciter的UI程序运行在超过1.2亿台PC和Max机器上。因此，在你的机器上可能已经有使用Sciter的应用程序了。</p>

@@ -1,0 +1,14 @@
+popup.bubble
+{
+  prototype: BubblePopup url(BubblePopup.tis);
+  background-color: transparent;
+  width:400dip;
+  height:300dip;
+  cursor:pointer;
+  padding-top: 12dip;
+  cursor: default;
+  margin:2dip;
+}
+popup.bubble > .content {
+  margin:6dip;
+}

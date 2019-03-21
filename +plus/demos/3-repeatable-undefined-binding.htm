@@ -1,0 +1,34 @@
+﻿<html>
+  <head>
+    <title>Plus 基本示例</title>
+    <style>
+      @import url(../plus.css); /* 仅需引入Plus框架 */
+      @import url(../../note.css); 
+      
+    </style>
+    
+    <script type="text/tiscript">
+  
+      namespace Data // 我们的模型
+      {  
+        var items = [];
+      }    
+      
+    </script>
+  </head>
+
+<body model="Data"> <!-- 定义我们要观察的数据模型 -->
+
+  <p>显示所有 <output(items.length) /> 项</p>
+
+  <button click="items.length = 10">显示 10 项</button>
+  <button click="items.length = 0">清空</button>
+
+  <!-- 重复节 -->
+  <div each="item in items">
+      <button disabled>一个按钮</button> 
+  </div>
+ 
+  
+</body>
+</html>

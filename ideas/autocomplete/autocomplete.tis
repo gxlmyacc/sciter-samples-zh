@@ -10,24 +10,26 @@
     me = this;
     
     this.candidate = this.$(span);
-    var input = this.input = this.$(input);
+    this.input = this.$(input);
     this.candidates = this.$(popup);
-    this.subscribe("change","input", :: (this super).onTextChange() );
-    this.subscribe("mouseup","span", :: input.state.focus = true );
-    this.subscribe("click","popup>text", :: (this super).setText(this.text) );
   }
+  
+  event change $(input) { this.onTextChange(); }
+  event change $(mouseup) { this.input.state.focus = true; }
+  event click  $(popup>text) (evt,elText) { this.setText(elText.text, elText.attributes["data-id"]) }
   
   function onTextChange()
   {
     var text = this.input.value;
     if( text )
     {
-      //this.input.value = 
-      text = text.toUpperCase();
+      var caretPos = this.input.selectionStart();
+      this.input.value = text = text.toUpperCase();
+      this.input.setSelection(caretPos,caretPos); 
       var list = this.getCandidates(text);
       this.candidates.clear();
       for(var li in list) 
-      this.candidates.$append(<text>{li}</text>);
+        this.candidates.$append(<text data-id="{li.id}">{li.text}</text>);
       this.candidate.value = list.length ? list[0] : "";
       if (list.length > 0) 
       {
@@ -60,12 +62,13 @@
   
     var pattern = forText + "*";
   
-    return me._popupList.filter(:item: item like pattern) ;
+    return me._popupList.filter(:item: item.text like pattern) ;
   }
   
-  function setText(txt) {
+  function setText(txt,id) {
     this.candidates.state.popup = false;
     this.input.value = txt;
+    this.input.setSelection(0,txt.length); 
     this.input.state.focus = true;
   }
   

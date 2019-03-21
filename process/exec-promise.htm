@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+          plaintext { display:block; size:*; border:1dip solid;}
+          plaintext > text.error {  background: pink; }
+          plaintext:busy {
+            foreground: url(sciter:busy.png) no-repeat 100% 0%;
+            foreground-size: 16dip;
+          }
+        </style>
+        <script type="text/tiscript">
+
+          async function pingIt() {
+            var out = $(plaintext);
+            out.state.busy = true; 
+            const DOMAIN = "sciter.com";
+            var result;
+            try { 
+              if( System.PLATFORM == #Windows )
+                 result = await System.Process.exec("ping", ["-n", "1", DOMAIN]);
+              else
+                 result = await System.Process.exec("ping", ["-c", "1", DOMAIN]);
+              if( result == 0 ) 
+                result = DOMAIN + " is accessible";
+              else
+                result = String.$({DOMAIN} is not accessible, ping command returns {result}); 
+            } catch (err) {
+                result = err.toString();
+            }
+            out.state.busy = false;
+            out.value = result;             
+          }
+
+          event click $(#exec) {  pingIt(); }
+
+        </script>
+    </head>
+    <body>
+
+      <button #exec>ping sciter.com</button>
+
+      <plaintext></plaintext>
+
+
+    </body>
+</html>

@@ -1,21 +1,22 @@
 ﻿widget[type="auto-complete"] {
   prototype:AutoComplete url(autocomplete.tis); 
   flow:stack;
+  display:block;
   border: 1pt solid #D5D5D5;
-  padding:2px;
+  padding:2dip;
   width:8em;
   font:system;
 }
 
 widget[type="auto-complete"]:hover { 
   border-color: #B5B5B5; 
-  outline:3px glow #B5B5B5 0px; 
+  outline:3dip glow #B5B5B5 0dip; 
 }
 
 widget[type="auto-complete"]:focus { 
   border-color: #FE9900; 
   text-selection: highlighttext highlight; 
-  outline:3px glow #FE9900 0px;
+  outline:3dip glow #FE9900 0dip;
 }
 
 widget[type="auto-complete"]:disabled {  
@@ -28,16 +29,11 @@ widget[type="auto-complete"] > input,
 widget[type="auto-complete"] > span { 
   background: none;
   border:none;
-  padding:0;
+  padding:1dip;
   margin:0;
   display:block;
-  size:*
-}
-
-widget[type="auto-complete"] > input {
-  width: max-content;
-  min-width:1px;
-  background: transparent;
+  height:1.2em;
+  width:*
 }
 
 widget[type="auto-complete"] > span {
@@ -49,9 +45,13 @@ widget[type="auto-complete"] > popup {
   height:min-content;
   display:none;
   background:infobackground;
-  border:1px solid black;
+  border:1dip solid black;
 }
 
+widget[type="auto-complete"] > popup > text {
+  behavior:clickable;  // generates click events
+}
+    
 widget[type="auto-complete"] > popup > text:hover {
   background:highlight;
   color:highlighttext;

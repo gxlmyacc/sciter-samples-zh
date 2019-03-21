@@ -4,10 +4,15 @@
     <style>
     
       button[type=radio] { 
+        style-set: std-radio-base; // suppress default decoration styling
         background-image:url(stock:circle); 
         background-size:16dip 16dip; 
-        background-position: 0 50%; 
+        background-position: 0 50%;
+        background-repeat:no-repeat;
+        foreground:none;
         stroke:#333;
+        stroke-width:1dip;
+        padding: 1dip 1dip 1dip 20dip;
       }
       button[type=radio]:checked { 
         // that fat dot inside:
@@ -20,6 +25,29 @@
       button[type=radio]:hover {
         stroke:#0af;
       }
+      
+      button[type=checkbox] { 
+        style-set: std-checkbox-base; // suppress default decoration styling
+        background-image:url(stock:frame); 
+        background-size:16dip 16dip; 
+        background-position: 0 50%; 
+        background-repeat:no-repeat;
+        foreground:none;
+        stroke:red;
+        stroke-width:1dip;
+        padding: 1dip 1dip 1dip 20dip;
+      }
+      button[type=checkbox]:checked { 
+        // that fat dot inside:
+        foreground-image:url(stock:checkmark); 
+        foreground-size:9dip 9dip; 
+        foreground-position: 4dip 50%; 
+        foreground-repeat: no-repeat; 
+      }
+      
+      button[type=checkbox]:hover {
+        stroke:#0af;
+      }
     
     </style>
     <script type="text/tiscript"></script>
@@ -28,6 +56,9 @@
 
   <button|radio(group) checked>一</button>
   <button|radio(group)>二</button>
+<hr>
+  <button|checkbox(a) checked>一</button>
+  <button|checkbox(b)>二</button>
 
 </body>
 </html>

@@ -5,20 +5,19 @@
     html 
     { 
       font:system;
-      width:max-intrinsic; 
-      height:max-intrinsic; 
+      width:max-content; 
+      height:max-content; 
       overflow:hidden; 
     }
     
-    form { flow: row(label,input); border-spacing: 4dip; }
+    form { flow: row(label,input select); border-spacing: 4dip; }
     form > label { white-space:nowrap; text-align:right; vertical-align:baseline; }
     
   </style>
   <script type="text/tiscript">
   
-    include "../../decorators.tis";
-    
-    @click @on "#close-dialog" :: view.close( $(form).value );
+    event click $(#close-dialog) { view.close( $(form).value ); }
+    event change $(form) { stdout.printf("value=%V\n",$(form).value); }
     
     // 将对话框参数填充到表单上，'parameters'是由dialog传递过来的参数。
     $(form).value = view.parameters;
@@ -31,7 +30,14 @@
 <form>
   <label>One (Ctrl+1):</label><input type="text" name="one" accesskey="^1" />
   <label>Two (Ctrl+2):</label><input type="text" name="two" accesskey="^2" />
+  <label>Three (Ctrl+3):</label><input type="date" value="today" accesskey="^3" />
+  <label>Four (Ctrl+4):</label><select|dropdown(tplacement) accesskey="^4">
+                                <option value="top">at top</option>  
+                                <option value="bottom">at bottom</option>
+                                <option value="hide" selected>hide</option>  
+                              </select>    
 </form>
+动画测试：<img src="sciter:busy.png">
 <p style="text-align:center">
 <button id="close-dialog" role="default-button">关闭对话框并且返回一个值</button>
 </p>

@@ -39,7 +39,7 @@ function @DECLARE_EVENT(dummy, eventName)
 
 function delegate( that, thatMethod ) { return function(params..) { return thatMethod.apply(that, params); } }
 
-class VGrid: Behavior 
+class VGrid: Element 
 {
   const BUF_ROWS = 64;
 
@@ -217,6 +217,13 @@ class VGrid: Behavior
     }  
     return true;
   }
+  
+  function onControlEvent(evt) {
+    switch(evt.type) {
+      case Event.POPUP_READY: this.shownPopup = evt.target; break;
+      case Event.POPUP_DISMISSED: this.shownPopup = null; break;
+    }
+  }
 
   function setCurrentRow(recordIdx)
   {
@@ -244,9 +251,8 @@ class VGrid: Behavior
 			
       //this.selectRow(this.visibleRows - 1);
     }
-    if( var popup = this.$(:popup) ) 
-      popup.closePopup();
-
+    //if( var popup = this.$(:popup) ) 
+    //  popup.closePopup();
   }
 
   
@@ -352,7 +358,7 @@ class VGrid: Behavior
     {
       case Event.MOUSE_WHEEL:
       {
-        this.show(this.firstRowNo - evt.wheelDelta * this.visibleRows / 4);
+        this.show(this.firstRowNo - (evt.wheelDelta * this.visibleRows / 4).toInteger());
         return true;
       }
       case Event.MOUSE_DCLICK:
@@ -440,6 +446,8 @@ class VGrid: Behavior
   // request to show the data, does delayed post to prevent clogging by update requests
   function show(firstRowNo, delay = true)
   {
+    if(this.shownPopup) this.shownPopup.state.popup = false;
+    
     var rowCount = this.ds.rowCount;
     if( (firstRowNo + this.visibleRows) > rowCount )
       firstRowNo = rowCount - this.visibleRows; 

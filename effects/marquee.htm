@@ -1,7 +1,7 @@
 <html>
 <head>
   <style>
-    body { flow:horizontal; }
+    body > section { flow:horizontal; size:*; }
   
     div.marquee-h 
     {
@@ -49,10 +49,34 @@
       -marquee-style: alternate;
     }    
   
+    span#blinker {
+      display: inline-block;
+      vertical-align:middle;
+      size:1.2em;
+      background:red;
+    }
+
+    span#blinker:checked {
+      background:green; 
+    }
+    
   </style>  
+  <script type="text/tiscript">
+    event click $(button) {
+      view.msgbox(#information,"我在这儿");
+    }
+    function self.ready() {
+      var blinker = $(span#blinker);
+      blinker.timer(1s, function() {
+        blinker.state.checked = !blinker.state.checked;
+        return true;
+      });
+    }
+  </script>
 </head>
 <body>
-  
+  <button>测试: 显示消息框</button>并且这个<span#blinker />将会每秒变化一次
+  <section>
   <div #horizontal>
     <h1>-marquee: horizontal</h1> 
     marquee-style: scroll
@@ -162,6 +186,6 @@
       <p>第十个</p>
     </div>
   </div>  
-
+  </section>
 </body>
 </html>

@@ -30,16 +30,16 @@
 
   include "rect-tracker.tis"; //¼ÓÔØ ¾ØÐÎ¹ì¼£Æ÷ ½Å±¾¿â
 
+  const sandbox = self.$(div#sandbox);
 	function createSomeStuff()
 	{
-		self.$(div#sandbox).insert
-      { div, class:"stuff",
-        [
-          { div, "1" },
-          { div, "2" },
-          { div, "3" }
-        ]
-      };
+		sandbox.$append(
+      <div.stuff>
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+      </div>
+    );
 	}
 
   self.ready = function()

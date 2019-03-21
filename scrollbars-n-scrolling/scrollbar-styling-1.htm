@@ -13,20 +13,20 @@ body {
 {
   .prev /* 上边按钮样式定义 */
   { 
-    border:1px solid #AAA; 
+    border:1dip solid #AAA; 
     foreground-image:url( images/sb-v-scroll-prev.png ); 
     foreground-position:50% 50%;
     foreground-repeat:no-repeat;
-    height:15px;
+    height:15dip;
   }
   
   .next /* 下边按钮样式定义 */
   { 
-    border:1px solid #AAA; 
+    border:1dip solid #AAA; 
     foreground-image:url( images/sb-v-scroll-next.png ); 
     foreground-position:50% 50%;
     foreground-repeat:no-repeat; 
-    height:15px;
+    height:15dip;
   }
   
   .base,
@@ -39,7 +39,7 @@ body {
   }
   .slider /* 滑块按钮样式定义 */
   { 
-    border:1px solid #AAA; 
+    border:1dip solid #AAA; 
     foreground-image:url( images/sb-scroll-slider.png ); 
     foreground-position:50% 50%;
     foreground-repeat:no-repeat; 
@@ -66,7 +66,7 @@ body {
   .next:active,  .slider:active, 
   .prev:active    { background-color: #FFF; }
   
-  .base { width: 15px; } /* 显示声明垂直滚动条的宽度 */
+  .base { width: 15dip; } /* 显示声明垂直滚动条的宽度 */
   .corner { background-color: transparent; }
   
 }
@@ -76,32 +76,32 @@ body {
 {
   .prev /* 左边按钮样式定义 */
   { 
-    border:1px solid #AAA; 
+    border:1dip solid #AAA; 
     foreground-image:url( images/sb-h-scroll-prev.png ); 
     foreground-position:50% 50%;
     foreground-repeat:no-repeat;
-    width:15px;
+    width:15dip;
   }
   .next /* 右边按钮样式定义 */
   { 
-    border:1px solid #AAA; 
+    border:1dip solid #AAA; 
     foreground-image:url( images/sb-h-scroll-next.png ); 
     foreground-position:50% 50%;
     foreground-repeat:no-repeat; 
-    width:15px;
+    width:15dip;
   }
   .next-page, /* 右边空白区域样式定义 */
   .prev-page, /* 左边空白区域样式定义 */
   .base 
   { 
     background-image:url( images/sb-scroll-back.png ); 
-    background-position:5px 5px 5px 5px; /*左 上 右 下 偏移量*/
+    background-position:5dip 5dip 5dip 5dip; /*左 上 右 下 偏移量*/
     background-repeat:expand; 
   }
  
   .slider /* 滑块按钮样式定义 */
   { 
-    border:1px solid #AAA; 
+    border:1dip solid #AAA; 
     foreground-image:url( images/sb-scroll-slider.png ); 
     foreground-position:50% 50%;
     foreground-repeat:no-repeat; 
@@ -123,7 +123,7 @@ body {
   .next:active,  .slider:active, 
   .prev:active    { background-color: #FFF; }
   
-  .base { height: 15px; } /* 显示声明水平滚动条的高度 */
+  .base { height: 15dip; } /* 显示声明水平滚动条的高度 */
   
 }
 
@@ -138,18 +138,18 @@ div { height:*; width:*; }
 ul { 
     vertical-scrollbar: my-v-scrollbar; /* 指定垂直滚动条样式 */
     horizontal-scrollbar: my-h-scrollbar; /* 指定水平滚动条样式 */
-	margin: 10px; 
-	padding: 5px; 
+	margin: 10dip; 
+	padding: 5dip; 
 	size: *; 
-	border: dashed black 4px; 
+	border: dashed black 4dip; 
 	list-style-type: none; 
 	color: black; 
 }
 li { 
-	margin: 5px; 
-	padding: 5px; 
-	width: 240px; 
-	border: dashed black 1px; 
+	margin: 5dip; 
+	padding: 5dip; 
+	width: 240dip; 
+	border: dashed black 1dip; 
 	background-color: white; 
 	color: black; 
 	}

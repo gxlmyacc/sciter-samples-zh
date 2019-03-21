@@ -52,6 +52,9 @@ function String_test()
   
   assert s.split( " " ).length == 9;
   assert s.split( re1 ).length == 5;
+
+  assert "Russia".split("") == ["R","u","s","s","i","a"];
+  assert "Russia".split("s") == ["Ru","","ia"];
     
   assert s.substr(12, 5) == "Spain";
   assert s.substring(12, 17) == "Spain";
@@ -81,26 +84,38 @@ function String_test()
   r = "one,two,three" /~ "A";   assert r == "one,two,three" : "rcar NF";  
   r = "one,two,three" %~ "A";   assert r == ""              : "rcdr NF";  
 
-  // stringizer function tests:	
-	
-	// stringizer function per se (name starts from $)
+  // stringizer function tests: 
+  
+  // stringizer function per se (name starts from $)
   function $( s.. ) // all string composition components are passed here, e.g. 
-	                  // for the call $(one{1}two) s.. will be an array with the content:
-										// ["one",1,"two"]  
-	{
-	  return s.join("");
-	}
-		
-	assert $({1}one) == "1one";
-	assert $(one{1}two) == "one1two";
-	assert $(one{1}) == "one1";
-	assert $({1}{2}) == "12";
-	assert $({1}one{2}) == "1one2";
+                    // for the call $(one{1}two) s.. will be an array with the content:
+                    // ["one",1,"two"]  
+  {
+    return s.join("");
+  }
+    
+  assert $({1}one) == "1one";
+  assert $(one{1}two) == "one1two";
+  assert $(one{1}) == "one1";
+  assert $({1}{2}) == "12";
+  assert $({1}one{2}) == "1one2";
   assert $({"{"}one}) == "{one}";
-	assert $("the string") == "\"the string\"";
-	assert $(x{ 1 + 2 }y) == "x3y";
-	assert $(x({1 + 2})y) == "x(3)y";
-	
+  assert $("the string") == "\"the string\"";
+  assert $(x{ 1 + 2 }y) == "x3y";
+  assert $(x({1 + 2})y) == "x(3)y";
+
+  // distance test
+  assert "foo".distance("foo") == 0;
+  assert "foo".distance("foa") == 1;
+  assert "foo".distance("faa") == 2;
+  assert "foo".distance("food") == 1;
+  assert "foo".distance("dfoo") == 1;
+
+}
+
+function* genNumbers(n) { // generates consecutive numbers [0..n)
+  for(var i in n)
+    yield i;
 }
 
 function Array_test()
@@ -211,16 +226,35 @@ function Array_test()
 
   assert 8 in [8,9,10]; // NOTE: this is different from ES, ES treats arrays as objects!    
   assert 1 !in [8,9,10]; // NOTE: this is different from ES, ES treats arrays as objects!  
-  
-  // tagged arrays: "typed tuples"
-  /*var t1 = [abc: 0, 1, 2];
-  assert t1.tag == #abc 
-      && t1[0] == 0
-      && t1[1] == 1
-      && t1[2] == 2;
-  assert typeof t1 == #array;
-  assert t1 != [0,1,2];
-  assert t1 == [abc:0,1,2]; */  
+
+  // spread
+  const sx1 = [1,2,3];
+  const sx2 = [0, ..sx1];
+  assert sx2 == [0,1,2,3];
+  const sx3 = [5,6,7];
+  const sx4 = [0, ..sx1, 4, ..sx3];
+  assert sx4 == [0,1,2,3,4,5,6,7];
+
+  const sx5 = [..genNumbers(5)];
+  assert sx5 == [0,1,2,3,4]; 
+
+
+  // addons:
+
+  assert sx1.some(:el: el == 2);
+  assert sx1.every(:el: el < 10);
+
+  assert !sx1.some(:el: el == 10);
+  assert !sx1.every(:el: el < 3);
+
+  assert sx1.find(:el: el == 3) == 3;
+  assert sx1.findLast(:el: el == 1) == 1;
+
+  // find element and index
+  {
+    var (idx,el) = sx1.find(:el: el == 2);
+    assert el == 2 && idx == 1;
+  }
   
 }
 
@@ -234,10 +268,19 @@ function Tuple_test()
   assert a0[0] == 1 && a0[1] == 2 && a0[2] == 3;
   assert a0.tag == #test;
   assert a0.length == 3;
-  //stdout.printf("%v\n", a1);
-  //var x1 = [2,3,4];
-  //var x2 = [1,2,3];
-  //var x3 = [8,9,10];
+
+  // spread
+  const sx1 = [1,2,3];
+  const sx2 = [test1: 0, ..sx1];
+  assert sx2 == [test1:0,1,2,3];
+  const sx3 = [test2:5,6,7];
+  const sx4 = [test3:0, ..sx1, 4, ..sx3];
+  assert sx4 == [test3:0,1,2,3,4,5,6,7];
+
+  const sx5 = [test3:..genNumbers(5)];
+  assert sx5 == [test3:0,1,2,3,4];  
+
+
 }
 
 function Integer_test()
@@ -291,7 +334,7 @@ class Foo
 {
   this var memberVar = [1,2,3];
   var staticVar = [1,2,3];
-  
+
   function this(n = "o1")   { this.one = 1; this._name = n; }
   function foo()            { return "foo"; }
   property name(v)                
@@ -401,7 +444,6 @@ function Object_test()
   assert f1.staticVar == f2.staticVar;
   assert f1.staticVar === f2.staticVar;
 
-
 // class literals and dynamic subclassing
 
   var o = { one:1, two:2, "three":3 };
@@ -499,8 +541,9 @@ function Object_test()
   assert #three !in {one:1, two:2 };
   
   var keylist = [#for, #while, #do, #delete, #return, #get,#set, #throw];
-  assert kw.keys() == keylist: "Object.keys()";  
+  assert kw.keys() == keylist: "Object.keys()";
  
+
   var to1 = { a:1,b:[1,2] };
   var to2 = { c:"test" };
   var to3 = { a:1,b:[1,2],c:"test" };
@@ -511,7 +554,9 @@ function Object_test()
   stdout.printf("deep:%V\n",tor2);
   
   assert to3 == tor1: "extend 1";
-  assert to3 == tor2: "extend 2, deep"; 
+  assert to3 == tor2: "extend 2, deep";
+
+ 
 }
 
 // test of Undefined Property Handler - a.k.a. Virtual Properties
@@ -676,6 +721,17 @@ function Date_test()
       
   stdout.printf("date is:%d-%d-%d %d:%d:%d\n", d.day, d.month+1, d.year,
       d.hour, d.minute, d.second );
+
+  // date comparisons:
+
+  var d1 = new Date(2017,12,28);
+  var d2 = new Date(2017,12,28);
+  var d3 = new Date(2017,12,29);
+
+  assert d1 == d2;
+  assert d1 !== d2;
+  assert d3 > d2;
+  assert d1 < d3;
 }
 
 function Function_test()
@@ -767,7 +823,12 @@ function Function_test()
   var func2 = new Function("return 2 + 2");
   if( typeof func2 != #function) throw "new Function(...) 4.3 failed !"; 
   if( func2() != 4) throw "new Function(...) 4.4 failed !"; 
-  
+
+  // parameters spread
+  function takeFive(args..) { assert args == [0,1,2,3,4]; }
+
+  takeFive(..genNumbers(5));
+
 }
 
 function TryCatchFinally_test()
@@ -881,22 +942,25 @@ function Stream_test()
   
 }
 
-function SocketStream_test()
+function Socket_test()
 {
+  var oath = promise();
   // will print content of front page:
-  var sock = Stream.openSocket( "www.terrainformatica.com:80" );
-  sock.encoding = "utf-8";
-  sock.println("GET http://www.terrainformatica.com/tests/test-utf-8.txt HTTP/1.0");
-  sock.println("User-Agent: TiScript [en]");
-  sock.println("");
-  stdout.printf("-------http://www.terrainformatica.com/tests/test-utf-8.txt-----\n");
-  while( true )
-  {
-    var s = sock.readln();
-    if(s === undefined) break;
-    stdout.println(s);
+  var sock = Net.Socket.connect( "terrainformatica.com",80);
+
+  sock << event connect {
+    this.send("GET http://terrainformatica.com/tests/test-utf-8.txt HTTP/1.0\r\n"
+              "User-Agent: Sciter Engine [en]\r\n"
+              "\r\n");
   }
-  stdout.printf("--------EOF-----------------------------------------------------\n");
+
+  var resp = "";
+
+  sock << event data (message) { resp += message; stdout.println("response:", resp); }
+  sock << event close() { oath(true,[resp]); }  
+  sock << event error(err) { oath(false,[err]);  }
+
+  return oath;
 }
 
 namespace NS // namespace
@@ -958,6 +1022,78 @@ function Namespace_test()
 }
 
 
+function Loop_test() {
+  var a = [1,2,3];
+
+  // basic for-in, inline var
+  {
+    var counter = 0;
+    for(var item in a)
+      counter += item;
+    assert counter == 1 + 2 + 3;
+  }
+
+  // for-in, ext var 
+  {
+    var counter = 0;
+    var item;
+    for(item in a)
+      counter += item;
+    assert counter == 1 + 2 + 3;
+  }
+
+  // index/value for-in, inline var
+  {
+    var counter = 0;
+    var icounter = 0;
+    for(var (idx,item) in a) {
+      counter += item;
+      icounter += idx;
+    }
+    assert counter == 1 + 2 + 3;
+    assert icounter == 0 + 1 + 2; 
+  }
+
+  // index/value for-in, ext var
+  {
+    var counter = 0;
+    var icounter = 0;
+    var idx,item;
+    for((idx,item) in a) {
+      counter += item;
+      icounter += idx;
+    }
+    assert counter == 1 + 2 + 3;
+    assert icounter == 0 + 1 + 2; 
+  }
+
+  // classic for(;;), inline vars
+  { 
+    var counter = 0;
+    var icounter = 0;
+    for(var i = 0, k = 1; i < 3; ++i,++k) {
+      counter += k;
+      icounter += i;
+    }
+    assert counter == 1 + 2 + 3;
+    assert icounter == 0 + 1 + 2; 
+  }
+
+  // classic for(;;), ext vars
+  { 
+    var i,k;
+    var counter = 0;
+    var icounter = 0;
+    for(i = 0, k = 1; i < 3; ++i,++k) {
+      counter += k;
+      icounter += i;
+    }
+    assert counter == 1 + 2 + 3;
+    assert icounter == 0 + 1 + 2; 
+  }
+
+}
+
 function ExtLoop_test()
 {
   var c = 0;
@@ -976,8 +1112,8 @@ function ExtLoop_test()
 class superA
 {
   function this(p) { this.name = p + "a"; } 
-	function foo() { return "A";}
-	function bar() { return "a";}  
+  function foo() { return "A";}
+  function bar() { return "a";}  
   function baz() { return "1";}  
 }
 
@@ -1078,14 +1214,17 @@ function Units_test()
   
   assert 4 * 10px == 40px;
   assert 4.15 * 10pt == 41.5pt;
-  
+
   // questionable but ...
   assert 10cm + 4 == 14cm;
   assert 10pt - 4 == 6pt;
   assert 10cm + 4.5 == 14.5cm;
   assert 10pt - 4.5 == 5.5pt;
   assert 10pt % 4 == 2pt;
-  
+
+  assert 2px > 1px;
+  assert 2dip < 3dip;
+    
   assert 360deg == Math.PI * 2 * 1rad;
   assert 360deg == 400grad;
   assert 360deg == 1turn;
@@ -1125,13 +1264,16 @@ function JSON_test()
   const ISO_DATE = /^(\d\d\d\d)-0?(\d+)-0?(\d+)[T ]0?(\d+):0?(\d+):0?(\d+)$/;
   
   function string2date(k,v) {
-    if( typeof v == #string && v like ISO_DATE)
+    if( typeof v == #string && v like ISO_DATE) {
       v = new Date(v);
+    }
     return v;
   }
     
   t = JSON.parse("{\"x\":1,\"y\":\"2010-06-15T00:00:00\"}",string2date); 
+  stdout.println("DATE", t.x, t.y);  
   assert t.x == 1 && t.y.year == 2010 && t.y.month == 6 && t.y.day == 15; 
+
 }
 
 function errorThrown(exp) {
@@ -1174,16 +1316,17 @@ function ForIn_test() {
 }
 
 function match_test() {
-
+  // pattern matching
   function match(val) {
     switch(val) {
-    
       like {one: "o*"} : return 1;
       like {one: String} : return 2;
       like {one: #any} : return 3;
       like [1,2] : return 4;
       like [1,#any] : return 5;
-      like Integer: return 6;
+      in [7,8,9] : return 6;
+      instanceof Integer: return 7;
+      instanceof Float : return 8;
     }
     return 0;
   }
@@ -1196,9 +1339,12 @@ function match_test() {
   assert match( [0,1,2] ) == 0; // does not match
   assert match( [1,2,3] ) == 4;
   assert match( [1,"one"] ) == 5;
-  
-  assert match( 12 ) == 6;
-  assert match( 12.0 ) == 0;
+
+  assert match( 8 ) == 6;
+  assert match( 12 ) == 7;
+  assert match( 12.0 ) == 8;
+
+  assert match( #foo ) == 0;
   
   assert { one: "one" } like {one: "o*"};
 
@@ -1249,6 +1395,7 @@ function referenceOf_test() {
 
 }
 
+
 function showMemStats(msg) {
   var (total,free, used) = gc();
   stdout.printf("heap %s total=%d free=%d used=%d bytes\n", msg, total, free, used);
@@ -1264,11 +1411,12 @@ run( Object_test );
 run( Class_test );
 run( Date_test );
 run( Stream_test );
-run( SocketStream_test );
+run( Socket_test );
 run( Integer_test );
 run( Float_test );
 run( Function_test );
 run( Namespace_test );
+run( Loop_test );
 run( ExtLoop_test );
 run( Super_test );
 run( ThisSuper_test );

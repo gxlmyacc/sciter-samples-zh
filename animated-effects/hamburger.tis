@@ -10,8 +10,6 @@ function Hamburger(params={})
                   [ 0.0 , 0.5, 1.0 , 0.5 ],
                   [ 0.5 , 1.0, 1.0 , 0.5 ]];
                   
-  const strokeWidth = this.toPixels( this.style#stroke-width, #width ) || 3;
-  const strokeColor = this.style#stroke;
   
   const duration = params.duration || 400ms; 
   
@@ -19,6 +17,9 @@ function Hamburger(params={})
                 
   this.paintContent = function(gfx) 
   {
+    const strokeWidth = this.toPixels( this.style#stroke-width, #width ) || 3;
+    const strokeColor = this.style#stroke;
+    
     var (w,h) = this.box(#dimension);
     gfx.strokeWidth(strokeWidth)
        .strokeCap(#round)
@@ -47,10 +48,14 @@ function Hamburger(params={})
     this.refresh();
   }
   
-  this << event change() {  
-    b2a = this.value;
+  this.expand = function(onOff) {  
+    this.value = b2a = onOff;
     if( b2a ) this.parent.state.expanded = true; else this.parent.state.collapsed = true;
     this.animate(step, duration);
+  }
+  
+  this << event change() {  
+    this.expand(this.value);
   }
 
 }

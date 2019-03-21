@@ -38,18 +38,34 @@
   <dl>
     <dt>loadDocument</dt>
     <dd>([templateUrl:string], documentUrl:string) - 从给定的url加载文档和打印模板;</dd>
+		<dt>loadHtml</dt>
+		<dd>(<i>html</i>:string | Bytes, <i>documentUrl</i>:string) - 从字符串中加载HTML文档, documentUrl 是一个url;</dd>
     <dt>pagesTotal</dt>
     <dd>() : integer, 返回找到的页数;</dd>
     <dt>pageNo</dt>
     <dd>() : integer, 返回视图中渲染的第一个页面的页号;</dd>
     <dt>pageNo</dt>
-    <dd>(number: integer), 将视图导航到number指定的页面;</dd>
+    <dd>(<i>number</i>: integer), 将视图导航到number指定的页面;</dd>
     <dt>selectPrinter</dt>
     <dd>() : 打开系统的选择打印机对话框来选择目标打印机, 然后自动配置的页面尺寸，可能启动分页操作。</dd>
     <dt>selectDefaultPrinter()</dt>
     <dd>() : 选择默认打印机作为打印目标, 可能启动分页操作。</dd>
     <dt>print</dt>
-    <dd>() - 打印当前文档到目标打印机上。</dd></dl>
+    <dd>([<i>pageslist</i>:array]) - 打印当前文档到目标打印机上。
+      <p><i>pageslist</i> - 可选参数, 时一个页数数组。该参数用于指定打印的页数和顺序。注意：页号从1开始计数。</p>
+    </dd>
+		<dt>setDocumentName</dt>
+		<dd>(<i>name</i>:string) - 设置后台打印程序的名称 - 这个名称将会出现在窗口的后台打印程序队列视图中。</dd>
+		<dt>printers</dt>
+		<dd><div>() : array</div><p> 这个方法返回当前系统中注册的打印机。数组的每个元素是一个对象: </p>
+			<pre>{ 
+  id: string,           // 打印机的id，用于setPrinter()方法;
+  name: string,         // 人类可识别的名称; 
+  location: string,     // 打印机位置;
+  isDefault: true/false // 如果该打印机为默认打印机则为true;
+} 
+</pre></dd>
+		<dt></dt></dl>
   <h2>值</h2>
   <p>N/A</p>
   <h2>在脚本中处理Frame事件</h2>

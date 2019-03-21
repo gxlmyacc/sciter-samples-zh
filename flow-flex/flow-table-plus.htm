@@ -1,0 +1,47 @@
+﻿<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+          label {
+            margin:* 0 * *;
+            white-space:nowrap;
+          }
+          textarea { display:block; width:*; }
+
+        </style>
+    </head>
+    <body>
+
+<p>在Sciter中，任何block/inline-block元素都可以作为表格单元格，所以它们也可以有colspan/rowspan属性:</p>
+
+<ol>
+  <li>display:table-cell的元素将覆盖整个单元格。</li>
+  <li>display:block/inline-block元素将会依据它的margin、border、padding情况（可以使用弹性单位）放置在单元格内。</li>
+</ol>
+
+<table border>
+  <tbody>
+    <tr>
+      <td>正常TD 1</td>
+      <td>正常TD 2</td>
+      <td>正常TD 3</td>
+    </tr>
+    <tr class="foo">
+      <label>label</label>
+      <button>button</button>
+      <select><option>select</option></select>
+    </tr>
+    <tr>
+      <label>label 1</label>
+      <textarea rowspan=2 colspan=2>textarea with rowspan=2 and colspan=2</textarea>
+    </tr>
+    <tr>
+      <label>label 2</label>
+    </tr>      
+  </tbody>
+</table>
+
+
+    </body>
+</html>

@@ -36,10 +36,10 @@ function Function.memoize(hasher = null)
 //| 
 
 function Function.partial(pargs..) {
-    return function(args..) {
-      return (this super).apply(this, pargs.concat(args));
-    };
+  return function(args..) {
+    return (this super).apply(this, pargs.concat(args));
   };
+};
 
 
 //|
@@ -65,34 +65,34 @@ function Function.defer(args..) {
 //| 
 
 function Function.throttle(milliseconds, options = {}) {
-    var context, args, result;
-    var running = false;
-    var previous = 0;
-    var func = this;
-    milliseconds = milliseconds.toInteger();
-    function later() {
-      previous = options.leading === false ? 0 : Date.ticks();
+  var context, args, result;
+  var running = false;
+  var previous = 0;
+  var func = this;
+  milliseconds = milliseconds.toInteger();
+  function later() {
+    previous = options.leading === false ? 0 : Date.ticks();
+    running = false;
+    result = func.apply(context, args);
+  };
+  return function(arguments..) {
+    var now = Date.ticks();
+    if (!previous && options.leading === false) previous = now;
+    var remaining = milliseconds - (now - previous);
+    context = this;
+    args = arguments;
+    if (remaining <= 0) {
+      self.timer(0,later,true);
       running = false;
+      previous = now;
       result = func.apply(context, args);
-    };
-    return function(arguments..) {
-      var now = Date.ticks();
-      if (!previous && options.leading === false) previous = now;
-      var remaining = milliseconds - (now - previous);
-      context = this;
-      args = arguments;
-      if (remaining <= 0) {
-        self.timer(0,later,true);
-        running = false;
-        previous = now;
-        result = func.apply(context, args);
-      } else if (!running && options.trailing !== false) {
-        running = true;
-        self.timer(remaining, later,true);
-      }
-      return result;
-    };
-  }
+    } else if (!running && options.trailing !== false) {
+      running = true;
+      self.timer(remaining, later,true);
+    }
+    return result;
+  };
+}
 
 //| debounce: 去抖、防反跳 函数
 //| 返回一个函数，这个函数如果它一直被调用，则不会触发，
@@ -101,80 +101,78 @@ function Function.throttle(milliseconds, options = {}) {
 //| 
 
  function Function.debounce(milliseconds, immediate = false) {
-    var running = false, args, context, timestamp, result;
-    milliseconds = milliseconds.toInteger();
-    var func = this;
-    return function(arguments..) 
+  var running = false, args, context, timestamp, result;
+  milliseconds = milliseconds.toInteger();
+  var func = this;
+  return function(arguments..) 
+  {
+    context = this;
+    args = arguments;
+    timestamp = Date.ticks();
+    var later = function() 
     {
-      context = this;
-      args = arguments;
-      timestamp = Date.ticks();
-      var later = function() 
-      {
-        var last = Date.ticks() - timestamp;
-        if (last < milliseconds) {
-          running = true;
-          self.timer(milliseconds - last, later, true);
-        } else {
-          running = false;
-          if (!immediate) result = func.apply(context, args);
-        }
-      };
-      var callNow = immediate && !running;
-      if (!running) {
+      var last = Date.ticks() - timestamp;
+      if (last < milliseconds) {
         running = true;
-        self.timer(milliseconds, later, true);
+        self.timer(milliseconds - last, later, true);
+      } else {
+        running = false;
+        if (!immediate) result = func.apply(context, args);
       }
-      if (callNow) result = func.apply(context, args);
-      return result;
     };
-  }
+    var callNow = immediate && !running;
+    if (!running) {
+      running = true;
+      self.timer(milliseconds, later, true);
+    }
+    if (callNow) result = func.apply(context, args);
+    return result;
+  };
+}
 
 //| 
-//| Returns a function that will be executed at most one time, 
-//| no matter how often you call it. Useful for lazy initialization.
+//| 返回一个函数，该函数不管你调用它多少次，它将最多只会被执行一次， 
+//| 该函数对于懒初始化是很有用的。
 //| 
 
 function Function.once() {
-    var ran = false, memo;
-    return function(args..) {
-      if (!ran) {
-        ran = true;
-        memo = (this super).apply(this, args);
-      }
-      return memo;
-    };
-  }
+  var ran = false, memo;
+  return function(args..) {
+    if (!ran) {
+      ran = true;
+      memo = (this super).apply(this, args);
+    }
+    return memo;
+  };
+}
 
 //|   
-//| Returns the first function passed as an argument to the second, 
-//| allowing you to adjust arguments, run code before and after, 
-//| and conditionally execute the original function.  
+//| 返回一个封装函数，该封装函数的第二个参数指向第一个函数，
+//| 该封装函数允许你在代码执行前后调整参数，并且可以有条件地是否执行原始函数。
 //| 
   
 function Function.wrap(wrapper) {
-    return function(arguments..) {
-      return wrapper.apply(this,(this super),arguments);
-    };
-  }
+  return function(arguments..) {
+    return wrapper.apply(this,(this super),arguments);
+  };
+}
 
 //| 
-//| Returns a function that is the composition of a list of functions, 
-//| each consuming the return value of its previous function.
-//| Each function in the list can return an array. Elements of the array 
-//| will be passed as arguments to the next function in the list
-//| Note: first function gets executed first
+//| 返回一个函数，该函数是一个函数列表的组合体，
+//| 其中每个函数的参数是前一个函数的返回值。
+//| 列表中的每个函数可以返回一个数组。数组中的每一个元素都将会作为列表中下一个函数的参数。
+//| 注意: 函数列表中的第一个函数将被首先执行。
 //|
 
 function Function.batch(funcs..) {
-    return function(arguments..) {
-      var args = arguments;
-      for (var i = 0; i < funcs.length; ++i) {
-	    if( typeof args == #array )
-          args = funcs[i].apply(this, args);
-		else
-		  args = funcs[i].call(this, args);
-      }
-      return args;
-    };
-  }
+  return function(arguments..) {
+    var args = arguments;
+    for (var i = 0; i < funcs.length; ++i) {
+    if( typeof args == #array )
+      args = funcs[i].apply(this, args);
+    else
+      args = funcs[i].call(this, args);
+    }
+    return args;
+  };
+}

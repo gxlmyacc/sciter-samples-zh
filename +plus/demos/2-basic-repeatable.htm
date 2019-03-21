@@ -38,8 +38,33 @@
         }
        
         function clear() { 
-		     fruits.length = 0; 
-        }  
+          fruits.length = 0; 
+          var (total,free,used) = gc();
+          stdout.println(total,free,used);
+        }
+
+        function replace() {
+          fruits[0] = {name:"樱桃", price:1.4, selected: false};
+        }
+
+        function update() {
+          fruits[0].name = "酸樱桃";
+        }
+        
+        function prune() {
+          fruits.length = 2;
+        }
+        
+        function populate() {
+          // memory consumption test
+          var cnt = 0;
+          self.timer(30, function() {
+            ++cnt;
+            fruits = [{name:"apple" + cnt, price:1.2},
+                      {name:"orange" + cnt, price:1.0}];
+            return true;                      
+          });
+        }
 
         function modifySelected() {
           $(li[name=苹果]).@#selected = null;
@@ -77,6 +102,10 @@
   <button click="clear()">清空列表</button> 
   <button click="modifySelected()">修改selected</button> 
   <button click="showFruits()">显示Fruits</button> 
-  
+  <button click="replace()">替换第一个</button> 
+  <button click="update()">更新第一个</button>
+  <button click="prune()">修剪列表到只包含2条数据</button> 
+  <button click="populate()">填充</button> 
+    
 </body>
 </html>

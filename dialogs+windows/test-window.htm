@@ -121,8 +121,8 @@
 
      $(#with-params).onClick = function() {
      
-        function onClose() {
-          stdout.println("弹出窗口被关闭");
+        function onCloseCallback() {
+          debug log: "other window closed";
         }
      
         // 打开窗口，并添加额外的onClose回调参数
@@ -133,7 +133,7 @@
           width : 200,
           height : 200,
           parameters: { // 在新窗口中使用view.parameters访问参数
-            onClose: onClose 
+            onClose: onCloseCallback 
           }
         };
       }      
@@ -155,6 +155,7 @@
         other = view.window{
           url: self.url("samples/sample-layered-tool.htm"),
           alignment:5,
+          direct:false
          };
       }      
 

@@ -1,0 +1,40 @@
+﻿<html>
+    <head>
+        <title>W1</title>
+        <style></style>
+        <script type="text/tiscript">
+
+          event click $(button#w2) {
+            View.window { // 注意 'View' - 类名
+              url: self.url("w2.htm"),
+              type: View.FRAME_WINDOW,
+              state: View.WINDOW_SHOWN,
+              client: true,
+              alignment:2,
+              width: 800,
+              height: 600
+            };
+          }
+
+          event click $(button#w3) {
+            view.window { // 注意 'view' - 窗口实例
+              url: self.url("w3.htm"),
+              type: View.FRAME_WINDOW,
+              state: View.WINDOW_SHOWN,
+              client: true,
+              alignment:8,
+              width: 800,
+              height: 600
+            };
+          }
+
+        </script>
+    </head>
+    <body>
+       <button#w2>创建 W2 窗口</button> 
+       <button#w3>创建 W3 (owned) 窗口</button> 
+
+       <p>点击这两个按钮将创建两个窗口。关闭当前窗口，W2将依然存在，W3将被关闭。</p>
+
+    </body>
+</html>

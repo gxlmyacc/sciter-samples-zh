@@ -7,7 +7,7 @@
       var out = $(pre#out);
     
       self.on("click","#select",function(){
-        var fn = view.selectFolder("请选择您的收藏文件夹");
+        var fn = view.selectFolder("请选择您的收藏文件夹" /*,"D:/" */); // 如果需要默认目录，你可以取消最后一个参数的注释
         out.text = fn || "{rejected}";
       });
       

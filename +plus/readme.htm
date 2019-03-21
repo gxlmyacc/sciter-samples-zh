@@ -60,6 +60,22 @@
       &lt;li&gt;&lt;picture @src=&quot;customer.image&quot; /&gt; &lt;output(customer.name)/&gt;&lt;/li&gt;
   &lt;/ol&gt;
 </pre>
+  <p>示例：有过滤器的列表:</p>
+	<pre>  &lt;ol each=&quot;customer in myCustomers|myFilter&quot;&gt;
+      &lt;li&gt;&lt;picture @src=&quot;customer.image&quot; /&gt; &lt;output(customer.name)/&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+</pre>
+  <p>注意：myFilter名称从最近的<code>myCustomers</code>名称空间中查找myFilter变量或函数。</p>
+	<h3><code>repeat</code> 可重复项</h3>
+	
+	<p>这种类型的可重复项是在重复的元素上使用<code>repeat</code>属性，表示它本身需要被重复：</p>
+  <pre> &lt;ol&gt;
+   &lt;li repeat=&quot;customer in myCustomers&quot;&gt;
+      &lt;picture @src=&quot;customer.image&quot; /&gt; &lt;output(customer.name)/&gt;
+   &lt;/li&gt; 
+ &lt;/ol&gt;</pre>
+	<p>其中，<code>repeat</code>使用和<code>each</code>相同的语法;</p>
+	<p>在某些场景下，repeat重复项比each更方便使用。</p>
   <h2>在数据路径上观察变化</h2>
   <p>Plus定义了<code>@observing</code>装饰器换上，它可以用于在模型数据树上订阅事件函数。订阅的语法如下:</p>
 <pre>@observing &quot;path&quot; [&quot;path2&quot;[,&nbsp;... &quot;pathN&quot; ]] 

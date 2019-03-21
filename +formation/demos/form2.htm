@@ -1,0 +1,54 @@
+﻿<html>
+    <head>
+        <title>Test</title>
+        <style></style>
+        <script type="text/tiscript">
+
+          include "../formation.tis";
+      
+          var frm = formation( $(form) );
+
+          event click $(button#set) 
+          {
+            frm.value = {
+              credentials: {
+                un: "Olga",
+                pwd: "blondy"
+              },
+              persistLogin: false
+            };
+           }
+
+        event click $(button#show) 
+        {
+           var val = frm.value;
+           $(pre#out).value = JSON.stringify(val,"  ");
+         }
+
+        event click $(button#structure) 
+        {
+           $(div#structure).html = frm.toHtmlString();
+        }
+
+
+        </script>
+    </head>
+    <body>
+
+      <button#set>设置状态</button>
+      <button#show>显示状态</button>
+      <button#structure>数据格式</button>
+      
+      <form>
+         <div>
+           用户名: <input|text name="credentials.un" value="Ivan">
+         </div>
+         自动登录: <input|checkbox name="persistLogin" checked>
+         <div>
+            密码: <input|password name="credentials.pwd" value="12345">
+         </div>
+      </form>
+      <pre#out />
+      <div#structure />
+    </body>
+</html>

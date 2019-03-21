@@ -8,28 +8,29 @@
     {
       background-color: gold;
       color: black;
-      width:120px;
+      width:120dip;
       height:1.2em;
-      padding:4px;
-      margin:4px;
+      padding:4dip;
+      margin:4dip;
+      overflow:hidden; 
+      transition: height cubic-in-out 0.4s 0.4s,
+                  width cubic-out 0.4s,
+                  border-radius cubic-in-out 0.4s 0.4s,
+                  background-color linear 0.7s 0.2s; 
     }
     div.test:hover
     {
       background-color: red;
-      width:150px;
-      height:150px;
-      border-radius: 14px;
-      transition: height( timing-function:cubic-in-out, duration:0.4s, delay:0.4s)
-                  width( timing-function:cubic-out, duration:0.4s)
-                  border-radius(timing-function:cubic-in-out, duration:0.4s, delay:0.4s)
-                  background-color(timing-function:linear, duration:0.7s, delay:0.2s);
+      width:150dip;
+      height:150dip;
+      border-radius: 14dip;
     }
     
     div#ani-container
     {
       overflow:hidden; 
       height:*; 
-      width:200px;
+      width:200dip;
       background-color:#FFF;
     }
     

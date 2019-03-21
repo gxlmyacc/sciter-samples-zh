@@ -6,9 +6,10 @@
    
       include "init-storage-2.tis";
     
+      var storage;
       function self.ready() {
         const url = self.url("storage2.sdb");
-        var storage = Storage.open(url);
+        storage = Storage.open(url);
         var root = storage.root || initStorage(storage);
         
         var search = $(#lookup);
@@ -36,6 +37,10 @@
         
       }
     
+      function self.closing() {
+         storage.close();
+         stdout.println("closed");
+      }
     </script>
   </head>
 <body>

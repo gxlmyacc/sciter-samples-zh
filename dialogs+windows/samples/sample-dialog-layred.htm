@@ -12,7 +12,7 @@
       min-height:min-content; 
       max-height: 70%;        /* 70%的屏幕高度 */
       overflow:none;
-      padding:0;
+      padding:8dip 8dip 8dip 8dip;
       background-color:transparent; /* 窗口背景 */
       background-image: url(custom-frame.png);
       background-repeat: expand;
@@ -26,7 +26,7 @@
     window-button#window-close:hover { background-color:red; outline:5px glow red -1px; transition: outline(linear,200ms) background-color(linear,200ms); }
         
     body { 
-      padding:0; margin:18px 20px 20px 20px; 
+      padding:0; 
       flow: "1 2 3" 
             "4 4 4";
     }
@@ -59,6 +59,7 @@
       <picture src="../user-login-48.png" />
       <textarea novalue="请输入信息..."></textarea>
     </div>
+    动画测试：<img src="sciter:busy.png">
     <p>
       <button id="close-dialog">确定</button>
       <button id="cancel-dialog" tabindex=1 >取消</button>

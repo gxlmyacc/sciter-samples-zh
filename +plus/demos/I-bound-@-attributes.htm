@@ -35,6 +35,7 @@
                              {name:"Comodo", image:"http://sciter.com/screenshots/slide-comodo.png"} ];
                              
         var isButtonEnabled = true;
+        var isEditReadonly = false;
         
         var isSectionExpanded = true;
         var isSectionCollapsed = true;
@@ -60,6 +61,11 @@
   <h3>@enabled属性示例</h3> 
   <form>
     <button @enabled="isButtonEnabled" @testbool="isSectionExpanded">一个按钮</button> <button|checkbox(isButtonEnabled)>启用</button> 
+  </form>
+  
+  <h3>@readonly属性示例</h3> 
+  <form>
+    <textarea @readonly="isEditReadonly">文本</textarea> <button|checkbox(isEditReadonly)>只读</button> 
   </form>
   
   <h3>@expanded属性示例</h3> 

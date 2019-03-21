@@ -57,9 +57,10 @@
         stdout.println("菜单项点击在 ", this); 
       });
       
-      select {
-        vertical-align:middle;
-      }    
+      self.on("click", "button[name=just-a-button]", function() {
+         //this.$p(menu).state.popup = false;
+         view.msgbox("dialog from menu");
+      }); 
     </script>  
   
   

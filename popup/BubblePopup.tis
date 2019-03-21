@@ -1,0 +1,61 @@
+﻿class BubblePopup: Behavior {
+
+  const RADIUS = 10dip;
+  const ARROW_HEIGHT = 12dip;
+  const STROKE_WIDTH = 1dip;
+  const STROKE_COLOR = color(0,0,0);
+  const BACK_COLOR = color("gold");
+
+  function attached() { 
+    this.paintBackground = this.drawBackground;
+  }
+
+  function getShape()
+  {
+    var shape = this.shape;
+    if(!shape) 
+    {
+      shape = this.shape = new Graphics.Path();
+      this.shapeWidth = null;
+      this.shapeHeight = null;
+    }
+   
+    var (x,y,w,h) = this.box(#rectw);
+   
+    if( this.shapeWidth == w && this.shapeHeight == h)
+      return shape; // nothing to do already calculated
+    
+    shape.reset();
+    
+    const stoke_width = this.toPixels(STROKE_WIDTH,#width);
+    
+    // lines shall go through pixels middles:
+    x += stoke_width / 2; y -= stoke_width / 2; w -= stoke_width; h -= stoke_width;
+    
+    const r = this.toPixels(RADIUS,#width);
+    const ah = this.toPixels(ARROW_HEIGHT,#height);
+    
+    shape          
+      .moveTo(x+r, y)
+      // that arrow
+      .lineTo(x+w/2-ah,y) 
+      .lineTo(x+w/2,y-ah)
+      .lineTo(x+w/2+ah,y)
+      // round rect
+      .arcTo(x+w, y,   x+w, y+h, r)
+      .arcTo(x+w, y+h, x,   y+h, r)
+      .arcTo(x,   y+h, x,   y,   r)
+      .arcTo(x,   y,   x+w, y,   r)              
+      .close();
+    return shape; 
+  }      
+
+  function drawBackground( gfx ) {
+    if(var shape = this.getShape()) {
+       gfx.lineWidth(STROKE_WIDTH)
+          .lineColor(STROKE_COLOR)
+          .fillColor(BACK_COLOR)
+          .drawPath( shape );
+    }
+  }
+}

@@ -40,7 +40,7 @@
     
     var plaintext = $(plaintext);
     
-    $(#set1000).onClick = function() {
+    event click $(#set1000) {
 
       var temp =     
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\r\n"
@@ -59,7 +59,7 @@
       var el = plaintext;
     };
     
-    $(#saveToFile).on("click", function() {
+    event click $(#saveToFile) {
         var fileName = this.url("content.txt").urlUnescape();
         alert(fileName);
         var stream = Stream.openFile(fileName, "uw");
@@ -67,6 +67,11 @@
           stream.println(line.text.replace("\n",""));
         stream.close();    
     });    
+    
+    event change $(plaintext) {
+      var (x,y,w,h) = this.box(#rectw,#caret);
+      stdout.println("caret",x,y,w,h);
+    }
     </script>
   </head>
 <body>

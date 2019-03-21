@@ -3,7 +3,7 @@
 @set vgrid {
 
   table:root {
-    prototype: VGrid url(sciter4d:vlist.tis);  
+    prototype: VGrid url(vlist.tis);  
     font:system;
     border:1px solid threedlightshadow; 
     flow:table-fixed; /* enforce fixed layout on the table 
@@ -54,7 +54,8 @@
   td {
     overflow-x:hidden;
     text-overflow:ellipsis;
-    line-height:1.8em; padding:0 4dip;
+    line-height:1.8em; 
+    padding:0 4dip;
     border-right:1px solid #E4E8EA;
     border-bottom:1px solid #E4E8EA;
 

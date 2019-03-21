@@ -1,5 +1,6 @@
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <title></title>
     <style>
     
@@ -33,7 +34,20 @@
     </popup>    
     */  
     event click $(button#test3) {
-      Notification.toast("这是一个<b>Toast</b>提示")      
+      Notification.toast { message: "这是一个<b>Toast</b>提示" }      
+    }
+
+    /* Loading弹出元素格式：
+    <popup|loading>
+      <content></content>   气泡内容区(必须)
+    </popup>    
+    */  
+    event click $(button#test4) {
+       Notification.loading { message: "正在顶顶顶顶顶的顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶加载...", busy: true } 
+    }
+
+    event click $(button#test5) {
+       Notification.closeLoading(); 
     }
     
     event click $(button#cancel) {
@@ -46,25 +60,34 @@
   <button#test1>显示通知1</button>
   <button#test2>显示通知2</button>
   <button#test3>显示Toast</button>
+  <button#test4>显示Loading</button>
+  <button#test5>关闭Loading</button>
   <button#cancel>取消通知</button>
 
 <popup|tray #popup1>
-  <header>
-    <caption>消息提醒</caption>
-    <span.cancel>关闭</span>
-  </header>
-  
-  <content></content><!--气泡提示的内容区-->
+  <div>
+    <header>
+      <caption>消息提醒</caption>
+      <span.cancel>关闭</span>
+    </header>
+    <content></content><!--气泡提示的内容区-->
+  </div>
 </popup>
 
 <popup|tray #popup2>
-  <header>
-    <caption>消息提醒</caption>
-  </header>
-  <content></content>
+  <div>
+    <header>
+      <caption>消息提醒</caption>
+    </header>
+    <content></content>
+  </div>
 </popup>
 
 <!--popup|toast #toast>
+  <content></content>
+</popup-->
+
+<!--popup|loading #loadding>
   <content></content>
 </popup-->
 
