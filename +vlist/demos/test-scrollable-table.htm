@@ -8,7 +8,7 @@
       font:system;
       height:*; width:500px; 
       border:1px solid black; 
-      flow:table-fixed; // ×¢Òâ£ºÕâ¸öÖµÊÇ¹Ø¼ü!
+      flow:table-fixed; // æ³¨æ„ï¼šè¿™ä¸ªå€¼æ˜¯å…³é”®!
     }
     
     table > tbody, table > tbody { border-spacing:0; }
@@ -20,7 +20,7 @@
     }
 
     table > tbody > tr {
-      behavior:form; // Ã¿¸öÖØ¸´×ÓÔªËØ¶¼ÈÏ×÷±íµ¥£¬ÕâÑùËü¿ÉÒÔ½ÓÊÜ¶ÔÏóÖµ
+      behavior:form; // æ¯ä¸ªé‡å¤å­å…ƒç´ éƒ½è®¤ä½œè¡¨å•ï¼Œè¿™æ ·å®ƒå¯ä»¥æŽ¥å—å¯¹è±¡å€¼
     } 
     
     table > tbody > tr.highlighted {
@@ -51,7 +51,7 @@
     var records = new Array(500);
     
     for(var i = 0; i < records.length; ++i)
-      records[i] = {index: i, caption:"Ïî", status:"" };
+      records[i] = {index: i, caption:"é¡¹", status:"" };
 
     var n = records.length;
     var p = 0;
@@ -69,7 +69,7 @@
     
       function add() { 
         var at = rand(records.length + 1);
-        records.splice(at,0, {index: ++n, caption:"Ïî", status:"ÒÑÌí¼Ó" });
+        records.splice(at,0, {index: ++n, caption:"é¡¹", status:"å·²æ·»åŠ " });
       }
       
       function del() { 
@@ -92,7 +92,7 @@
       var ops = [add,del,upd,noop];
 
       self.timer(60ms, function() {
-        if(!vlist.state.animating) // ×èÖ¹¶¯»­ÖÐ¸üÐÂÊý¾Ý
+        if(!vlist.state.animating) // é˜»æ­¢åŠ¨ç”»ä¸­æ›´æ–°æ•°æ®
           ops[ rand(ops.length) ]();
         return true;
       });
@@ -105,15 +105,15 @@
   </head>
 <body>
 
-  <h2>ÐéÄâ±íÁÐ±í ¶¯Ì¬Êý¾Ý¼¯Í»±ä Ê¾Àý</h2>
+  <h2>è™šæ‹Ÿè¡¨åˆ—è¡¨ åŠ¨æ€æ•°æ®é›†çªå˜ ç¤ºä¾‹</h2>
   
-  <p>¼ÇÂ¼Êý×éÄ¬ÈÏÓÐ500Ìõ¼ÇÂ¼£¬²¢ÇÒÃ¿¸ô60msÊý¾Ý±»ÐÞ¸ÄÏÂ(ÐÂÔö¡¢ÒÆ³ý¡¢¸üÐÂ)¡£</p> 
+  <p>è®°å½•æ•°ç»„é»˜è®¤æœ‰500æ¡è®°å½•ï¼Œå¹¶ä¸”æ¯éš”60msæ•°æ®è¢«ä¿®æ”¹ä¸‹(æ–°å¢žã€ç§»é™¤ã€æ›´æ–°)ã€‚</p> 
 
-  <button #mutate>Æô¶¯Ëæ»ú¸üÐÂ</button>
+  <button #mutate>å¯åŠ¨éšæœºæ›´æ–°</button>
 
   <table>
     <thead>
-      <tr><th(index) style="width:max-intrinsic;">Ë÷Òý</th><th(caption)>±êÌâ</th><th(status)>×´Ì¬</th></tr>
+      <tr><th(index) style="width:max-intrinsic;">ç´¢å¼•</th><th(caption)>æ ‡é¢˜</th><th(status)>çŠ¶æ€</th></tr>
     </thead>
     <tbody>
       <tr><td(index)></td><td(caption)></td><td(status)></td></tr>

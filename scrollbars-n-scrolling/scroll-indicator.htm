@@ -7,7 +7,7 @@
     section {
       size:*;
       background: white;
-      overflow: scroll-indicator; /* Ö¸¶¨ÄÚÈİÒç³öÊ±ÏÔÊ¾¹ö¶¯Ö¸Ê¾Æ÷*/
+      overflow: scroll-indicator; /* æŒ‡å®šå†…å®¹æº¢å‡ºæ—¶æ˜¾ç¤ºæ»šåŠ¨æŒ‡ç¤ºå™¨*/
       border:1px solid;
     }
     
@@ -17,9 +17,9 @@
       height:800px;
     }    
     
-    @set v-scroll-indicator { /*×Ô¶¨Òå¹ö¶¯Ö¸Ê¾Æ÷ ÑùÊ½*/
+    @set v-scroll-indicator { /*è‡ªå®šä¹‰æ»šåŠ¨æŒ‡ç¤ºå™¨ æ ·å¼*/
     
-      .slider /*»¬¿é¶¨Òå*/
+      .slider /*æ»‘å—å®šä¹‰*/
       {
         background:red;
         margin:0; 
@@ -32,7 +32,7 @@
     }
     
     section.custom {
-      vertical-scrollbar: "v-scroll-indicator"; /*Ó¦ÓÃ ×Ô¶¨Òå¹ö¶¯Ö¸Ê¾Æ÷*/
+      vertical-scrollbar: "v-scroll-indicator"; /*åº”ç”¨ è‡ªå®šä¹‰æ»šåŠ¨æŒ‡ç¤ºå™¨*/
     }
     
     </style>
@@ -41,11 +41,11 @@
 <body>
 
 <section .default>
-  <div>Ä¬ÈÏµÄ¹ö¶¯Ö¸Ê¾Æ÷</div> 
+  <div>é»˜è®¤çš„æ»šåŠ¨æŒ‡ç¤ºå™¨</div> 
 </section>
 
 <section .custom>
-  <div>×Ô¶¨ÒåµÄ¹ö¶¯Ö¸Ê¾Æ÷</div> 
+  <div>è‡ªå®šä¹‰çš„æ»šåŠ¨æŒ‡ç¤ºå™¨</div> 
 </section>
 
 </body>

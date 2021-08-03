@@ -3,14 +3,14 @@
     <style>
       select.file-list > option
       {
-        behavior:file-icon;//Ö¸¶¨ĞĞÎª
+        behavior:file-icon;//æŒ‡å®šè¡Œä¸º
         padding:2dip 2dip 2dip 20dip;
         foreground-repeat: no-repeat;
         foreground-position: 2dip 50%;
         foreground-image:url(images/unknown-icon.png);
       }
       
-      select.file-list > option:invalid { /* ÎÄ¼şÎ´ÕÒµ½ */
+      select.file-list > option:invalid { /* æ–‡ä»¶æœªæ‰¾åˆ° */
         color:gray;
       }
       
@@ -23,7 +23,7 @@
       }
       widget.file-list > option
       {
-        behavior:file-icon;  //Ö¸¶¨ĞĞÎª
+        behavior:file-icon;  //æŒ‡å®šè¡Œä¸º
         foreground-repeat: no-repeat;
         foreground-position: 50% 2dip; 
         foreground-image:url(images/unknown-icon.png);
@@ -32,17 +32,17 @@
 
       widget.file-list.large > option
       {
-        -icon-size:"large"; // Ê¹ÓÃ´óÍ¼±ê
+        -icon-size:"large"; // ä½¿ç”¨å¤§å›¾æ ‡
         padding:32dip 2dip 2dip 2dip;        
       }
       widget.file-list.x-large > option
       {
-        -icon-size:"x-large"; // Ê¹ÓÃx-largeÍ¼±ê
+        -icon-size:"x-large"; // ä½¿ç”¨x-largeå›¾æ ‡
         padding:48dip 2dip 2dip 2dip;        
       }
       widget.file-list.xx-large > option
       {
-        -icon-size:"xx-large"; // Ê¹ÓÃxx-largeÍ¼±ê, ÓÖÃû"jumbo"
+        -icon-size:"xx-large"; // ä½¿ç”¨xx-largeå›¾æ ‡, åˆå"jumbo"
         padding:256dip 2dip 2dip 2dip;
         width:256dip;
       }
@@ -57,12 +57,12 @@
     </style>
   </head>
 <body>
-  <h1>behavior:file-icon Ê¾Àı</h1>
-  <p>behavior:file-iconĞĞÎª¸ù¾İÎÄ¼şÃû»òÀ©Õ¹ÃûÉèÖÃÔªËØµÄÇ°¾°Í¼Æ¬ÎªÏµÍ³ÎÄ¼şÍ¼±ê¡£</p>
-  <p>Òª»ñÈ¡ÎÄ¼şÃû£¬behavior:file-iconĞĞÎªÊ¹ÓÃ<code>filename</code>ÊôĞÔ¡£
-     Èç¹ûÃ»ÓĞÕâ¸öÊôĞÔ£¬ÔòËüÊ¹ÓÃ<b>DOMÔªËØµÄÎÄ±¾</b>×÷ÎªÎÄ¼şÃû¡£</p>
-  <p>ÏÂÃæµÄ&lt;select&gt;ÖĞ&lt;option&gt;Ó¦ÓÃÁËbehavior:file-iconĞĞÎª:</p>
-  <p>ÎÄ±¾ÄÚÈİ×÷ÎªÎÄ¼şÃû:  
+  <h1>behavior:file-icon ç¤ºä¾‹</h1>
+  <p>behavior:file-iconè¡Œä¸ºæ ¹æ®æ–‡ä»¶åæˆ–æ‰©å±•åè®¾ç½®å…ƒç´ çš„å‰æ™¯å›¾ç‰‡ä¸ºç³»ç»Ÿæ–‡ä»¶å›¾æ ‡ã€‚</p>
+  <p>è¦è·å–æ–‡ä»¶åï¼Œbehavior:file-iconè¡Œä¸ºä½¿ç”¨<code>filename</code>å±æ€§ã€‚
+     å¦‚æœæ²¡æœ‰è¿™ä¸ªå±æ€§ï¼Œåˆ™å®ƒä½¿ç”¨<b>DOMå…ƒç´ çš„æ–‡æœ¬</b>ä½œä¸ºæ–‡ä»¶åã€‚</p>
+  <p>ä¸‹é¢çš„&lt;select&gt;ä¸­&lt;option&gt;åº”ç”¨äº†behavior:file-iconè¡Œä¸º:</p>
+  <p>æ–‡æœ¬å†…å®¹ä½œä¸ºæ–‡ä»¶å:  
   <select .file-list size=6>
     <option>c:\windows\notepad.exe</option>
     <option>c:\windows\regedit.exe</option>
@@ -70,7 +70,7 @@
     <option>c:\windows\explorer.exe</option>
     <option>c:\windows\twain.dll</option>
     <option>c:\unknown.unk</option>
-  </select> Ê¹ÓÃfilenameÊôĞÔ:
+  </select> ä½¿ç”¨filenameå±æ€§:
   <select .file-list size=6 >
     <option filename="c:\windows\notepad.exe" >c:\windows\notepad.exe</option>
     <option filename="c:\windows\regedit.exe" >c:\windows\regedit.exe</option>
@@ -79,7 +79,7 @@
     <option filename="c:\windows\twain.dll">twain.dll</option>
     <option filename="c:\unknown.unk">unknown.unk</option>
   </select></p>
-  <p>Èç¹ûÄãÒªÊ¹ÓÃ´óÍ¼±ê£¬ÇëÊ¹ÓÃ-icon-size:"large" CSSÊôĞÔ »ò icon-size="large" DOMÊôĞÔ:</p>
+  <p>å¦‚æœä½ è¦ä½¿ç”¨å¤§å›¾æ ‡ï¼Œè¯·ä½¿ç”¨-icon-size:"large" CSSå±æ€§ æˆ– icon-size="large" DOMå±æ€§:</p>
   <widget type="select" .file-list .large >
     <option filename="c:\windows\notepad.exe" >notepad.exe</option>
     <option filename="c:\windows\regedit.exe" >regedit.exe</option>

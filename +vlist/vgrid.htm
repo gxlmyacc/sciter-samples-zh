@@ -30,24 +30,24 @@
     var records = new Array(500);
     
     for(var i = 0; i < records.length; ++i)
-      records[i] = {index: i, caption:"Ïî" + rand(records.length), status:"" };
+      records[i] = {index: i, caption:"é¡¹" + rand(records.length), status:"" };
 
     var n = records.length;
     var p = 0;
        
     var vlist = $(table);
     
-    // ·´À¡ÕâÐ©Êý¾Ý
+    // åé¦ˆè¿™äº›æ•°æ®
     vlist.value = records;
     
-    // ÉèÖÃµÚÒ»ÌõÊý¾ÝÎ´µ±Ç°Êý¾Ý:    
+    // è®¾ç½®ç¬¬ä¸€æ¡æ•°æ®æœªå½“å‰æ•°æ®:    
     vlist.tbody.currentIndex = 0;
     
     $(#mutate) << event click() {
     
       function add() { 
         var at = rand(records.length + 1);
-        records.splice(at,0, {index: ++n, caption:"Ïî", status:"ÒÑÌí¼Ó" });
+        records.splice(at,0, {index: ++n, caption:"é¡¹", status:"å·²æ·»åŠ " });
       }
       
       function del() { 
@@ -63,7 +63,7 @@
         var times = r.nupdates || 0;
         ++times;
         r.nupdates = times;
-        r.status = String.$(ÒÑ¸üÐÂ: {times});
+        r.status = String.$(å·²æ›´æ–°: {times});
       }
       
       function noop() {}
@@ -71,7 +71,7 @@
       var ops = [add,del,upd,noop];
 
       self.timer(60ms, function() {
-        if(!vlist.animating) // ×èÖ¹¶¯»­ÖÐ¸üÐÂÊý¾Ý
+        if(!vlist.animating) // é˜»æ­¢åŠ¨ç”»ä¸­æ›´æ–°æ•°æ®
           ops[ rand(ops.length) ]();
         return true;
       });
@@ -80,18 +80,18 @@
     
     $(#populate) << event click() {
     
-      records.splice(0,records.length); // Çå¿ÕÁÐ±í
+      records.splice(0,records.length); // æ¸…ç©ºåˆ—è¡¨
 
       function addChunk() {
         var n = 1 + rand(5);    
         for(var i = 0; i < n; ++i)
-          records.push {index: records.length, caption:"ÐÂÏî", status:"" };
+          records.push {index: records.length, caption:"æ–°é¡¹", status:"" };
       }
       
       this.timer(100ms, function() {
         if(records.length > 200)
-          return false; // ×î¶à²úÉú200¸öÊý¾Ý
-        if(!vlist.animating) // ×èÖ¹¶¯»­ÖÐ¸üÐÂÊý¾Ý
+          return false; // æœ€å¤šäº§ç”Ÿ200ä¸ªæ•°æ®
+        if(!vlist.animating) // é˜»æ­¢åŠ¨ç”»ä¸­æ›´æ–°æ•°æ®
           addChunk();
         return true;
       });
@@ -100,7 +100,7 @@
      
     $(#addone) << event click()
     {
-	    records.push {index: records.length, caption:"ÐÂÏî", status:"" };
+	    records.push {index: records.length, caption:"æ–°é¡¹", status:"" };
 	    vlist.tbody.scrollTo(0, 9999999, true, true);
     }
     $(#copy) << event click() 
@@ -167,22 +167,22 @@
   </head>
 <body>
 
-  <h2>ÐéÄâ±íÁÐ±íÖÐ¶¯Ì¬Êý¾ÝÍ»±ä</h2>
+  <h2>è™šæ‹Ÿè¡¨åˆ—è¡¨ä¸­åŠ¨æ€æ•°æ®çªå˜</h2>
   
-  <p>¼ÇÂ¼Êý×éÄ¬ÈÏÓÐ500Ìõ¼ÇÂ¼£¬²¢ÇÒÃ¿¸ô60msÊý¾Ý±»ÐÞ¸ÄÏÂ(ÐÂÔö¡¢ÒÆ³ý¡¢¸üÐÂ)¡£</p> 
+  <p>è®°å½•æ•°ç»„é»˜è®¤æœ‰500æ¡è®°å½•ï¼Œå¹¶ä¸”æ¯éš”60msæ•°æ®è¢«ä¿®æ”¹ä¸‹(æ–°å¢žã€ç§»é™¤ã€æ›´æ–°)ã€‚</p> 
 
-  <button #populate>Ä£Äâ ½¥½øÌî³ä</button>
-  <button #mutate>Æô¶¯ Ëæ»ú¸üÐÂ</button>
+  <button #populate>æ¨¡æ‹Ÿ æ¸è¿›å¡«å……</button>
+  <button #mutate>å¯åŠ¨ éšæœºæ›´æ–°</button>
  
-  <button #addone>Ìí¼ÓÒ»Ìõ</button>
-  <button #toLast>µ÷µ½×îºóÒ»Ìõ</button>
-  <button #copy>¸´ÖÆ</button>
-  <button #deleteall>É¾³ýËùÓÐ</button>
-  <button #delete>É¾³ý</button>
+  <button #addone>æ·»åŠ ä¸€æ¡</button>
+  <button #toLast>è°ƒåˆ°æœ€åŽä¸€æ¡</button>
+  <button #copy>å¤åˆ¶</button>
+  <button #deleteall>åˆ é™¤æ‰€æœ‰</button>
+  <button #delete>åˆ é™¤</button>
 
   <table resizeable rowselect >
     <thead>
-      <tr><th(index).sortable style="width:max-intrinsic;">Ë÷Òý</th><th(caption).sortable>±êÌâ</th><th(status)>×´Ì¬</th></tr>
+      <tr><th(index).sortable style="width:max-intrinsic;">ç´¢å¼•</th><th(caption).sortable>æ ‡é¢˜</th><th(status)>çŠ¶æ€</th></tr>
     </thead>
     <tbody>
       <tr><td(index) editable edittype=decimal></td><td(caption) editable></td><td(status) ></td></tr>

@@ -159,42 +159,42 @@
 
 <body>
    <div class="tabs" #test>
-      <div class="strip" role="page-tab-list"> <!-- ÎÒÃÇµÄ±êÇ©Ìõ£¬¿ÉÒÔ·ÅÖÃÔÚtabÈÝÆ÷µÄÈÎºÎÎ»ÖÃ -->
-         <div panel="panel-id1" selected role="page-tab">±êÇ©1</div>
-         <div panel="panel-id2" role="page-tab">±êÇ©2</div>
-         <div panel="panel-id3" role="page-tab">±êÇ©3</div>         
+      <div class="strip" role="page-tab-list"> <!-- æˆ‘ä»¬çš„æ ‡ç­¾æ¡ï¼Œå¯ä»¥æ”¾ç½®åœ¨tabå®¹å™¨çš„ä»»ä½•ä½ç½® -->
+         <div panel="panel-id1" selected role="page-tab">æ ‡ç­¾1</div>
+         <div panel="panel-id2" role="page-tab">æ ‡ç­¾2</div>
+         <div panel="panel-id3" role="page-tab">æ ‡ç­¾3</div>         
       </div>
-      <div id="panel-id1"> µÚÒ»¸öÃæ°åÄÚÈÝ
+      <div id="panel-id1"> ç¬¬ä¸€ä¸ªé¢æ¿å†…å®¹
       <select name="country">
-        <OPTION VALUE=1 >°¢¸»º¹</OPTION>
-        <OPTION VALUE=2 >°¢¶û°ÍÄáÑÇ</OPTION>
-        <OPTION VALUE=3 >°¢¶û¼°ÀûÑÇ</OPTION>
-        <OPTION VALUE=4 >ÃÀ¹úÈøÄ¦ÑÇ</OPTION>
+        <OPTION VALUE=1 >é˜¿å¯Œæ±—</OPTION>
+        <OPTION VALUE=2 >é˜¿å°”å·´å°¼äºš</OPTION>
+        <OPTION VALUE=3 >é˜¿å°”åŠåˆ©äºš</OPTION>
+        <OPTION VALUE=4 >ç¾Žå›½è¨æ‘©äºš</OPTION>
       </select> 
       </div>
-      <div id="panel-id2"> µÚ¶þ¸öÃæ°åÄÚÈÝ <button>²âÊÔ1</button> </div>
-      <div id="panel-id3"> µÚ¶þ¸öÃæ°åÄÚÈÝ </div>      
+      <div id="panel-id2"> ç¬¬äºŒä¸ªé¢æ¿å†…å®¹ <button>æµ‹è¯•1</button> </div>
+      <div id="panel-id3"> ç¬¬äºŒä¸ªé¢æ¿å†…å®¹ </div>      
    </div>
-   <p>tabµÄÇáÁ¿°æ:</p>
+   <p>tabçš„è½»é‡ç‰ˆ:</p>
    <div class="tabs" id="second">
-      <div class="strip"> <!-- ÎÒÃÇµÄ±êÇ©Ìõ£¬¿ÉÒÔ·ÅÖÃÔÚtabÈÝÆ÷µÄÈÎºÎÎ»ÖÃ -->
-         <div panel="panel-id1" selected>±êÇ©1</div>
-         <div panel="panel-id2">±êÇ©2</div>
-         <div panel="panel-id3">±êÇ©3</div>         
+      <div class="strip"> <!-- æˆ‘ä»¬çš„æ ‡ç­¾æ¡ï¼Œå¯ä»¥æ”¾ç½®åœ¨tabå®¹å™¨çš„ä»»ä½•ä½ç½® -->
+         <div panel="panel-id1" selected>æ ‡ç­¾1</div>
+         <div panel="panel-id2">æ ‡ç­¾2</div>
+         <div panel="panel-id3">æ ‡ç­¾3</div>         
       </div>
-      <div name="panel-id1" selected> µÚÒ»¸öÃæ°åÄÚÈÝ </div>
-      <div name="panel-id2" > µÚ¶þ¸öÃæ°åÄÚÈÝ </div>
-      <div name="panel-id3" > µÚÈý¸öÃæ°åÄÚÈÝ <img src="sres:busy.png"> </div>      
+      <div name="panel-id1" selected> ç¬¬ä¸€ä¸ªé¢æ¿å†…å®¹ </div>
+      <div name="panel-id2" > ç¬¬äºŒä¸ªé¢æ¿å†…å®¹ </div>
+      <div name="panel-id3" > ç¬¬ä¸‰ä¸ªé¢æ¿å†…å®¹ <img src="sres:busy.png"> </div>      
    </div>
-   <p>±êÇ©Ò³ÔÚµ×²¿:</p>
+   <p>æ ‡ç­¾é¡µåœ¨åº•éƒ¨:</p>
    <div class="tabs" id="third">
-      <div name="panel-id1" selected> µÚÒ»¸öÃæ°åÄÚÈÝ </div>
-      <div name="panel-id2" > µÚ¶þ¸öÃæ°åÄÚÈÝ </div>
-      <div name="panel-id3" > µÚÈý¸öÃæ°åÄÚÈÝ <img #test src="sres:busy.png"> </div>      
-      <div class="strip"> <!-- ÎÒÃÇµÄ±êÇ©Ìõ£¬¿ÉÒÔ·ÅÖÃÔÚtabÈÝÆ÷µÄÈÎºÎÎ»ÖÃ -->
-         <div panel="panel-id1" selected>±êÇ©1</div>
-         <div panel="panel-id2">±êÇ©2</div>
-         <div panel="panel-id3">±êÇ©3</div>         
+      <div name="panel-id1" selected> ç¬¬ä¸€ä¸ªé¢æ¿å†…å®¹ </div>
+      <div name="panel-id2" > ç¬¬äºŒä¸ªé¢æ¿å†…å®¹ </div>
+      <div name="panel-id3" > ç¬¬ä¸‰ä¸ªé¢æ¿å†…å®¹ <img #test src="sres:busy.png"> </div>      
+      <div class="strip"> <!-- æˆ‘ä»¬çš„æ ‡ç­¾æ¡ï¼Œå¯ä»¥æ”¾ç½®åœ¨tabå®¹å™¨çš„ä»»ä½•ä½ç½® -->
+         <div panel="panel-id1" selected>æ ‡ç­¾1</div>
+         <div panel="panel-id2">æ ‡ç­¾2</div>
+         <div panel="panel-id3">æ ‡ç­¾3</div>         
       </div>
    </div>
    

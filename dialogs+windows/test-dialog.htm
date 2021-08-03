@@ -8,13 +8,13 @@
 
   @click @on "#show-dialog-1": 
     {
-      var v = view.dialog( self.url("samples/sample-dialog-1.htm"), true, -5); // -5 - Ïà¶ÔÓÚ¸¸´°¿Ú¾ÓÖĞ
+      var v = view.dialog( self.url("samples/sample-dialog-1.htm"), true, -5); // -5 - ç›¸å¯¹äºçˆ¶çª—å£å±…ä¸­
       $(output#out).text = String.printf("%V", v).replace("\t","  ");
     }
 
   @click @on "#show-dialog-2": 
     {
-      var params = { one: "first", two: "second" }; // ´«µİ¸ø¶Ô»°¿òµÄ²ÎÊı
+      var params = { one: "first", two: "second" }; // ä¼ é€’ç»™å¯¹è¯æ¡†çš„å‚æ•°
       var v = view.dialog {
          url: self.url("samples/sample-dialog-2.htm"), 
          //screen:1, // on second screen
@@ -27,12 +27,12 @@
 
   @click @on "#show-dialog-3": 
     {
-      var params = { one: "one", two: "two" }; // ´«µİµÄ²ÎÊı
+      var params = { one: "one", two: "two" }; // ä¼ é€’çš„å‚æ•°
       var v = view.dialog {
          url: self.url("samples/sample-dialog-2.htm"),
          x:300,  
          y:300,
-         alignment:5, // ²Î¿¼Ğ¡¼üÅÌ£º´°¿ÚµÄÖĞĞÄÎ»ÖÃÔÚ[200,200]¡£
+         alignment:5, // å‚è€ƒå°é”®ç›˜ï¼šçª—å£çš„ä¸­å¿ƒä½ç½®åœ¨[200,200]ã€‚
          parameters: params 
       };
       $(output#out).text = String.printf("%V", v).replace("\t","  ");
@@ -80,23 +80,23 @@
 </script>
   </head>
 <body>
- ×Ô¶¨ÒåHTML¶Ô»°¿ò:
+ è‡ªå®šä¹‰HTMLå¯¹è¯æ¡†:
  <ol>
-    <li><button #show-dialog-1>ÏÔÊ¾¼òµ¥µÄ¶Ô»°¿ò</button></li>
-    <li><button #show-dialog-2>ÏÔÊ¾ÓĞ²ÎÊıµÄ¶Ô»°¿ò</button></li>
-    <li><button #show-dialog-3>ÔÚÖ¸¶¨×ø±êÏÔÊ¾¶Ô»°¿ò</button></li>
-    <li><button #show-dialog-resizeable>ÏÔÊ¾´°¿Ú³ß´ç¿Éµ÷ÕûµÄ¶Ô»°¿ò</button></li>
-    <li><button #show-dialog-custom-frame-1>ÏÔÊ¾×Ô¶¨Òåframe¶Ô»°¿ò: Í¼²ã</button></li>
-    <li><button #show-dialog-custom-frame-2>ÏÔÊ¾×Ô¶¨Òåframe¶Ô»°¿ò: ÊµÌå</button></li>
-    <li><button #show-dialog-custom-frame-3>ÏÔÊ¾×Ô¶¨Òåframe¶Ô»°¿ò: ÊµÌåÓĞÒõÓ°</button></li>
-    <li><button #show-dialog-custom-behavior>ÏÔÊ¾ÓĞ×Ô¶¨ÒåĞĞÎª(tabs)µÄ¶Ô»°¿ò</button></li>
+    <li><button #show-dialog-1>æ˜¾ç¤ºç®€å•çš„å¯¹è¯æ¡†</button></li>
+    <li><button #show-dialog-2>æ˜¾ç¤ºæœ‰å‚æ•°çš„å¯¹è¯æ¡†</button></li>
+    <li><button #show-dialog-3>åœ¨æŒ‡å®šåæ ‡æ˜¾ç¤ºå¯¹è¯æ¡†</button></li>
+    <li><button #show-dialog-resizeable>æ˜¾ç¤ºçª—å£å°ºå¯¸å¯è°ƒæ•´çš„å¯¹è¯æ¡†</button></li>
+    <li><button #show-dialog-custom-frame-1>æ˜¾ç¤ºè‡ªå®šä¹‰frameå¯¹è¯æ¡†: å›¾å±‚</button></li>
+    <li><button #show-dialog-custom-frame-2>æ˜¾ç¤ºè‡ªå®šä¹‰frameå¯¹è¯æ¡†: å®ä½“</button></li>
+    <li><button #show-dialog-custom-frame-3>æ˜¾ç¤ºè‡ªå®šä¹‰frameå¯¹è¯æ¡†: å®ä½“æœ‰é˜´å½±</button></li>
+    <li><button #show-dialog-custom-behavior>æ˜¾ç¤ºæœ‰è‡ªå®šä¹‰è¡Œä¸º(tabs)çš„å¯¹è¯æ¡†</button></li>
 
-    <li><button #show-hole-dialog>ÏÔÊ¾"hole"¶Ô»°¿ò</button></li>
+    <li><button #show-hole-dialog>æ˜¾ç¤º"hole"å¯¹è¯æ¡†</button></li>
     
  </ol>
-  ¶¯»­²âÊÔ£º<img src="sciter:busy.png">
+  åŠ¨ç”»æµ‹è¯•ï¼š<img src="sciter:busy.png">
   
- ·µ»ØÖµ£º
+ è¿”å›å€¼ï¼š
  <output#out>
  </output>
 </body>

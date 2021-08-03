@@ -54,7 +54,7 @@
     }
     
     for(var i in 100)
-      records.push { index: n = i, caption:"Ïî", highlighted: false };
+      records.push { index: n = i, caption:"é¡¹", highlighted: false };
       
     var vlist = VirtualList {
       container     : $(vlist),
@@ -67,11 +67,11 @@
     
     $(#add) << event click() {
       for(var i in 10)
-        records.push { index: ++n, caption:"ĞÂÏî" };
+        records.push { index: ++n, caption:"æ–°é¡¹" };
     }
     $(#insert) << event click() {
       for(var i in 10)
-        records.unshift{ index: --p, caption:"ĞÂÏî" };
+        records.unshift{ index: --p, caption:"æ–°é¡¹" };
     };
     
     $(#delf) << event click() {
@@ -93,12 +93,12 @@
     };
 
     $(#ins5) << event click() {
-      records.splice(5,0,{ index: ++n , caption:"²åÈëÏî" });
+      records.splice(5,0,{ index: ++n , caption:"æ’å…¥é¡¹" });
     };
     
     $(#update) << event click() {
       for(var i in 10)
-        records[i] = { index: ++n, caption:"¸üĞÂÏî" };
+        records[i] = { index: ++n, caption:"æ›´æ–°é¡¹" };
     };
     
     $(#reorder) << event click() {
@@ -138,22 +138,22 @@
   </head>
 <body>
 
-  <h2>VirtualList °ó¶¨ Ê¾Àı</h2>
-  <p>VirtualListÉèÖÃÎª¼ÇÂ¼Êı×éµÄ¹Û²ìÕß£¬Òò´Ë¶Ô¼ÇÂ¼Êı×éµÄ¸üĞÂ»á·´Ó¦µ½ÊÓÍ¼ÉÏ¡£</p>
-  <button #add>Ìí¼ÓÎ²²¿10Ïî</button>
-  <button #insert>Ìí¼ÓÍ·²¿10Ïî</button> 
-  <button #delf>É¾³ıÍ·²¿10Ïî</button> 
-  <button #dell>É¾³ıÎ²²¿10Ïî</button> 
-  <button #ins5>ÔÚµÚ5¸öÎ»ÖÃ²åÈë¼ÇÂ¼</button>
-  <button #del5>É¾³ıµÚ5¸öÎ»ÖÃ²åÈë¼ÇÂ¼</button>
-  <button #del45>É¾³ıµÚ45¸öÎ»ÖÃµÄ¼ÇÂ¼</button>
-  <button #update>¸üĞÂÍ·²¿10Ïî</button> 
-  <button #reorder>ÖØÅÅËùÓĞ</button> 
-  <button #updateIndex>Ë÷ÒıµİÔö</button> 
-  <p>²âÊÔ×Ô¶¨ÒåsetupItemView()º¯Êı</p>
-  <button #updateHighlighted>ÉèÖÃÆæÊıÏî¸ßÁÁÏÔÊ¾(ÉèÖÃ'record.highlighted = true')</button> 
-  <button #removeHighlighted>È¡Ïû¸ßÁÁÏÔÊ¾</button> 
-  <input|integer #recordToGo value=25 step=1> <button #goToRecord>µ÷µ½¼ÇÂ¼</button> 
+  <h2>VirtualList ç»‘å®š ç¤ºä¾‹</h2>
+  <p>VirtualListè®¾ç½®ä¸ºè®°å½•æ•°ç»„çš„è§‚å¯Ÿè€…ï¼Œå› æ­¤å¯¹è®°å½•æ•°ç»„çš„æ›´æ–°ä¼šååº”åˆ°è§†å›¾ä¸Šã€‚</p>
+  <button #add>æ·»åŠ å°¾éƒ¨10é¡¹</button>
+  <button #insert>æ·»åŠ å¤´éƒ¨10é¡¹</button> 
+  <button #delf>åˆ é™¤å¤´éƒ¨10é¡¹</button> 
+  <button #dell>åˆ é™¤å°¾éƒ¨10é¡¹</button> 
+  <button #ins5>åœ¨ç¬¬5ä¸ªä½ç½®æ’å…¥è®°å½•</button>
+  <button #del5>åˆ é™¤ç¬¬5ä¸ªä½ç½®æ’å…¥è®°å½•</button>
+  <button #del45>åˆ é™¤ç¬¬45ä¸ªä½ç½®çš„è®°å½•</button>
+  <button #update>æ›´æ–°å¤´éƒ¨10é¡¹</button> 
+  <button #reorder>é‡æ’æ‰€æœ‰</button> 
+  <button #updateIndex>ç´¢å¼•é€’å¢</button> 
+  <p>æµ‹è¯•è‡ªå®šä¹‰setupItemView()å‡½æ•°</p>
+  <button #updateHighlighted>è®¾ç½®å¥‡æ•°é¡¹é«˜äº®æ˜¾ç¤º(è®¾ç½®'record.highlighted = true')</button> 
+  <button #removeHighlighted>å–æ¶ˆé«˜äº®æ˜¾ç¤º</button> 
+  <input|integer #recordToGo value=25 step=1> <button #goToRecord>è°ƒåˆ°è®°å½•</button> 
   
   <vlist>
     <li><span(index)/> <span(caption)>???</span></li>

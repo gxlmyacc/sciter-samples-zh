@@ -2,7 +2,7 @@
   <head>
     <title>Plus: very basic sample</title>
     <style>
-      @import url(../plus.css); /* ½öĞèÒıÈëPlus¿ò¼Ü */
+      @import url(../plus.css); /* ä»…éœ€å¼•å…¥Plusæ¡†æ¶ */
       @import url(../../note.css); 
       
       .hide { display:none; }
@@ -14,11 +14,11 @@
     
     <script type="text/tiscript">
     
-      include "../plus.tis"; // ÒòÎªÒªÊ¹ÓÃ@observing£¬ËùÒÔĞèÒªÒıÈëplus.tis
+      include "../plus.tis"; // å› ä¸ºè¦ä½¿ç”¨@observingï¼Œæ‰€ä»¥éœ€è¦å¼•å…¥plus.tis
   
-      namespace Data // ÎÒÃÇµÄÄ£ĞÍ
+      namespace Data // æˆ‘ä»¬çš„æ¨¡å‹
       {  
-        var pass = ""; // ±»¹Û²ì±äÁ¿
+        var pass = ""; // è¢«è§‚å¯Ÿå˜é‡
         
         var passStrength;
         
@@ -36,17 +36,17 @@
     </script>
   </head>
 
-<body model="Data"> <!-- ¶¨ÒåÎÒÃÇÒª¹Û²ìµÄÊı¾İÄ£ĞÍ -->
+<body model="Data"> <!-- å®šä¹‰æˆ‘ä»¬è¦è§‚å¯Ÿçš„æ•°æ®æ¨¡å‹ -->
 
-  <note>Õâ¸öÊ¾ÀıÏÔÊ¾»ù±¾µÄCSS class °ó¶¨¡£ÏÂÃæµÄÊäÈë¿òµÄclassÊôĞÔ°ó¶¨ÁË<code>passStrength</code>±äÁ¿¡£</note>
+  <note>è¿™ä¸ªç¤ºä¾‹æ˜¾ç¤ºåŸºæœ¬çš„CSS class ç»‘å®šã€‚ä¸‹é¢çš„è¾“å…¥æ¡†çš„classå±æ€§ç»‘å®šäº†<code>passStrength</code>å˜é‡ã€‚</note>
 
-  <p>ÇëÊäÈëÃÜÂë: 
+  <p>è¯·è¾“å…¥å¯†ç : 
     <input|password(pass)> 
-           <span class="pwd {{hide:passStrength != #weak}}">Èõ!</span>
-           <strong class="pwd {{hide:passStrength != #strong}}">Ç¿!</strong> 
+           <span class="pwd {{hide:passStrength != #weak}}">å¼±!</span>
+           <strong class="pwd {{hide:passStrength != #strong}}">å¼º!</strong> 
   </p>
                     
-  <strong class="{{hide:!passStrength}}">Ëæ±ãÒ»¸ö×Ö·û´®</strong>
-  <p .comment>(ÕâÀïpass.length >= 8±»ÈÏÎªÊÇ Ç¿×³ µÄÃÜÂë)</p>
+  <strong class="{{hide:!passStrength}}">éšä¾¿ä¸€ä¸ªå­—ç¬¦ä¸²</strong>
+  <p .comment>(è¿™é‡Œpass.length >= 8è¢«è®¤ä¸ºæ˜¯ å¼ºå£® çš„å¯†ç )</p>
 </body>
 </html>

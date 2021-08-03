@@ -33,66 +33,66 @@
 
     include "lightbox-dialog.tis";
 
-    //´ò¿ªÒ»¸ö¼òµ¥¶Ô»°¿ò²¢µÈ´ıËü¹Ø±Õ
+    //æ‰“å¼€ä¸€ä¸ªç®€å•å¯¹è¯æ¡†å¹¶ç­‰å¾…å®ƒå…³é—­
     $(#button1).onClick = function() 
     {
-      $(#result1).value = "ÇëµÈ´ı...";
+      $(#result1).value = "è¯·ç­‰å¾…...";
 
-      // ÏÔÊ¾¶Ô»°¿ò:      
+      // æ˜¾ç¤ºå¯¹è¯æ¡†:      
       var res = dialog { body:$(form#simple-dialog) };
      
       $(#result1).value = String.printf("result = %v", res);
     }
 
-    //´ò¿ªÒ»¸öÓĞÊı¾İµÄ¶Ô»°¿ò²¢µÈ´ıËü¹Ø±Õ
+    //æ‰“å¼€ä¸€ä¸ªæœ‰æ•°æ®çš„å¯¹è¯æ¡†å¹¶ç­‰å¾…å®ƒå…³é—­
     $(#button2).onClick = function() 
     {
-      $(#result2).value = "ÇëµÈ´ı...";
+      $(#result2).value = "è¯·ç­‰å¾…...";
 
-      // ÏÔÊ¾¶Ô»°¿ò:      
+      // æ˜¾ç¤ºå¯¹è¯æ¡†:      
       var res = dialog { body:$(form#data-dialog),
                          returns: #values };
      
       $(#result2).value = String.printf("result = %v", res);
     }
 
-    //´ò¿ªÒ»¸öÓĞ³õÊ¼»¯²É¼¯Êı¾İµÄ¶Ô»°¿ò²¢µÈ´ıËü¹Ø±Õ
+    //æ‰“å¼€ä¸€ä¸ªæœ‰åˆå§‹åŒ–é‡‡é›†æ•°æ®çš„å¯¹è¯æ¡†å¹¶ç­‰å¾…å®ƒå…³é—­
     $(#button3).onClick = function() 
     {
-      $(#result3).value = "ÇëµÈ´ı...";
+      $(#result3).value = "è¯·ç­‰å¾…...";
 
-      // ÏÔÊ¾¶Ô»°¿ò:
+      // æ˜¾ç¤ºå¯¹è¯æ¡†:
       var res = dialog { body   : $(form#data-dialog),
                          returns: #values,
                          initial: {
-                                    #secret-wish:"ÕâÊÇÎÒÏëËµµÄ»°",
+                                    #secret-wish:"è¿™æ˜¯æˆ‘æƒ³è¯´çš„è¯",
                                     #gender     :"male",
                                     #birthday   :new Date("1955-10-28"),
-                                    #first-name :"±È¶û",
-                                    #last-name  :"¸Ç´Ä"
+                                    #first-name :"æ¯”å°”",
+                                    #last-name  :"ç›–èŒ¨"
                                   }
                        };
      
       $(#result3).value = String.printf("result = %v", res);
     }
 
-    //´ò¿ªÒ»¸öÓĞ×Ô¶¨Òå°´Å¥µÄ¶Ô»°¿ò²¢µÈ´ıËü¹Ø±Õ
+    //æ‰“å¼€ä¸€ä¸ªæœ‰è‡ªå®šä¹‰æŒ‰é’®çš„å¯¹è¯æ¡†å¹¶ç­‰å¾…å®ƒå…³é—­
     $(#button4).onClick = function() 
     {
-      $(#result4).value = "ÇëµÈ´ı...";
+      $(#result4).value = "è¯·ç­‰å¾…...";
       
       function onApply(form)
       { 
         $(#result4).value = String.printf("%v", form.value); 
-        // Èç¹ûÄãÏëÔÚ´¦Àíºó¹Ø±Õ¶Ô»°¿ò£¬Ôò·µ»Øreturn true; 
+        // å¦‚æœä½ æƒ³åœ¨å¤„ç†åå…³é—­å¯¹è¯æ¡†ï¼Œåˆ™è¿”å›return true; 
       }
 
-      // ÏÔÊ¾¶Ô»°¿ò:      
+      // æ˜¾ç¤ºå¯¹è¯æ¡†:      
       var res = dialog { body:$(form#data-dialog),
                          returns: #values,
-                         buttons: [ { caption: "È·¶¨", role:#ok, value:true },
-                                    { caption: "Ó¦ÓÃ", value: onApply },
-                                    { caption: "È¡Ïû", role:#cancel, value:false } ]
+                         buttons: [ { caption: "ç¡®å®š", role:#ok, value:true },
+                                    { caption: "åº”ç”¨", value: onApply },
+                                    { caption: "å–æ¶ˆ", role:#cancel, value:false } ]
                         };
      
       $(#result4).value = String.printf("result = %v", res);
@@ -100,34 +100,34 @@
 
   </script>
   
-  <form #simple-dialog caption="¼òµ¥¶Ô»°¿ò!">
-    <label>±êÌâ:</label>
+  <form #simple-dialog caption="ç®€å•å¯¹è¯æ¡†!">
+    <label>æ ‡é¢˜:</label>
 	<input type="text" #test />
   </form>
 
-  <form #data-dialog caption="ÇëÊäÈëÄúµÄĞÅÏ¢:">
+  <form #data-dialog caption="è¯·è¾“å…¥æ‚¨çš„ä¿¡æ¯:">
     <table>
-      <tr><td>µÚÒ»ĞÕÃû:</td>
+      <tr><td>ç¬¬ä¸€å§“å:</td>
           <td><input name="first-name" type="text" /></td></tr>
-      <tr><td>µÚ¶şĞÕÃû:</td>
+      <tr><td>ç¬¬äºŒå§“å:</td>
           <td><input name="last-name" type="text" /></td></tr>
-      <tr><td>ÉúÈÕ:</td>
+      <tr><td>ç”Ÿæ—¥:</td>
           <td><input name="birthday" type="date" /></td></tr>
-      <tr><td>ĞÔ±ğ:</td>
-          <td><button name="gender" type="radio" value="male" checked>ÄĞ</button><button name="gender" type="radio" value="female">Å®</button></td></tr>
-      <tr><td>ÄãÏëËµÊ²Ã´£¿</td>
+      <tr><td>æ€§åˆ«:</td>
+          <td><button name="gender" type="radio" value="male" checked>ç”·</button><button name="gender" type="radio" value="female">å¥³</button></td></tr>
+      <tr><td>ä½ æƒ³è¯´ä»€ä¹ˆï¼Ÿ</td>
           <td><textarea name="secret-wish" rows=4 cols=30 /></td></tr>
     </table>
   </form>
   
 </head>
 <body>
-<h1>ÎÄµµÄ£Ì¬¶Ô»°¿ò Ê¾Àı</h1>
-<p>ÊäÈë: <input type="text" value="text"></p>
-<p><input type="button" #button1 value="´ò¿ªÒ»¸ö¼òµ¥¶Ô»°¿ò²¢µÈ´ıËü¹Ø±Õ"> <span id="result1"></span></p>
-<p><input type="button" #button2 value="´ò¿ªÒ»¸öÓĞÊı¾İµÄ¶Ô»°¿ò²¢µÈ´ıËü¹Ø±Õ"> <span id="result2"></span></p>
-<p><input type="button" #button3 value="´ò¿ªÒ»¸öÓĞ³õÊ¼»¯²É¼¯Êı¾İµÄ¶Ô»°¿ò²¢µÈ´ıËü¹Ø±Õ"> <span id="result3"></span></p>
-<p><input type="button" #button4 value="´ò¿ªÒ»¸öÓĞ×Ô¶¨Òå°´Å¥µÄ¶Ô»°¿ò²¢µÈ´ıËü¹Ø±Õ"> <span id="result4"></span></p>
+<h1>æ–‡æ¡£æ¨¡æ€å¯¹è¯æ¡† ç¤ºä¾‹</h1>
+<p>è¾“å…¥: <input type="text" value="text"></p>
+<p><input type="button" #button1 value="æ‰“å¼€ä¸€ä¸ªç®€å•å¯¹è¯æ¡†å¹¶ç­‰å¾…å®ƒå…³é—­"> <span id="result1"></span></p>
+<p><input type="button" #button2 value="æ‰“å¼€ä¸€ä¸ªæœ‰æ•°æ®çš„å¯¹è¯æ¡†å¹¶ç­‰å¾…å®ƒå…³é—­"> <span id="result2"></span></p>
+<p><input type="button" #button3 value="æ‰“å¼€ä¸€ä¸ªæœ‰åˆå§‹åŒ–é‡‡é›†æ•°æ®çš„å¯¹è¯æ¡†å¹¶ç­‰å¾…å®ƒå…³é—­"> <span id="result3"></span></p>
+<p><input type="button" #button4 value="æ‰“å¼€ä¸€ä¸ªæœ‰è‡ªå®šä¹‰æŒ‰é’®çš„å¯¹è¯æ¡†å¹¶ç­‰å¾…å®ƒå…³é—­"> <span id="result4"></span></p>
 
 <div style="background:gold; size:100dip;">
   test

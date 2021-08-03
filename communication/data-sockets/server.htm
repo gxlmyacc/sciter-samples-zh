@@ -13,17 +13,17 @@
     
       function acceptConnection(socket) 
       {
-        log.text = "¼àÌıµ½Á¬½ÓÇëÇó";
+        log.text = "ç›‘å¬åˆ°è¿æ¥è¯·æ±‚";
         socket << event data( data ) // subscribe on "data" event
         {
           log.text += JSON.stringify(data,"  ");
           socket.send(data);
         };
-        return true; // ½ÓÊÜÕâ¸öÁ¬½ÓÇëÇó
+        return true; // æ¥å—è¿™ä¸ªè¿æ¥è¯·æ±‚
       }
     
       serverSocket = DataSocket.listen(acceptConnection,22349);
-      log.text = "¼àÌı¶Ë¿Ú£º22349";
+      log.text = "ç›‘å¬ç«¯å£ï¼š22349";
       
       $(button#serve).remove();
     
@@ -38,7 +38,7 @@
   </head>
 <body>
 
-  <button #serve>Æô¶¯·şÎñ</button>
+  <button #serve>å¯åŠ¨æœåŠ¡</button>
   <pre #out>
   </pre>
 

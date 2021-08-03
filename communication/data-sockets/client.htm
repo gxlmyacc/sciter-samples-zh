@@ -10,10 +10,10 @@
       var output = $(pre#out);
       
       /*function reportData(data) {
-        output.text = "<text>½ÓÊÕµ½:\n" + JSON.stringify(data, "  ") + "</text>";
+        output.text = "<text>æ¥æ”¶åˆ°:\n" + JSON.stringify(data, "  ") + "</text>";
       }
       function reportConnected() {
-        output.text = "ÒÑÁ¬½Ó";
+        output.text = "å·²è¿æ¥";
         form.state.disabled = false;
       }*/
       
@@ -28,7 +28,7 @@
                       log.text += "<text>received:\n" + JSON.stringify(data, "  ") + "</text>"; };
                 
         } else {
-          output.text = "Á¬½ÓÊ§°Ü£¡";
+          output.text = "è¿æ¥å¤±è´¥ï¼";
         }
       }
 
@@ -41,12 +41,12 @@
     </script>
   </head>
 <body>
-  <button#connect>Á¬½Óµ½ localhost:22349</button>
+  <button#connect>è¿æ¥åˆ° localhost:22349</button>
 
   <form #data disabled >
-    <label>±àºÅ<label> <input|integer(number) value=0>
-    <label>ÏûÏ¢<label> <input|text(message) value="123£¬ÄãºÃ">
-    <button#send>·¢ËÍ</button>
+    <label>ç¼–å·<label> <input|integer(number) value=0>
+    <label>æ¶ˆæ¯<label> <input|text(message) value="123ï¼Œä½ å¥½">
+    <button#send>å‘é€</button>
   </form>
   
   <pre#out>

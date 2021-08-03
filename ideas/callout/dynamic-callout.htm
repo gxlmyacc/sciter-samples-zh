@@ -40,7 +40,7 @@
     $(#text-with-callout).onFocus = function(evt)
     {
       if( evt.type == Event.GOT_FOCUS )
-        ShowCallout(this, "��ã�",3000);
+        ShowCallout(this, "你好！",3000);
     }
     
     
@@ -49,9 +49,9 @@
 <body>
 
   <form #samples>
-    <label>���Զ���ʾ���ܵĻ���:</label>
+    <label>有自动提示功能的滑块:</label>
     <input type=hslider>
-    <label>����У��:</label>
+    <label>输入校验:</label>
     <input type=text #text-with-callout>
   </form>
   

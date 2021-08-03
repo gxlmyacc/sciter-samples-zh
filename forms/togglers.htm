@@ -1,4 +1,4 @@
-<html>
+﻿<html>
   <head>
   <title></title>
 <style>
@@ -28,29 +28,29 @@
 <body>
   
   <form>
-    <label>��׼��ѡ��:</label>
-      <button|checkbox name="standard">����</button>
-    <label>��׼��ѡ��(ѡ��):</label>
-      <button|checkbox checked name="standardChecked">����</button>
-    <label>��׼��̬��ѡ��:</label>
-      <button|checkbox mixed name="standardMixed">����</button>
-    <label>��״̬��ǩ�ı�׼��ѡ��:</label>    
+    <label>标准复选框:</label>
+      <button|checkbox name="standard">测试</button>
+    <label>标准复选框(选中):</label>
+      <button|checkbox checked name="standardChecked">测试</button>
+    <label>标准三态复选框:</label>
+      <button|checkbox mixed name="standardMixed">测试</button>
+    <label>有状态标签的标准复选框:</label>    
       <button|checkbox .switch name="standardWithLabels">
-        <caption .true>ѡ��״̬</caption>
-        <caption .false>��ѡ��״̬</caption>
+        <caption .true>选中状态</caption>
+        <caption .false>非选中状态</caption>
       </button>
-    <label>��״̬��ǩ�ı�׼��ѡ��(ѡ��):</label>    
+    <label>有状态标签的标准复选框(选中):</label>    
       <button|checkbox .switch checked name="standardWithLabelsChecked">
-        <caption .true>ѡ��״̬</caption>
-        <caption .false>��ѡ��״̬</caption>
+        <caption .true>选中状态</caption>
+        <caption .false>非选中状态</caption>
       </button>
-    <label>�л���:</label>
+    <label>切换器:</label>
       <button|toggler checked=false name="toggler">
-        <caption .true>��</caption>
-        <caption .false>�ر�</caption>
+        <caption .true>打开</caption>
+        <caption .false>关闭</caption>
       </button>
-    <label>�л���(ѡ��) :</label>
-      <button|toggler checked name="togglerChecked" oncaption="��" offcaption="�ر�">
+    <label>切换器(选中) :</label>
+      <button|toggler checked name="togglerChecked" oncaption="打开" offcaption="关闭">
       </button>
   </form>
   <pre #out></pre>

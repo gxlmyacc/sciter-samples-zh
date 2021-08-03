@@ -1,26 +1,26 @@
 <html window-frame="default" window-blurbehind window-resizable>
 <head>
-<title>ÓÐ×Ô¶¨ÒåÐÐÎª(tabs)µÄ¶Ô»°¿ò</title>
+<title>æœ‰è‡ªå®šä¹‰è¡Œä¸º(tabs)çš„å¯¹è¯æ¡†</title>
 <style>
 
 html 
 { 
   font:system;
   min-width:300dip;       
-  max-width:100%;         /* ×î´ó¿í¶È-È«ÆÁ */
-  width:300dip;           /* Ê×Ñ¡/³õÊ¼¿í¶È */
-  height:240dip;     /* ÄÚÈÝÇø²»»áÒç³ö£¬Ã»ÓÐ´¹Ö±¹ö¶¯Ìõ */  
+  max-width:100%;         /* æœ€å¤§å®½åº¦-å…¨å± */
+  width:300dip;           /* é¦–é€‰/åˆå§‹å®½åº¦ */
+  height:240dip;     /* å†…å®¹åŒºä¸ä¼šæº¢å‡ºï¼Œæ²¡æœ‰åž‚ç›´æ»šåŠ¨æ¡ */  
   min-height:240dip;  
-  max-height: 70%;        /* 70%µÄÆÁÄ»¸ß¶È */
+  max-height: 70%;        /* 70%çš„å±å¹•é«˜åº¦ */
   overflow:none;
   padding:0;
 }
 
-@media composition-supported /* Ã½Ìå²éÑ¯£ºAero DWMÌØÐ§ÓÐÐ§ */
+@media composition-supported /* åª’ä½“æŸ¥è¯¢ï¼šAero DWMç‰¹æ•ˆæœ‰æ•ˆ */
 {
   html 
   {
-    background:transparent; /* ±³¾°¿´ÆðÀ´ÏñÀÏ»¯µÄËÜÁÏ */
+    background:transparent; /* èƒŒæ™¯çœ‹èµ·æ¥åƒè€åŒ–çš„å¡‘æ–™ */
   }
 }
 
@@ -36,14 +36,14 @@ h1, p { text-align:center; }
   overflow:hidden;
 }
 
-.tabs > .strip /* ±êÇ©Í· */
+.tabs > .strip /* æ ‡ç­¾å¤´ */
 {
   flow: horizontal;
   margin-bottom:-1px;
   padding: 2px 2px 0 2px;
 }
 
-.tabs > .strip > [panel] /* ±êÇ©Í·, passive by default */
+.tabs > .strip > [panel] /* æ ‡ç­¾å¤´, passive by default */
 {
   padding: 3px 8px;
   margin-bottom:1px;
@@ -52,19 +52,19 @@ h1, p { text-align:center; }
   background-image:url(theme:tab-item-normal);
   background-repeat:stretch;
 }
-.tabs > .strip > [panel]:hover /* ±êÇ©Í·:ÐüÍ£ */
+.tabs > .strip > [panel]:hover /* æ ‡ç­¾å¤´:æ‚¬åœ */
 {
   background-image:url(theme:tab-item-hover);
   transition:blend;
 }
-.tabs > .strip > [panel]:current  /*µ±Ç°¼¤»î±êÇ©*/
+.tabs > .strip > [panel]:current  /*å½“å‰æ¿€æ´»æ ‡ç­¾*/
 {
   background-image:url(theme:tab-item-selected);
   margin:-2px -2px -1px -2px;
   padding: 4px 10px 5px 10px; 
   position:relative;
 }
-.tabs > .strip > [panel]:current:hover /*µ±Ç°¼¤»î±êÇ©:ÐüÍ£ */
+.tabs > .strip > [panel]:current:hover /*å½“å‰æ¿€æ´»æ ‡ç­¾:æ‚¬åœ */
 {
   background-image:url(theme:tab-item-selected);
   transition:none;
@@ -113,25 +113,25 @@ h1, p { text-align:center; }
 
 <body>
   <div class="tabs" #test>
-    <div class="strip" role="page-tab-list"> <!-- ±êÇ©Í·£¬¿ÉÒÔ·ÅÖÃÔÚÈÝÆ÷µÄÈÎºÎÎ»ÖÃ -->
-       <div panel="panel-id1" selected role="page-tab">±êÇ©1</div>
-       <div panel="panel-id2" role="page-tab">±êÇ©2</div>
-       <div panel="panel-id3" role="page-tab">±êÇ©3</div>         
+    <div class="strip" role="page-tab-list"> <!-- æ ‡ç­¾å¤´ï¼Œå¯ä»¥æ”¾ç½®åœ¨å®¹å™¨çš„ä»»ä½•ä½ç½® -->
+       <div panel="panel-id1" selected role="page-tab">æ ‡ç­¾1</div>
+       <div panel="panel-id2" role="page-tab">æ ‡ç­¾2</div>
+       <div panel="panel-id3" role="page-tab">æ ‡ç­¾3</div>         
     </div>
-    <div name="panel-id1"> µÚÒ»¸öÃæ°åÄÚÈÝ
+    <div name="panel-id1"> ç¬¬ä¸€ä¸ªé¢æ¿å†…å®¹
     <select name="country">
-      <OPTION VALUE=1 >°¢¸»º¹</OPTION>
-      <OPTION VALUE=2 >°¢¶û°ÍÄáÑÇ</OPTION>
-      <OPTION VALUE=3 >°¢¶û¼°ÀûÑÇ</OPTION>
-      <OPTION VALUE=4 >ÃÀ¹úÈøÄ¦ÑÇ</OPTION>
+      <OPTION VALUE=1 >é˜¿å¯Œæ±—</OPTION>
+      <OPTION VALUE=2 >é˜¿å°”å·´å°¼äºš</OPTION>
+      <OPTION VALUE=3 >é˜¿å°”åŠåˆ©äºš</OPTION>
+      <OPTION VALUE=4 >ç¾Žå›½è¨æ‘©äºš</OPTION>
     </select> 
     </div>
-    <div name="panel-id2"> µÚ¶þ¸öÃæ°åÄÚÈÝ <button>²âÊÔ</button> </div>
-    <div name="panel-id3"> µÚÈý¸öÃæ°åÄÚÈÝ </div>      
+    <div name="panel-id2"> ç¬¬äºŒä¸ªé¢æ¿å†…å®¹ <button>æµ‹è¯•</button> </div>
+    <div name="panel-id3"> ç¬¬ä¸‰ä¸ªé¢æ¿å†…å®¹ </div>      
   </div>
   <p>
-    <button id="close-dialog">È·¶¨</button>
-    <button id="cancel-dialog" tabindex=1 >È¡Ïû</button>
+    <button id="close-dialog">ç¡®å®š</button>
+    <button id="cancel-dialog" tabindex=1 >å–æ¶ˆ</button>
   </p>
    
 </body>   

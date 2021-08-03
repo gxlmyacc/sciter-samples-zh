@@ -91,35 +91,35 @@
   </script>
 </head>
 <body>
-  <input|button #button-min value="��С��" />
+  <input|button #button-min value="最小化" />
   
-  �볢���ƶ������"����"����ͼ�ⲿ��
+  请尝试移动下面的"窗口"到视图外部。
   <ol>
-    <li>���"����"�ƶ�������λ������ͼ�ڲ�����"����"���Զ��ص�����ԭʼλ�á�</li>
-    <li>���"����"�ƶ�����ͼ�ⲿ����"����"��ͣ������ͼ���ڵı�Ե��<code>Element.move(..., #attached-window)</code></li>
-    <li>���"����"�ƶ�����ͼ�ⲿ�㹻Զ�ĵط�������������ͼ��������������ƶ���ͼ�����ᵼ�����"����"ͬ�������ƶ���<code>Element.move(..., #detached-window)</code></li>
+    <li>如果"窗口"移动的最终位置在视图内部，则"窗口"将自动回到它的原始位置。</li>
+    <li>如果"窗口"移动到视图外部，则"窗口"会停靠在视图窗口的边缘。<code>Element.move(..., #attached-window)</code></li>
+    <li>如果"窗口"移动到视图外部足够远的地方，则它将从视图中脱离出来——移动视图将不会导致这个"窗口"同步跟着移动。<code>Element.move(..., #detached-window)</code></li>
   </ol>
   
   <div .row #test>
     <form.window>
-      <caption>���� #1</caption>
+      <caption>窗口 #1</caption>
       <div>
-        <text.status>.</text>  <!--�����ǩ����ʾ���ڵ��ƶ�״̬-->
-        <button .go-home>�ص�ԭʼλ��</button>
+        <text.status>.</text>  <!--这个标签能显示窗口的移动状态-->
+        <button .go-home>回到原始位置</button>
       </div>
     </form>
     <form.window style="left:150px">
-      <caption>���� #2</caption>
+      <caption>窗口 #2</caption>
       <div>
-        <text.status>.</text> <!--�����ǩ����ʾ���ڵ��ƶ�״̬-->
-        <button .go-home>�ص�ԭʼλ��</button>
+        <text.status>.</text> <!--这个标签能显示窗口的移动状态-->
+        <button .go-home>回到原始位置</button>
       </div>
     </form>
     <form.window style="left:300px">
-      <caption>���� #3</caption>
+      <caption>窗口 #3</caption>
       <div>
-        <text.status>.</text> <!--�����ǩ����ʾ���ڵ��ƶ�״̬-->
-        <button .go-home>�ص�ԭʼλ��</button>
+        <text.status>.</text> <!--这个标签能显示窗口的移动状态-->
+        <button .go-home>回到原始位置</button>
       </div>
     </form>
   </div>

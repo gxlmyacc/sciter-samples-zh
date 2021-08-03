@@ -8,10 +8,10 @@ body {
 	background: linear-gradient(top,white,peachpuff); 
 }
 
-/* ´¹Ö±¹ö¶¯ÌõµÄÑùÊ½¿é¶¨Òå */
+/* å‚ç›´æ»šåŠ¨æ¡çš„æ ·å¼å—å®šä¹‰ */
 @set my-v-scrollbar
 {
-  .prev /* ÉÏ±ß°´Å¥ÑùÊ½¶¨Òå */
+  .prev /* ä¸Šè¾¹æŒ‰é’®æ ·å¼å®šä¹‰ */
   { 
     border:1dip solid #AAA; 
     foreground-image:url( images/sb-v-scroll-prev.png ); 
@@ -20,7 +20,7 @@ body {
     height:15dip;
   }
   
-  .next /* ÏÂ±ß°´Å¥ÑùÊ½¶¨Òå */
+  .next /* ä¸‹è¾¹æŒ‰é’®æ ·å¼å®šä¹‰ */
   { 
     border:1dip solid #AAA; 
     foreground-image:url( images/sb-v-scroll-next.png ); 
@@ -30,14 +30,14 @@ body {
   }
   
   .base,
-  .next-page, /* ÏÂ±ß¿Õ°×ÇøÓòÑùÊ½¶¨Òå */
-  .prev-page  /* ÉÏ±ß¿Õ°×ÇøÓòÑùÊ½¶¨Òå */
+  .next-page, /* ä¸‹è¾¹ç©ºç™½åŒºåŸŸæ ·å¼å®šä¹‰ */
+  .prev-page  /* ä¸Šè¾¹ç©ºç™½åŒºåŸŸæ ·å¼å®šä¹‰ */
   { 
     background-image:url( images/sb-scroll-back.png ); 
-    background-position:5 5 5 5; /*×ó ÉÏ ÓÒ ÏÂ Æ«ÒÆÁ¿*/
+    background-position:5 5 5 5; /*å·¦ ä¸Š å³ ä¸‹ åç§»é‡*/
     background-repeat:expand; 
   }
-  .slider /* »¬¿é°´Å¥ÑùÊ½¶¨Òå */
+  .slider /* æ»‘å—æŒ‰é’®æ ·å¼å®šä¹‰ */
   { 
     border:1dip solid #AAA; 
     foreground-image:url( images/sb-scroll-slider.png ); 
@@ -66,15 +66,15 @@ body {
   .next:active,  .slider:active, 
   .prev:active    { background-color: #FFF; }
   
-  .base { width: 15dip; } /* ÏÔÊ¾ÉùÃ÷´¹Ö±¹ö¶¯ÌõµÄ¿í¶È */
+  .base { width: 15dip; } /* æ˜¾ç¤ºå£°æ˜å‚ç›´æ»šåŠ¨æ¡çš„å®½åº¦ */
   .corner { background-color: transparent; }
   
 }
 
-/* Ë®Æ½¹ö¶¯ÌõµÄÑùÊ½¿é¶¨Òå */
+/* æ°´å¹³æ»šåŠ¨æ¡çš„æ ·å¼å—å®šä¹‰ */
 @set my-h-scrollbar
 {
-  .prev /* ×ó±ß°´Å¥ÑùÊ½¶¨Òå */
+  .prev /* å·¦è¾¹æŒ‰é’®æ ·å¼å®šä¹‰ */
   { 
     border:1dip solid #AAA; 
     foreground-image:url( images/sb-h-scroll-prev.png ); 
@@ -82,7 +82,7 @@ body {
     foreground-repeat:no-repeat;
     width:15dip;
   }
-  .next /* ÓÒ±ß°´Å¥ÑùÊ½¶¨Òå */
+  .next /* å³è¾¹æŒ‰é’®æ ·å¼å®šä¹‰ */
   { 
     border:1dip solid #AAA; 
     foreground-image:url( images/sb-h-scroll-next.png ); 
@@ -90,16 +90,16 @@ body {
     foreground-repeat:no-repeat; 
     width:15dip;
   }
-  .next-page, /* ÓÒ±ß¿Õ°×ÇøÓòÑùÊ½¶¨Òå */
-  .prev-page, /* ×ó±ß¿Õ°×ÇøÓòÑùÊ½¶¨Òå */
+  .next-page, /* å³è¾¹ç©ºç™½åŒºåŸŸæ ·å¼å®šä¹‰ */
+  .prev-page, /* å·¦è¾¹ç©ºç™½åŒºåŸŸæ ·å¼å®šä¹‰ */
   .base 
   { 
     background-image:url( images/sb-scroll-back.png ); 
-    background-position:5dip 5dip 5dip 5dip; /*×ó ÉÏ ÓÒ ÏÂ Æ«ÒÆÁ¿*/
+    background-position:5dip 5dip 5dip 5dip; /*å·¦ ä¸Š å³ ä¸‹ åç§»é‡*/
     background-repeat:expand; 
   }
  
-  .slider /* »¬¿é°´Å¥ÑùÊ½¶¨Òå */
+  .slider /* æ»‘å—æŒ‰é’®æ ·å¼å®šä¹‰ */
   { 
     border:1dip solid #AAA; 
     foreground-image:url( images/sb-scroll-slider.png ); 
@@ -123,7 +123,7 @@ body {
   .next:active,  .slider:active, 
   .prev:active    { background-color: #FFF; }
   
-  .base { height: 15dip; } /* ÏÔÊ¾ÉùÃ÷Ë®Æ½¹ö¶¯ÌõµÄ¸ß¶È */
+  .base { height: 15dip; } /* æ˜¾ç¤ºå£°æ˜æ°´å¹³æ»šåŠ¨æ¡çš„é«˜åº¦ */
   
 }
 
@@ -136,8 +136,8 @@ body {
 
 div { height:*; width:*; }
 ul { 
-    vertical-scrollbar: my-v-scrollbar; /* Ö¸¶¨´¹Ö±¹ö¶¯ÌõÑùÊ½ */
-    horizontal-scrollbar: my-h-scrollbar; /* Ö¸¶¨Ë®Æ½¹ö¶¯ÌõÑùÊ½ */
+    vertical-scrollbar: my-v-scrollbar; /* æŒ‡å®šå‚ç›´æ»šåŠ¨æ¡æ ·å¼ */
+    horizontal-scrollbar: my-h-scrollbar; /* æŒ‡å®šæ°´å¹³æ»šåŠ¨æ¡æ ·å¼ */
 	margin: 10dip; 
 	padding: 5dip; 
 	size: *; 
@@ -173,51 +173,51 @@ li {
 	</style>
 	</head>
 	<body>
-	<h1>×Ô¶¨ÒåË®Æ½ºÍ´¹Ö±¹ö¶¯ÌõÑùÊ½ ºÍ overflowÊôĞÔ Ê¾Àı</h1>
+	<h1>è‡ªå®šä¹‰æ°´å¹³å’Œå‚ç›´æ»šåŠ¨æ¡æ ·å¼ å’Œ overflowå±æ€§ ç¤ºä¾‹</h1>
 	<div id="horizontal-container">
 		<div>
 			<center>oveflow:scroll</center>
 			<ul id="window-scroll-always" tabindex=0>
-				<li>Ò»</li>
-				<li>¶ş</li>
-				<li>Èı</li>
-				<li>ËÄ</li>
-				<li>Îå</li>
+				<li>ä¸€</li>
+				<li>äºŒ</li>
+				<li>ä¸‰</li>
+				<li>å››</li>
+				<li>äº”</li>
 			</ul>
 		</div>
 		<div>
 			<center>oveflow:auto</center>
 			<ul id="window-scroll-auto" tabindex=0>
-				<li>Ò»</li>
-				<li>¶ş</li>
-				<li>Èı</li>
-				<li>ËÄ</li>
-				<li>Îå</li>
-				<li>Áù</li>
-				<li>Æß</li>
-				<li>°Ë</li>
-				<li>¾Å</li>
-				<li>Ê®</li>
+				<li>ä¸€</li>
+				<li>äºŒ</li>
+				<li>ä¸‰</li>
+				<li>å››</li>
+				<li>äº”</li>
+				<li>å…­</li>
+				<li>ä¸ƒ</li>
+				<li>å…«</li>
+				<li>ä¹</li>
+				<li>å</li>
 			</ul>
 		</div>
 		<div>
 			<center>oveflow:hidden</center>
 			<ul id="window-scroll-hidden" tabindex=0>
-				<li>Ò»</li>
-				<li>¶ş</li>
-				<li>Èı</li>
-				<li>ËÄ</li>
-				<li>Îå</li>
+				<li>ä¸€</li>
+				<li>äºŒ</li>
+				<li>ä¸‰</li>
+				<li>å››</li>
+				<li>äº”</li>
 			</ul>
 		</div>
 		<div>
 			<center>oveflow:visible</center>
 			<ul id="window-scroll-visible">
-				<li>Ò»</li>
-				<li>¶ş</li>
-				<li>Èı</li>
-				<li>ËÄ</li>
-				<li>Îå</li>
+				<li>ä¸€</li>
+				<li>äºŒ</li>
+				<li>ä¸‰</li>
+				<li>å››</li>
+				<li>äº”</li>
 			</ul>
 		</div>
 	</div>		

@@ -1,8 +1,8 @@
 <html>
   <head>
-    <title>Plus »ù±¾Ê¾Àı</title>
+    <title>Plus åŸºæœ¬ç¤ºä¾‹</title>
     <style>
-      @import url(../plus.css); /* ½öĞèÒıÈëPlus¿ò¼Ü */
+      @import url(../plus.css); /* ä»…éœ€å¼•å…¥Plusæ¡†æ¶ */
       @import url(../../note.css); 
 
       div { size:100dip; border:2px solid; }      
@@ -14,28 +14,28 @@
     
     <script type="text/tiscript">
     
-      include "../plus.tis"; // ÒòÎªÒªÊ¹ÓÃ@observing£¬ËùÒÔĞèÒªÒıÈëplus.tis
+      include "../plus.tis"; // å› ä¸ºè¦ä½¿ç”¨@observingï¼Œæ‰€ä»¥éœ€è¦å¼•å…¥plus.tis
   
-      namespace Data // ÎÒÃÇµÄÄ£ĞÍ
+      namespace Data // æˆ‘ä»¬çš„æ¨¡å‹
       {  
-        var status = "ok"; // ±»¹Û²ì±äÁ¿
+        var status = "ok"; // è¢«è§‚å¯Ÿå˜é‡
       }    
     
     </script>
   </head>
 
-<body model="Data"> <!-- ¶¨ÒåÎÒÃÇÒª¹Û²ìµÄÊı¾İÄ£ĞÍ -->
+<body model="Data"> <!-- å®šä¹‰æˆ‘ä»¬è¦è§‚å¯Ÿçš„æ•°æ®æ¨¡å‹ -->
 
-  <note>Õâ¸öÊ¾ÀıÏÔÊ¾»ù±¾µÄCSS class°ó¶¨¡£Àà(class)Ãû³ÆÀ´×Ô<code>status</code>±äÁ¿¡£</note>
+  <note>è¿™ä¸ªç¤ºä¾‹æ˜¾ç¤ºåŸºæœ¬çš„CSS classç»‘å®šã€‚ç±»(class)åç§°æ¥è‡ª<code>status</code>å˜é‡ã€‚</note>
 
-  <div class="{{status}}">×´Ì¬: <(status)>
+  <div class="{{status}}">çŠ¶æ€: <(status)>
   </div>
   <br />
-  ĞŞ¸Ä×´Ì¬£º
+  ä¿®æ”¹çŠ¶æ€ï¼š
   <select(status)>
-    <option value="ok">È·¶¨</option>
-    <option value="warning">¾¯¸æ</option>
-    <option value="alarm">´íÎó</option>
+    <option value="ok">ç¡®å®š</option>
+    <option value="warning">è­¦å‘Š</option>
+    <option value="alarm">é”™è¯¯</option>
   </select>
   
 </body>

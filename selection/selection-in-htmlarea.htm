@@ -10,8 +10,8 @@
         var p = div.first;
         var textNode = p.firstNode;
         
-        var pos = textNode.text.indexOf("ÀîËÄ");
-        assert pos >= 0 : "ÀîËÄÓ¦¸ÃÔÚÕâÀï";
+        var pos = textNode.text.indexOf("æå››");
+        assert pos >= 0 : "æå››åº”è¯¥åœ¨è¿™é‡Œ";
                 
         var start = [bookmark: textNode, pos, false];
         var end = [bookmark: textNode, pos+1, true];
@@ -27,11 +27,11 @@
     </script>
   </head>
 <body>
-  <button #sel-vidi>Ñ¡Ôñ "ÀîËÄ"</button>
-  <button #sel-span>Ñ¡Ôñ span ÔªËØ</button>
+  <button #sel-vidi>é€‰æ‹© "æå››"</button>
+  <button #sel-span>é€‰æ‹© span å…ƒç´ </button>
   <div>
-    <p>ÕÅÈı, ÀîËÄ, ÍõÎå.</p> 
-    <p>ºóÃæµÄÄÚÈİÔÚÒ»¸öspanÖĞ£º<span>span</span>¡£</p> 
+    <p>å¼ ä¸‰, æå››, ç‹äº”.</p> 
+    <p>åé¢çš„å†…å®¹åœ¨ä¸€ä¸ªspanä¸­ï¼š<span>span</span>ã€‚</p> 
   </div>
 </body>
 </html>

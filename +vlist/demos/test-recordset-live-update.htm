@@ -16,7 +16,7 @@
       padding:0 6dip;
       line-height:31dip;
       background: linear-gradient(top, #fff, #ddd);
-      behavior:form; /* Ã¿¸öÖØ¸´×ÓÔªËØ¶¼ÈÏ×÷±íµ¥£¬ÕâÑùËü¿ÉÒÔ½ÓÊÜ¶ÔÏóÖµ */ 
+      behavior:form; /* æ¯ä¸ªé‡å¤å­å…ƒç´ éƒ½è®¤ä½œè¡¨å•ï¼Œè¿™æ ·å®ƒå¯ä»¥æ¥å—å¯¹è±¡å€¼ */ 
     } 
     
     vlist > li.highlighted {
@@ -42,7 +42,7 @@
     var records = new Array(500);
     
     for(var i = 0; i < records.length; ++i)
-      records[i] = {index: i, caption:"ĞÂÏî" }
+      records[i] = {index: i, caption:"æ–°é¡¹" }
 
     var n = records.length;
     var p = 0;
@@ -50,17 +50,17 @@
    
     var vlist = VirtualList {
       container     : $(vlist),
-      bufferSize    : 40 // »¬¶¯´°¿ÚÖĞµÄ¼ÇÂ¼Êı
+      bufferSize    : 40 // æ»‘åŠ¨çª—å£ä¸­çš„è®°å½•æ•°
     };
     
-    // ·´À¡ÕâĞ©Êı¾İ
+    // åé¦ˆè¿™äº›æ•°æ®
     vlist.value = records;
     
     $(#mutate) << event click() {
     
       function add() { 
         var at = rand(records.length + 1);
-        records.splice(at,0, {index: ++n, caption:"ÒÑÌí¼ÓÏî" });
+        records.splice(at,0, {index: ++n, caption:"å·²æ·»åŠ é¡¹" });
         //stdout.$n(New item #{n} added at {at});
       }
       
@@ -78,7 +78,7 @@
         ++times;
         r.extend { 
             nupdates: times,
-            caption: String.$(ÒÑ¸üĞÂ{times}´Î {times > 1?"s":""})
+            caption: String.$(å·²æ›´æ–°{times}æ¬¡ {times > 1?"s":""})
          };
         //stdout.$n(Item at {at} was updated);
       }
@@ -88,7 +88,7 @@
       var ops = [add,del,upd,noop];
 
       self.timer(60ms, function() {
-        if(!vlist.state.animating) // ×èÖ¹¶¯»­ÖĞ¸üĞÂÊı¾İ
+        if(!vlist.state.animating) // é˜»æ­¢åŠ¨ç”»ä¸­æ›´æ–°æ•°æ®
           ops[ rand(ops.length) ]();
         return true;
       });
@@ -101,11 +101,11 @@
   </head>
 <body>
 
-  <h2>¶¯Ì¬Êı¾İ¼¯Í»±ä Ê¾Àı</h2>
+  <h2>åŠ¨æ€æ•°æ®é›†çªå˜ ç¤ºä¾‹</h2>
   
-  <p>¼ÇÂ¼Êı×éÄ¬ÈÏÓĞ500Ìõ¼ÇÂ¼£¬²¢ÇÒÃ¿¸ô60msÊı¾İ±»ĞŞ¸ÄÏÂ(ĞÂÔö¡¢ÒÆ³ı¡¢¸üĞÂ)¡£</p> 
+  <p>è®°å½•æ•°ç»„é»˜è®¤æœ‰500æ¡è®°å½•ï¼Œå¹¶ä¸”æ¯éš”60msæ•°æ®è¢«ä¿®æ”¹ä¸‹(æ–°å¢ã€ç§»é™¤ã€æ›´æ–°)ã€‚</p> 
 
-  <button #mutate>Æô¶¯Ëæ»ú¸üĞÂ</button>
+  <button #mutate>å¯åŠ¨éšæœºæ›´æ–°</button>
 
   <vlist>
     <li><span(index)/> <span(caption)>???</span></li>

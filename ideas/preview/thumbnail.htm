@@ -30,8 +30,8 @@
     $(button#snapshot).onClick = function()
     {
       var (w,h) = content.box(#dimension);
-      var image = new Image(w,h, content, color(255,255,255,255) ); // ¶ÔÄÚÈİÇø´´½¨¿ìÕÕÍ¼Ïñ
-      self.bindImage("in-memory:snapshot",image); //½«Í¼Ïñ°ó¶¨µ½Ä³¸öURLÉÏ£¬ÕâÑù¾Í¿ÉÒÔÔÚCSSÖĞÊ¹ÓÃÕâ¸öURLÁË
+      var image = new Image(w,h, content, color(255,255,255,255) ); // å¯¹å†…å®¹åŒºåˆ›å»ºå¿«ç…§å›¾åƒ
+      self.bindImage("in-memory:snapshot",image); //å°†å›¾åƒç»‘å®šåˆ°æŸä¸ªURLä¸Šï¼Œè¿™æ ·å°±å¯ä»¥åœ¨CSSä¸­ä½¿ç”¨è¿™ä¸ªURLäº†
       this.popup(this.$(popup),2);
     }
 
@@ -40,15 +40,15 @@
 </script>
   </head>
 <body>
-  <button #load title="¼ÓÔØÍøÒ³">¼ÓÔØ</button>
-  <button #snapshot title="ÍøÒ³¿ìÕÕ">
-    ¿ìÕÕ
+  <button #load title="åŠ è½½ç½‘é¡µ">åŠ è½½</button>
+  <button #snapshot title="ç½‘é¡µå¿«ç…§">
+    å¿«ç…§
     <popup />
   </button>
     
 
   <frame #content>
-    <p>²âÊÔ</p>
+    <p>æµ‹è¯•</p>
   </frame>
 
 </body>

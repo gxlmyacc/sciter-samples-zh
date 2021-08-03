@@ -15,22 +15,22 @@
   {
       o.match { id:#exist, 
                 name:String, 
-                contact:"tel:*" } ?    el.$append(<li id={o.id} href="{o.contact}"><span .name>{o.name}</span><button>²¦´òµç»°</button></li>)
+                contact:"tel:*" } ?    el.$append(<li id={o.id} href="{o.contact}"><span .name>{o.name}</span><button>æ‹¨æ‰“ç”µè¯</button></li>)
     : o.match { id:#exist, 
                 name:String, 
-                contact:"mailto:*" } ? el.$append(<li id={o.id} href="{o.contact}"><span .name>{o.name}</span><button>·¢ËÍÓÊ¼ş</button></li>)
+                contact:"mailto:*" } ? el.$append(<li id={o.id} href="{o.contact}"><span .name>{o.name}</span><button>å‘é€é‚®ä»¶</button></li>)
     : o.match { id:#exist, 
-                name:String } ?        el.$append(<li id={o.id}><span .name>{o.name}</span><button>ÓÊÏä</button></li>)
+                name:String } ?        el.$append(<li id={o.id}><span .name>{o.name}</span><button>é‚®ç®±</button></li>)
     : o.match { name:String } ?        el.$append(<li .unknown>{o.name}</li>)
-    :                                  el.$append(<li .unknown>(Î´ÖªÁªÏµ·½Ê½)</li>); 
+    :                                  el.$append(<li .unknown>(æœªçŸ¥è”ç³»æ–¹å¼)</li>); 
   }
   
   var contacts = 
   [
-    { id:1, name:"ÕÅÈı", contact:"tel:123-456-7890" },
-    { id:2, name:"ÀîËÄ", contact:"mailto:olga@example.com" },
-    { id:3, name:"ÍõÎå", contact:"1234 Nice St, Wonderful City, Great Country" },
-    { id:4, name:"ÕÔÁù" },
+    { id:1, name:"å¼ ä¸‰", contact:"tel:123-456-7890" },
+    { id:2, name:"æå››", contact:"mailto:olga@example.com" },
+    { id:3, name:"ç‹äº”", contact:"1234 Nice St, Wonderful City, Great Country" },
+    { id:4, name:"èµµå…­" },
     { id:5 },
   ];
 
@@ -45,7 +45,7 @@
   </script>  
 </head>
 <body>
-  <h2>Object.match()º¯Êı Ê¾Àı</h2>
+  <h2>Object.match()å‡½æ•° ç¤ºä¾‹</h2>
   <ol #contacts></ol>
 </body>
 </html>

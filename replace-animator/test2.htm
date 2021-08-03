@@ -59,28 +59,28 @@
     var n = container.attributes["n"].toInteger();
     function stateChanger() { if(++n > 4) n=1; container.attributes["n"] = n; }
 
-    AniReplace(container, stateChanger); //<--Æô¶¯±ä»»
+    AniReplace(container, stateChanger); //<--å¯åŠ¨å˜æ¢
   }
   @click @on "#container>li" : evt
   {
     var container = $(#container);
     var n = 1 + evt.target.index;
     function stateChanger() { container.attributes["n"] = n; }
-    AniReplace(container, stateChanger); //<--Æô¶¯±ä»»
+    AniReplace(container, stateChanger); //<--å¯åŠ¨å˜æ¢
   }
 
 </script>
   </head>
 <body>
-  <button #switch>ÇĞ»»²¼¾Ö</button>
+  <button #switch>åˆ‡æ¢å¸ƒå±€</button>
   <ul #container n=4 >
-    <li><caption>µÚÒ»¸ö</caption><p><b>Lorem ipsum</b> dolor sit amet, consectetur adipisicing elit.</p></li>
-    <li #test><caption>µÚ¶ş¸ö</caption><p>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, 
+    <li><caption>ç¬¬ä¸€ä¸ª</caption><p><b>Lorem ipsum</b> dolor sit amet, consectetur adipisicing elit.</p></li>
+    <li #test><caption>ç¬¬äºŒä¸ª</caption><p>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, 
          because it is pain, but because occasionally circumstances occur 
          in which toil and pain can procure him some great pleasure.</p></li>
-    <li><caption>µÚÈı¸ö</caption><p><b>Temporibus</b> autem quibusdam et aut officiis debitis aut rerum necessitatibus 
+    <li><caption>ç¬¬ä¸‰ä¸ª</caption><p><b>Temporibus</b> autem quibusdam et aut officiis debitis aut rerum necessitatibus 
          saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p></li>
-    <li><caption>µÚËÄ¸ö</caption><p>But who has any right to find fault with a man who chooses to enjoy a pleasure that 
+    <li><caption>ç¬¬å››ä¸ª</caption><p>But who has any right to find fault with a man who chooses to enjoy a pleasure that 
          has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p></li>
   </ul>
 

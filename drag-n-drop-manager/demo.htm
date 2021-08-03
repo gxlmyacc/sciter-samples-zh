@@ -3,20 +3,20 @@
   <style>
     ul { margin:2px; border:3px solid; min-height:1em; width:0.25*; height:*; padding:3px }
 
-	//¿É·ÅÖÃÍÏ×§ÔªËØµÄÄ¿±êÔªËØÑùÊ½¶¨Òå
+	//å¯æ”¾ç½®æ‹–æ‹½å…ƒç´ çš„ç›®æ ‡å…ƒç´ æ ·å¼å®šä¹‰
     ul:drop-target { border:3px solid blue; }
 
-	//Êó±ê¾­¹ıµÄ¿É·ÅÖÃÍÏ×§ÔªËØµÄÄ¿±êÔªËØÑùÊ½¶¨Òå
+	//é¼ æ ‡ç»è¿‡çš„å¯æ”¾ç½®æ‹–æ‹½å…ƒç´ çš„ç›®æ ‡å…ƒç´ æ ·å¼å®šä¹‰
     ul:drag-over { border:3px solid red; }
     
     ul > li { display:block; }
     
-	//ÍÏ×§Õ¼Î»ÔªËØÑùÊ½¶¨Òå
+	//æ‹–æ‹½å ä½å…ƒç´ æ ·å¼å®šä¹‰
     li.placeholder { outline:2px gray dashed -3px; background:none; overflow:hidden; line-height:1.2em;}
-    //ÍÏ×§Õ¼Î»ÔªËØ(Ô´)ÑùÊ½¶¨Òå
+    //æ‹–æ‹½å ä½å…ƒç´ (æº)æ ·å¼å®šä¹‰
     li.placeholder.src { background:#eee;  }
 
-	//ÕıÔÚÍÏ¶¯µÄÔªËØ¸±±¾ÑùÊ½¶¨Òå
+	//æ­£åœ¨æ‹–åŠ¨çš„å…ƒç´ å‰¯æœ¬æ ·å¼å®šä¹‰
     li:moving { background-color:yellow; opacity:0.7; }
     
     div.container 
@@ -41,11 +41,11 @@
 <body>
   <div .container>
     <ul #src>
-      <li>µÚÒ»¸ö</li>
-      <li>µÚ¶ş¸ö</li>
-      <li>µÚÈı¸ö</li>
-      <li>µÚËÄ¸ö</li>
-      <li>µÚÎå¸ö</li>
+      <li>ç¬¬ä¸€ä¸ª</li>
+      <li>ç¬¬äºŒä¸ª</li>
+      <li>ç¬¬ä¸‰ä¸ª</li>
+      <li>ç¬¬å››ä¸ª</li>
+      <li>ç¬¬äº”ä¸ª</li>
     </ul>
     <ul #dst>
     </ul>
