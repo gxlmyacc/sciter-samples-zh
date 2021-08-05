@@ -36,7 +36,7 @@
           .on("size",updateView("on size"))
           .on("mediachange", updateView("on mediachange"));
       
-      updateView("��ʼ��")();
+      updateView("初始化")();
       
       $(button#by-border).on("click",function()
       {
@@ -56,17 +56,17 @@
 <body>
 
   <form>
-    <label>������������ԣ�</label><output(src) />
-    <label>�߿� x</label><input|integer(bx) />
-    <label>�߿� y</label><input|integer(by) />
-    <label>�߿����</label><input|integer(bwidth) />
-    <label>�߿�߶�</label><input|integer(bheight) />
-    <button #by-border>���ñ߿�</button>
-    <label>�ͻ��� x</label><input|integer(cx) />
-    <label>�ͻ��� y</label><input|integer(cy) />
-    <label>�ͻ�������</label><input|integer(cwidth) />
-    <label>�ͻ����߶�</label><input|integer(cheight) />
-    <button #by-client>���ÿͻ���</button>
+    <label>下面的数据来自：</label><output(src) />
+    <label>边框 x</label><input|integer(bx) />
+    <label>边框 y</label><input|integer(by) />
+    <label>边框宽度</label><input|integer(bwidth) />
+    <label>边框高度</label><input|integer(bheight) />
+    <button #by-border>设置边框</button>
+    <label>客户区 x</label><input|integer(cx) />
+    <label>客户区 y</label><input|integer(cy) />
+    <label>客户区宽度</label><input|integer(cwidth) />
+    <label>客户区高度</label><input|integer(cheight) />
+    <button #by-client>设置客户区</button>
   </form>
 
 </body>

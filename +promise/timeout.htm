@@ -6,28 +6,28 @@
    
     function self.ready() {
     
-      // promisified³¬Ê±, ·µ»Øpromise
+      // promisifiedè¶…æ—¶, è¿”å›promise
       function timeout(ms,rv = null) {
         var oath = promise();
-        self.timer( ms, function() { oath(true, [rv]);} ) // ÂÄĞĞÅµÑÔ£¬°üº¬¿ÉÑ¡²ÎÊı
+        self.timer( ms, function() { oath(true, [rv]);} ) // å±¥è¡Œè¯ºè¨€ï¼ŒåŒ…å«å¯é€‰å‚æ•°
         return oath;
       }
     
       const testEl = $(#test);
       
       timeout(1s)
-        .then( :: testEl.text = "1ÃëÒÑ¾­½áÊø!" )
-        .then( function(r) { throw "ÔÚ" + r + "ºó·¢Éú´íÎó" ; } ) /* ÔÚ´¦ÀíÆ÷Á´ÖĞÇ¿ÖÆÅ×³ö´íÎó */
-        .catch( :e: stdout.println("Ê§°Ü",e) )
-        .finally( :: stdout.println("×îÖÕ´úÂë") );
+        .then( :: testEl.text = "1ç§’å·²ç»ç»“æŸ!" )
+        .then( function(r) { throw "åœ¨" + r + "åå‘ç”Ÿé”™è¯¯" ; } ) /* åœ¨å¤„ç†å™¨é“¾ä¸­å¼ºåˆ¶æŠ›å‡ºé”™è¯¯ */
+        .catch( :e: stdout.println("å¤±è´¥",e) )
+        .finally( :: stdout.println("æœ€ç»ˆä»£ç ") );
     
     }
     
     </script>
   </head>
 <body>
-  <p> PromiseµÄ<code>timeout(1s).then( function )</code>Ê¾Àı, 1Ãëºó½«»áĞŞ¸ÄÏÂÃæµÄÎÄ±¾:</p>
-  <div#test>àÅ£¿</div>
+  <p> Promiseçš„<code>timeout(1s).then( function )</code>ç¤ºä¾‹, 1ç§’åå°†ä¼šä¿®æ”¹ä¸‹é¢çš„æ–‡æœ¬:</p>
+  <div#test>å—¯ï¼Ÿ</div>
 
 </body>
 </html>

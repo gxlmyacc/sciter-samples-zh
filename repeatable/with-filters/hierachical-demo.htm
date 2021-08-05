@@ -1,12 +1,12 @@
 <html>
   <head>
-    <title>ÖØ¸´Ä£°åÊ¾Àı: ²ã´Î½á¹¹</title>
+    <title>é‡å¤æ¨¡æ¿ç¤ºä¾‹: å±‚æ¬¡ç»“æ„</title>
     <style>
     
-      /* repeatable ¹æÔò: */
+      /* repeatable è§„åˆ™: */
       
       [repeatable] { aspect: Repeatable url(repeatable.tis);  }
-      [repeatable] > * { behavior:form; } /* Ã¿¸öÖØ¸´µÄ×ÓÔªËØ±»µ±×öÒ»¸öform£¬ËùÒÔËüÃÇ¿ÉÒÔ½ÓÊÜÒ»¸ö¶ÔÏóÖµ */     
+      [repeatable] > * { behavior:form; } /* æ¯ä¸ªé‡å¤çš„å­å…ƒç´ è¢«å½“åšä¸€ä¸ªformï¼Œæ‰€ä»¥å®ƒä»¬å¯ä»¥æ¥å—ä¸€ä¸ªå¯¹è±¡å€¼ */     
            
 
       body { font: system; } 
@@ -21,29 +21,29 @@
     
       var treeData = [
         { 
-          group: "Ë®¹û", 
+          group: "æ°´æœ", 
           items: [
-            { product:"Æ»¹û", price: 0.95 },
-            { product:"éÙ×Ó", price: 0.75 },
-            { product:"Àæ", price: 1.25 }, 
-            { group: "ÈÈ´øË®¹û", 
+            { product:"è‹¹æœ", price: 0.95 },
+            { product:"æ©˜å­", price: 0.75 },
+            { product:"æ¢¨", price: 1.25 }, 
+            { group: "çƒ­å¸¦æ°´æœ", 
               items: [
-                { product:"ºìÃ«µ¤", price: 1.95 },
-                { product:"²¤ÂÜÃÛ", price: 4.75 },
-                { product:"°ÙÏã¹û", price: 2.45 },
-                { product:"ÀóÖ¦", price: 1.2 },
+                { product:"çº¢æ¯›ä¸¹", price: 1.95 },
+                { product:"è èèœœ", price: 4.75 },
+                { product:"ç™¾é¦™æœ", price: 2.45 },
+                { product:"è”æ", price: 1.2 },
               ]
             }, 
           ]
         },
         { 
-          group: "»õÎï", 
+          group: "è´§ç‰©", 
           items: [
-            { product:"ÑÀË¢", price: 1.75 },
-            { product:"ÏãÔí", price: 2.75 },
+            { product:"ç‰™åˆ·", price: 1.75 },
+            { product:"é¦™çš‚", price: 2.75 },
           ]
         },
-        { product:"ÀñÆ·¿¨", price: 20.00 },
+        { product:"ç¤¼å“å¡", price: 20.00 },
       ];
       
     </script>
@@ -54,7 +54,7 @@
       
         var list = $(ul#tree);
         
-        list.value = treeData; // ÏÔÊ¾Êı¾İÊ÷
+        list.value = treeData; // æ˜¾ç¤ºæ•°æ®æ ‘
       }
     
     </script>
@@ -62,17 +62,17 @@
   </head>
 <body>
 
-  ÏÂÃæµÄÏî·´Ó¦ÁËÊı¾İµÄ²ã´Î½á¹¹:
+  ä¸‹é¢çš„é¡¹ååº”äº†æ•°æ®çš„å±‚æ¬¡ç»“æ„:
  
-  <ul #tree repeatable> <!-- ÖØ¸´Ä£°åÔÚÕâÀï¶¨Òå -->
+  <ul #tree repeatable> <!-- é‡å¤æ¨¡æ¿åœ¨è¿™é‡Œå®šä¹‰ -->
   
-    <!-- Ïî×éÄ£°å -->
+    <!-- é¡¹ç»„æ¨¡æ¿ -->
     <li if="{items:Array}" class="group">
       <text name="group" /> 
-      <ul name="items" repeatable></ol> <!-- ×¢Òâ: ×éÖĞÃ¿Ò»ÏîÒ²¿ÉÒÔ¶¨ÒåÖØ¸´Ä£°å(repeatable) -->
+      <ul name="items" repeatable></ol> <!-- æ³¨æ„: ç»„ä¸­æ¯ä¸€é¡¹ä¹Ÿå¯ä»¥å®šä¹‰é‡å¤æ¨¡æ¿(repeatable) -->
     </li>
     
-    <!-- ÖÕ¶ËÏî -->
+    <!-- ç»ˆç«¯é¡¹ -->
     <li class="terminal" >
       <span name="product" />
       <output type="currency" name="price" />

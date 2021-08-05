@@ -26,7 +26,7 @@
       overflow:hidden;
       flow:vertical;
 
-      behavior: marquee; //°ó¶¨ĞĞÎª
+      behavior: marquee; //ç»‘å®šè¡Œä¸º
 
       -marquee: vertical;
       -marquee-direction: forward;
@@ -42,7 +42,7 @@
     div.slide 
     { 
       -marquee-style: slide;
-      -marquee-play-count:1; /* Ö»²¥·ÅÒ»´Î */
+      -marquee-play-count:1; /* åªæ’­æ”¾ä¸€æ¬¡ */
     }
     div.alternate 
     { 
@@ -63,7 +63,7 @@
   </style>  
   <script type="text/tiscript">
     event click $(button) {
-      view.msgbox(#information,"ÎÒÔÚÕâ¶ù");
+      view.msgbox(#information,"æˆ‘åœ¨è¿™å„¿");
     }
     function self.ready() {
       var blinker = $(span#blinker);
@@ -75,72 +75,72 @@
   </script>
 </head>
 <body>
-  <button>²âÊÔ: ÏÔÊ¾ÏûÏ¢¿ò</button>²¢ÇÒÕâ¸ö<span#blinker />½«»áÃ¿Ãë±ä»¯Ò»´Î
+  <button>æµ‹è¯•: æ˜¾ç¤ºæ¶ˆæ¯æ¡†</button>å¹¶ä¸”è¿™ä¸ª<span#blinker />å°†ä¼šæ¯ç§’å˜åŒ–ä¸€æ¬¡
   <section>
   <div #horizontal>
     <h1>-marquee: horizontal</h1> 
     marquee-style: scroll
     <div .marquee-h>
-      <p>µÚÒ»¸ö</p>
-      <p>µÚ¶ş¸ö</p>
-      <p>µÚÈı¸ö</p>
-      <p>µÚËÄ¸ö</p>
+      <p>ç¬¬ä¸€ä¸ª</p>
+      <p>ç¬¬äºŒä¸ª</p>
+      <p>ç¬¬ä¸‰ä¸ª</p>
+      <p>ç¬¬å››ä¸ª</p>
     </div>
     marquee-style: slide
     <div .marquee-h .slide>
-      <p>µÚÒ»¸ö</p>
-      <p>µÚ¶ş¸ö</p>
-      <p>µÚÈı¸ö</p>
-      <p>µÚËÄ¸ö</p>
+      <p>ç¬¬ä¸€ä¸ª</p>
+      <p>ç¬¬äºŒä¸ª</p>
+      <p>ç¬¬ä¸‰ä¸ª</p>
+      <p>ç¬¬å››ä¸ª</p>
     </div>
     marquee-style: alternate
     <div .marquee-h .alternate >
-      <p>µÚÒ»¸ö</p>
-      <p>µÚ¶ş¸ö</p>
-      <p>µÚÈı¸ö</p>
-      <p>µÚËÄ¸ö</p>
+      <p>ç¬¬ä¸€ä¸ª</p>
+      <p>ç¬¬äºŒä¸ª</p>
+      <p>ç¬¬ä¸‰ä¸ª</p>
+      <p>ç¬¬å››ä¸ª</p>
     </div>
   </div>  
   <div #vertical>
     <h1>-marquee: vertical</h1> 
     marquee-style: scroll
     <div .marquee-v>
-      <p>µÚÒ»¸ö</p>
-      <p>µÚ¶ş¸ö</p>
-      <p>µÚÈı¸ö</p>
-      <p>µÚËÄ¸ö</p>
-      <p>µÚÎå¸ö</p>
-      <p>µÚÁù¸ö</p>
-      <p>µÚÆß¸ö</p>
-      <p>µÚ°Ë¸ö</p>
-      <p>µÚ¾Å¸ö</p>
-      <p>µÚÊ®¸ö</p>
+      <p>ç¬¬ä¸€ä¸ª</p>
+      <p>ç¬¬äºŒä¸ª</p>
+      <p>ç¬¬ä¸‰ä¸ª</p>
+      <p>ç¬¬å››ä¸ª</p>
+      <p>ç¬¬äº”ä¸ª</p>
+      <p>ç¬¬å…­ä¸ª</p>
+      <p>ç¬¬ä¸ƒä¸ª</p>
+      <p>ç¬¬å…«ä¸ª</p>
+      <p>ç¬¬ä¹ä¸ª</p>
+      <p>ç¬¬åä¸ª</p>
     </div>
     marquee-style: slide
     <div .marquee-v .slide>
-      <p>µÚÒ»¸ö</p>
-      <p>µÚ¶ş¸ö</p>
-      <p>µÚÈı¸ö</p>
-      <p>µÚËÄ¸ö</p>
-      <p>µÚÎå¸ö</p>
-      <p>µÚÁù¸ö</p>
-      <p>µÚÆß¸ö</p>
-      <p>µÚ°Ë¸ö</p>
-      <p>µÚ¾Å¸ö</p>
-      <p>µÚÊ®¸ö</p>
+      <p>ç¬¬ä¸€ä¸ª</p>
+      <p>ç¬¬äºŒä¸ª</p>
+      <p>ç¬¬ä¸‰ä¸ª</p>
+      <p>ç¬¬å››ä¸ª</p>
+      <p>ç¬¬äº”ä¸ª</p>
+      <p>ç¬¬å…­ä¸ª</p>
+      <p>ç¬¬ä¸ƒä¸ª</p>
+      <p>ç¬¬å…«ä¸ª</p>
+      <p>ç¬¬ä¹ä¸ª</p>
+      <p>ç¬¬åä¸ª</p>
     </div>
     marquee-style: alternate
     <div .marquee-v .alternate >
-      <p>µÚÒ»¸ö</p>
-      <p>µÚ¶ş¸ö</p>
-      <p>µÚÈı¸ö</p>
-      <p>µÚËÄ¸ö</p>
-      <p>µÚÎå¸ö</p>
-      <p>µÚÁù¸ö</p>
-      <p>µÚÆß¸ö</p>
-      <p>µÚ°Ë¸ö</p>
-      <p>µÚ¾Å¸ö</p>
-      <p>µÚÊ®¸ö</p>
+      <p>ç¬¬ä¸€ä¸ª</p>
+      <p>ç¬¬äºŒä¸ª</p>
+      <p>ç¬¬ä¸‰ä¸ª</p>
+      <p>ç¬¬å››ä¸ª</p>
+      <p>ç¬¬äº”ä¸ª</p>
+      <p>ç¬¬å…­ä¸ª</p>
+      <p>ç¬¬ä¸ƒä¸ª</p>
+      <p>ç¬¬å…«ä¸ª</p>
+      <p>ç¬¬ä¹ä¸ª</p>
+      <p>ç¬¬åä¸ª</p>
     </div>
   </div>  
 
@@ -148,42 +148,42 @@
     <h1>-marquee: vertical, various speeds</h1> 
     marquee-speed:slow
     <div .marquee-v marquee-speed="slow">
-      <p>µÚÒ»¸ö</p>
-      <p>µÚ¶ş¸ö</p>
-      <p>µÚÈı¸ö</p>
-      <p>µÚËÄ¸ö</p>
-      <p>µÚÎå¸ö</p>
-      <p>µÚÁù¸ö</p>
-      <p>µÚÆß¸ö</p>
-      <p>µÚ°Ë¸ö</p>
-      <p>µÚ¾Å¸ö</p>
-      <p>µÚÊ®¸ö</p>
+      <p>ç¬¬ä¸€ä¸ª</p>
+      <p>ç¬¬äºŒä¸ª</p>
+      <p>ç¬¬ä¸‰ä¸ª</p>
+      <p>ç¬¬å››ä¸ª</p>
+      <p>ç¬¬äº”ä¸ª</p>
+      <p>ç¬¬å…­ä¸ª</p>
+      <p>ç¬¬ä¸ƒä¸ª</p>
+      <p>ç¬¬å…«ä¸ª</p>
+      <p>ç¬¬ä¹ä¸ª</p>
+      <p>ç¬¬åä¸ª</p>
     </div>
     marquee-speed:normal
     <div .marquee-v marquee-speed="normal">
-      <p>µÚÒ»¸ö</p>
-      <p>µÚ¶ş¸ö</p>
-      <p>µÚÈı¸ö</p>
-      <p>µÚËÄ¸ö</p>
-      <p>µÚÎå¸ö</p>
-      <p>µÚÁù¸ö</p>
-      <p>µÚÆß¸ö</p>
-      <p>µÚ°Ë¸ö</p>
-      <p>µÚ¾Å¸ö</p>
-      <p>µÚÊ®¸ö</p>
+      <p>ç¬¬ä¸€ä¸ª</p>
+      <p>ç¬¬äºŒä¸ª</p>
+      <p>ç¬¬ä¸‰ä¸ª</p>
+      <p>ç¬¬å››ä¸ª</p>
+      <p>ç¬¬äº”ä¸ª</p>
+      <p>ç¬¬å…­ä¸ª</p>
+      <p>ç¬¬ä¸ƒä¸ª</p>
+      <p>ç¬¬å…«ä¸ª</p>
+      <p>ç¬¬ä¹ä¸ª</p>
+      <p>ç¬¬åä¸ª</p>
     </div>
     marquee-speed:fast
     <div .marquee-v marquee-speed="fast" >
-      <p>µÚÒ»¸ö</p>
-      <p>µÚ¶ş¸ö</p>
-      <p>µÚÈı¸ö</p>
-      <p>µÚËÄ¸ö</p>
-      <p>µÚÎå¸ö</p>
-      <p>µÚÁù¸ö</p>
-      <p>µÚÆß¸ö</p>
-      <p>µÚ°Ë¸ö</p>
-      <p>µÚ¾Å¸ö</p>
-      <p>µÚÊ®¸ö</p>
+      <p>ç¬¬ä¸€ä¸ª</p>
+      <p>ç¬¬äºŒä¸ª</p>
+      <p>ç¬¬ä¸‰ä¸ª</p>
+      <p>ç¬¬å››ä¸ª</p>
+      <p>ç¬¬äº”ä¸ª</p>
+      <p>ç¬¬å…­ä¸ª</p>
+      <p>ç¬¬ä¸ƒä¸ª</p>
+      <p>ç¬¬å…«ä¸ª</p>
+      <p>ç¬¬ä¹ä¸ª</p>
+      <p>ç¬¬åä¸ª</p>
     </div>
   </div>  
   </section>

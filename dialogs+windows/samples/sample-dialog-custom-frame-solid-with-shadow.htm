@@ -1,20 +1,20 @@
-<html window-frame="solid-with-shadow" window-resizable> <!-- ÊµÌå´øÒõÓ°³ß´ç¿Éµ÷Õû´°¿Ú -->
+<html window-frame="solid-with-shadow" window-resizable> <!-- å®ä½“å¸¦é˜´å½±å°ºå¯¸å¯è°ƒæ•´çª—å£ -->
 <head>
-  <title>³ß´ç¿Éµ÷Õû¶Ô»°¿ò</title>
+  <title>å°ºå¯¸å¯è°ƒæ•´å¯¹è¯æ¡†</title>
   <style>
     html 
     { 
       font:system;
-      min-width:min-content;  /* ÄÚÈİÇø²»»áÒç³ö£¬Ã»ÓĞË®Æ½¹ö¶¯Ìõ */
-      max-width:100%;         /* ×î´ó¿í¶È-È«ÆÁ */
-      width:300dip;           /* Ê×Ñ¡/³õÊ¼¿í¶È */
-      height:240dip;          /* ÄÚÈİÇø²»»áÒç³ö£¬Ã»ÓĞ´¹Ö±¹ö¶¯Ìõ */  
+      min-width:min-content;  /* å†…å®¹åŒºä¸ä¼šæº¢å‡ºï¼Œæ²¡æœ‰æ°´å¹³æ»šåŠ¨æ¡ */
+      max-width:100%;         /* æœ€å¤§å®½åº¦-å…¨å± */
+      width:300dip;           /* é¦–é€‰/åˆå§‹å®½åº¦ */
+      height:240dip;          /* å†…å®¹åŒºä¸ä¼šæº¢å‡ºï¼Œæ²¡æœ‰å‚ç›´æ»šåŠ¨æ¡ */  
       min-height:min-content; 
-      max-height: 70%;        /* 70%µÄÆÁÄ»¸ß¶È */
+      max-height: 70%;        /* 70%çš„å±å¹•é«˜åº¦ */
       overflow:none;
       padding:0;
-      background-color:gold; /* ´°¿Ú±³¾° */
-      border-radius:8px;     /* ´°¿ÚÔ²½Ç */
+      background-color:gold; /* çª—å£èƒŒæ™¯ */
+      border-radius:8px;     /* çª—å£åœ†è§’ */
     }
     
     window-button  { display:inline-block; size: 19dip; outline-color:red; behavior:clickable; }
@@ -62,17 +62,17 @@
     </script>
 </head>
 <body>
-  <window-caption role="window-caption">³ß´ç¿Éµ÷Õû¶Ô»°¿ò</window-caption>
+  <window-caption role="window-caption">å°ºå¯¸å¯è°ƒæ•´å¯¹è¯æ¡†</window-caption>
   <window-button #window-close role="window-close"></window-button>
   <section>
-    <p>ÇëÊÔ×Åµ÷Õû´°¿ÚµÄ³ß´ç</p>
+    <p>è¯·è¯•ç€è°ƒæ•´çª—å£çš„å°ºå¯¸</p>
     <div #content>
       <picture src="../user-login-48.png" />
-      <textarea novalue="ÇëÊäÈëĞÅÏ¢..."></textarea>
+      <textarea novalue="è¯·è¾“å…¥ä¿¡æ¯..."></textarea>
     </div>
     <p>
-      <button id="close-dialog">È·¶¨</button>
-      <button id="cancel-dialog" tabindex=1 >È¡Ïû</button>
+      <button id="close-dialog">ç¡®å®š</button>
+      <button id="cancel-dialog" tabindex=1 >å–æ¶ˆ</button>
     </p>
   </section>  
 </body>

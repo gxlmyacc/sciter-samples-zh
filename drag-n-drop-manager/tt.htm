@@ -70,11 +70,11 @@
 		draggable = null;
 		
 		var pos = prev ? prev.index+1 : 0;
-		$(#msg).text = "����λ��: " + pos + ", ����: " + from.index;
+		$(#msg).text = "放置位置: " + pos + ", 来自: " + from.index;
 		
 		if( from == prev || pos == from.index )
 		{
-			$(#msg).text = "���õ���ͬ���� - ʲôҲû��!";
+			$(#msg).text = "放置到相同问题 - 什么也没做!";
 			return; // nothing to do;
 		}
 		
@@ -98,14 +98,14 @@
   </script>
 </head>
 <body>
-  <p><s>����������İ�ť�б�</s></p>
-  <p>�������קԪ�����пؼ�(�簴ť), ����Щ�ؼ���װ������ק���ܺ󽫲�����ȷ���������ʾ����ɫ��������û����пؼ���Ԫ�ؽ���������ϡ����������������ṩһ�������û���ק��������ק�����</p>
+  <p><s>可重新排序的按钮列表</s></p>
+  <p>如果可拖拽元素中有控件(如按钮), 则这些控件在装载了拖拽功能后将不能正确工作。这个示例颜色如果允许用户对有控件的元素进行排序组合。做法是在区块中提供一个允许用户拖拽的特殊拖拽句柄。</p>
   <ul #items>
     <li><button>1</button><img .draghandle /></li>
     <li style="background-color: plum;"><button>2</button> <img .draghandle /></li>
     <li style="background-color: cornsilk;"><button>3</button> <img .draghandle /></li>
     <li style="background-color: LightSkyBlue;"><button>4</button> <img .draghandle /></li>
   </ul>
-  <p #msg>��ʹ���Ҳ�İ�ɫ��������ק</p>
+  <p #msg>请使用右侧的白色方框来拖拽</p>
 </body>
 </html>

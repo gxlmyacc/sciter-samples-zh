@@ -30,13 +30,13 @@
 	
 	var sandbox = $(#sandbox), indicator = $(#indicator);
 		
-	sandbox.value = "ÒÑ×¼±¸ºÃ£¬¿ÉÒÔ'»ñÈ¡'httpÇëÇóÁË!";
+	sandbox.value = "å·²å‡†å¤‡å¥½ï¼Œå¯ä»¥'è·å–'httpè¯·æ±‚äº†!";
 
-	// ÏÔÊ¾·´À¡Êı¾İ
+	// æ˜¾ç¤ºåé¦ˆæ•°æ®
 	function show(data,status = 200)
 	{
 		try {
-			indicator.value = String.$(×´Ì¬: {status}, Êı¾İ: {typeof(data)});
+			indicator.value = String.$(çŠ¶æ€: {status}, æ•°æ®: {typeof(data)});
 			sandbox.html = data.toString();
 		} catch (e) {
 			sandbox.value = e.toString();
@@ -48,8 +48,8 @@
 	}
 	
 	$(#get) << event click() {
-    var params = { q:1 }; // ´«µİ×Ô¶¨Òå²ÎÊı
-    var headers = { "user-token": "for the demo purposes!" }; // ´«µİ×Ô¶¨ÒåÇëÇóÍ·
+    var params = { q:1 }; // ä¼ é€’è‡ªå®šä¹‰å‚æ•°
+    var headers = { "user-token": "for the demo purposes!" }; // ä¼ é€’è‡ªå®šä¹‰è¯·æ±‚å¤´
 		var re = sandbox.request(show, #get, "http://www.terrainformatica.com/tools/http-headers.php", params,headers);
 	}
 
@@ -58,13 +58,13 @@
 <body>
 
 	<div id="controls">
-		<button id="clear">Çå¿Õ</button>
-		<button id="get">»ñÈ¡</button>
+		<button id="clear">æ¸…ç©º</button>
+		<button id="get">è·å–</button>
 	</div>
 	<div id="sandbox">
 	  sandbox
 	</div>
-	<div id="indicator">ÕıÔÚÍ¨Ñ¶...</div>
+	<div id="indicator">æ­£åœ¨é€šè®¯...</div>
 
 </body>
 </html>

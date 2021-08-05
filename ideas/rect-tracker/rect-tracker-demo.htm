@@ -10,7 +10,7 @@
 	}
 	.stuff > * {margin:5px; background:blue; height:*; color:white;}
 
-  .stuff[selected] {  //±»¾ØĞÎ¹ì¼£Æ÷¸²¸ÇµÄÇø¿éµÄÑùÊ½¶¨Òå(ÓĞselectedÊôĞÔ)
+  .stuff[selected] {  //è¢«çŸ©å½¢è½¨è¿¹å™¨è¦†ç›–çš„åŒºå—çš„æ ·å¼å®šä¹‰(æœ‰selectedå±æ€§)
     background:gold; 
   } 
 	
@@ -22,13 +22,13 @@
     flow:h-flow;
     height:*;
     
-    aspect:RectTracker; //°ó¶¨ ¾ØĞÎ¹ì¼£Æ÷
+    aspect:RectTracker; //ç»‘å®š çŸ©å½¢è½¨è¿¹å™¨
   }
 </style>
 
 <script type="text/tiscript">
 
-  include "rect-tracker.tis"; //¼ÓÔØ ¾ØĞÎ¹ì¼£Æ÷ ½Å±¾¿â
+  include "rect-tracker.tis"; //åŠ è½½ çŸ©å½¢è½¨è¿¹å™¨ è„šæœ¬åº“
 
   const sandbox = self.$(div#sandbox);
 	function createSomeStuff()
@@ -51,7 +51,7 @@
 </script>
 </head>
 <body>
-  <p>ÑİÊ¾¾ØĞÎ¹ì¼£¡£ÇëÔÚÏÂÃæµÄÇøÓòÖĞ°´ÏÂÊó±ê×ó¼ü²¢ÍÏ¶¯Êó±ê:</p>
+  <p>æ¼”ç¤ºçŸ©å½¢è½¨è¿¹ã€‚è¯·åœ¨ä¸‹é¢çš„åŒºåŸŸä¸­æŒ‰ä¸‹é¼ æ ‡å·¦é”®å¹¶æ‹–åŠ¨é¼ æ ‡:</p>
   <div #sandbox />
 </body>
 </html>

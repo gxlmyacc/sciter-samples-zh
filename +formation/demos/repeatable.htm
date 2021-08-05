@@ -1,7 +1,7 @@
 <!-- OmniView:off -->
 <html>
   <head>
-    <title>Formation + Repeatable Ê¾Àı</title>
+    <title>Formation + Repeatable ç¤ºä¾‹</title>
     <style>
     
       div { flow:row(label,input); font:system; border-spacing:4dip; margin:4dip; }
@@ -20,24 +20,24 @@
       var data = {
         person: { 
           details : {
-            name: { first: "µÚÒ»ĞÕÃû1", last: "µÚ¶şĞÕÃû1"},
+            name: { first: "ç¬¬ä¸€å§“å1", last: "ç¬¬äºŒå§“å1"},
             age: 34,
 			      sex: 1
           },
           friends: [
-            { name: "ÕÅÈı", type: "123" },
-            { name: "ÀîËÄ", type: "1234"},
-            { name: "ÍõÎå", type: "12345" },
+            { name: "å¼ ä¸‰", type: "123" },
+            { name: "æå››", type: "1234"},
+            { name: "ç‹äº”", type: "12345" },
           ]
         }
       }
       
-      // ×¢Òâ: <ol(friends)>ÖĞ»á¸ù¾İÄ£°å×Ô¶¯Éú³É<li>ÁĞ±í
+      // æ³¨æ„: <ol(friends)>ä¸­ä¼šæ ¹æ®æ¨¡æ¿è‡ªåŠ¨ç”Ÿæˆ<li>åˆ—è¡¨
       event click $(#set) { root.value = data; }
       
       event click $(#get) { $(#out).text = String.printf("%V", root.value ).replace("\t","  "); }
       
-      // ÏÔÊ¾formationÊı¾İ½á¹¹:
+      // æ˜¾ç¤ºformationæ•°æ®ç»“æ„:
       event click $(#show) { 
         view.msgbox( #information, root.toHtmlString());
       }
@@ -46,26 +46,26 @@
   </head>
 <body>
 
-  <h1>Formation + Repeatable Ê¾Àı</h1>
+  <h1>Formation + Repeatable ç¤ºä¾‹</h1>
 
   <section(person)>
     <div(details)>
-      <label for=name.first >µÚÒ»ĞÕÃû</label> <input(name.first)>
-      <label for=name.last >µÚ¶şĞÕÃû</label> <input(name.last)>
-      <label for=age >ÄêÁä</label> <input|integer(age)>
+      <label for=name.first >ç¬¬ä¸€å§“å</label> <input(name.first)>
+      <label for=name.last >ç¬¬äºŒå§“å</label> <input(name.last)>
+      <label for=age >å¹´é¾„</label> <input|integer(age)>
 	  <div#sexgroup>
-	    ĞÔ±ğ£ºÄĞ<input|radio(sex) checked value=0 /> Å®<input|radio(sex) value=1 /> 
+	    æ€§åˆ«ï¼šç”·<input|radio(sex) checked value=0 /> å¥³<input|radio(sex) value=1 /> 
 	   </div> 
     </div>
-    ÅóÓÑ: <!-- repeatable, sic! -->
+    æœ‹å‹: <!-- repeatable, sic! -->
     <ol(friends)>
       <li ready="this.@#target1 = name;" name="{{name}}" type="type" target="{{type}}"><output|text(name) /></li>
     </ol>
   </section>
   
-  <button #get>»ñÈ¡</button>
-  <button #set>ÉèÖÃ</button>
-  <button #show>Formation Êı¾İ½á¹¹</button>
+  <button #get>è·å–</button>
+  <button #set>è®¾ç½®</button>
+  <button #show>Formation æ•°æ®ç»“æ„</button>
   
   <pre #out></pre>
 

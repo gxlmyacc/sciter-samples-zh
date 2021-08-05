@@ -7,11 +7,11 @@
     ul { padding:0; margin:0; }
     li { display:block; margin:4px; border:1px solid gray; min-height:3em; vertical-align:middle; text-align:center; }
         
-	//ÍÏ×§Õ¼Î»ÔªËØÑùÊ½¶¨Òå
+	//æ‹–æ‹½å ä½å…ƒç´ æ ·å¼å®šä¹‰
     //li.placeholder { visibility:hidden; } 
     li.placeholder { overflow:hidden; background:url(hatch-b.png); border-color:transparent; }
     
-	//ÕıÔÚÍÏ¶¯µÄÔªËØ¸±±¾ÑùÊ½¶¨Òå
+	//æ­£åœ¨æ‹–åŠ¨çš„å…ƒç´ å‰¯æœ¬æ ·å¼å®šä¹‰
     li:copying,
     li:moving { background-color:yellow; opacity:0.7; text-align:center; }
 
@@ -46,9 +46,9 @@
       //outline-shift:2px;
       margin:0;
     }
-	//¿É·ÅÖÃÍÏ×§ÔªËØµÄÄ¿±êÔªËØÑùÊ½¶¨Òå
+	//å¯æ”¾ç½®æ‹–æ‹½å…ƒç´ çš„ç›®æ ‡å…ƒç´ æ ·å¼å®šä¹‰
     .zone:drop-target { border-color:#008; }
-	//Êó±ê¾­¹ıµÄ¿É·ÅÖÃÍÏ×§ÔªËØµÄÄ¿±êÔªËØÑùÊ½¶¨Òå
+	//é¼ æ ‡ç»è¿‡çš„å¯æ”¾ç½®æ‹–æ‹½å…ƒç´ çš„ç›®æ ‡å…ƒç´ æ ·å¼å®šä¹‰
     .zone:drag-over { border-color:#00E; }
     
     .zone > caption { font-weight: bold; background:#FFF; border-bottom:1px solid black; min-width: max-intrinsic; padding:2px 4px; width:*; clear:after;}
@@ -59,7 +59,7 @@
     .zone#e { float: "e"; flow: horizontal-flow; height:min-intrinsic; width:*; } .zone#e > caption { clear:right; }
     .zone > li { background-color: #FFF; width:*; }
 
-    //ÍÏ×§Õ¼Î»ÔªËØÑùÊ½¶¨Òå
+    //æ‹–æ‹½å ä½å…ƒç´ æ ·å¼å®šä¹‰
     .zone > li.placeholder { background-color:transparent; }
 
     ul#tools 
@@ -140,16 +140,16 @@
 </head>
 <body>
   <div #main>
-    <h1>WordPress Ä£°å±à¼­Æ÷</h1>
+    <h1>WordPress æ¨¡æ¿ç¼–è¾‘å™¨</h1>
     <ul #tools>
       <include src="page-layout-objects.htm" />
     </ul>
     <div #page>
-      <ul #a .zone ><caption>ÇøÓò A</caption></ul>
-      <ul #b .zone ><caption>ÇøÓò B</caption></ul>
-      <ul #c .zone ><caption>ÇøÓò C</caption></ul>
-      <ul #d .zone ><caption>ÇøÓò D</caption></ul>
-      <ul #e .zone ><caption>ÇøÓò E</caption></ul>
+      <ul #a .zone ><caption>åŒºåŸŸ A</caption></ul>
+      <ul #b .zone ><caption>åŒºåŸŸ B</caption></ul>
+      <ul #c .zone ><caption>åŒºåŸŸ C</caption></ul>
+      <ul #d .zone ><caption>åŒºåŸŸ D</caption></ul>
+      <ul #e .zone ><caption>åŒºåŸŸ E</caption></ul>
     </div>
   </div>
   <div #blackhole>Hole.<br>The<br>black<br>one.</div>

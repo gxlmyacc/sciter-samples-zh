@@ -1,7 +1,7 @@
 <html>
   <head>
   <style>
-    @import url(std-menu.css); /* ÒýÈë²Ëµ¥Ìõ ÑùÊ½¿â */
+    @import url(std-menu.css); /* å¼•å…¥èœå•æ¡ æ ·å¼åº“ */
     
     ul#menu-bar 
     {
@@ -54,7 +54,7 @@
     <script type="text/tiscript">
     
       self.on("click", "menu > li ", function() {
-        stdout.println("²Ëµ¥Ïîµã»÷ÔÚ ", this); 
+        stdout.println("èœå•é¡¹ç‚¹å‡»åœ¨ ", this); 
       });
       
       self.on("click", "button[name=just-a-button]", function() {
@@ -67,61 +67,61 @@
   </head>
 
 <body>
-<h3>²Ëµ¥Ìõ£º²Ëµ¥ÌõµÄ×î¶¥²ã±ØÐëÆ¥Åäul#menu-barÑ¡ÔñÆ÷, ¼û std-menu.css</h3>
-<ul id="menu-bar"> <!-- ²Ëµ¥ÌõµÄ×î¶¥²ã, Ëü±ØÐëÆ¥Åäul#menu-barÑ¡ÔñÆ÷, ¼û std-menu.css -->
-  <li>¼òµ¥²Ëµ¥
+<h3>èœå•æ¡ï¼šèœå•æ¡çš„æœ€é¡¶å±‚å¿…é¡»åŒ¹é…ul#menu-baré€‰æ‹©å™¨, è§ std-menu.css</h3>
+<ul id="menu-bar"> <!-- èœå•æ¡çš„æœ€é¡¶å±‚, å®ƒå¿…é¡»åŒ¹é…ul#menu-baré€‰æ‹©å™¨, è§ std-menu.css -->
+  <li>ç®€å•èœå•
     <menu class="cool">
-      <li title="ÄãºÃ!">µÚÒ»Ïî(ÓÐÆøÅÝÌáÊ¾)</li>
-      <li accesskey="^2">µÚ¶þÏî<span class="accesskey">Ctrl+<font color="red">2</font></span></li>
-      <li>µÚÈýÏî
+      <li title="ä½ å¥½!">ç¬¬ä¸€é¡¹(æœ‰æ°”æ³¡æç¤º)</li>
+      <li accesskey="^2">ç¬¬äºŒé¡¹<span class="accesskey">Ctrl+<font color="red">2</font></span></li>
+      <li>ç¬¬ä¸‰é¡¹
         <menu>
-          <li style="background:linear-gradient(left,yellow,red)">×Ó²Ëµ¥1</li>
-          <li>×Ó²Ëµ¥2</li>
+          <li style="background:linear-gradient(left,yellow,red)">å­èœå•1</li>
+          <li>å­èœå•2</li>
         </menu>
       </li>
-      <li accesskey="^4">µÚÈýÏî<span class="accesskey">Ctrl+<font color="red">4</font></span></li>
+      <li accesskey="^4">ç¬¬ä¸‰é¡¹<span class="accesskey">Ctrl+<font color="red">4</font></span></li>
     </menu>
   </li>
-    <li>Ê¾Àý 2
+    <li>ç¤ºä¾‹ 2
     <menu class="cool">
-      <li >µÚÒ»Ïî</li>
-      <li >µÚ¶þÏî</li>
-      <li >µÚÈýÏî</li>
+      <li >ç¬¬ä¸€é¡¹</li>
+      <li >ç¬¬äºŒé¡¹</li>
+      <li >ç¬¬ä¸‰é¡¹</li>
     </menu>
   </li>
-  <li>ÊäÈë²Ëµ¥
+  <li>è¾“å…¥èœå•
     <menu class="cool"  id="test">
-      <li type="radio" name="myradios" id="myradios-1">µÚÒ»¸öµ¥Ñ¡Ïî</li>
-      <li type="radio" name="myradios" id="myradios-2">µÚ¶þ¸öµ¥Ñ¡Ïî</li>
-      <li type="radio" name="myradios" id="myradios-3">µÚÈý¸öµ¥Ñ¡Ïî</li>
+      <li type="radio" name="myradios" id="myradios-1">ç¬¬ä¸€ä¸ªå•é€‰é¡¹</li>
+      <li type="radio" name="myradios" id="myradios-2">ç¬¬äºŒä¸ªå•é€‰é¡¹</li>
+      <li type="radio" name="myradios" id="myradios-3">ç¬¬ä¸‰ä¸ªå•é€‰é¡¹</li>
       <hr/>
-      <li type="check" name="mychecks" id="mychecks-1">µÚÒ»¸ö¸´Ñ¡Ïî</li>
-      <li type="check" name="mychecks" id="mychecks-2">µÚ¶þ¸ö¸´Ñ¡Ïî</li>
-      <li type="check" name="mychecks" id="mychecks-3">µÚÈý¸ö¸´Ñ¡Ïî</li>
+      <li type="check" name="mychecks" id="mychecks-1">ç¬¬ä¸€ä¸ªå¤é€‰é¡¹</li>
+      <li type="check" name="mychecks" id="mychecks-2">ç¬¬äºŒä¸ªå¤é€‰é¡¹</li>
+      <li type="check" name="mychecks" id="mychecks-3">ç¬¬ä¸‰ä¸ªå¤é€‰é¡¹</li>
       <hr/>
-      <li>ÒôÁ¿£º<input type="hslider" name="volume" max="10" value="0" buddy="volume-buddy" /> <b id="volume-buddy">x</b> ·Ö±´</li>
+      <li>éŸ³é‡ï¼š<input type="hslider" name="volume" max="10" value="0" buddy="volume-buddy" /> <b id="volume-buddy">x</b> åˆ†è´</li>
     </menu>
   </li>
 
-  <li>¸´ÔÓ²Ëµ¥
+  <li>å¤æ‚èœå•
     <menu class="cool">
       <li> 
-        <input type="radio" name="myradios" id="myradios-1" />µ¥Ñ¡1
-        <input type="radio" name="myradios" id="myradios-2" />µ¥Ñ¡2
-        <input type="radio" name="myradios" id="myradios-3" />µ¥Ñ¡3
+        <input type="radio" name="myradios" id="myradios-1" />å•é€‰1
+        <input type="radio" name="myradios" id="myradios-2" />å•é€‰2
+        <input type="radio" name="myradios" id="myradios-3" />å•é€‰3
       </li>
       <hr/>
-      <li type="check" name="mychecks" id="mychecks-1">µÚÒ»¸ö¸´Ñ¡Ïî</li>
-      <li type="check" name="mychecks" id="mychecks-2">µÚ¶þ¸ö¸´Ñ¡Ïî</li>
-      <li type="check" name="mychecks" id="mychecks-3">µÚÈý¸ö¸´Ñ¡Ïî</li>
+      <li type="check" name="mychecks" id="mychecks-1">ç¬¬ä¸€ä¸ªå¤é€‰é¡¹</li>
+      <li type="check" name="mychecks" id="mychecks-2">ç¬¬äºŒä¸ªå¤é€‰é¡¹</li>
+      <li type="check" name="mychecks" id="mychecks-3">ç¬¬ä¸‰ä¸ªå¤é€‰é¡¹</li>
       <hr/>
-      <li>×´Ì¬:<input type="progress" name="p2" maxvalue="100" value="25"/></li>
-      <li>Öµ:<input type="number" name="num" size=4 step=1 minvalue=0 maxvalue=100 value="25"/></li>
-      <li><button name="just-a-button">Ò»¸ö°´Å¥</button></li>
-      <li>ÏÂÀ­Ñ¡Ôñ: <select>
-        <option>µÚÒ»Ïî</option>
-        <option>µÚ¶þÏî</option>
-        <option>µÚÈýÏî</option>
+      <li>çŠ¶æ€:<input type="progress" name="p2" maxvalue="100" value="25"/></li>
+      <li>å€¼:<input type="number" name="num" size=4 step=1 minvalue=0 maxvalue=100 value="25"/></li>
+      <li><button name="just-a-button">ä¸€ä¸ªæŒ‰é’®</button></li>
+      <li>ä¸‹æ‹‰é€‰æ‹©: <select>
+        <option>ç¬¬ä¸€é¡¹</option>
+        <option>ç¬¬äºŒé¡¹</option>
+        <option>ç¬¬ä¸‰é¡¹</option>
       </li>
     </menu>
   </li>

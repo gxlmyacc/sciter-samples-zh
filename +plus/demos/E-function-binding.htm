@@ -1,8 +1,8 @@
 <html>
   <head>
-    <title>Plus º¯Êı°ó¶¨</title>
+    <title>Plus å‡½æ•°ç»‘å®š</title>
     <style>
-      @import url(../plus.css); /* ½öĞèÒıÈëPlus¿ò¼Ü */
+      @import url(../plus.css); /* ä»…éœ€å¼•å…¥Plusæ¡†æ¶ */
       @import url(../../note.css); 
       
       output { display: inline-block; border: 1px gray dotted; }
@@ -10,15 +10,15 @@
     
     <script type="text/tiscript">
     
-      include "../plus.tis"; // ÒòÎªÒªÊ¹ÓÃ@observing£¬ËùÒÔĞèÒªÒıÈëplus.tis
+      include "../plus.tis"; // å› ä¸ºè¦ä½¿ç”¨@observingï¼Œæ‰€ä»¥éœ€è¦å¼•å…¥plus.tis
   
-      namespace Data // ÎÒÃÇµÄÄ£ĞÍ
+      namespace Data // æˆ‘ä»¬çš„æ¨¡å‹
       {  
         var a = 0; 
         var b = 32;
         var sum = 0;
         
-        // Õâ¸öº¯Êı¹Û²ì'a'¡¢'b'±äÁ¿£¬²¢ÇÒ¼ÆËã'sum'±äÁ¿
+        // è¿™ä¸ªå‡½æ•°è§‚å¯Ÿ'a'ã€'b'å˜é‡ï¼Œå¹¶ä¸”è®¡ç®—'sum'å˜é‡
         @observing "a", "b"
           function calcSum() {
             sum = a + b;
@@ -28,10 +28,10 @@
     </script>
   </head>
 
-<body model="Data"> <!-- ¶¨ÒåÎÒÃÇÒª¹Û²ìµÄÊı¾İÄ£ĞÍ -->
+<body model="Data"> <!-- å®šä¹‰æˆ‘ä»¬è¦è§‚å¯Ÿçš„æ•°æ®æ¨¡å‹ -->
 
-  <note>ÏÂÃæÁ½¸öÊäÈë¿ò·Ö±ğ°ó¶¨ÁË<code>a</code>¡¢<code>b</code>±äÁ¿¡£
-  ÕâÁ½¸ö±äÁ¿Ò²¶¼°ó¶¨ÁËcalcSum()º¯Êı£¬ÒÔ±ãÀ´¼ÆËãËüÃÇµÄºÏ¼ÆÖµ(sum)¡£ 
+  <note>ä¸‹é¢ä¸¤ä¸ªè¾“å…¥æ¡†åˆ†åˆ«ç»‘å®šäº†<code>a</code>ã€<code>b</code>å˜é‡ã€‚
+  è¿™ä¸¤ä¸ªå˜é‡ä¹Ÿéƒ½ç»‘å®šäº†calcSum()å‡½æ•°ï¼Œä»¥ä¾¿æ¥è®¡ç®—å®ƒä»¬çš„åˆè®¡å€¼(sum)ã€‚ 
   </note>
 
   <p><input|number(a) > + <input|number(b)> = <output(sum)></p>

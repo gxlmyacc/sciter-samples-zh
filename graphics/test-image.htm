@@ -21,16 +21,16 @@
       {
         const SCALE_STEP = 0.005;
         function attached() 
-        { // ¸½¼Ópaint()µ½paintContent»æÍ¼²ã
+        { // é™„åŠ paint()åˆ°paintContentç»˜å›¾å±‚
           this.paintContent = this.paint;
           this.image = this.loadImage("last-diligence-from-gabriola.jpg");
-          this.post(::this.animate(this.animationStep)); //Æô¶¯¶¯»­
+          this.post(::this.animate(this.animationStep)); //å¯åŠ¨åŠ¨ç”»
           this.scale = 1.0;
           this.scaleStep = -SCALE_STEP;
           this.corner = 0;
         }
         
-        // µ±´¦ÀíWM_PAINTÏûÏ¢Ê±µ÷ÓÃÕâ¸öº¯Êı 
+        // å½“å¤„ç†WM_PAINTæ¶ˆæ¯æ—¶è°ƒç”¨è¿™ä¸ªå‡½æ•° 
         function paint(gfx)
         {
           if( !this.image ) return;
@@ -51,7 +51,7 @@
           }
           
           gfx.blendImage(this.image,x, y,iw,ih,this.scale);
-          /* äÖÈ¾¾µÏñÍ¼ÏñµÄÊ¾Àı
+          /* æ¸²æŸ“é•œåƒå›¾åƒçš„ç¤ºä¾‹
           gfx.save();
           gfx.translate(x + iw, y);
           gfx.scale(-1, 1);

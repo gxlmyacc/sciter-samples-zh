@@ -10,8 +10,8 @@
         flow:stack;
         overflow:hidden;
         background-image:url(images/stretchable.png); 
-        background-position:15px 15px 15px 15px; /*top right bottom left Æ«ÒÆ*/
-        background-repeat:expand stretch-top stretch-bottom stretch-middle; /* h-smile¶ÀÓĞ */
+        background-position:15px 15px 15px 15px; /*top right bottom left åç§»*/
+        background-repeat:expand stretch-top stretch-bottom stretch-middle; /* h-smileç‹¬æœ‰ */
         border: none;
         padding: 14px;
         height:*;    
@@ -36,12 +36,12 @@
         foreground-clip: margin-box;
       }
       
-      widget#stack > section[sliding=left] /* ´Ó×óµ½ÓÒ */ 
+      widget#stack > section[sliding=left] /* ä»å·¦åˆ°å³ */ 
       {
         opacity:0;
         transform:translate(-100%,0);
       }
-      widget#stack > section[sliding=right] /* ´ÓÓÒµ½×ó */ 
+      widget#stack > section[sliding=right] /* ä»å³åˆ°å·¦ */ 
       {
         opacity:0;
         transform:translate(100%,0);
@@ -55,7 +55,7 @@
       }
       widget#stack > section:animating
       {
-        z-index:2; // ×ÜÔÚµ±Ç°ÔªËØµÄ×î¶¥²ã
+        z-index:2; // æ€»åœ¨å½“å‰å…ƒç´ çš„æœ€é¡¶å±‚
         visibility:visible;
       }
         
@@ -84,8 +84,8 @@
         self.state.focus = true;
         prevBtn.state.disabled = true; 
         nextBtn.state.disabled = true; 
-        el.attributes["sliding"] = direction; // ÖØÖÃµ½³õÊ¼¶¯»­×´Ì¬
-        el.post(:: this.attributes["sliding"] = "run" );    // ÉèÖÃ×îÖÕ¶¯»­×´Ì¬¡ª¡ª´¥·¢¶¯»­
+        el.attributes["sliding"] = direction; // é‡ç½®åˆ°åˆå§‹åŠ¨ç”»çŠ¶æ€
+        el.post(:: this.attributes["sliding"] = "run" );    // è®¾ç½®æœ€ç»ˆåŠ¨ç”»çŠ¶æ€â€”â€”è§¦å‘åŠ¨ç”»
         el.subscribe(animationDone,Event.BEHAVIOR_EVENT,Event.ANIMATION);
       }
       
@@ -113,13 +113,13 @@
 </head>
 
 <body>
-  <p>H-SMILEÊ¹ÓÃ<i>Direct2D/DirectWrite</i>½øĞĞ<b>HTML</b>äÖÈ¾¡£</p> 
+  <p>H-SMILEä½¿ç”¨<i>Direct2D/DirectWrite</i>è¿›è¡Œ<b>HTML</b>æ¸²æŸ“ã€‚</p> 
   <div><button #prev>&lt;</button> <button #next>&gt;</button></div>
   <widget #stack >
-    <section style="background:DarkSalmon"><a>¶ÑÕ»</a>µÚÒ»¸öÔªËØ</section>
-    <section style="background:GoldenRod"><a>¶ÑÕ»</a>µÚ¶ş¸öÔªËØ</section>
-    <section style="background:MediumPurple"><a>¶ÑÕ»</a>µÚÈı¸öÔªËØ</section>
-    <section style="background:PaleVioletRed"><a>¶ÑÕ»</a>µÚËÄ¸öÔªËØ</section>
+    <section style="background:DarkSalmon"><a>å †æ ˆ</a>ç¬¬ä¸€ä¸ªå…ƒç´ </section>
+    <section style="background:GoldenRod"><a>å †æ ˆ</a>ç¬¬äºŒä¸ªå…ƒç´ </section>
+    <section style="background:MediumPurple"><a>å †æ ˆ</a>ç¬¬ä¸‰ä¸ªå…ƒç´ </section>
+    <section style="background:PaleVioletRed"><a>å †æ ˆ</a>ç¬¬å››ä¸ªå…ƒç´ </section>
   </widget>
 </body>
 </html>

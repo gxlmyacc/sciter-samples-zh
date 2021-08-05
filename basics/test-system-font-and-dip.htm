@@ -1,6 +1,6 @@
 <html>
   <head>
-  <title>ϵͳ���� �� DIP��λ</title>
+  <title>系统字体 和 DIP单位</title>
   <style>
   
     html
@@ -33,21 +33,21 @@
   </head>
 <body>
 
-  <p>�����ҳʹ��ϵͳ����(UIĬ��)</p>
+  <p>这个网页使用系统字体(UI默认)</p>
   
-  ���� �� �豸��������(1/96 ÿӢ��)
+  物理 和 设备独立像素(1/96 每英尺)
   <div id=cont>
     <div>100px</div>
-    <div .dip>100dip �ߴ�</div>
-    <div .dip-all>100dip �ߴ� �� 4dip�߿�</div>
+    <div .dip>100dip 尺寸</div>
+    <div .dip-all>100dip 尺寸 和 4dip边框</div>
   </div>
-  <text .comment>ע�� 1: ��125%��Ļ��������ʱ����Щ�����в�ͬ�ĳߴ硣���һ�����ν�ӵ�и��ֵı߿�</text>
-  <text .comment>ע�� 2: ���ȱ��������뵽�������ֵ��</text>
+  <text .comment>注意 1: 在125%屏幕缩放因子时，这些矩形有不同的尺寸。最后一个矩形将拥有更粗的边框。</text>
+  <text .comment>注意 2: 长度被四舍五入到相近像素值。</text>
 
   <p style="font-size:16px">font-size:16px</p>
   <p style="font-size:16dip">font-size:16dip</p>
   
-  <p>��ǰ���ڵĽ��������ÿӢ��<code #ppi />����, 1dip=<code #ppdip />px��</p>
+  <p>当前窗口的解决方案是每英尺<code #ppi />像素, 1dip=<code #ppdip />px。</p>
   
 </body>
 </html>

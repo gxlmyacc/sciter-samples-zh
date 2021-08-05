@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>���ı� ʾ��</title>
+    <title>富文本 示例</title>
     <style>
       @import url(richtext.css);
       body { margin:0;}
@@ -25,24 +25,24 @@
   <frameset cols="*,*">
   <richtext>
     <h1>behavior:richtext</h1>
-    <p>ͼ��༭��richtext-utils.tis�е�<code>class EditableImage</code>����֧�֡�</p>
-    <p><img src="../graphics/last-diligence-from-gabriola.jpg" width="200" >ͼ�����</p>
-    <p>���ڱ༭ģʽ�ı���(Table)����ÿ�е���ʼ�ͽ���λ������ʱ���ḽ�Ӳ���һ��<b>additional</b>����������һ�����С�</p>
+    <p>图像编辑由richtext-utils.tis中的<code>class EditableImage</code>驱动支持。</p>
+    <p><img src="../graphics/last-diligence-from-gabriola.jpg" width="200" >图像测试</p>
+    <p>处于编辑模式的表格(Table)当在每行的起始和结束位置输入时，会附加插入一个<b>additional</b>符号来创建一个新行。</p>
     <table>
-      <tr><td>��Ԫ��1</td><td rowspan=2>��Ԫ��2</td></tr>
-      <tr><td>��Ԫ��3</td></tr>
-      <tr><td>��Ԫ��4</td><td>��Ԫ��5</td></tr>
+      <tr><td>单元格1</td><td rowspan=2>单元格2</td></tr>
+      <tr><td>单元格3</td></tr>
+      <tr><td>单元格4</td><td>单元格5</td></tr>
     </table>
     
     <p>Test of &lt;br&gt;<br><br></p>
     <p>a<br><br></p>
     
-    <p>����<img src="sciter:copy.png"><img src="sciter:paste.png">ͼƬ�Ĳ��ԣ��Ѿ���������ı�</p>
+    <p>两张<img src="sciter:copy.png"><img src="sciter:paste.png">图片的测试，已经它后面的文本</p>
     
-    <p>����<span style="display:inline-block">inline-block</span>Ԫ��</p>
+    <p>测试<span style="display:inline-block">inline-block</span>元素</p>
     
-    <p>���Ա༭�����е�����Ԫ�صĴ�����<input type="text" value="���ɱ༭"></p>
-    <p>ע��: <em style="color:red">��δ��ɣ���������!</em></p>
+    <p>测试编辑环境中的输入元素的处理：<input type="text" value="不可编辑"></p>
+    <p>注意: <em style="color:red">尚未完成，正在完善!</em></p>
   </richtext>
   <splitter/>
   <plaintext></plaintext>

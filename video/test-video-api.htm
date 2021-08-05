@@ -1,4 +1,4 @@
-<html>
+ï»¿<html>
   <head>
     <title></title>
     <style>
@@ -101,7 +101,7 @@
 		$(#open).onClick = function()
         {
 		  video.videoUnload();
-		  var path = view.selectFile(#load, "ÊÓÆµÎÄ¼ş (*.wmv)|*.WMV|All Files (*.*)|*.*" , "wmv");
+		  var path = view.selectFile(#load, "è§†é¢‘æ–‡ä»¶ (*.wmv)|*.WMV|All Files (*.*)|*.*" , "wmv");
 		  if(path && video.videoLoad(path))
             video.videoPlay(0); 
         }
@@ -112,10 +112,10 @@
     </script>
   </head>
 <body>
-  <p>ÊÓÆµ(Video) API - ÊôĞÔºÍÊÂ¼ş</p>
+  <p>è§†é¢‘(Video) API - å±æ€§å’Œäº‹ä»¶</p>
   <video  />
   <dl #states>
-    <header>ÊôĞÔ</header>
+    <header>å±æ€§</header>
       <dt>videoIsPlaying():</dt> <dd><output(isPlaying)/></dd>
       <dt>videoDuration():</dt> <dd><output|decimal(duration)/>s</dd>
       <dt>videoPosition():</dt> <dd><output|decimal(position)/>s</dd>
@@ -123,19 +123,19 @@
       <dt>videoHeight():</dt> <dd><output|integer(height)/>px</dd>
       <dt>audioVolume():</dt> <dd><output|decimal(volume)/></dd>
       <dt>audioBalance():</dt> <dd><output|decimal(balance)/></dd>
-    <header>ÊÂ¼ş</header>
+    <header>äº‹ä»¶</header>
       <dt>VIDEO_INITIALIZED:</dt><dd><output(INITIALIZED)/></dd>
       <dt>VIDEO_STARTED:</dt><dd><output(STARTED)/></dd>
       <dt>VIDEO_STOPPED:</dt><dd><output(STOPPED)/></dd>
      <div>
-	  <button #open>´ò¿ª</button>
-      <button #run>²¥·Å</button>
-      <button #stop>Í£Ö¹</button> 
-      <br><button #rewind>µ¹´ø</button>
-          <button #goto50>µ½50%</button>
-      <br><button #unload>Ğ¶ÔØ</button>
-      <br><button #volume0>ÒôÁ¿ 0db</button>
-          <button #volume1>ÒôÁ¿ -1db</button>
+	  <button #open>æ‰“å¼€</button>
+      <button #run>æ’­æ”¾</button>
+      <button #stop>åœæ­¢</button> 
+      <br><button #rewind>å€’å¸¦</button>
+          <button #goto50>åˆ°50%</button>
+      <br><button #unload>å¸è½½</button>
+      <br><button #volume0>éŸ³é‡ 0db</button>
+          <button #volume1>éŸ³é‡ -1db</button>
      </div>
   </dl>
 </body>

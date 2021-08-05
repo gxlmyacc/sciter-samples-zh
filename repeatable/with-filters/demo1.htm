@@ -2,9 +2,9 @@
   <head>
     <title></title>
     <style>
-      /* repeatable ¹æÔò: */
+      /* repeatable è§„åˆ™: */
       [repeatable] { aspect: Repeatable url(repeatable.tis);  }
-      [repeatable] > * { behavior:form; } /* Ã¿¸öÖØ¸´µÄ×ÓÔªËØ±»µ±×öÒ»¸öform£¬ËùÒÔËüÃÇ¿ÉÒÔ½ÓÊÜÒ»¸ö¶ÔÏóÖµ */     
+      [repeatable] > * { behavior:form; } /* æ¯ä¸ªé‡å¤çš„å­å…ƒç´ è¢«å½“åšä¸€ä¸ªformï¼Œæ‰€ä»¥å®ƒä»¬å¯ä»¥æŽ¥å—ä¸€ä¸ªå¯¹è±¡å€¼ */     
       
       /* #shopping-cart specifics */
       
@@ -20,11 +20,11 @@
     <script type="text/tiscript">
     
       var shoppingCartData = [
-        { product:"Æ»¹û", price: 0.95, calories:52 },
-        { product:"éÙ×Ó", price: 0.75, calories:47 },
-        { product:"ÑÀË¢", price: 1.75 },
-        { product:"Àæ", price: 1.25, calories:57 },      
-        { product:"·ÊÔí", price: 2.75 },
+        { product:"è‹¹æžœ", price: 0.95, calories:52 },
+        { product:"æ©˜å­", price: 0.75, calories:47 },
+        { product:"ç‰™åˆ·", price: 1.75 },
+        { product:"æ¢¨", price: 1.25, calories:57 },      
+        { product:"è‚¥çš‚", price: 2.75 },
       ];
       
     </script>
@@ -43,16 +43,16 @@
   </head>
 <body>
 
-  ¹ºÎï³µÊ¾Àý£¬ÏÂÃæÁÐ±íÖÐµÄÏî¸ù¾Ý@ifÌõ¼þÏÔÊ¾²»Í¬µÄÑùÊ½:
+  è´­ç‰©è½¦ç¤ºä¾‹ï¼Œä¸‹é¢åˆ—è¡¨ä¸­çš„é¡¹æ ¹æ®@ifæ¡ä»¶æ˜¾ç¤ºä¸åŒçš„æ ·å¼:
  
   <ol #shopping-cart repeatable>
   
     <li if="{calories:Integer}" class="food">
-      <output(product)/>, Ê³Îï, <output(calories)/> ¿¨Â·Àï <output|currency(price)/>
+      <output(product)/>, é£Ÿç‰©, <output(calories)/> å¡è·¯é‡Œ <output|currency(price)/>
     </li>
     
     <li class="thing">
-      <output(product)/>, ÎïÆ· <output|currency(price)/>
+      <output(product)/>, ç‰©å“ <output|currency(price)/>
     </li>
   
   </ol>

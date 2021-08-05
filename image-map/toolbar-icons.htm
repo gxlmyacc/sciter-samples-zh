@@ -5,8 +5,8 @@
       @image-map tb-icon 
       {
         src:url(rttb.png);
-        cells:15 2; /* 15 ��, 2 �� */
-        /* ͼƬ��ÿһ���ֵ��߼����ƣ���toolbar-icons.png */ 
+        cells:15 2; /* 15 列, 2 行 */
+        /* 图片中每一部分的逻辑名称，见toolbar-icons.png */ 
         items:  ulist,
                 olist,
                 unindent,
@@ -110,9 +110,9 @@
     </script>
   </head>
 <body>
-  <p>@image-map��ʹ��ʾ����һ��rttb.pngͼƬ��Ϊ�����ͬͼ��(�����ǹ�������ť)��Դ��</p>
+  <p>@image-map的使用示例。一张rttb.png图片作为多个不同图像(这里是工具条按钮)的源。</p>
   <form #dirswitch>
-    �޸�UI����:
+    修改UI方向:
     <button type=radio value=ltr name="dir" checked>LTR</button>
     <button type=radio value=rtl name="dir">RTL</button>
   </form>
@@ -142,12 +142,12 @@
     <button .fullscreen />
   </toolbar>
   <richtext>
-    ע�⣬��Ϊ������:
+    注意，因为声明了:
     <pre dir=ltr>toolbar > button:rtl {
   mapping: left-to-right(margin,foreground-image); 
 }</pre>
-   ���ԣ���RTLģʽʱ����ЩͼƬҲ�ᱻ��ת�ɾ���ͼƬ��
-  ������ʵ�����£�������Ҫ�����е�ͼ�궼��ת�ɾ���ͼƬ��
+   所以，在RTL模式时，这些图片也会被反转成镜像图片。
+  而在真实场景下，并不需要将所有的图标都反转成镜像图片。
   </richtext>
   </div>
 </body>

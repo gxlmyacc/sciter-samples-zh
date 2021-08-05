@@ -1,4 +1,4 @@
-<html>
+ï»¿<html>
 <head>
   <style>
     body 
@@ -117,7 +117,7 @@
             
       function attached()
       {
-        // ÉèÖÃÑÚÂë:
+        // è®¾ç½®æ©ç :
         this.mask(ipmask);
         var init = this.attributes["value"];
         if( init ) this.value = init.scanf("%d.%d.%d.%d");
@@ -127,31 +127,31 @@
   </script>  
 </head>
 <body>
-  <h1>ÑÚÂëÊäÈëÄ£Ê½</h1>
-  <h2>µç»°ÊäÈë¿ò</h2>
+  <h1>æ©ç è¾“å…¥æ¨¡å¼</h1>
+  <h2>ç”µè¯è¾“å…¥æ¡†</h2>
   <form>
-    <caption>¼òµ¥</caption>
+    <caption>ç®€å•</caption>
     Phone:<input type="masked" name="phone" mask="(###) ### ####" /><br/>
-    <button .show>ÏÔÊ¾Öµ</button>
+    <button .show>æ˜¾ç¤ºå€¼</button>
   </form>
   <form>
-    <caption>×Ô¶¨ÒåÖµµÄÑÚÂëÊäÈë¿ò</caption>
+    <caption>è‡ªå®šä¹‰å€¼çš„æ©ç è¾“å…¥æ¡†</caption>
     Phone in British Columbia, Canada.<br/> 
     Area codes here: 604,778,250:<br/>  
     <input type="phone" name="bcphone" area-codes="604,778,250" /><br/>
-    <button .show>ÏÔÊ¾Öµ</button>  
+    <button .show>æ˜¾ç¤ºå€¼</button>  
   </form>
-  <h2>IPµØÖ·ÊäÈë¿ò</h2>  
-  <text.comment>(IPAddressÀàÍ¨¹ı´úÂëÉèÖÃÑÚÂë·Ö×é£¬ËùÒÔÊäÈë¿òµÄÖµÊÇÒ»¸öÊı×é - ÑÚÂëµÄ¸÷¸ö·ÖÁ¿)</text>
+  <h2>IPåœ°å€è¾“å…¥æ¡†</h2>  
+  <text.comment>(IPAddressç±»é€šè¿‡ä»£ç è®¾ç½®æ©ç åˆ†ç»„ï¼Œæ‰€ä»¥è¾“å…¥æ¡†çš„å€¼æ˜¯ä¸€ä¸ªæ•°ç»„ - æ©ç çš„å„ä¸ªåˆ†é‡)</text>
   <form>
-    <caption>Ã»ÓĞ³õÊ¼Öµ</caption>
+    <caption>æ²¡æœ‰åˆå§‹å€¼</caption>
     IP: <input type="ip" name="ipaddr" /><br/>
     <button .show>Show Values</button>
   </form> 
   <form>
-    <caption>³õÊ¼Öµ: 96.49.23.16</caption>
+    <caption>åˆå§‹å€¼: 96.49.23.16</caption>
     IP: <input type="ip" name="ipaddr" value="96.49.23.16" />
-    <button .show>ÏÔÊ¾Öµ</button>
+    <button .show>æ˜¾ç¤ºå€¼</button>
   </form>
   <pre #out />
 </body>

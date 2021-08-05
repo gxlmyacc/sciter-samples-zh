@@ -6,21 +6,21 @@
     </style>
     <script type="text/tiscript">
     
-    $(button#get).onClick = function() { $(#out).text = String.printf("¿ª¹ØÖµ:%V", $(switch).value); }
+    $(button#get).onClick = function() { $(#out).text = String.printf("å¼€å…³å€¼:%V", $(switch).value); }
     $(button#set).onClick = function() { $(switch).value = 1; }
     
     </script>
   </head>
 <body>
-  ¼òµ¥µÄ"µ¥Ñ¡×é"¿ª¹Ø: 
+  ç®€å•çš„"å•é€‰ç»„"å¼€å…³: 
   <switch>
-    <option value=0 checked>ËùÓĞ</option>
-    <option value=1>´ı´¦Àí</option>
-    <option value=2>Íê³É</option>
+    <option value=0 checked>æ‰€æœ‰</option>
+    <option value=1>å¾…å¤„ç†</option>
+    <option value=2>å®Œæˆ</option>
   </switch>
   <p>
-    <button#get>»ñÈ¡Öµ</button>
-    <button#set>ÉèÖÃÖµ</button>
+    <button#get>è·å–å€¼</button>
+    <button#set>è®¾ç½®å€¼</button>
   </p>
   <pre #out>
   </pre>

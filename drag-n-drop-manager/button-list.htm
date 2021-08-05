@@ -3,7 +3,7 @@
   <style>
     html { background-color: white; }
     ul#items { 
-      flow:vertical; //´¹Ö±²¼¾Ö 
+      flow:vertical; //å‚ç›´å¸ƒå±€ 
       width: max-intrinsic; 
       height:*; 
       overflow:scroll-indicator; 
@@ -53,28 +53,28 @@
       autoScroll: true
     };
   
-    var n = 0; // ´´½¨µÄ°´Å¥ÊıÁ¿
+    var n = 0; // åˆ›å»ºçš„æŒ‰é’®æ•°é‡
   
     $(button#add).onClick = function() {
-      $(ul#items).$append(<li><tb-button>ĞÂ½¨ #{++n}</tb-button></li>);
+      $(ul#items).$append(<li><tb-button>æ–°å»º #{++n}</tb-button></li>);
     }
   
   </script>  
 </head>
 <body>
-  <p>¿ÉÖØĞÂÅÅĞòµÄ°´Å¥ÁĞ±í</p>
-  <button #add>Ìí¼Ó°´Å¥</button>
+  <p>å¯é‡æ–°æ’åºçš„æŒ‰é’®åˆ—è¡¨</p>
+  <button #add>æ·»åŠ æŒ‰é’®</button>
   <ul #items>
-    <li><tb-button>µÚÒ»¸ö</tb-button></li>
-    <li><tb-button>µÚ¶ş¸ö</tb-button></li>
-    <li><tb-button>µÚÈı¸ö</tb-button></li>
-    <li><tb-button>µÚËÄ¸ö</tb-button></li>
-    <li><tb-button>µÚÎå¸ö</tb-button></li>
-    <li><tb-button>µÚÁù¸ö</tb-button></li>
-    <li><tb-button>µÚÆß¸ö</tb-button></li>
-    <li><tb-button>µÚ°Ë¸ö</tb-button></li>
-    <li><tb-button>µÚ¾Å¸ö</tb-button></li>
-    <li><tb-button>µÚÊ®¸ö</tb-button></li>
+    <li><tb-button>ç¬¬ä¸€ä¸ª</tb-button></li>
+    <li><tb-button>ç¬¬äºŒä¸ª</tb-button></li>
+    <li><tb-button>ç¬¬ä¸‰ä¸ª</tb-button></li>
+    <li><tb-button>ç¬¬å››ä¸ª</tb-button></li>
+    <li><tb-button>ç¬¬äº”ä¸ª</tb-button></li>
+    <li><tb-button>ç¬¬å…­ä¸ª</tb-button></li>
+    <li><tb-button>ç¬¬ä¸ƒä¸ª</tb-button></li>
+    <li><tb-button>ç¬¬å…«ä¸ª</tb-button></li>
+    <li><tb-button>ç¬¬ä¹ä¸ª</tb-button></li>
+    <li><tb-button>ç¬¬åä¸ª</tb-button></li>
   </ul>
 </body>
 </html>

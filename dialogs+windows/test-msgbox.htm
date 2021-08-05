@@ -1,45 +1,45 @@
 <html>
   <head>
-  <title>view.msgbox() Ê¾Àı</title>
+  <title>view.msgbox() ç¤ºä¾‹</title>
 <style></style>
 
 <script type="text/tiscript">
   include "../decorators.tis";
 
   @click @on "#hello-world-1": {
-    var r = view.msgbox(#alert,"ÄãºÃ!");
+    var r = view.msgbox(#alert,"ä½ å¥½!");
     $(#out).text = r;        
   }
   @click @on "#hello-world-2": {
     var r = view.msgbox { type:#information, 
-                  content:"ÄãºÃ!", 
-                  caption:"ÎÒÊÇ×Ô¶¨Òå±êÌâ" };
+                  content:"ä½ å¥½!", 
+                  caption:"æˆ‘æ˜¯è‡ªå®šä¹‰æ ‡é¢˜" };
     $(#out).text = r;        
   }
   @click @on "#hello-world-3": {
     view.msgbox { type:#information, 
-                  content:"ÊÀ½ç!", 
-                  caption:"ÄãºÃ",
-                  onLoad: function(root){ $(#out).text = String.printf("ÏûÏ¢¿ò¼ÓÔØÁË£º%s\n",root); },
-                  onClose: function(root,buttonSym){ $(#out).text = String.printf("ÏûÏ¢¿ò±»¹Ø±Õ£º#%s\n",buttonSym); }
+                  content:"ä¸–ç•Œ!", 
+                  caption:"ä½ å¥½",
+                  onLoad: function(root){ $(#out).text = String.printf("æ¶ˆæ¯æ¡†åŠ è½½äº†ï¼š%s\n",root); },
+                  onClose: function(root,buttonSym){ $(#out).text = String.printf("æ¶ˆæ¯æ¡†è¢«å…³é—­ï¼š#%s\n",buttonSym); }
                 };
   }
 
   @click @on "#hello-world-4": {
     var result = view.msgbox { type:#question, 
-                               content:"ÓĞÃ»ÓĞÈË°¡°¡°¡?", 
+                               content:"æœ‰æ²¡æœ‰äººå•Šå•Šå•Š?", 
                                //buttons:[#yes,#no]
                                 buttons:[
-                                 {id:#yes,text:"ÊÇ",role:"default-button"},
-                                 {id:#cancel,text:"·ñ",role:"cancel-button"}]   
+                                 {id:#yes,text:"æ˜¯",role:"default-button"},
+                                 {id:#cancel,text:"å¦",role:"cancel-button"}]   
                              };
-	 $(#out).text = String.printf("ÏûÏ¢¿ò½á¹û: #%s\n",result);
+	 $(#out).text = String.printf("æ¶ˆæ¯æ¡†ç»“æœ: #%s\n",result);
   }
 
   @click @on "#hello-world-5": {
     var result = view.msgbox { type:#error, 
-                               content:"<b #name></b> ºÃÏñÓĞĞ©²»Ì«¶Ô¡£<br>ÈÃÎÒÃÇÀ´½â¾öËü!", 
-                               onLoad: function(root){ root.$(#name).text = "ÄãºÃ!"; }
+                               content:"<b #name></b> å¥½åƒæœ‰äº›ä¸å¤ªå¯¹ã€‚<br>è®©æˆ‘ä»¬æ¥è§£å†³å®ƒ!", 
+                               onLoad: function(root){ root.$(#name).text = "ä½ å¥½!"; }
                              };
   }
 
@@ -51,24 +51,24 @@
     {
       if(btn == #cancel)
         return true;
-      data = root.$(form).value; // ´Ó±íµ¥ÊÕ¼¯Êı¾İ
+      data = root.$(form).value; // ä»è¡¨å•æ”¶é›†æ•°æ®
       if( !data.password || !data.name)
       {
-        root.$(p#error).text = "ĞÕÃû»òÃÜÂë²»ÄÜÎª¿Õ£¡";
-        return false; // ¾Ü¾ø¹Ø±Õ
+        root.$(p#error).text = "å§“åæˆ–å¯†ç ä¸èƒ½ä¸ºç©ºï¼";
+        return false; // æ‹’ç»å…³é—­
       }
       return true;
     }
     
-    var result = view.msgbox { //type:#error, - ÎŞÀàĞÍ
+    var result = view.msgbox { //type:#error, - æ— ç±»å‹
                                icon: "user-login-48.png",
-                               title: "µÇÂ¼",
-                               content:$(#msg-box-contnent).text, // ¼ûÏÂÃæµÄ<script type=...> 
+                               title: "ç™»å½•",
+                               content:$(#msg-box-contnent).text, // è§ä¸‹é¢çš„<script type=...> 
                                onClose: onClose,
-                               buttons:[{id:#login,text:"µÇÂ¼"},{id:#cancel,text:"È¡Ïû"}]
+                               buttons:[{id:#login,text:"ç™»å½•"},{id:#cancel,text:"å–æ¶ˆ"}]
                              };
     if( result == #login )
-	  $(#out).text = String.printf("»ñµÃµÇÂ¼ÇëÇó: %V\n",data);
+	  $(#out).text = String.printf("è·å¾—ç™»å½•è¯·æ±‚: %V\n",data);
 
   }
 
@@ -78,27 +78,27 @@
   </head>
 <body>
 
-  <h1>view.msgbox() Ê¾Àı</h1>
+  <h1>view.msgbox() ç¤ºä¾‹</h1>
 
-  <button #hello-world-1>¼òµ¥ÏûÏ¢¿ò</button>
-  <button #hello-world-2>ÓĞ±êÌâµÄ¼òµ¥ÏûÏ¢¿ò</button>
-  <button #hello-world-3>ÓĞÊÂ¼şµÄÏûÏ¢¿ò</button>
-  <button #hello-world-4>ÓĞ×Ô¶¨Òå°´Å¥µÄÏûÏ¢¿ò</button>
-  <button #hello-world-5>ÓĞ³õÊ¼»¯µÄÏûÏ¢¿ò</button>
-  <button #hello-world-6>ÓĞ×Ô¶¨ÒåÍ¼±êºÍÊäÈë¿òµÄÏûÏ¢¿ò</button>
+  <button #hello-world-1>ç®€å•æ¶ˆæ¯æ¡†</button>
+  <button #hello-world-2>æœ‰æ ‡é¢˜çš„ç®€å•æ¶ˆæ¯æ¡†</button>
+  <button #hello-world-3>æœ‰äº‹ä»¶çš„æ¶ˆæ¯æ¡†</button>
+  <button #hello-world-4>æœ‰è‡ªå®šä¹‰æŒ‰é’®çš„æ¶ˆæ¯æ¡†</button>
+  <button #hello-world-5>æœ‰åˆå§‹åŒ–çš„æ¶ˆæ¯æ¡†</button>
+  <button #hello-world-6>æœ‰è‡ªå®šä¹‰å›¾æ ‡å’Œè¾“å…¥æ¡†çš„æ¶ˆæ¯æ¡†</button>
   <img src="sres:busy.png">
 
-  <!-- ÎªÏûÏ¢¿òÉèÖÃ×Ô¶¨Òå²¼¾Öcustom layout for message box -->  
+  <!-- ä¸ºæ¶ˆæ¯æ¡†è®¾ç½®è‡ªå®šä¹‰å¸ƒå±€custom layout for message box -->  
   <script type="text/html" #msg-box-contnent>
     <style>
 	  form { flow:row(label,input); border-spacing:10dip; }
 	  form > * { vertical-align:baseline; }
 	  form > label { horizontal-align:right; }
 	</style>
-    <p>ÇëÌá¹©µÇÂ¼Æ¾¾İ<img src="sres:busy.png">:</p>
+    <p>è¯·æä¾›ç™»å½•å‡­æ®<img src="sres:busy.png">:</p>
     <form>
-      <label>ĞÕÃû:</label><input name="name" type="text" />
-      <label>ÃÜÂë:</label><input name="password" type="password" />
+      <label>å§“å:</label><input name="name" type="text" />
+      <label>å¯†ç :</label><input name="password" type="password" />
     </form>
     <p #error style="color:red; height:1.4em;"></p>
   </script>

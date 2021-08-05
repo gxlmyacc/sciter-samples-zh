@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>ÓĞ²ÎÊıµÄ¶Ô»°¿ò</title>
+  <title>æœ‰å‚æ•°çš„å¯¹è¯æ¡†</title>
   <style>
     html 
     { 
@@ -19,14 +19,14 @@
     event click $(#close-dialog) { view.close( $(form).value ); }
     event change $(form) { stdout.printf("value=%V\n",$(form).value); }
     
-    // ½«¶Ô»°¿ò²ÎÊıÌî³äµ½±íµ¥ÉÏ£¬'parameters'ÊÇÓÉdialog´«µİ¹ıÀ´µÄ²ÎÊı¡£
+    // å°†å¯¹è¯æ¡†å‚æ•°å¡«å……åˆ°è¡¨å•ä¸Šï¼Œ'parameters'æ˜¯ç”±dialogä¼ é€’è¿‡æ¥çš„å‚æ•°ã€‚
     $(form).value = view.parameters;
 
     </script>
 </head>
 <body>
-<h1>¼òµ¥¶Ô»°¿ò</h1>
-<p>ÏÂÃæµÄ×Ö¶ÎÖµÊÇÍ¨¹ıdialogµÄµÄ<var>view.parameters</var>¶ÔÏó(Ó³Éä±í)´«µİ¹ıÀ´µÄ¡£</p>
+<h1>ç®€å•å¯¹è¯æ¡†</h1>
+<p>ä¸‹é¢çš„å­—æ®µå€¼æ˜¯é€šè¿‡dialogçš„çš„<var>view.parameters</var>å¯¹è±¡(æ˜ å°„è¡¨)ä¼ é€’è¿‡æ¥çš„ã€‚</p>
 <form>
   <label>One (Ctrl+1):</label><input type="text" name="one" accesskey="^1" />
   <label>Two (Ctrl+2):</label><input type="text" name="two" accesskey="^2" />
@@ -37,9 +37,9 @@
                                 <option value="hide" selected>hide</option>  
                               </select>    
 </form>
-¶¯»­²âÊÔ£º<img src="sciter:busy.png">
+åŠ¨ç”»æµ‹è¯•ï¼š<img src="sciter:busy.png">
 <p style="text-align:center">
-<button id="close-dialog" role="default-button">¹Ø±Õ¶Ô»°¿ò²¢ÇÒ·µ»ØÒ»¸öÖµ</button>
+<button id="close-dialog" role="default-button">å…³é—­å¯¹è¯æ¡†å¹¶ä¸”è¿”å›ä¸€ä¸ªå€¼</button>
 </p>
 </body>
 </html>

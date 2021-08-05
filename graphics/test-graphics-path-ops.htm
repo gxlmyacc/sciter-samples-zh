@@ -13,17 +13,17 @@
     {
         var path = new Graphics.Path();
     
-        // 绘制顶部和右上角
+        // 缁樺埗椤堕儴鍜屽彸涓婅
         path.moveTo(x+radius,y);
         path.arcTo(x+width,y,x+width,y+radius,radius);
 
-        // 绘制右边和右下角
+        // 缁樺埗鍙宠竟鍜屽彸涓嬭
         path.arcTo(x+width,y+height,x+width-radius,y+height,radius); 
 
-        // 绘制底部和左下角
+        // 缁樺埗搴曢儴鍜屽乏涓嬭
         path.arcTo(x,y+height,x,y+height-radius,radius);
 
-        // 绘制坐标和左上角
+        // 缁樺埗鍧愭爣鍜屽乏涓婅
         path.arcTo(x,y,x+radius,y,radius);
         path.close();
         
